@@ -6,8 +6,9 @@
 ---
 
 ## Source files
+- **Current banner (high-res source):** [`../resources/PCB Channel Banner (current).png`](../resources/PCB%20Channel%20Banner%20(current).png) — Karen's live PCB banner, 2560×1440, downloaded 2026-06-25. **Start here.**
 - **Editable template:** [`../resources/YT - Channel Banner Templates.pdf`](../resources/YT%20-%20Channel%20Banner%20Templates.pdf) (Channel Junkies Canva banner template).
-- **Current live banner (reference):** PCB channel → YouTube Studio → **Customization → Branding → Banner image** (download the current PNG), or view at youtube.com/channel/UCKTGNXomdGLpNjxkrVWlkpw.
+- **Live banner (alt):** PCB channel → YouTube Studio → **Customization → Branding → Banner image**, or youtube.com/channel/UCKTGNXomdGLpNjxkrVWlkpw.
 
 ## Current PCB banner — what it contains (reference)
 - **Headline:** "LIVING IN Panama City Beach, FL"
