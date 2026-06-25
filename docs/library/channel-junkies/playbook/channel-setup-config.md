@@ -94,10 +94,16 @@ Karen Lawell, Realtor | License #3397366 | Brokered by Counts Real Estate Group
 
 ---
 
-## Part 3 — Applied: Channel 2 — Living in Latitude Margaritaville Watersound (NEW)
+## Part 3 — Applied: Channel 2 — Latitude Margaritaville Watersound
 
 A niche channel for the 55+ community (nationally searched by name). Commit to
 ~1 video/week or run it as a playlist on Channel 1 instead.
+
+> ⚠️ **An empty Margaritaville channel ALREADY EXISTS — do NOT create a new one** (verified 2026-06-25 in the account's channel switcher).
+> - Existing channel: **"Living in Margaritaville!"** · handle `@LivingMargaritavillewithKaren` · ID `UCN3mqc01vMeNemUJ2ae60YA`
+> - State: **blank shell** — 0 subscribers, no description, no keywords, no banner, no videos.
+> - **Recommended:** adopt THIS channel and apply the config below.
+> - **Decision needed:** rename it to the SEO-optimal name (e.g. `Living in Latitude Margaritaville Watersound the Lawell Team`) vs. keep the punchier `Living in Margaritaville!`. (Name changes are limited to twice per 14 days.) The handle `@LivingMargaritavillewithKaren` is fine to keep — handle matters less than the channel name for search.
 
 - **Name:** `Living in Latitude Margaritaville Watersound | The Lawell Team`
 - **Handle:** `@LivingInLatitudeMargaritavilleFL`
