@@ -1,0 +1,6 @@
+faster-whisper==1.1.1
+requests
+# GPU (CUDA 12) runtime libraries required by ctranslate2 for NVIDIA acceleration.
+# Safe to keep installed even on CPU-only machines; the script falls back to CPU.
+nvidia-cublas-cu12
+nvidia-cudnn-cu12==9.*

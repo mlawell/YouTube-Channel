@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Whisper model cache
+.cache/
+
+# ATV ephemeral observation log (per project conventions)
+.atv/observations.jsonl
+
+# Channel Junkies is paid training content — keep raw transcripts/subtitles and
+# course resources (PDFs/templates) local, do not redistribute. The synthesized
+# playbook (derivative notes) is tracked.
+docs/library/channel-junkies/transcripts/
+docs/library/channel-junkies/srt/
+docs/library/channel-junkies/resources/

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/scripts/observe.js sessionStart 2>/dev/null || true",
+        "powershell": "try { node .github/hooks/scripts/observe.js sessionStart 2>$null } catch {}",
+        "timeoutSec": 5
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/scripts/observe.js sessionEnd 2>/dev/null || true",
+        "powershell": "try { node .github/hooks/scripts/observe.js sessionEnd 2>$null } catch {}",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}
