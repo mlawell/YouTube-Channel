@@ -14,6 +14,11 @@ volume covers two programs by Channel Junkies:
 > [playbook/realtor-playbook.md](playbook/realtor-playbook.md). Start there if you
 > want the "what do I actually do" version. The transcripts below are the verbatim
 > source (timestamped), kept local and git-ignored because this is paid content.
+>
+> Applying it to our own channels? See
+> [playbook/channel-setup-config.md](playbook/channel-setup-config.md) — the standard
+> YouTube customization setup plus the filled-in configs for the Panama City Beach and
+> Latitude Margaritaville Watersound channels.
 
 ---
 
