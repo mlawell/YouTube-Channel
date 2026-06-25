@@ -11,10 +11,14 @@ guidance in [../realtor-playbook.md](../realtor-playbook.md).
 > mobile app or mobile site. Name, handle, picture, banner, and a video's
 > title/description/thumbnail **can** be edited on mobile.
 >
-> 🔴 **Open item:** the contact email is inconsistent across the PCB channel — the
-> banner shows `Karen@nwflbeachhomes.com` and the About shows
-> `Karen@countsrealestate.com`. Pick ONE and use it everywhere; replace `[EMAIL]`
-> below with it.
+> ✅ **Karen's canonical contact details (use for ALL channels):**
+> - **Primary email:** `Karen@nwflbeachhomes.com` — Karen's main account. The banner
+>   already used it; the channel About, contact field, and upload-defaults were switched
+>   to match on 2026-06-25.
+> - **Call/Text:** 850-517-8528
+> - **Contact / schedule a call:** https://karenlawell.countspcb.com/contact.php
+> - **Home valuation (seller):** https://karenlawell.countspcb.com/seller/valuation/
+> - **License #3397366 | Brokered by Counts Real Estate Group**
 
 ---
 
@@ -74,7 +78,7 @@ living in Panama City Beach, Panama City Beach FL, moving to Panama City Beach, 
 Thinking about moving to Panama City Beach, FL? I'm Karen Lawell with The Lawell Team, and I help people relocate to Panama City Beach every single day — from neighborhoods and schools to market trends and the local beach lifestyle.
 
 📞 Call/Text: 850-517-8528
-📧 Email: [EMAIL]
+📧 Email: Karen@nwflbeachhomes.com
 📅 Schedule a call: https://karenlawell.countspcb.com/contact.php
 
 Whether you're moving in 9 days or 90, let's make it smooth and fun.
@@ -108,7 +112,7 @@ Dreaming about life at Latitude Margaritaville Watersound in Panama City Beach, 
 Whether you're moving in 9 days or 90, I'll make it smooth and fun.
 
 📞 Call/Text: 850-517-8528
-📧 Email: [EMAIL]
+📧 Email: Karen@nwflbeachhomes.com
 📅 Schedule a call: https://karenlawell.countspcb.com/contact.php
 
 Karen Lawell, Realtor | License #3397366 | Brokered by Counts Real Estate Group
