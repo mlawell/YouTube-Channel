@@ -9,6 +9,9 @@ __pycache__/
 # ATV ephemeral observation log (per project conventions)
 .atv/observations.jsonl
 
+# Playwright MCP session artifacts
+.playwright-mcp/
+
 # Channel Junkies is paid training content — keep raw transcripts/subtitles and
 # course resources (PDFs/templates) local, do not redistribute. The synthesized
 # playbook (derivative notes) is tracked.
