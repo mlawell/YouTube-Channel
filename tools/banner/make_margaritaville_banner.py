@@ -92,20 +92,20 @@ def text_left(draw, x, y, text, f, fill, shadow=True, track=0.0):
 def main() -> None:
     base = cover(Image.open(HERO).convert("RGB"), W, H).convert("RGBA")
 
-    # Overall darken + left-weighted gradient for text legibility.
+    # Overall darken + right-weighted gradient (text now sits on the right).
     base = Image.alpha_composite(base, Image.new("RGBA", (W, H), (8, 22, 30, 95)))
     grad = Image.new("L", (W, 1))
     for x in range(W):
-        t = max(0.0, min(1.0, 1.0 - (x - SAFE_L) / (SAFE_W * 0.95)))
+        t = max(0.0, min(1.0, (x - 760) / (W - 760)))
         grad.putpixel((x, 0), int(175 * t))
     grad = grad.resize((W, H))
     shade = Image.new("RGBA", (W, H), (4, 16, 24, 0))
     shade.putalpha(grad)
     base = Image.alpha_composite(base, shade)
 
-    # --- Karen, full-length cut-out, on the right (matches PCB framing) ---
+    # --- Karen, full-length cut-out, on the LEFT (original orientation) ---
     karen = scale_h(Image.open(KAREN).convert("RGBA"), 1400)
-    kx, ky = 1620, SAFE_T - 120
+    kx, ky = 300, SAFE_T - 120
     shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     sil = Image.new("RGBA", karen.size, (0, 0, 0, 0))
     sil.paste((0, 0, 0, 130), (0, 0), karen)
@@ -115,8 +115,9 @@ def main() -> None:
     base.paste(karen, (kx, ky), karen)
 
     draw = ImageDraw.Draw(base)
-    tx = SAFE_L + 18
-    text_w = max(820, kx - tx - 40)
+    # Wording sits to the RIGHT of Karen.
+    tx = kx + karen.width + 70
+    text_w = max(820, SAFE_R - tx - 10)
 
     # "LIVING IN"  (PCB y ~539..616)
     text_left(draw, tx, 543, "LIVING IN", font("arialbd.ttf", 60), TEAL, track=14)
