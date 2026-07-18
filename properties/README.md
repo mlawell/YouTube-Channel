@@ -131,7 +131,7 @@ Single builder (Tradition Series) — townhomes + single-family:
 | Oakland | Single-family | — | — |
 
 > D.R. Horton lists 7 floor plans; 6 confirmed above (one plan name not yet captured).
-> Range 1,459–2,550 sq ft, from ~$287k.
+> Range 1,459–2,550 sq ft.
 
 ## Individual listings (resale / specific homes)
 
