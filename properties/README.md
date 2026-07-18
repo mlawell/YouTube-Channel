@@ -57,9 +57,9 @@ Geographic path: `Bay County \ Panama City Beach \ West Bay & HWY 79 Corridor`.
 | Community | Builder(s) | Middle level | Status |
 | --- | --- | --- | --- |
 | Latitude Margaritaville Watersound | Minto | Collection (5) | Cataloged (37 models) |
-| Breakwater at Ward Creek | Toll Brothers | Builder | Placeholder |
-| Salt Grass at Ward Creek | Kolter Homes; Fischer Homes | Builder | Placeholder |
-| Bayside at Ward Creek | D.R. Horton | Builder | Placeholder |
+| Breakwater at Ward Creek | Toll Brothers | Collection (3) | Cataloged (14 models) |
+| Salt Grass at Ward Creek | Kolter Homes; Fischer Homes | Builder | Cataloged (13 models) |
+| Bayside at Ward Creek | D.R. Horton | Builder | Cataloged (7 plans) |
 
 ### Latitude Margaritaville Watersound (Minto)
 
@@ -77,20 +77,61 @@ Geographic path: `Bay County \ Panama City Beach \ West Bay & HWY 79 Corridor`.
 > Verified model specs and pricing are tracked separately; advertised model prices are
 > home-only (homesite cost is extra) and set by Minto (non-negotiable).
 
-### Breakwater at Ward Creek
+### Breakwater at Ward Creek (Toll Brothers)
 
-Builder: Toll Brothers. M365:
-`Properties\Bay County\Panama City Beach\West Bay & HWY 79 Corridor\Breakwater at Ward Creek\Toll Brothers\<Model>\`.
+Single builder with three collections (tiers) — organize by collection, then model:
+`Properties\Bay County\Panama City Beach\West Bay & HWY 79 Corridor\Breakwater at Ward Creek\<Collection>\<Model>\`.
+
+| Collection | Sq ft (a/c) | Models |
+| --- | --- | --- |
+| Coastal Collection | 1,665–2,548 | Frankford (2BR), Bellview (3BR), Cain (3BR), Hathaway (3–4BR) |
+| Oasis Collection | 2,114–2,565 | Summerwood (3BR), West Bay (3BR), Palmetto (4BR), Sandestin (4BR), Delwood (3–4BR) |
+| Vista Collection | 2,455–3,242 | Caswell (3BR), Sandy (4BR), Grayton (4BR), Callaway (4–5BR), Killian (4–5BR) |
 
 ### Salt Grass at Ward Creek (Kolter Homes & Fischer Homes)
 
 Two builders — organize by builder, then model:
 `Properties\Bay County\Panama City Beach\West Bay & HWY 79 Corridor\Salt Grass at Ward Creek\<Kolter Homes | Fischer Homes>\<Model>\`.
 
+**Fischer Homes — Designer Collection (7 plans):**
+
+| Model | Beds | Sq ft |
+| --- | --- | --- |
+| Edenton | 2–3 | 1,501–2,645 |
+| Amelia | 2–4 | 1,683–3,020 |
+| Wilmington | 2–4 | 1,725–3,322 |
+| Camden | 2–4 | 1,859–2,811 |
+| Linden | 3–5 | 2,064–3,219 |
+| Olive | 3–6 | 2,417–3,097 |
+| Ivy | 4–6 | 2,692–2,756 |
+
+**Kolter Homes — Carson Collection (6 plans; living-area sq ft):**
+
+| Model | Beds | Living sq ft |
+| --- | --- | --- |
+| Erika | 2–3 | 1,811 |
+| Julia | 2–4 | 1,958 |
+| Lila | 3–5 | 2,134 |
+| Madison | 3–5 | 2,281 |
+| Natasha | 3–4 | 2,402 |
+| Olivia | 3–5 | 2,750 |
+
 ### Bayside at Ward Creek (D.R. Horton)
 
-Single builder:
+Single builder (Tradition Series) — townhomes + single-family:
 `Properties\Bay County\Panama City Beach\West Bay & HWY 79 Corridor\Bayside at Ward Creek\D.R. Horton\<Model>\`.
+
+| Model | Type | Beds / Baths | Sq ft |
+| --- | --- | --- | --- |
+| Palm | Townhome | 3BR / 2.5BA | ~1,459 |
+| Delray | Single-family | 4BR / 2BA | 2,044 |
+| Kennedy | Single-family | 5BR / 3BA | 2,145 |
+| Carol | Single-family | 5BR / 3BA | 2,550 |
+| Rhett | Single-family | — | — |
+| Oakland | Single-family | — | — |
+
+> D.R. Horton lists 7 floor plans; 6 confirmed above (one plan name not yet captured).
+> Range 1,459–2,550 sq ft, from ~$287k.
 
 ## Individual listings (resale / specific homes)
 
