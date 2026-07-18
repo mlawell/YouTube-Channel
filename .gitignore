@@ -6,6 +6,10 @@ __pycache__/
 # Whisper model cache
 .cache/
 
+# AI avatar: third-party SadTalker clone + model checkpoints/weights
+# (large ~1.8GB, regenerable — see tools/avatar/README.md)
+tools/avatar/SadTalker/
+
 # ATV ephemeral observation log (per project conventions)
 .atv/observations.jsonl
 

@@ -1,0 +1,21 @@
+# Local, free AI-avatar pipeline (runs on the RTX 3060, CUDA).
+# Install into a DEDICATED venv (see README) — do NOT reuse the transcribe .venv,
+# XTTS pins older numpy/torch that can clash with faster-whisper.
+
+# --- Voice clone + narration (XTTS-v2) ---
+# coqui-tts is the maintained fork of the archived `TTS` package.
+coqui-tts>=0.24.1
+
+# --- Background matting (portrait -> transparent) ---
+rembg[gpu]>=2.0.59 ; platform_system != "Darwin"
+rembg>=2.0.59 ; platform_system == "Darwin"
+onnxruntime-gpu>=1.17 ; platform_system != "Darwin"
+
+# --- Utilities ---
+soundfile>=0.12.1
+numpy<2.0
+
+# NOTE: SadTalker is NOT pip-installable. Clone it separately and point
+# SADTALKER_DIR at it (see README). Its own requirements install into the
+# same venv. Torch/torchvision are pulled in by SadTalker + coqui-tts;
+# install the CUDA build first (see README) so GPU is used.

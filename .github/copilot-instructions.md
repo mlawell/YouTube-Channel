@@ -9,9 +9,16 @@ beaches market. (Formerly a YouTube-only toolkit; the workspace folder is still 
 
 - `brand/` — canonical identity, contact details, and voice (source of truth for all platforms)
 - `knowledge/` — shared, platform-agnostic marketing knowledge library (training distilled into playbooks)
+- `properties/` — real-estate inventory index + community organization standard (County → City → Area → Community → Collection/Builder → Model, or → Phase → Address)
 - `platforms/<platform>/` — per-platform playbooks, `content/`, and `assets/` (youtube, facebook, instagram, tiktok, linkedin, twitter, pinterest)
 - `tools/` — production tooling (transcribe, avatar, banner, video, scrape)
 - `docs/` — ATV workflow docs (`brainstorms/`, `plans/`, `solutions/`)
+
+**Shared assets (Microsoft 365):** Images, Karen's portraits, Counts logos, and
+property media live in the OneDrive library at
+`C:\Users\mikel\NWFL Beach Homes\NWFL Beach Homes - Documents` — referenced, not
+duplicated into the repo. Tools anchor to it via the `NWFL`/`DOCS` constants. See
+`brand/README.md` and `properties/README.md`.
 
 This project uses the ATV (Agentic Tool & Workflow) Starter Kit.
 

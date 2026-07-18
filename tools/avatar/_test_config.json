@@ -1,0 +1,17 @@
+{
+  "model": "Trinidad Bay (smoke test)",
+  "model_dir": "C:\\Users\\mikel\\NWFL Beach Homes\\NWFL Beach Homes - Documents\\Properties\\Margaritaville\\Models\\Island Collection - Single-Family Homes\\Trinidad Bay",
+  "portrait": "C:\\Users\\mikel\\NWFL Beach Homes\\NWFL Beach Homes - Documents\\Images\\Portraits\\Karen Full Length Portrait.png",
+  "voice_sample": "assets/karen-voice-sample.wav",
+  "language": "en",
+  "defaults": {
+    "position": "bottom-right",
+    "scale": 0.62
+  },
+  "rooms": [
+    {
+      "image": "Kitchen.jpg",
+      "script": "The chef-inspired kitchen is the heart of the home, with a generous island and plenty of storage."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "model": "Trinidad Bay",
+  "model_dir": "C:\\Users\\mikel\\NWFL Beach Homes\\NWFL Beach Homes - Documents\\Properties\\Margaritaville\\Models\\Island Collection - Single-Family Homes\\Trinidad Bay",
+  "portrait": "C:\\Users\\mikel\\NWFL Beach Homes\\NWFL Beach Homes - Documents\\Images\\Portraits\\Karen Full Length Portrait.png",
+  "voice_sample": "assets/karen-voice-sample.wav",
+  "language": "en",
+  "defaults": {
+    "position": "bottom-right",
+    "scale": 0.62
+  },
+  "rooms": [
+    {
+      "image": "Great Room.jpg",
+      "script": "Step into the sunlit great room. Soaring ceilings and a wall of windows flood the space with natural light, and it opens right onto the kitchen and lanai, so entertaining flows from inside out.",
+      "position": "bottom-left"
+    },
+    {
+      "image": "Kitchen.jpg",
+      "script": "The chef-inspired kitchen is the heart of the home, with a generous island, plenty of storage, and a clean sight line straight through to the great room and the guest wing beyond."
+    },
+    {
+      "image": "web-trinidad-bay-rhett-master-bed-by-rob-harris-10373-1618602380.jpg",
+      "script": "And here's the owner's retreat, a spacious private suite tucked away from the guest bedrooms, with its own spa-style bath. It's the perfect place to unwind at the end of the day.",
+      "position": "bottom-right"
+    }
+  ]
+}

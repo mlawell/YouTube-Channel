@@ -36,6 +36,33 @@ When something conflicts, the values here win.
 - Keep layout, fonts, photo treatment, and color consistent across channels so every
   platform reads as one brand.
 
+## Asset library (Microsoft 365)
+
+Shared images, Karen's portraits, Counts logos, and property media are the source of
+truth in the M365 / OneDrive document library — **not** duplicated into this repo.
+Reference them from that canonical root:
+
+```
+C:\Users\mikel\NWFL Beach Homes\NWFL Beach Homes - Documents
+```
+
+The production tools already anchor to this root (`NWFL` in
+[`../tools/banner/make_margaritaville_banner.py`](../tools/banner/make_margaritaville_banner.py),
+`DOCS` in [`../tools/video/build_tour.py`](../tools/video/build_tour.py)). Keep those
+constants pointed here.
+
+| Asset | M365 path (under the root above) |
+| --- | --- |
+| Karen's portraits | `Images\Portraits\` (e.g., `Karen Full Length Portrait.png`, `Karen High Res no BG.jpg`, `Karen-transparent.png`) |
+| Counts logos | `Images\Counts Images\Logos\` (`Counts - Panama City Beach.png`, `Counts PCB Logo - transparent.png`, `Counts Logo - no Text SQ.png`) |
+| General brand images | `Images\General Images\` (`Subscribe-Button.png`, `YouTube Banner - Panama City Beach.png`, `YouTube Profile Picture.png`, area aerials) |
+| Banners / cover art | `Images\Banners\` (`Facebook.png`, `West-Bay-Map.jpg`, `Designer.png`) |
+| Maps | `Images\Maps\` |
+| Listing photos | `Images\Listings\` |
+| Community photos | `Images\Communities\<County>\<City>\<Community>\` |
+| Marketing media | `Marketing\` (`AI Avatars`, `AI Video Tours`, `Contact Cards`, `Karen`, `Music`) |
+| Property models / floor plans / video | `Properties\` — see [`../properties/README.md`](../properties/README.md) |
+
 > Detailed, per-channel applied values (handles, keywords, About copy, upload
 > defaults) live in
 > [`../platforms/youtube/README.md`](../platforms/youtube/README.md) and the

@@ -14,6 +14,7 @@ and per-platform operational folders underneath.
 | --- | --- |
 | [`brand/`](brand/README.md) | Canonical identity, contact details, and voice — the source of truth for every platform |
 | [`knowledge/`](knowledge/README.md) | Shared, platform-agnostic marketing knowledge library (training distilled into playbooks) |
+| [`properties/`](properties/README.md) | Real-estate inventory index + the community organization standard (County → City → Area → Community → Collection/Builder → Model, or → Phase → Address) |
 | [`platforms/`](platforms/README.md) | Per-platform playbooks, content, and assets (YouTube, Facebook, Instagram, TikTok, LinkedIn, X, Pinterest) |
 | [`tools/`](tools/) | Production tooling — transcription, avatar/presenter, banners, video tours, scraping |
 | `docs/` | ATV workflow docs — `brainstorms/`, `plans/`, `solutions/` |
@@ -37,3 +38,11 @@ and per-platform operational folders underneath.
 Media is transcribed and produced locally (see [`tools/`](tools/)). Raw transcripts,
 subtitles, and paid course resources are git-ignored; the synthesized playbooks and
 per-platform content are the tracked deliverables.
+
+## Shared assets (Microsoft 365)
+
+Images, Karen's portraits, Counts logos, and property media live in the M365 /
+OneDrive library, not in this repo:
+`C:\Users\mikel\NWFL Beach Homes\NWFL Beach Homes - Documents`. See
+[`brand/README.md`](brand/README.md#asset-library-microsoft-365) for the path map and
+[`properties/README.md`](properties/README.md) for the community/model organization.
