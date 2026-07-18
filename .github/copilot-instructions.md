@@ -1,5 +1,18 @@
 # Project Conventions
 
+**Beach Homes Social Studio** — social media marketing workspace for Karen Lawell,
+Realtor (Counts Real Estate Group), across all platforms for the Northwest Florida
+beaches market. (Formerly a YouTube-only toolkit; the workspace folder is still named
+`YouTube-Channel`.)
+
+## Repository Layout
+
+- `brand/` — canonical identity, contact details, and voice (source of truth for all platforms)
+- `knowledge/` — shared, platform-agnostic marketing knowledge library (training distilled into playbooks)
+- `platforms/<platform>/` — per-platform playbooks, `content/`, and `assets/` (youtube, facebook, instagram, tiktok, linkedin, twitter, pinterest)
+- `tools/` — production tooling (transcribe, avatar, banner, video, scrape)
+- `docs/` — ATV workflow docs (`brainstorms/`, `plans/`, `solutions/`)
+
 This project uses the ATV (Agentic Tool & Workflow) Starter Kit.
 
 ## Available Workflows

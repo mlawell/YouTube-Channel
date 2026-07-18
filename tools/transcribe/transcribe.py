@@ -13,8 +13,8 @@ script can be safely re-run after an interruption.
 Usage (from repo root):
   python tools/transcribe/transcribe.py \
       --input "C:/path/to/media" \
-      --output "docs/library/channel-junkies/transcripts/14-day-sprint" \
-      --srt-output "docs/library/channel-junkies/srt/14-day-sprint"
+      --output "knowledge/channel-junkies/transcripts/14-day-sprint" \
+      --srt-output "knowledge/channel-junkies/srt/14-day-sprint"
 """
 
 from __future__ import annotations

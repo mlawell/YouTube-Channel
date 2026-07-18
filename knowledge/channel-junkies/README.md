@@ -92,7 +92,7 @@ The official templates and worksheets that accompany the course, kept in
 ## How these were produced
 
 Transcribed locally with [faster-whisper](https://github.com/SYSTRAN/faster-whisper)
-(`large-v3`) on GPU. See [`tools/transcribe`](../../../tools/transcribe/README.md) to
+(`large-v3`) on GPU. See [`tools/transcribe`](../../tools/transcribe/README.md) to
 re-run or transcribe new material. Each transcript carries a metadata header
 (duration, language, model) and `[HH:MM:SS]` timestamps; `.srt` files are provided for
 syncing back to the original video/audio.

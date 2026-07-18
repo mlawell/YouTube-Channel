@@ -21,8 +21,8 @@ Requires `ffmpeg` on PATH. GPU acceleration uses the bundled CUDA libraries from
 ```powershell
 python tools/transcribe/transcribe.py `
   --input "C:/path/to/media" `
-  --output "docs/library/channel-junkies/transcripts/14-day-sprint" `
-  --srt-output "docs/library/channel-junkies/srt/14-day-sprint"
+  --output "knowledge/channel-junkies/transcripts/14-day-sprint" `
+  --srt-output "knowledge/channel-junkies/srt/14-day-sprint"
 ```
 
 Key flags:
