@@ -138,8 +138,102 @@ Assets, Batches (video / translation / lipsync / asset), Brand kits, and
 
 ---
 
+## 3. Full developer-site reference
+
+Complete map of https://developers.heygen.com (summarized; follow links for detail).
+Machine-readable index: `https://heygen-1fa696a7.mintlify.site/llms.txt`.
+OpenAPI specs: [external-api.json](https://developers.heygen.com/openapi/external-api.json) · [openapi.yaml](https://developers.heygen.com/openapi.yaml).
+
+### Getting started
+| Page | What it covers |
+| --- | --- |
+| [For AI Agents](https://developers.heygen.com/docs/for-ai-agents) | Agent-first onboarding + the auth-detection ladder **MCP → CLI → raw API**. Read this first if an agent is acting for you. |
+| [Quick Start](https://developers.heygen.com/docs/quick-start) | Zero → generated video: auth, create, poll. |
+| [Choosing the Right Video API](https://developers.heygen.com/docs/choosing-the-right-video-api) | Video Agent vs direct video creation. |
+| [Slack](https://developers.heygen.com/docs/slack) / [Discord](https://developers.heygen.com/docs/discord) | Generate from Slack; dev community. |
+| [Changelog](https://developers.heygen.com/changelog) | Platform updates. |
+| Official agent skills | [`heygen-com/skills`](https://github.com/heygen-com/skills) |
+
+### Authentication, account & billing
+| Page | What it covers |
+| --- | --- |
+| [API Key](https://developers.heygen.com/docs/api-key) | Generate, rotate, secure the key (`X-Api-Key`). |
+| [Get Current User](https://developers.heygen.com/user-profile) | Profile, credit balance, plan tier (`GET /v3/user`). |
+| [Self-Serve](https://developers.heygen.com/docs/pricing) / [Enterprise](https://developers.heygen.com/docs/enterprise-pricing) / [Dollar-based](https://developers.heygen.com/docs/enterprise-pricing-dollar-base) pricing | Per-operation and contract pricing. |
+| [Usage Limits](https://developers.heygen.com/docs/usage-limits) | Rate limits, concurrency, quotas. |
+
+### Errors & versioning
+- [Error Codes](https://developers.heygen.com/docs/error-codes) — codes, HTTP statuses, troubleshooting.
+- [Endpoint Version Comparison](https://developers.heygen.com/endpoint-version-comparison) — v1/v2 vs v3 coverage + migration. **v1/v2 supported until Oct 31, 2026.**
+
+### Video Agent (prompt → finished video, flagship)
+[Overview](https://developers.heygen.com/docs/overview) · [Prompt to Video](https://developers.heygen.com/docs/video-agent) · [Styles & References](https://developers.heygen.com/docs/styles-and-references) · [Upload Assets](https://developers.heygen.com/docs/upload-assets) · [Interactive Sessions](https://developers.heygen.com/docs/interactive-sessions) · [Writing Effective Video Prompts](https://developers.heygen.com/writing-effective-video-prompts). Modes: `generate` (fire-and-forget) and `chat` (multi-turn revisions).
+
+### Direct video generation
+Recommended defaults for `POST /v3/videos`: `aspect_ratio: "auto"`, `resolution: "1080p"` (avatar & image types). Cinematic Avatar supports 16:9/9:16/1:1 at 720p/1080p only.
+
+| Topic | Notes |
+| --- | --- |
+| [Models](https://developers.heygen.com/models) | Avatar types (digital twin, photo, studio, image, prompt) × engines (Avatar III/IV/V). |
+| [Avatar V](https://developers.heygen.com/avatar-v) | Highest-fidelity engine; cross-reference animation; opt-in per look. |
+| [Avatar IV](https://developers.heygen.com/avatar-iv) | **Default** v3 engine; arbitrary image animation, `motion_prompt`, expressiveness. |
+| [Avatar III](https://developers.heygen.com/avatar-iii) | Photo-to-video pipeline for photo/video avatars. |
+| [Avatar Realtime](https://developers.heygen.com/avatar-realtime) / [Live Avatar](https://developers.heygen.com/live-avatar) | Real-time HLS streaming / conversational avatars (720p, billed per second). |
+| [Digital Twin](https://developers.heygen.com/generate-avatar-video) | Avatar trained from real footage. |
+| [Photo Avatar](https://developers.heygen.com/photo-avatar) / [Image to Video](https://developers.heygen.com/image-to-video) | Talking head from one still / animate any image (no avatar step). |
+| [Assets](https://developers.heygen.com/assets) | Upload files for use across the API. |
+| Batches | [Videos](https://developers.heygen.com/batch-videos) · [Translations](https://developers.heygen.com/batch-video-translations) · [Lipsyncs](https://developers.heygen.com/batch-lipsyncs) · [Assets](https://developers.heygen.com/batch-assets) — up to 100 per call. |
+
+### Avatars · Voices · Audio
+- **Avatars:** [Create](https://developers.heygen.com/docs/create-avatar) · [Consent](https://developers.heygen.com/docs/avatar-consent) · [Groups](https://developers.heygen.com/docs/avatars) · [Looks](https://developers.heygen.com/docs/avatar-looks) (a look id = the `avatar_id` you pass when creating video).
+- **Voices:** [Overview](https://developers.heygen.com/docs/voices/overview) · [Browse](https://developers.heygen.com/docs/voices/search-voices) · [Design](https://developers.heygen.com/docs/voices/design-voices) · [Text to Speech (Starfish)](https://developers.heygen.com/docs/voices/speech).
+- **Audio:** [Background music](https://developers.heygen.com/background-music) · [Sound effects](https://developers.heygen.com/sound-effects) — semantic search (`GET /v3/audio/sounds`).
+
+### Lipsync & translation
+- Lipsync: [Speed](https://developers.heygen.com/lipsync-speed) / [Precision](https://developers.heygen.com/lipsync-precision) — swap audio + re-animate lips.
+- Video Translation: [Speed](https://developers.heygen.com/docs/video-translate) / [Precision](https://developers.heygen.com/docs/video-translation-precision) — 30+ languages, voice clone, lip-sync; Precision adds editable proofread sessions.
+
+### Webhooks
+[Webhooks](https://developers.heygen.com/docs/webhooks) · [Webhook Events](https://developers.heygen.com/docs/webhook-events). Register an HTTPS URL, get a signing secret (shown once), subscribe to event types to skip polling.
+
+### CLI (`heygen`)
+[Overview](https://developers.heygen.com/cli) · [Commands](https://developers.heygen.com/commands) · [Output Modes](https://developers.heygen.com/output-modes) · [Features](https://developers.heygen.com/features) · [Examples](https://developers.heygen.com/examples). Scriptable (`heygen video create`, `heygen video download`); agent-friendly output modes.
+
+### MCP (per-host setup)
+[Top-level](https://developers.heygen.com/mcp) · [Overview](https://developers.heygen.com/mcp/overview) · [Claude Code](https://developers.heygen.com/mcp/claude-code) · [Claude Web](https://developers.heygen.com/mcp/claude-web) · [Gemini CLI](https://developers.heygen.com/mcp/gemini-cli) · [Manus](https://developers.heygen.com/mcp/manus) · [OpenAI](https://developers.heygen.com/mcp/open-ai) · [Superhuman](https://developers.heygen.com/mcp/superhuman). (Tool list + endpoint in §2 above.)
+
+### Cookbook (use-case workflows)
+[Overview](https://developers.heygen.com/overview) · [Showcase](https://developers.heygen.com/showcase). Recipes: [Social Media Pipeline](https://developers.heygen.com/social-media-content-pipeline) · [Sales Outreach](https://developers.heygen.com/personalized-sales-outreach) · [Training & Onboarding](https://developers.heygen.com/training-and-onboarding-videos) · [Product Demos](https://developers.heygen.com/product-demo-videos) · [Multilingual](https://developers.heygen.com/multilingual-content) · [Content Repurposing](https://developers.heygen.com/content-repurposing) · **[Real Estate Listing Videos](https://developers.heygen.com/real-estate-listing-videos)** (photos + listing data → narrated tours — directly relevant here) · [E-commerce](https://developers.heygen.com/e-commerce-product-videos) · [Automated Broadcast](https://developers.heygen.com/automated-broadcast) · [Docs to Video](https://developers.heygen.com/docs-to-video) · [Greetings & Recognition](https://developers.heygen.com/personalized-greetings-and-recognition).
+
+### Hyperframes (HTML → video)
+[Introduction](https://developers.heygen.com/hyperframes-overview) · [Cloud Rendering](https://developers.heygen.com/hyperframes) (`POST /v3/hyperframes/renders`) · [Use Cases](https://developers.heygen.com/hyperframes-heygen) · [Studio Templates](https://developers.heygen.com/templates) · [Motion Graphics from a Prompt](https://developers.heygen.com/motion-graphics) · [Data Visualization](https://developers.heygen.com/data-to-video) · [Automated Pipeline](https://developers.heygen.com/automated-pipeline).
+
+### Legacy APIs (until Oct 31, 2026)
+[Studio API](https://developers.heygen.com/studio-api) · [Template API](https://developers.heygen.com/template-api) · [More Legacy (v1/v2)](https://developers.heygen.com/more-legacy-api). The repo's `make_presenter_heygen.py` uses this generation.
+
+### REST API reference (v3 resource families)
+| Family | Endpoints |
+| --- | --- |
+| Videos | `POST /v3/videos` · `GET /v3/videos/{id}` · `GET /v3/videos` · `DELETE /v3/videos/{id}` |
+| Video Agent | `POST /v3/video-agents` · `GET /v3/video-agents/{session_id}` · list sessions · list session videos · list styles · get session resource · send message/revision · stop session |
+| Avatars | `POST /v3/avatars` (create) · `POST /v3/avatars/{group_id}/consent` · get/list groups · get/list/update looks |
+| Voices | `GET /v3/voices` · `GET /v3/voices/{id}` · clone · design · `POST /v3/voices/speech` |
+| Lipsync | `POST /v3/lipsyncs` · get/list/update/delete |
+| Video Translation | `POST /v3/video-translations` · get/list/update/delete · list languages |
+| Proofread | create/get session · download/upload SRT · generate video from proofread |
+| Webhooks | create/list/update/delete endpoint · rotate signing secret · list event types · list events |
+| Assets | `POST /v3/assets` (upload, ≤32 MB: png/jpeg/mp4/webm/mp3/wav/pdf) · direct-to-S3 upload flow |
+| Audio | `GET /v3/audio/sounds` (music / sound_effects) |
+| Hyperframes | `POST /v3/hyperframes/renders` |
+| Account | `GET /v3/user` |
+
+Per-endpoint reference pages live under `https://developers.heygen.com/reference/…`.
+
+---
+
 ## Security
 
 - Never paste the API key into chat or commit it. Use the `HEYGEN_API_KEY` env var.
 - Prefer the MCP server (OAuth) for interactive/agent use so no key is stored locally.
+- Webhook signing secrets are shown only at creation/rotation — store securely.
 - Canonical contact and brand details for generated scripts: [../../brand/README.md](../../brand/README.md).
