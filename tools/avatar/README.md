@@ -25,6 +25,10 @@ Quality note: these free models are strongest on **head-and-shoulders**. That's
 why the presenter is composited as a lower-corner "on-camera guide," not a
 full-length standing figure (which needs paid tools like HeyGen).
 
+For the paid, higher-quality HeyGen path — REST API and the remote MCP server —
+see [HEYGEN.md](HEYGEN.md). The `make_presenter_heygen.py` script writes clips to
+the same `presenters/` folder so `build_tour.py` picks them up unchanged.
+
 ## One-time setup
 
 Use a **dedicated venv** (SadTalker + coqui pin conflicting deps that clash with
