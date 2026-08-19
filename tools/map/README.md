@@ -45,7 +45,16 @@ python fetch_data.py         # download from Bay County ArcGIS  (~2 min, re-run 
 python build_features.py     # attribute lots + streets to phases -> data/features.json
 python render_map.py         # poster, print PDF, thumbnail, 17 frames
 python export_streets.py     # streets_by_phase.md / .json
-python make_preview.py       # the small committed preview PNGs
+python make_preview.py       # committed previews + the print master
+```
+
+Large formats are opt-in because they're slower and much larger:
+
+```powershell
+python render_map.py --preset print-36x24                    # the main print master
+python render_map.py --preset print-48x32 giant-raster
+python render_map.py --size 30 20 --dpi 300                  # any one-off size
+python render_map.py --check-palette                         # phase colour separation
 ```
 
 Large formats are opt-in because they're slower and much larger:
@@ -76,9 +85,11 @@ Whole pipeline including every preset runs in well under two minutes.
 
 Dependencies: `requests`, `shapely`, `matplotlib`, `pillow`.
 
-`data/` and `output/` are git-ignored — they regenerate. One downscaled
-preview PNG is committed so the map is visible in the repo and in pull
-requests.
+`data/` and `output/` are git-ignored — they regenerate. `preview/` is
+committed: downscaled rasters so the map is visible in the repo and in pull
+requests, plus **the 36 × 24 print master verbatim**, so the file Karen hands a
+print shop doesn't require running Python to obtain. `python make_preview.py`
+populates it.
 
 ## Where the data comes from
 
