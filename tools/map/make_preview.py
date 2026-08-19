@@ -1,15 +1,19 @@
-"""Make the small, committed preview images.
+"""Populate `preview/` -- the committed artifacts.
 
-`output/` is git-ignored because it regenerates, but the map should still be
-visible in the repo and in pull requests without cloning and running the whole
-pipeline. This downscales the poster and three frames into `preview/`, which
-is committed.
+`output/` is git-ignored because it regenerates and the large masters are tens
+of megabytes. But two things should be obtainable without running the pipeline:
+the map needs to be *visible* in the repo and in pull requests, and Karen needs
+the print master she hands to a print shop without going through Python.
+
+So this copies the 36 x 24 vector PDF across as-is (1.1 MB) and downscales the
+rasters into `preview/`, which is tracked.
 
     python make_preview.py
 """
 
 from __future__ import annotations
 
+import shutil
 from pathlib import Path
 
 from PIL import Image
@@ -17,6 +21,9 @@ from PIL import Image
 HERE = Path(__file__).parent
 OUT = HERE / "output"
 PREVIEW = HERE / "preview"
+
+# Copied verbatim -- small enough to commit, and the actual deliverable.
+VERBATIM = [OUT / "latitude-phase-map-print-36x24.pdf"]
 
 # (source, destination, target width)
 ITEMS = [
@@ -45,6 +52,15 @@ def main() -> None:
     PREVIEW.mkdir(parents=True, exist_ok=True)
     rasterise_sheet()
     total = 0
+    for src in VERBATIM:
+        if not src.exists():
+            print(f"  skip {src.name} (not rendered yet)")
+            continue
+        dst = PREVIEW / src.name
+        shutil.copy2(src, dst)
+        kb = dst.stat().st_size / 1024
+        total += kb
+        print(f"  {src.name}  (verbatim)  {kb:,.0f} KB")
     for src, name, width in ITEMS:
         if not src.exists():
             print(f"  skip {src.name} (not rendered yet)")
