@@ -234,9 +234,28 @@ use.
   and the coral of the landmark pins, which leaves only ~245° for ten families —
   five of them would otherwise pile into the greens. So each family carries its
   own hue, lightness *and* saturation, including one deep navy that reads
-  nothing like pale water. `--check-palette` reports CIE Lab separation and
-  fails loudly if two different phase numbers get too close (cross-family
-  ΔE ≥ 20; within a family ≥ 9, since sub-phases *should* look related).
+  nothing like pale water. `--check-palette` reports CIE Lab separation three
+  ways and fails loudly on any of them:
+
+  | Check | Threshold | Why |
+  | --- | --- | --- |
+  | vs the paper | ΔE ≥ 30 | A washed-out fill reads as empty land, not as a phase |
+  | cross-family | ΔE ≥ 20 | Different phase numbers must be unmistakable |
+  | within-family | ΔE ≥ 8 | Sub-phases *should* look related, just tellable apart |
+
+  Phase fills are held inside a legibility band (lightness 0.34–0.62, saturation
+  ≥ 0.42) so nothing can wash into the cream background. That costs some
+  separation between siblings, which is the right trade — a viewer has to see
+  that a phase *is* there before they can tell which sibling it is, and the
+  label and legend carry the fine distinction. Siblings ramp in saturation as
+  well as lightness to claw some of it back.
+- **Identifiers are never formatted as numbers.** `fmt.py` splits `ident()` /
+  `ident_range()` from `qty()`. A house number is `9201 Escape Ave`, never
+  `9,201`; a lot number is `8001–8200`, never `8,001–8,200`. Counts and
+  acreages keep their separators, because those are genuine quantities. A
+  single-parcel span prints as a lone number rather than `8939–8939`. On a
+  sheet whose whole purpose is matching an address to a listing, a stray comma
+  is wrong in the one place it cannot afford to be.
 - **Inactive phases drop to one common pale value**, not a relative lightening.
   Relative shifts leave the dark phases still reading as heavy blocks when they
   should be receding.

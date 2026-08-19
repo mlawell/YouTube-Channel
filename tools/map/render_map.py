@@ -50,6 +50,8 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.lines import Line2D
 from matplotlib.patches import Circle, FancyBboxPatch, Polygon as MPoly, Rectangle
 
+from fmt import ident, ident_range, qty
+
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 OUT = HERE / "output"
@@ -98,20 +100,30 @@ MUTED = "#5C6B70"
 # The assignment is deliberately NOT in phase order: consecutive phase numbers
 # tend to be geographically adjacent, and adjacent regions are exactly the ones
 # that have to be told apart. `--check-palette` measures the result in CIE Lab.
+# Every fill has to sit clear of the cream paper, or a phase reads as empty land
+# rather than as a phase -- which defeats colour-coding entirely. These bounds
+# are the floor; within-family tints are derived inside them, which costs some
+# separation between siblings. That is the right trade: a viewer has to see that
+# a phase IS there before they can tell which sibling it is, and the label and
+# legend already carry the fine distinction.
+PHASE_LIGHT_MIN, PHASE_LIGHT_MAX = 0.34, 0.62
+PHASE_SAT_MIN = 0.42
 PHASE_STYLE = {
     #      hue   light  sat
     1:  (180, 0.42, 0.55),   # deep teal
-    2:  (133, 0.66, 0.52),   # light green
-    3:  (305, 0.50, 0.45),   # orchid
-    4:  (218, 0.40, 0.52),   # deep navy -- far from the bay, and far darker than water
-    5:  (345, 0.58, 0.50),   # rose
-    6:  (73,  0.66, 0.55),   # light yellow-green
-    7:  (20,  0.58, 0.55),   # light orange
-    8:  (265, 0.52, 0.45),   # purple
-    9:  (155, 0.40, 0.45),   # dark green
-    10: (43,  0.44, 0.55),   # bronze
+    2:  (133, 0.56, 0.52),   # green
+    3:  (305, 0.48, 0.48),   # orchid
+    4:  (218, 0.40, 0.55),   # deep navy -- far from the bay, and far darker than water
+    5:  (345, 0.52, 0.52),   # rose
+    6:  (73,  0.56, 0.60),   # yellow-green
+    7:  (20,  0.54, 0.58),   # orange
+    8:  (265, 0.46, 0.50),   # purple
+    9:  (155, 0.38, 0.52),   # dark green
+    10: (43,  0.44, 0.58),   # bronze
 }
-PHASE_LIGHT_SPREAD = 0.19  # total spread across a family's sub-phases
+PHASE_LIGHT_SPREAD = 0.20  # lightness spread across a family's sub-phases
+PHASE_SAT_SPREAD = 0.24    # saturation ramp across them, for extra separation
+MIN_BG_DELTA = 30.0        # every fill must clear the paper by at least this
 
 
 def _hls(h_deg: float, light: float, sat: float) -> str:
@@ -131,14 +143,23 @@ def build_palette(labels: list[str]) -> dict[str, str]:
         families.setdefault(phase_number(lab), []).append(lab)
     out: dict[str, str] = {}
     for num, members in families.items():
-        hue, light, sat = PHASE_STYLE.get(num, ((num * 37) % 360, 0.52, 0.50))
+        hue, light, sat = PHASE_STYLE.get(num, ((num * 37) % 360, 0.50, 0.50))
+        sat = max(sat, PHASE_SAT_MIN)
+        light = min(max(light, PHASE_LIGHT_MIN), PHASE_LIGHT_MAX)
         if len(members) == 1:
             out[members[0]] = _hls(hue, light, sat)
             continue
-        lo = light - PHASE_LIGHT_SPREAD / 2
+        # Spread the family inside the legibility band, sliding rather than
+        # clipping so the sub-phases stay evenly spaced. Saturation ramps
+        # alongside lightness: the band is narrow now, so lightness alone does
+        # not give siblings enough separation to be told apart.
+        half = PHASE_LIGHT_SPREAD / 2
+        lo = min(max(light - half, PHASE_LIGHT_MIN), PHASE_LIGHT_MAX - PHASE_LIGHT_SPREAD)
         step = PHASE_LIGHT_SPREAD / (len(members) - 1)
+        sat_step = PHASE_SAT_SPREAD / (len(members) - 1)
         for i, lab in enumerate(members):
-            out[lab] = _hls(hue, lo + i * step, sat)
+            out[lab] = _hls(hue, lo + i * step,
+                            max(PHASE_SAT_MIN, sat + PHASE_SAT_SPREAD / 2 - i * sat_step))
     return out
 
 
@@ -175,37 +196,46 @@ def _lab(hex_colour: str) -> tuple[float, float, float]:
 
 
 def palette_report(palette: dict[str, str]) -> None:
-    """Check separation, treating within-family and cross-family differently.
+    """Check separation, three ways.
 
-    Sub-phases of one number are *supposed* to look related, so they only need
-    to be tellable apart (deltaE >= 9). Different phase numbers have to be
-    unmistakable (deltaE >= 20).
+    Against the paper: every fill must be clearly visible, or a phase reads as
+    empty land rather than as a phase. This is the check that catches a tint
+    washing out into the background.
+    Cross-family: different phase numbers have to be unmistakable (deltaE >= 20).
+    Within-family: sub-phases are *supposed* to look related, so they only need
+    to be tellable apart (deltaE >= 8).
     """
     items = list(palette.items())
-    print(f"{'phase':<14}{'hex':<10}{'nearest other family':<22}deltaE")
-    worst_cross, worst_within = 999.0, 999.0
+    bg = _lab(SAND)
+    print(f"{'phase':<14}{'hex':<10}{'vs paper':>9}   {'nearest other family':<22}deltaE")
+    worst_bg, worst_cross, worst_within = 999.0, 999.0, 999.0
     problems = []
     for lab, hexa in items:
         l1 = _lab(hexa)
         fam = phase_number(lab)
+        d_bg = math.dist(l1, bg)
+        worst_bg = min(worst_bg, d_bg)
+        if d_bg < MIN_BG_DELTA:
+            problems.append(f"{lab} too pale against the paper ({d_bg:.1f})")
         cross = [(o, math.dist(l1, _lab(h))) for o, h in items if phase_number(o) != fam]
-        within = [(o, math.dist(l1, _lab(h))) for o, h in items
-                  if phase_number(o) == fam and o != lab]
         near, d = min(cross, key=lambda t: t[1])
         worst_cross = min(worst_cross, d)
-        flag = ""
         if d < 20:
-            flag = "   <-- too close"
             problems.append(f"{lab} vs {near} ({d:.1f})")
-        print(f"  {lab:<14}{hexa:<10}{near:<22}{d:5.1f}{flag}")
-        for o, dw in within:
-            worst_within = min(worst_within, dw)
-            if dw < 9:
-                problems.append(f"{lab} vs {o} ({dw:.1f}, same family)")
+        flags = ("  <-- pale" if d_bg < MIN_BG_DELTA else "") + \
+                ("  <-- too close" if d < 20 else "")
+        print(f"  {lab:<14}{hexa:<10}{d_bg:>9.1f}   {near:<22}{d:5.1f}{flags}")
+        for o, h in items:
+            if phase_number(o) == fam and o != lab:
+                dw = math.dist(l1, _lab(h))
+                worst_within = min(worst_within, dw)
+                if dw < 8:
+                    problems.append(f"{lab} vs {o} ({dw:.1f}, same family)")
 
-    print(f"\ncross-family minimum   deltaE {worst_cross:5.1f}   (want >= 20)")
+    print(f"\nvs paper minimum       deltaE {worst_bg:5.1f}   (want >= {MIN_BG_DELTA})")
+    print(f"cross-family minimum   deltaE {worst_cross:5.1f}   (want >= 20)")
     if worst_within < 999:
-        print(f"within-family minimum  deltaE {worst_within:5.1f}   (want >= 9, "
+        print(f"within-family minimum  deltaE {worst_within:5.1f}   (want >= 8, "
               f"they should look related)")
     print("OK" if not problems else "RETUNE PHASE_STYLE: " + "; ".join(sorted(set(problems))))
 
@@ -598,7 +628,7 @@ def draw_street_labels(ax, s: Scene, *, fontsize: float = 5.0,
         text = sl["name"]
         if with_ranges and sl["address_range"]:
             lo, hi = sl["address_range"]
-            text += f"\n{lo:,}\u2013{hi:,}"
+            text += "\n" + ident_range(lo, hi)
         t = ax.text(
             sl["xy"][0], sl["xy"][1], text, fontproperties=F_BOLD, fontsize=fontsize,
             color="#2A3F47", ha="center", va="center", rotation=sl["angle"],
@@ -619,18 +649,27 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0) -> None:
     c = s.landmark("Town Square Amenity")
     if not c or not s.meta.get("amenities"):
         return
+    names = s.meta["amenities"]
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
-    dx, dy = (x1 - x0) * 0.055, (y1 - y0) * 0.16
-    tx, ty = c[0] - dx, c[1] - dy
+
+    # Keep the whole block inside the axes -- it hangs below-left of the pin,
+    # and the Town Center sits low enough that it would otherwise be clipped.
+    ax_h_pt = ax.get_window_extent().height / ax.figure.dpi * 72
+    block_frac = (len(names) + 1) * fontsize * 1.55 / max(ax_h_pt, 1)
+    top_frac = (c[1] - y0) / (y1 - y0) - 0.02
+    top_frac = min(max(top_frac, block_frac + 0.03), 0.98)
+
+    tx = c[0] - (x1 - x0) * 0.045
+    ty = y0 + top_frac * (y1 - y0)
     ax.annotate(
         "", xy=c, xytext=(tx, ty),
         arrowprops=dict(arrowstyle="-", color=DEEP, lw=0.9, alpha=0.8), zorder=7.4,
     )
-    body = "\n".join("\u00b7 " + a for a in s.meta["amenities"])
+    body = "\n".join("\u00b7 " + a for a in names)
     t = ax.text(
         tx, ty, "AT THE TOWN CENTER\n" + body, fontproperties=F_REG, fontsize=fontsize,
-        color=INK, ha="right", va="top", zorder=7.6, linespacing=1.5,
+        color=INK, ha="right", va="top", zorder=7.6, linespacing=1.55,
         bbox=dict(boxstyle="round,pad=0.5", fc="white", ec=DIM_EDGE, lw=0.8, alpha=0.93),
     )
     t.set_clip_on(True)
@@ -820,7 +859,7 @@ def _flow_reference(fig, s: Scene, rect, *, min_pt: float = 3.5,
                  ("sub", f"{p['lot_count']:,} homesites \u00b7 {p['acres']:,.0f} acres")]
         for st in p.get("streets", []):
             r = st.get("address_range")
-            lines.append(("row", (st["name"], f"{r[0]:,}\u2013{r[1]:,}" if r else "\u2014")))
+            lines.append(("row", (st["name"], ident_range(r[0], r[1]) if r else "\u2014")))
         lines.append(("gap", ""))
         blocks.append(lines)
 
@@ -1034,7 +1073,7 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
     ]
     if p.get("lot_number_range"):
         lo, hi = p["lot_number_range"]
-        rows.append(("Lot numbers", f"{lo:,} \u2013 {hi:,}"))
+        rows.append(("Lot numbers", ident_range(lo, hi, dash=" \u2013 ")))
     for key, target in (("To Town Center", "Town Square Amenity"),):
         d = s.distance_mi(p, target)
         if d is not None:
@@ -1264,5 +1303,6 @@ def _report_needs(s: Scene) -> None:
 
 if __name__ == "__main__":
     main()
+
 
 

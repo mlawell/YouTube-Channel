@@ -17,6 +17,8 @@ import json
 from datetime import date
 from pathlib import Path
 
+from fmt import ident_range
+
 HERE = Path(__file__).parent
 DATA = HERE / "data" / "features.json"
 OUT = HERE / "output"
@@ -151,7 +153,7 @@ def markdown(idx: dict) -> str:
         segs = []
         for s in r["phases"]:
             rng = s["address_range"]
-            segs.append(f"{s['phase']} {rng[0]:,}-{rng[1]:,}" if rng else f"{s['phase']} (no county addresses)")
+            segs.append(f"{s['phase']} {ident_range(rng[0], rng[1])}" if rng else f"{s['phase']} (no county addresses)")
         a(f"| {r['street']} | {r['phase_count']} | {' · '.join(segs)} |")
     a("")
     a("## Summary")
@@ -160,7 +162,7 @@ def markdown(idx: dict) -> str:
     a("| --- | --- | ---: | ---: | --- | ---: |")
     for p in idx["phases"]:
         rng = p["lot_number_range"]
-        rng_s = f"{rng[0]:,}-{rng[1]:,}" if rng else "not yet in county data"
+        rng_s = ident_range(rng[0], rng[1]) if rng else "not yet in county data"
         a(
             f"| {p['phase']} | PB {p['plat_book']}/{p['plat_page']} | {p['acres']:,.1f} "
             f"| {p['platted_lots']:,} | {rng_s} | {p['street_count']} |"
@@ -186,7 +188,7 @@ def markdown(idx: dict) -> str:
         a("| --- | --- | --- |")
         for st in p["streets"]:
             rng = st.get("address_range")
-            rng_s = f"{rng[0]:,}–{rng[1]:,}" if rng else "—"
+            rng_s = ident_range(rng[0], rng[1]) if rng else "—"
             a(f"| {st['name']} | {rng_s} | {', '.join(st['sources'])} |")
         a("")
     a("## Sources")
