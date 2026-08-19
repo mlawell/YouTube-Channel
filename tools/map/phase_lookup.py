@@ -42,6 +42,8 @@ import re
 import sys
 from pathlib import Path
 
+from fmt import ident, ident_range, qty
+
 HERE = Path(__file__).parent
 FEATURES = HERE / "data" / "features.json"
 
@@ -129,19 +131,17 @@ def describe(p: dict) -> str:
     lines = [
         f"{p['label']}  ({p['subdivid']})",
         f"  recorded plat     PB {p['plat_book']}/{p['plat_page']}",
-        f"  platted homesites {p['lot_count']:,}   ({p['acres']:,.1f} acres)",
+        f"  platted homesites {qty(p['lot_count'])}   ({p['acres']:,.1f} acres)",
     ]
     rng = p.get("lot_number_range")
     if rng:
-        lines.append(f"  lot numbers       {rng[0]:,}-{rng[1]:,}"
+        lines.append(f"  lot numbers       {ident_range(rng[0], rng[1], dash='-')}"
                      "   (Minto lot numbers, not addresses)")
-    status = p.get("availability", "unconfirmed")
-    flag = "" if p.get("confirmed") else "   [PROVISIONAL - confirm before quoting]"
-    lines.append(f"  availability      {status}{flag}")
     for st in p.get("streets", []):
         r = st.get("address_range")
         lines.append(f"  street            {st['name']}"
-                     + (f"   {r[0]:,}-{r[1]:,}" if r else "   (no county addresses)"))
+                     + (f"   {ident_range(r[0], r[1], dash='-')}" if r
+                        else "   (no county addresses)"))
     return "\n".join(lines)
 
 
@@ -233,7 +233,7 @@ def main() -> None:
             for p, st in hits:
                 rng = st["address_range"]
                 print(describe(p))
-                print(f"  matched on       {st['name']} {rng[0]:,}-{rng[1]:,} "
+                print(f"  matched on       {st['name']} {ident_range(rng[0], rng[1], dash='-')} "
                       f"(county record)")
             if len(hits) > 1:
                 print("  NOTE: more than one phase matched -- check the "
@@ -247,7 +247,7 @@ def main() -> None:
                 for p, st in everywhere:
                     rng = st.get("address_range")
                     print(f"    {p['label']:<15}{st['name']}"
-                          + (f"  {rng[0]:,}-{rng[1]:,}" if rng else "  (no county addresses)"))
+                          + (f"  {ident_range(rng[0], rng[1], dash='-')}" if rng else "  (no county addresses)"))
                 print("  Either the number is newer than the county data, or "
                       "check the spelling. Do not guess -- use --latlon.")
             else:
@@ -255,7 +255,7 @@ def main() -> None:
 
     if a.lot is not None:
         hits = lk.by_lot(a.lot)
-        print(f"Minto lot {a.lot:,}  (a lot number, NOT a street address)")
+        print(f"Minto lot {ident(a.lot)}  (a lot number, NOT a street address)")
         if not hits:
             print("  no phase carries that lot number")
         elif len(hits) > 1:

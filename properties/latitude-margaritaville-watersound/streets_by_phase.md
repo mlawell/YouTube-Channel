@@ -18,39 +18,39 @@ the address range tells you which phase you are looking at.
 
 | Street | Phases | Address range per phase (county record) |
 | --- | ---: | --- |
-| Coral Reef Way | 3 | Phase 2 8,402-8,522 · Phase 4A 8,600-8,815 · Phase 4B 8,814-9,011 |
-| Landshark Blvd | 3 | Phase 3A 8,392-8,418 · Phase 3B & 3C 8,200-8,486 · Phase 3D 8,490-8,583 |
-| Margaritaville Blvd | 3 | Phase 1 8,402-8,498 · Phase 2 8,459-8,631 · Phase 5A3 (no county addresses) |
-| Caribbean Soul Way | 2 | Phase 5C 9,100-9,263 · Phase 7 9,300-9,389 |
-| Cheeseburger Dr | 2 | Phase 4A 8,740-8,836 · Phase 4B 8,700-8,736 |
-| Escape Ave | 2 | Phase 7 9,201-9,499 · Phase 8 9,502-9,667 |
+| Coral Reef Way | 3 | Phase 2 8402–8522 · Phase 4A 8600–8815 · Phase 4B 8814–9011 |
+| Landshark Blvd | 3 | Phase 3A 8392–8418 · Phase 3B & 3C 8200–8486 · Phase 3D 8490–8583 |
+| Margaritaville Blvd | 3 | Phase 1 8402–8498 · Phase 2 8459–8631 · Phase 5A3 (no county addresses) |
+| Caribbean Soul Way | 2 | Phase 5C 9100–9263 · Phase 7 9300–9389 |
+| Cheeseburger Dr | 2 | Phase 4A 8740–8836 · Phase 4B 8700–8736 |
+| Escape Ave | 2 | Phase 7 9201–9499 · Phase 8 9502–9667 |
 | Highway 79 | 2 | Phase 1 (no county addresses) · Phase 3B & 3C (no county addresses) |
-| Latitude Blvd | 2 | Phase 2 (no county addresses) · Phase 3A 8,475-8,475 |
-| Paradise Dr | 2 | Phase 5B 9,100-9,195 · Phase 5C 9,196-9,558 |
-| Salty Blvd | 2 | Phase 9 9,167-9,224 · Phase 10 9,500-9,928 |
-| Weekend Dr | 2 | Phase 4A 8,665-8,745 · Phase 4B 8,601-8,664 |
-| West Bay Pkwy | 2 | Phase 4B (no county addresses) · Phase 9 9,394-9,394 |
+| Latitude Blvd | 2 | Phase 2 (no county addresses) · Phase 3A 8475 |
+| Paradise Dr | 2 | Phase 5B 9100–9195 · Phase 5C 9196–9558 |
+| Salty Blvd | 2 | Phase 9 9167–9224 · Phase 10 9500–9928 |
+| Weekend Dr | 2 | Phase 4A 8665–8745 · Phase 4B 8601–8664 |
+| West Bay Pkwy | 2 | Phase 4B (no county addresses) · Phase 9 9394 |
 
 ## Summary
 
 | Phase | Plat | Acres | Platted lots | Minto lot numbers | Streets |
 | --- | --- | ---: | ---: | --- | ---: |
-| Phase 1 | PB 27/73 | 34.3 | 59 | 1-48 | 2 |
-| Phase 2 | PB 28/8 | 103.3 | 213 | 1-200 | 5 |
-| Phase 3A | PB 28/34 | 91.5 | 172 | 1-167 | 7 |
-| Phase 3B & 3C | PB 28/63 | 95.7 | 178 | 168-339 | 6 |
-| Phase 3D | PB 30/8 | 24.8 | 44 | 340-381 | 1 |
-| Phase 4A | PB 29/23 | 142.2 | 332 | 4,001-4,515 | 9 |
-| Phase 4B | PB 29/76 | 83.6 | 205 | 4,318-4,509 | 5 |
+| Phase 1 | PB 27/73 | 34.3 | 59 | 1–48 | 2 |
+| Phase 2 | PB 28/8 | 103.3 | 213 | 1–200 | 5 |
+| Phase 3A | PB 28/34 | 91.5 | 172 | 1–167 | 7 |
+| Phase 3B & 3C | PB 28/63 | 95.7 | 178 | 168–339 | 6 |
+| Phase 3D | PB 30/8 | 24.8 | 44 | 340–381 | 1 |
+| Phase 4A | PB 29/23 | 142.2 | 332 | 4001–4515 | 9 |
+| Phase 4B | PB 29/76 | 83.6 | 205 | 4318–4509 | 5 |
 | Phase 5A3 | PB 32/81 | 62.2 | 98 | not yet in county data | 2 |
-| Phase 5B | PB 30/14 | 34.5 | 97 | 5,001-5,092 | 2 |
-| Phase 5C | PB 30/27 | 184.0 | 248 | 5,093-5,335 | 3 |
-| Phase 6A | PB 30/39 | 189.6 | 138 | 6,001-6,132 | 2 |
-| Phase 6B & 6C | PB 30/80 | 94.1 | 346 | 6,201-6,538 | 6 |
-| Phase 7 | PB 31/14 | 363.3 | 234 | 7,001-7,226 | 5 |
-| Phase 8 | PB 31/71 | 180.2 | 204 | 8,001-8,200 | 3 |
-| Phase 9 | PB 33/57 | 203.4 | 306 | 9,001-9,288 | 9 |
-| Phase 10 | PB 33/98 | 236.8 | 355 | 10,001-10,343 | 8 |
+| Phase 5B | PB 30/14 | 34.5 | 97 | 5001–5092 | 2 |
+| Phase 5C | PB 30/27 | 184.0 | 248 | 5093–5335 | 3 |
+| Phase 6A | PB 30/39 | 189.6 | 138 | 6001–6132 | 2 |
+| Phase 6B & 6C | PB 30/80 | 94.1 | 346 | 6201–6538 | 6 |
+| Phase 7 | PB 31/14 | 363.3 | 234 | 7001–7226 | 5 |
+| Phase 8 | PB 31/71 | 180.2 | 204 | 8001–8200 | 3 |
+| Phase 9 | PB 33/57 | 203.4 | 306 | 9001–9288 | 9 |
+| Phase 10 | PB 33/98 | 236.8 | 355 | 10001–10343 | 8 |
 | **Total** | **16 recorded plats** | **2,123** | **3,229** | | **60 distinct** |
 
 ## Per phase
@@ -62,7 +62,7 @@ the address range tells you which phase you are looking at.
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
 | Highway 79 | — | address point |
-| Margaritaville Blvd | 8,402–8,498 | address point, parcel site address, road centerline |
+| Margaritaville Blvd | 8402–8498 | address point, parcel site address, road centerline |
 
 ### Phase 2
 
@@ -70,11 +70,11 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Conch Shell Ct | 8,601–8,758 | address point, parcel site address, road centerline |
-| Coral Reef Way | 8,402–8,522 | address point, parcel site address, road centerline |
-| Flip Flop Ct | 8,510–8,527 | address point, parcel site address, road centerline |
+| Conch Shell Ct | 8601–8758 | address point, parcel site address, road centerline |
+| Coral Reef Way | 8402–8522 | address point, parcel site address, road centerline |
+| Flip Flop Ct | 8510–8527 | address point, parcel site address, road centerline |
 | Latitude Blvd | — | address point, parcel site address |
-| Margaritaville Blvd | 8,459–8,631 | address point, parcel site address, road centerline |
+| Margaritaville Blvd | 8459–8631 | address point, parcel site address, road centerline |
 
 ### Phase 3A
 
@@ -82,13 +82,13 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Good Life Way | 8,570–8,599 | address point, parcel site address, road centerline |
-| Island Breeze Ave | 8,401–8,600 | address point, parcel site address, road centerline |
-| Landshark Blvd | 8,392–8,418 | address point, parcel site address, road centerline |
-| Latitude Blvd | 8,475–8,475 | parcel site address |
-| Lost Shaker Way | 8,501–8,571 | address point, parcel site address, road centerline |
-| Margarita Pl | 8,400–8,416 | address point, parcel site address, road centerline |
-| Steel Field Road | 8,939–8,939 | parcel site address |
+| Good Life Way | 8570–8599 | address point, parcel site address, road centerline |
+| Island Breeze Ave | 8401–8600 | address point, parcel site address, road centerline |
+| Landshark Blvd | 8392–8418 | address point, parcel site address, road centerline |
+| Latitude Blvd | 8475 | parcel site address |
+| Lost Shaker Way | 8501–8571 | address point, parcel site address, road centerline |
+| Margarita Pl | 8400–8416 | address point, parcel site address, road centerline |
+| Steel Field Road | 8939 | parcel site address |
 
 ### Phase 3B & 3C
 
@@ -96,12 +96,12 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Breathe Out Way | 8,401–8,419 | address point, parcel site address |
-| Dockside Pl | 8,400–8,421 | address point, parcel site address, road centerline |
-| Fins Up Ct | 8,300–8,398 | address point, parcel site address, road centerline |
+| Breathe Out Way | 8401–8419 | address point, parcel site address |
+| Dockside Pl | 8400–8421 | address point, parcel site address, road centerline |
+| Fins Up Ct | 8300–8398 | address point, parcel site address, road centerline |
 | Highway 79 | — | address point |
-| Jollymon Way | 8,301–8,395 | address point, parcel site address, road centerline |
-| Landshark Blvd | 8,200–8,486 | address point, parcel site address, road centerline |
+| Jollymon Way | 8301–8395 | address point, parcel site address, road centerline |
+| Landshark Blvd | 8200–8486 | address point, parcel site address, road centerline |
 
 ### Phase 3D
 
@@ -109,7 +109,7 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Landshark Blvd | 8,490–8,583 | parcel site address, road centerline |
+| Landshark Blvd | 8490–8583 | parcel site address, road centerline |
 
 ### Phase 4A
 
@@ -117,15 +117,15 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Castaway Ct | 8,600–8,696 | parcel site address |
-| Cheeseburger Dr | 8,740–8,836 | parcel site address |
-| Coral Reef Way | 8,600–8,815 | parcel site address |
-| Lime Dr | 8,700–8,749 | parcel site address |
-| Sandbar Ln | 8,700–8,745 | parcel site address |
-| Seaplane Dr | 8,720–8,751 | parcel site address |
-| Treasure Past Way | 8,600–8,691 | parcel site address |
-| Tropics Ave | 8,601–8,693 | parcel site address |
-| Weekend Dr | 8,665–8,745 | parcel site address |
+| Castaway Ct | 8600–8696 | parcel site address |
+| Cheeseburger Dr | 8740–8836 | parcel site address |
+| Coral Reef Way | 8600–8815 | parcel site address |
+| Lime Dr | 8700–8749 | parcel site address |
+| Sandbar Ln | 8700–8745 | parcel site address |
+| Seaplane Dr | 8720–8751 | parcel site address |
+| Treasure Past Way | 8600–8691 | parcel site address |
+| Tropics Ave | 8601–8693 | parcel site address |
+| Weekend Dr | 8665–8745 | parcel site address |
 
 ### Phase 4B
 
@@ -133,10 +133,10 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Cheeseburger Dr | 8,700–8,736 | parcel site address |
-| Coral Reef Way | 8,814–9,011 | parcel site address |
-| Shell Sink Dr | 8,600–8,676 | parcel site address |
-| Weekend Dr | 8,601–8,664 | parcel site address |
+| Cheeseburger Dr | 8700–8736 | parcel site address |
+| Coral Reef Way | 8814–9011 | parcel site address |
+| Shell Sink Dr | 8600–8676 | parcel site address |
+| Weekend Dr | 8601–8664 | parcel site address |
 | West Bay Pkwy | — | parcel site address |
 
 ### Phase 5A3
@@ -146,7 +146,7 @@ the address range tells you which phase you are looking at.
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
 | Margaritaville Blvd | — | address point |
-| No Shoes Ct | 8,604–8,619 | parcel site address |
+| No Shoes Ct | 8604–8619 | parcel site address |
 
 ### Phase 5B
 
@@ -154,8 +154,8 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Dreams Float Ct | 8,401–8,596 | parcel site address |
-| Paradise Dr | 9,100–9,195 | parcel site address |
+| Dreams Float Ct | 8401–8596 | parcel site address |
+| Paradise Dr | 9100–9195 | parcel site address |
 
 ### Phase 5C
 
@@ -163,9 +163,9 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Caribbean Soul Way | 9,100–9,263 | parcel site address |
-| Compass Rose Ct | 8,404–8,413 | parcel site address |
-| Paradise Dr | 9,196–9,558 | parcel site address |
+| Caribbean Soul Way | 9100–9263 | parcel site address |
+| Compass Rose Ct | 8404–8413 | parcel site address |
+| Paradise Dr | 9196–9558 | parcel site address |
 
 ### Phase 6A
 
@@ -173,8 +173,8 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Cool Breeze Dr | 9,207–9,378 | parcel site address |
-| Hammock Ln | 8,500–8,517 | parcel site address |
+| Cool Breeze Dr | 9207–9378 | parcel site address |
+| Hammock Ln | 8500–8517 | parcel site address |
 
 ### Phase 6B & 6C
 
@@ -182,12 +182,12 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Attitude Ave | 8,800–8,843 | parcel site address |
-| Magic Ct | 8,899–8,908 | parcel site address |
-| Mermaid Ct | 8,670–8,679 | parcel site address |
-| Parrot Pl | 8,900–9,080 | parcel site address |
-| Pencil Thin Ave | 8,700–8,731 | parcel site address |
-| Sand Dollar Dr | 8,600–8,753 | parcel site address |
+| Attitude Ave | 8800–8843 | parcel site address |
+| Magic Ct | 8899–8908 | parcel site address |
+| Mermaid Ct | 8670–8679 | parcel site address |
+| Parrot Pl | 8900–9080 | parcel site address |
+| Pencil Thin Ave | 8700–8731 | parcel site address |
+| Sand Dollar Dr | 8600–8753 | parcel site address |
 
 ### Phase 7
 
@@ -195,11 +195,11 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Caribbean Soul Way | 9,300–9,389 | parcel site address |
-| Escape Ave | 9,201–9,499 | parcel site address |
-| Gypsy Palace Ct | 8,900–8,937 | parcel site address |
-| Macadamia Ln | 8,800–8,868 | parcel site address |
-| Strange Bird Ct | 8,900–8,912 | parcel site address |
+| Caribbean Soul Way | 9300–9389 | parcel site address |
+| Escape Ave | 9201–9499 | parcel site address |
+| Gypsy Palace Ct | 8900–8937 | parcel site address |
+| Macadamia Ln | 8800–8868 | parcel site address |
+| Strange Bird Ct | 8900–8912 | parcel site address |
 
 ### Phase 8
 
@@ -207,9 +207,9 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Cool Water Way | 8,800–8,936 | parcel site address |
-| Escape Ave | 9,502–9,667 | parcel site address |
-| Hang Loose Ct | 8,400–8,519 | parcel site address |
+| Cool Water Way | 8800–8936 | parcel site address |
+| Escape Ave | 9502–9667 | parcel site address |
+| Hang Loose Ct | 8400–8519 | parcel site address |
 
 ### Phase 9
 
@@ -217,15 +217,15 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Daydream Dr | 9,331–9,457 | parcel site address |
-| Livingston Ct | 9,334–9,354 | parcel site address |
-| Lounging Ln | 9,328–9,373 | parcel site address |
-| Puffer Fish Pl | 9,420–9,498 | parcel site address |
-| Salty Blvd | 9,167–9,224 | parcel site address |
-| Siren Way | 9,250–9,347 | parcel site address |
-| State Of Mind Way | 9,301–9,352 | parcel site address |
-| Swimsuit Cir | 9,200–9,232 | parcel site address |
-| West Bay Pkwy | 9,394–9,394 | parcel site address |
+| Daydream Dr | 9331–9457 | parcel site address |
+| Livingston Ct | 9334–9354 | parcel site address |
+| Lounging Ln | 9328–9373 | parcel site address |
+| Puffer Fish Pl | 9420–9498 | parcel site address |
+| Salty Blvd | 9167–9224 | parcel site address |
+| Siren Way | 9250–9347 | parcel site address |
+| State Of Mind Way | 9301–9352 | parcel site address |
+| Swimsuit Cir | 9200–9232 | parcel site address |
+| West Bay Pkwy | 9394 | parcel site address |
 
 ### Phase 10
 
@@ -233,14 +233,14 @@ the address range tells you which phase you are looking at.
 
 | Street | House numbers (county record) | Public-record source |
 | --- | --- | --- |
-| Beach Bum Blvd | 9,500–9,540 | parcel site address |
-| Carnival Ln | 9,443–9,495 | parcel site address |
-| Chill St | 9,521–9,610 | parcel site address |
-| Concoction Ct | 9,530–9,578 | parcel site address |
-| Daiquiri Dr | 9,615–9,679 | parcel site address |
-| Lone Palm Ln | 9,500–9,545 | parcel site address |
-| Parakeet Pl | 9,895–9,954 | parcel site address |
-| Salty Blvd | 9,500–9,928 | parcel site address |
+| Beach Bum Blvd | 9500–9540 | parcel site address |
+| Carnival Ln | 9443–9495 | parcel site address |
+| Chill St | 9521–9610 | parcel site address |
+| Concoction Ct | 9530–9578 | parcel site address |
+| Daiquiri Dr | 9615–9679 | parcel site address |
+| Lone Palm Ln | 9500–9545 | parcel site address |
+| Parakeet Pl | 9895–9954 | parcel site address |
+| Salty Blvd | 9500–9928 | parcel site address |
 
 ## Sources
 
