@@ -25,25 +25,28 @@
     },
     {
       "name": "Town Square Amenity",
-      "short": "Town Center",
-      "lat": 30.30725,
+      "short": "Town Center & Bandshell",
+      "lat": 30.30734,
       "lon": -85.86556,
       "kind": "amenity",
       "anchor": true,
-      "confirmed": false,
-      "source": "aerial + site plan",
-      "needs": "Karen to confirm the exact Town Center point. A county address point at 8520 Latitude Blvd (30.312154, -85.863968) is ~700 m north of the amenity complex visible from the air; the aerial position is used here."
-    },
-    {
-      "name": "Bandshell",
-      "short": "Bandshell",
-      "lat": 30.30747,
-      "lon": -85.86567,
-      "kind": "amenity",
-      "anchor": false,
-      "confirmed": false,
-      "source": "aerial",
-      "needs": "Karen to confirm. Drives the live-music proximity ring."
+      "confirmed": true,
+      "source": "Karen \u2014 centre of the Bandshell",
+      "note": [
+        "One point, two stories. Karen confirmed the Bandshell as the Town Center",
+        "anchor, and it is also the origin of the live-music noise. So the",
+        "'how far to the Town Center' distance and the 'can I hear the band' ring",
+        "share a centre: the closer you are, the more you get and the more you hear.",
+        "",
+        "The amenity core is built around it \u2014 Fins Up! Fitness immediately north,",
+        "Latitude Bar and Chill plus Paradise Pool immediately south, the",
+        "amphitheater and Bandshell west of the main parking. It is the middle of",
+        "the complex, not its edge.",
+        "",
+        "RETIRED CANDIDATE: 8520 Latitude Blvd (30.312154, -85.863968) is a mailing",
+        "address reference only. It sits 554 m / 0.34 mi NNE of the Bandshell and is",
+        "not the point a buyer would walk to. Do not use it as the Town Center."
+      ]
     },
     {
       "name": "Paradise Pool",
@@ -54,7 +57,7 @@
       "anchor": false,
       "confirmed": false,
       "source": "aerial",
-      "needs": "Karen to confirm."
+      "needs": "Karen to confirm the pin. The amenity itself is confirmed \u2014 it is on Minto's amenity site plan."
     },
     {
       "name": "Barkaritaville Dog Park",

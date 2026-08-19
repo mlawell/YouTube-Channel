@@ -1,8 +1,8 @@
 # Latitude Margaritaville Watersound — Every Phase Explained
 
 **Channel:** Living in Latitude Margaritaville Watersound (`@LivingMargaritavillewithKaren`)
-**Target runtime:** 14–16 minutes
-**Status:** script ready — **blocked on Karen's confirmations** (see below)
+**Target runtime:** 19–22 minutes
+**Status:** ready to record — no blocking questions outstanding
 
 The flagship phase video. Built around one thing no competitor can say:
 **Karen lives in Phase 8.**
@@ -15,19 +15,25 @@ The flagship phase video. Built around one thing no competitor can say:
 | [`metadata.md`](metadata.md) | Titles, description, tags, chapters, end screen, pinned comment |
 | [`thumbnail-brief.md`](thumbnail-brief.md) | Thumbnail composition and the A/B variant |
 
-## Visuals
+## Why 19–22 minutes
 
-Every map frame comes from [`tools/map`](../../../../tools/map). Regenerate with:
+The Seven Limiter Framework sets average view duration at **≥ 7 minutes
+absolute**, and ~28% viewed is normal for a good video — which forces a 21–22
+minute runtime to get there. The competitor's 6:55 cannot reach it at any
+retention rate. Per-phase chapters are what make the length survivable.
+
+## Before you record
 
 ```powershell
 cd tools\map
-python render_map.py --only sequence
+python render_map.py --only sequence        # 17 frames -> output/frames/
+python inventory_report.py --csv <export>   # today's numbers, to read on camera
 ```
 
-Frames land in `tools/map/output/frames/`. The script calls them by filename.
-`00_all-phases.png` is the establishing shot; `01`–`16` are one per phase,
-each zoomed with that phase highlighted and the Sales Center + Town Center
-kept on screen so viewers stay oriented.
+Every `[INVENTORY]` cue in the script is read off that block, and every one is
+said as **"as I'm recording this, in [Month Year]…"**. Live inventory is never
+printed on the map — it changes by the hour, and that volatility is the reason
+a viewer picks up the phone.
 
 ## Why this video wins
 
@@ -35,26 +41,42 @@ The video it replaces (@TheLatitudeGuy, 6:55) is a screen recording of a site
 plan with a mouse scribble per phase. See
 [`knowledge/competitors/thelatitudeguy.md`](../../../../knowledge/competitors/thelatitudeguy.md).
 
-Five gaps we exploit:
-
-1. **He never says most phases are resale-only.** That is the single most
-   important fact for a buyer and it is the spine of our video.
-2. **He gets Phase 3 wrong** — treats it as one blob. Public record shows three
+1. **He gets Phase 3 wrong** — treats it as one blob. Public record shows three
    separate recorded plats: 3A, 3B & 3C, 3D.
-3. **He gets 5A wrong** — "they changed it and kind of skipped it." PH 5A3 is a
-   recorded plat, book 32 page 81.
-4. **6:55 cannot hit 7 minutes of absolute watch time.** Ours is built to.
-5. **He sells there. Karen lives there.**
+2. **He gets 5A wrong** — "they changed it and kind of skipped." PH 5A3 is a
+   recorded plat, book 32 page 81. Our map colours phases by plat book, so 5A3
+   visibly reads as one of the newest parts of the community.
+3. **Nobody has the Escape Avenue chapter.** One street, two phases, with the
+   county address break at 9499 | 9502 — plus the fact that Minto lot numbers
+   aren't addresses at all.
+4. **Nobody has the Highway 79 inversion.** Everyone asks about the Bandshell;
+   Karen's answer is that a loud show carries for miles so it *isn't* how you
+   pick a phase — the question that matters is Highway 79, and that's only
+   three phases.
+5. **Nobody says where the community actually ends.** Phase 10 is the end of
+   Area 1 — every one of the 16 plats reads "Area 1", and Area 2 has no
+   recorded plat. So anyone describing the next phase is guessing.
+6. **6:55 cannot hit 7 minutes of absolute watch time.** Ours is built to.
+7. **He sells there. Karen lives there.**
 
-## Blocked on Karen
+## Performance notes for Karen
 
-The script has `[KAREN]` markers everywhere a claim needs her. Do not record
-until these are settled:
+The remaining `[KAREN]` markers are performance direction, not research gaps —
+places where the script needs her own words rather than a written line:
 
-- [ ] New-build vs resale-only for all 16 phases (all currently provisional)
-- [ ] The noise / Highway 79 / Town Center / Bandshell call per phase
-- [ ] Is there a second Town Square planned for Area 2? (a commenter asked;
-      we have no public confirmation)
-- [ ] Which phase releases next, and when would a home there finish?
-- [ ] Can the grocery tenant be named on screen?
-- [ ] Exact Town Center and Bandshell points for the map
+- How far the Bandshell music actually carries, and whether it's a pro or a con
+  for her personally
+- Why she and her husband picked Phase 8, and one honest trade-off about it
+- Whether the two ends of Escape Avenue feel different
+- Whether 5A1 and 5A2 were ever platted (only 5A3 is in the record) — "I don't
+  know" is a perfectly good answer and protects everything else
+- Her current answer on which phase releases next and a realistic build timeline
+
+## Things not to say on camera
+
+- **"Phase 11."** Area 2 has no recorded plat, so the numbering isn't public.
+- **Any bandshell distance or radius.** Sound varies too much; keep it verbal
+  and approximate.
+- **Any inventory number without "as I'm recording this, in [Month Year]".**
+- **Any Minto lot number as if it were an address.**
+- **Anything about what goes in the second Town Square.** Nobody knows yet.

@@ -168,9 +168,9 @@ def collect_streets(idx: PhaseIndex) -> dict:
     differ between layers are grouped, and the fullest form (the one that still has
     its street type) becomes the display name.
     """
-    found: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(lambda: {"names": set(), "sources": set()}))
+    found: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(lambda: {"names": set(), "sources": set(), "numbers": []}))
 
-    def add(label: str | None, raw: str, source: str) -> None:
+    def add(label: str | None, raw: str, source: str, number: int | None = None) -> None:
         if not label:
             return
         name = titlecase_street(raw)
@@ -179,6 +179,8 @@ def collect_streets(idx: PhaseIndex) -> dict:
         rec = found[label][street_key(name)]
         rec["names"].add(name)
         rec["sources"].add(source)
+        if number is not None:
+            rec["numbers"].append(number)
 
     for f in load("roads.geojson")["features"]:
         name = (f["properties"].get("FULL_NAME") or "").strip()
@@ -193,7 +195,9 @@ def collect_streets(idx: PhaseIndex) -> dict:
         if not name:
             continue
         lon, lat = f["geometry"]["coordinates"][:2]
-        add(idx.lookup(lon, lat), name, "county address point")
+        num = pr.get("ADDRNUM") or pr.get("HOUSENUM")
+        add(idx.lookup(lon, lat), name, "county address point",
+            int(num) if str(num).isdigit() else None)
 
     for f in load("street_points.geojson")["features"]:
         pr = f["properties"]
@@ -202,10 +206,12 @@ def collect_streets(idx: PhaseIndex) -> dict:
         if not addr or " -" in addr or re.match(r"^\d+\s+\d+[NS]\s", addr):
             continue
         # DSITEADDR keeps the street type ('8482  MARGARITAVILLE BLVD'); ASTNAME drops it.
-        name = re.sub(r"^\d+\s+", "", addr).strip() or (pr.get("ASTNAME") or "").strip()
+        m = re.match(r"^(\d+)\s+(.+)$", addr)
+        name = (m.group(2) if m else addr).strip() or (pr.get("ASTNAME") or "").strip()
         if not re.search(r"[A-Z]{3}", name.upper()):
             continue
-        add(idx.lookup_geom(f["geometry"]), name, "county parcel site address")
+        add(idx.lookup_geom(f["geometry"]), name, "county parcel site address",
+            int(m.group(1)) if m else None)
 
     out = {}
     for label, streets in found.items():
@@ -214,6 +220,12 @@ def collect_streets(idx: PhaseIndex) -> dict:
             # Prefer the spelling that kept its street type, then the longest.
             display = sorted(rec["names"], key=lambda n: (n.split()[-1].upper() not in {v.upper() for v in STREET_TYPES.values()}, -len(n)))[0]
             row = {"name": display, "sources": sorted(rec["sources"])}
+            nums = sorted(rec["numbers"])
+            if nums:
+                # Real, searchable house numbers from county record -- not Minto
+                # lot numbers, which are a different series entirely.
+                row["address_range"] = [nums[0], nums[-1]]
+                row["addressed_parcels"] = len(nums)
             variants = sorted(rec["names"] - {display})
             if variants:
                 row["also_spelled"] = variants
@@ -327,7 +339,8 @@ def main() -> None:
         "waterbodies": water,
         "creeks": creeks,
         "landmarks": load_cfg("landmarks.json")["landmarks"],
-        "meta": meta["map"],
+        "meta": {**meta["map"], "scope": meta.get("scope", {}),
+                 "karen_first_hand": meta.get("karen_first_hand", {})},
     }
     path = DATA / "features.json"
     path.write_text(json.dumps(out), encoding="utf-8")

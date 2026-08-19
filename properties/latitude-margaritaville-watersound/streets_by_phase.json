@@ -10,7 +10,255 @@
     "Bay County FL ArcGIS -- TEST_Parcels/MapServer/1 (parcel site addresses)"
   ],
   "method": "Streets are attributed to a phase geometrically: every county road centreline, address point and parcel site address inside a recorded plat polygon contributes its street name to that phase. Nothing is inferred from a site plan or from a neighbouring phase.",
-  "lot_numbering": "From Phase 4 onward the lot number carries a phase prefix (4xxx, 5xxx ... 10xxx), so a lot number alone identifies its phase. Phases 1-3 use one unprefixed run of 1-381 across 3A, 3B & 3C and 3D. Phase 5A3 lots have no LOTID in the county data yet -- it is the newest plat.",
+  "lot_numbering": "Two different number series exist and they are easy to confuse. MINTO LOT NUMBERS carry a phase prefix from Phase 4 onward (4xxx ... 10xxx), so a lot number identifies its phase; phases 1-3 use one unprefixed run of 1-381. COUNTY HOUSE NUMBERS -- the searchable street address -- are an entirely different series. On Escape Avenue, Minto lot 8042 is not house number 8042: the county address range on that street is 9201-9499 in Phase 7 and 9502-9667 in Phase 8. Quote house numbers to buyers, not lot numbers.",
+  "cross_phase_streets": [
+    {
+      "street": "Coral Reef Way",
+      "phases": [
+        {
+          "phase": "Phase 2",
+          "address_range": [
+            8402,
+            8522
+          ]
+        },
+        {
+          "phase": "Phase 4A",
+          "address_range": [
+            8600,
+            8815
+          ]
+        },
+        {
+          "phase": "Phase 4B",
+          "address_range": [
+            8814,
+            9011
+          ]
+        }
+      ],
+      "phase_count": 3
+    },
+    {
+      "street": "Landshark Blvd",
+      "phases": [
+        {
+          "phase": "Phase 3A",
+          "address_range": [
+            8392,
+            8418
+          ]
+        },
+        {
+          "phase": "Phase 3B & 3C",
+          "address_range": [
+            8200,
+            8486
+          ]
+        },
+        {
+          "phase": "Phase 3D",
+          "address_range": [
+            8490,
+            8583
+          ]
+        }
+      ],
+      "phase_count": 3
+    },
+    {
+      "street": "Margaritaville Blvd",
+      "phases": [
+        {
+          "phase": "Phase 1",
+          "address_range": [
+            8402,
+            8498
+          ]
+        },
+        {
+          "phase": "Phase 2",
+          "address_range": [
+            8459,
+            8631
+          ]
+        },
+        {
+          "phase": "Phase 5A3",
+          "address_range": null
+        }
+      ],
+      "phase_count": 3
+    },
+    {
+      "street": "Caribbean Soul Way",
+      "phases": [
+        {
+          "phase": "Phase 5C",
+          "address_range": [
+            9100,
+            9263
+          ]
+        },
+        {
+          "phase": "Phase 7",
+          "address_range": [
+            9300,
+            9389
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Cheeseburger Dr",
+      "phases": [
+        {
+          "phase": "Phase 4A",
+          "address_range": [
+            8740,
+            8836
+          ]
+        },
+        {
+          "phase": "Phase 4B",
+          "address_range": [
+            8700,
+            8736
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Escape Ave",
+      "phases": [
+        {
+          "phase": "Phase 7",
+          "address_range": [
+            9201,
+            9499
+          ]
+        },
+        {
+          "phase": "Phase 8",
+          "address_range": [
+            9502,
+            9667
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Highway 79",
+      "phases": [
+        {
+          "phase": "Phase 1",
+          "address_range": null
+        },
+        {
+          "phase": "Phase 3B & 3C",
+          "address_range": null
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Latitude Blvd",
+      "phases": [
+        {
+          "phase": "Phase 2",
+          "address_range": null
+        },
+        {
+          "phase": "Phase 3A",
+          "address_range": [
+            8475,
+            8475
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Paradise Dr",
+      "phases": [
+        {
+          "phase": "Phase 5B",
+          "address_range": [
+            9100,
+            9195
+          ]
+        },
+        {
+          "phase": "Phase 5C",
+          "address_range": [
+            9196,
+            9558
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Salty Blvd",
+      "phases": [
+        {
+          "phase": "Phase 9",
+          "address_range": [
+            9167,
+            9224
+          ]
+        },
+        {
+          "phase": "Phase 10",
+          "address_range": [
+            9500,
+            9928
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "Weekend Dr",
+      "phases": [
+        {
+          "phase": "Phase 4A",
+          "address_range": [
+            8665,
+            8745
+          ]
+        },
+        {
+          "phase": "Phase 4B",
+          "address_range": [
+            8601,
+            8664
+          ]
+        }
+      ],
+      "phase_count": 2
+    },
+    {
+      "street": "West Bay Pkwy",
+      "phases": [
+        {
+          "phase": "Phase 4B",
+          "address_range": null
+        },
+        {
+          "phase": "Phase 9",
+          "address_range": [
+            9394,
+            9394
+          ]
+        }
+      ],
+      "phase_count": 2
+    }
+  ],
   "phases": [
     {
       "phase": "Phase 1",
@@ -36,7 +284,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8402,
+            8498
+          ],
+          "addressed_parcels": 58
         }
       ],
       "street_count": 2
@@ -59,7 +312,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8601,
+            8758
+          ],
+          "addressed_parcels": 96
         },
         {
           "name": "Coral Reef Way",
@@ -67,7 +325,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8402,
+            8522
+          ],
+          "addressed_parcels": 44
         },
         {
           "name": "Flip Flop Ct",
@@ -75,7 +338,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8510,
+            8527
+          ],
+          "addressed_parcels": 10
         },
         {
           "name": "Latitude Blvd",
@@ -90,7 +358,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8459,
+            8631
+          ],
+          "addressed_parcels": 58
         }
       ],
       "street_count": 5
@@ -113,7 +386,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8570,
+            8599
+          ],
+          "addressed_parcels": 15
         },
         {
           "name": "Island Breeze Ave",
@@ -121,7 +399,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8401,
+            8600
+          ],
+          "addressed_parcels": 102
         },
         {
           "name": "Landshark Blvd",
@@ -129,13 +412,23 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8392,
+            8418
+          ],
+          "addressed_parcels": 10
         },
         {
           "name": "Latitude Blvd",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8475,
+            8475
+          ],
+          "addressed_parcels": 7
         },
         {
           "name": "Lost Shaker Way",
@@ -143,7 +436,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8501,
+            8571
+          ],
+          "addressed_parcels": 33
         },
         {
           "name": "Margarita Pl",
@@ -151,13 +449,23 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8400,
+            8416
+          ],
+          "addressed_parcels": 8
         },
         {
           "name": "Steel Field Road",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8939,
+            8939
+          ],
+          "addressed_parcels": 6
         }
       ],
       "street_count": 7
@@ -179,7 +487,12 @@
           "sources": [
             "address point",
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8401,
+            8419
+          ],
+          "addressed_parcels": 6
         },
         {
           "name": "Dockside Pl",
@@ -187,7 +500,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8400,
+            8421
+          ],
+          "addressed_parcels": 12
         },
         {
           "name": "Fins Up Ct",
@@ -195,7 +513,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8300,
+            8398
+          ],
+          "addressed_parcels": 42
         },
         {
           "name": "Highway 79",
@@ -209,7 +532,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8301,
+            8395
+          ],
+          "addressed_parcels": 40
         },
         {
           "name": "Landshark Blvd",
@@ -217,7 +545,12 @@
             "address point",
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8200,
+            8486
+          ],
+          "addressed_parcels": 74
         }
       ],
       "street_count": 6
@@ -239,7 +572,12 @@
           "sources": [
             "parcel site address",
             "road centerline"
-          ]
+          ],
+          "address_range": [
+            8490,
+            8583
+          ],
+          "addressed_parcels": 42
         }
       ],
       "street_count": 1
@@ -260,55 +598,100 @@
           "name": "Castaway Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8600,
+            8696
+          ],
+          "addressed_parcels": 13
         },
         {
           "name": "Cheeseburger Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8740,
+            8836
+          ],
+          "addressed_parcels": 28
         },
         {
           "name": "Coral Reef Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8600,
+            8815
+          ],
+          "addressed_parcels": 99
         },
         {
           "name": "Lime Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8700,
+            8749
+          ],
+          "addressed_parcels": 26
         },
         {
           "name": "Sandbar Ln",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8700,
+            8745
+          ],
+          "addressed_parcels": 23
         },
         {
           "name": "Seaplane Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8720,
+            8751
+          ],
+          "addressed_parcels": 16
         },
         {
           "name": "Treasure Past Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8600,
+            8691
+          ],
+          "addressed_parcels": 20
         },
         {
           "name": "Tropics Ave",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8601,
+            8693
+          ],
+          "addressed_parcels": 64
         },
         {
           "name": "Weekend Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8665,
+            8745
+          ],
+          "addressed_parcels": 31
         }
       ],
       "street_count": 9
@@ -329,25 +712,45 @@
           "name": "Cheeseburger Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8700,
+            8736
+          ],
+          "addressed_parcels": 10
         },
         {
           "name": "Coral Reef Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8814,
+            9011
+          ],
+          "addressed_parcels": 98
         },
         {
           "name": "Shell Sink Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8600,
+            8676
+          ],
+          "addressed_parcels": 60
         },
         {
           "name": "Weekend Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8601,
+            8664
+          ],
+          "addressed_parcels": 24
         },
         {
           "name": "West Bay Pkwy",
@@ -377,7 +780,12 @@
           "name": "No Shoes Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8604,
+            8619
+          ],
+          "addressed_parcels": 16
         }
       ],
       "street_count": 2
@@ -398,13 +806,23 @@
           "name": "Dreams Float Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8401,
+            8596
+          ],
+          "addressed_parcels": 92
         },
         {
           "name": "Paradise Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9100,
+            9195
+          ],
+          "addressed_parcels": 5
         }
       ],
       "street_count": 2
@@ -425,19 +843,34 @@
           "name": "Caribbean Soul Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9100,
+            9263
+          ],
+          "addressed_parcels": 70
         },
         {
           "name": "Compass Rose Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8404,
+            8413
+          ],
+          "addressed_parcels": 6
         },
         {
           "name": "Paradise Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9196,
+            9558
+          ],
+          "addressed_parcels": 171
         }
       ],
       "street_count": 3
@@ -458,13 +891,23 @@
           "name": "Cool Breeze Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9207,
+            9378
+          ],
+          "addressed_parcels": 121
         },
         {
           "name": "Hammock Ln",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8500,
+            8517
+          ],
+          "addressed_parcels": 16
         }
       ],
       "street_count": 2
@@ -485,37 +928,67 @@
           "name": "Attitude Ave",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8800,
+            8843
+          ],
+          "addressed_parcels": 35
         },
         {
           "name": "Magic Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8899,
+            8908
+          ],
+          "addressed_parcels": 10
         },
         {
           "name": "Mermaid Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8670,
+            8679
+          ],
+          "addressed_parcels": 10
         },
         {
           "name": "Parrot Pl",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8900,
+            9080
+          ],
+          "addressed_parcels": 136
         },
         {
           "name": "Pencil Thin Ave",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8700,
+            8731
+          ],
+          "addressed_parcels": 32
         },
         {
           "name": "Sand Dollar Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8600,
+            8753
+          ],
+          "addressed_parcels": 123
         }
       ],
       "street_count": 6
@@ -536,31 +1009,56 @@
           "name": "Caribbean Soul Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9300,
+            9389
+          ],
+          "addressed_parcels": 50
         },
         {
           "name": "Escape Ave",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9201,
+            9499
+          ],
+          "addressed_parcels": 129
         },
         {
           "name": "Gypsy Palace Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8900,
+            8937
+          ],
+          "addressed_parcels": 18
         },
         {
           "name": "Macadamia Ln",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8800,
+            8868
+          ],
+          "addressed_parcels": 30
         },
         {
           "name": "Strange Bird Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8900,
+            8912
+          ],
+          "addressed_parcels": 7
         }
       ],
       "street_count": 5
@@ -581,19 +1079,34 @@
           "name": "Cool Water Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8800,
+            8936
+          ],
+          "addressed_parcels": 63
         },
         {
           "name": "Escape Ave",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9502,
+            9667
+          ],
+          "addressed_parcels": 80
         },
         {
           "name": "Hang Loose Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            8400,
+            8519
+          ],
+          "addressed_parcels": 61
         }
       ],
       "street_count": 3
@@ -614,55 +1127,100 @@
           "name": "Daydream Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9331,
+            9457
+          ],
+          "addressed_parcels": 80
         },
         {
           "name": "Livingston Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9334,
+            9354
+          ],
+          "addressed_parcels": 6
         },
         {
           "name": "Lounging Ln",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9328,
+            9373
+          ],
+          "addressed_parcels": 19
         },
         {
           "name": "Puffer Fish Pl",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9420,
+            9498
+          ],
+          "addressed_parcels": 50
         },
         {
           "name": "Salty Blvd",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9167,
+            9224
+          ],
+          "addressed_parcels": 29
         },
         {
           "name": "Siren Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9250,
+            9347
+          ],
+          "addressed_parcels": 54
         },
         {
           "name": "State Of Mind Way",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9301,
+            9352
+          ],
+          "addressed_parcels": 36
         },
         {
           "name": "Swimsuit Cir",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9200,
+            9232
+          ],
+          "addressed_parcels": 15
         },
         {
           "name": "West Bay Pkwy",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9394,
+            9394
+          ],
+          "addressed_parcels": 2
         }
       ],
       "street_count": 9
@@ -683,49 +1241,89 @@
           "name": "Beach Bum Blvd",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9500,
+            9540
+          ],
+          "addressed_parcels": 25
         },
         {
           "name": "Carnival Ln",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9443,
+            9495
+          ],
+          "addressed_parcels": 19
         },
         {
           "name": "Chill St",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9521,
+            9610
+          ],
+          "addressed_parcels": 49
         },
         {
           "name": "Concoction Ct",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9530,
+            9578
+          ],
+          "addressed_parcels": 23
         },
         {
           "name": "Daiquiri Dr",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9615,
+            9679
+          ],
+          "addressed_parcels": 38
         },
         {
           "name": "Lone Palm Ln",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9500,
+            9545
+          ],
+          "addressed_parcels": 26
         },
         {
           "name": "Parakeet Pl",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9895,
+            9954
+          ],
+          "addressed_parcels": 21
         },
         {
           "name": "Salty Blvd",
           "sources": [
             "parcel site address"
-          ]
+          ],
+          "address_range": [
+            9500,
+            9928
+          ],
+          "addressed_parcels": 151
         }
       ],
       "street_count": 8

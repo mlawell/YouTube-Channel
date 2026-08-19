@@ -44,6 +44,9 @@ def build(d: dict) -> dict:
             {
                 "name": st["name"],
                 "sources": [SOURCE_LABEL.get(s, s) for s in st.get("sources", [])],
+                **({"address_range": st["address_range"],
+                    "addressed_parcels": st["addressed_parcels"]}
+                   if st.get("address_range") else {}),
             }
             for st in p.get("streets", [])
         ]
@@ -78,12 +81,16 @@ def build(d: dict) -> dict:
             "inferred from a site plan or from a neighbouring phase."
         ),
         "lot_numbering": (
-            "From Phase 4 onward the lot number carries a phase prefix "
-            "(4xxx, 5xxx ... 10xxx), so a lot number alone identifies its phase. "
-            "Phases 1-3 use one unprefixed run of 1-381 across 3A, 3B & 3C and 3D. "
-            "Phase 5A3 lots have no LOTID in the county data yet -- it is the "
-            "newest plat."
+            "Two different number series exist and they are easy to confuse. "
+            "MINTO LOT NUMBERS carry a phase prefix from Phase 4 onward "
+            "(4xxx ... 10xxx), so a lot number identifies its phase; phases 1-3 "
+            "use one unprefixed run of 1-381. COUNTY HOUSE NUMBERS -- the "
+            "searchable street address -- are an entirely different series. On "
+            "Escape Avenue, Minto lot 8042 is not house number 8042: the county "
+            "address range on that street is 9201-9499 in Phase 7 and 9502-9667 "
+            "in Phase 8. Quote house numbers to buyers, not lot numbers."
         ),
+        "cross_phase_streets": cross_phase(phases),
         "phases": phases,
         "totals": {
             "phases": len(phases),
@@ -96,6 +103,27 @@ def build(d: dict) -> dict:
     }
 
 
+def cross_phase(phases: list[dict]) -> list[dict]:
+    """Streets that run through more than one recorded phase.
+
+    These are the ones that confuse buyers: two homes on the same street can
+    sit in two different phases. Where the county has house numbers on both
+    sides, the number range tells you which phase you are looking at.
+    """
+    where: dict[str, list[dict]] = {}
+    for p in phases:
+        for st in p["streets"]:
+            where.setdefault(st["name"], []).append(
+                {"phase": p["phase"], "address_range": st.get("address_range")}
+            )
+    rows = [
+        {"street": name, "phases": segs, "phase_count": len(segs)}
+        for name, segs in where.items()
+        if len(segs) > 1
+    ]
+    return sorted(rows, key=lambda r: (-r["phase_count"], r["street"]))
+
+
 def markdown(idx: dict) -> str:
     L: list[str] = []
     a = L.append
@@ -105,15 +133,30 @@ def markdown(idx: dict) -> str:
     a("")
     a(idx["method"])
     a("")
-    a("**Lot numbering.** " + idx["lot_numbering"])
+    a("**Lot numbers are not house numbers.** " + idx["lot_numbering"])
     a("")
     a("> Illustrative only - not a survey. Street names are transcribed from")
     a("> county records, never invented or inferred. Where the county has no")
     a("> coverage the entry is left blank and flagged rather than guessed.")
     a("")
+    a("## Streets that cross a phase boundary")
+    a("")
+    a("These are the ones that catch buyers out: two homes on the same street,")
+    a("two different phases. Where the county has house numbers on both sides,")
+    a("the address range tells you which phase you are looking at.")
+    a("")
+    a("| Street | Phases | Address range per phase (county record) |")
+    a("| --- | ---: | --- |")
+    for r in idx["cross_phase_streets"]:
+        segs = []
+        for s in r["phases"]:
+            rng = s["address_range"]
+            segs.append(f"{s['phase']} {rng[0]:,}-{rng[1]:,}" if rng else f"{s['phase']} (no county addresses)")
+        a(f"| {r['street']} | {r['phase_count']} | {' · '.join(segs)} |")
+    a("")
     a("## Summary")
     a("")
-    a("| Phase | Plat | Acres | Platted lots | Lot numbers | Streets |")
+    a("| Phase | Plat | Acres | Platted lots | Minto lot numbers | Streets |")
     a("| --- | --- | ---: | ---: | --- | ---: |")
     for p in idx["phases"]:
         rng = p["lot_number_range"]
@@ -139,10 +182,12 @@ def markdown(idx: dict) -> str:
             a("_No street names in Bay County public data for this phase - **needs Karen**._")
             a("")
             continue
-        a("| Street | Public-record source |")
-        a("| --- | --- |")
+        a("| Street | House numbers (county record) | Public-record source |")
+        a("| --- | --- | --- |")
         for st in p["streets"]:
-            a(f"| {st['name']} | {', '.join(st['sources'])} |")
+            rng = st.get("address_range")
+            rng_s = f"{rng[0]:,}–{rng[1]:,}" if rng else "—"
+            a(f"| {st['name']} | {rng_s} | {', '.join(st['sources'])} |")
         a("")
     a("## Sources")
     a("")

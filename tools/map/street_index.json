@@ -1,13 +1,14 @@
 {
   "_readme": [
-    "Street names that Bay County's public layers do NOT cover, transcribed by eye from",
-    "the builder's published site plan. build_features.py derives most streets",
-    "geometrically from county road centerlines, address points and parcel site",
-    "addresses; this file only fills the gaps.",
+    "Curated street knowledge that Bay County's public layers do NOT cover, plus a",
+    "record of labels read by eye off the builder's published site plans.",
+    "build_features.py derives most streets geometrically from county road",
+    "centerlines, address points and parcel site addresses; this file only fills",
+    "gaps and records what still needs confirming.",
     "",
     "RULES",
     "  * Transcribe exactly what is printed. Never normalise, abbreviate or invent.",
-    "  * Never infer a full name from a clipped label - put it in `unverified` instead.",
+    "  * Never infer a full name from a clipped label - put it in `unverified`.",
     "  * A name only goes under a phase if it was read inside that phase's boundary.",
     "",
     "`unverified` holds labels that were partially legible. They are printed in the",
@@ -16,36 +17,85 @@
 
   "phases": {},
 
-  "read_from_site_plan_pending_phase_assignment": [
-    "Breathe Out Way", "Castaway Ct", "Cheeseburger Dr", "Compass Rose Ct",
-    "Cool Breeze Dr", "Coral Reef Way", "Dockside Pl", "Dreams Float Ct",
-    "Fins Up Ct", "Flip Flop Ct", "Good Life Way", "Hammock Ln",
-    "Island Breeze Ave", "Jollymon Way", "Landshark Blvd", "Latitude Blvd",
-    "Lime Dr", "Lost Shaker Way", "Margarita Pl", "Margaritaville Blvd",
-    "Mermaid Ct", "No Shoes Ct", "Paradise Dr", "Parrot Pl", "Sandbar Ln",
-    "Seaplane Dr", "Tropics Ave", "Weekend Dr", "West Bay Pkwy"
-  ],
+  "two_number_series": {
+    "warning": "Minto lot numbers and county house numbers are different series. Never quote a lot number to a buyer as an address.",
+    "minto_lot_numbers": "Phase-prefixed from Phase 4 onward (4xxx ... 10xxx); phases 1-3 use one unprefixed run of 1-381. A plan-and-plat convention only. Useful for identifying a phase, useless for searching a listing.",
+    "county_house_numbers": "The searchable street address. Derived from county parcel site addresses (DSITEADDR) and published per street per phase in streets_by_phase.md.",
+    "worked_example": "Minto lot 8042 sits in Phase 8, but every Escape Avenue address is 9xxx - the county range is 9201-9499 in Phase 7 and 9502-9667 in Phase 8. Searching '8042 Escape Ave' finds nothing."
+  },
+
+  "cross_phase_streets": {
+    "_note": [
+      "The full list of streets running through more than one recorded phase is",
+      "generated into streets_by_phase.md from county data. This section holds only",
+      "the extra detail read off Minto's site plans that county data cannot supply."
+    ],
+    "Escape Ave": {
+      "phases": ["Phase 7", "Phase 8"],
+      "address_boundary_on_the_ground": {
+        "rule": "On Escape Avenue, 9499 and below is Phase 7; 9502 and above is Phase 8.",
+        "even_side": "9498 (Phase 7) -> 9502 (Phase 8)",
+        "odd_side": "9499 (Phase 7) -> 9503 (Phase 8)",
+        "clean_break": true,
+        "source": "Bay County TEST_Parcels/MapServer/1 DSITEADDR, 209 parcels, assigned by point-in-recorded-plat",
+        "verified_independently": "Derived twice, in two sessions, from the county parcel layer. Both runs returned Phase 7 9201-9499 (129 parcels) and Phase 8 9502-9667 (80 parcels). Note there are no county ADDRESS POINTS on Escape Ave - the parcel layer is the only source."
+      },
+      "plat_lot_boundary": {
+        "_distinct_from": "the address boundary above - do not conflate them on camera",
+        "description": "The heavy phase line on Minto's plan crosses Escape Ave near Strange Bird Ct, between lots 8001 | 7085 on the north/west side and 8168 | 7086 on the south/east side.",
+        "source": "Minto Phase 7 & 8 panel, read visually at dpi 400-500, no OCR",
+        "phase_7_lots_on_escape": {
+          "north_west_side": "7001-7025, then 7044-7075, then 7083-7085",
+          "south_east_side": "7144-7194 on the E-W leg (7194 nearest the gated entry); 7086-7102 on the N-S leg",
+          "not_on_escape": "7026-7043 (Gypsy Palace Ct), 7076-7082 (Strange Bird Ct), 7103-7143 (interior)"
+        },
+        "phase_8_lots_on_escape": {
+          "south_leg_inner_west": "8001-8014",
+          "south_leg_outer_east_and_north_arc": "8144-8168",
+          "north_leg_west": "approx 8106-8133, cul-de-sac at approx 8130-8133",
+          "north_leg_east": "8134-8143",
+          "not_on_escape": "8015-8105 are on Cool Water Way; 8015 is the corner/transition lot"
+        },
+        "features": "A Tiki Hut sits on Escape Ave near lots 8115/8116.",
+        "UNVERIFIED": [
+          "These are Minto LOT numbers, not house numbers. Never quote them as an address.",
+          "Lot-by-lot side assignments have not been cross-checked against county parcel geometry."
+        ]
+      },
+      "UNVERIFIED": [
+        "Phase 8 north loop street name. All 80 Phase 8 parcels return 'ESCAPE AVE', which supports the loop staying Escape Avenue, but does not prove the cul-de-sac is not separately signed.",
+        "Three parcels share house number 9551 (all Phase 8) - probably a multi-parcel or common-area record. Do not use 9551 as an on-camera example."
+      ]
+    }
+  },
 
   "unverified": [
     {
-      "reads_as": "\u2026URE PAST WAY",
-      "seen_near": "Phase 4 pod, east of Castaway Ct",
-      "note": "Label clipped at the left. Do not guess the first word."
-    },
-    {
       "reads_as": "\u2026IK DR",
       "seen_near": "Phase 4/5 pod, between Coral Reef Way and Weekend Dr",
-      "note": "Label clipped at the left."
+      "note": "Label clipped at the left. Shell Sink Dr is the only county street in that pod with a similar ending, but the match is not close enough to call. Needs Karen or a cleaner read.",
+      "status": "open"
+    }
+  ],
+
+  "resolved": [
+    {
+      "was": "\u2026URE PAST WAY",
+      "is": "Treasure Past Way",
+      "phase": "Phase 4A",
+      "resolved_by": "county parcel site addresses, 8600-8691"
     },
     {
-      "reads_as": "STRANGE B\u2026",
-      "seen_near": "Phase 7 / Phase 8 panel",
-      "note": "Label clipped at the right."
+      "was": "STRANGE B\u2026",
+      "is": "Strange Bird Ct",
+      "phase": "Phase 7",
+      "resolved_by": "county parcel site addresses, 8900-8912"
     },
     {
-      "reads_as": "LOO\u2026",
-      "seen_near": "Phase 9 panel",
-      "note": "Label clipped at a crop edge."
+      "was": "LOO\u2026",
+      "is": "Lounging Ln",
+      "phase": "Phase 9",
+      "resolved_by": "county parcel site addresses"
     }
   ],
 
@@ -54,6 +104,7 @@
     "Trail", "Bridge", "Lift Station", "Irrigation Station", "Preserve",
     "Drainage Pond", "Future Development", "Future Commercial", "Model Homes",
     "Getaway Cottages", "Barkaritaville Dog Park", "Town Square Amenity",
-    "Port of Indecision Kayak Launch", "Intracoastal Waterway"
+    "Port of Indecision Kayak Launch", "Intracoastal Waterway", "Surfboard Park",
+    "FPL Utility Corridor"
   ]
 }

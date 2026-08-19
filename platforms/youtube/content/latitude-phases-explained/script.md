@@ -1,14 +1,33 @@
 # Script — Latitude Margaritaville Watersound: Every Phase Explained
 
-**Target runtime:** 14:00–16:00
+**Target runtime:** 19:00–22:00
 **Talent:** Karen Lawell
 **Visual system:** map frames from `tools/map/output/frames/`, Karen's own
 geotagged Phase 7 & 8 photos, community B-roll.
+
+## Why 19–22 minutes, not 15
+
+The Seven Limiter Framework
+([`win-with-youtube-challenge.md`](../../../../knowledge/channel-junkies/playbook/key-points/win-with-youtube-challenge.md),
+currently on PR #1) sets average view duration at **≥ 7 minutes absolute**, and
+notes that ~28% viewed is normal for a good video. That math forces a **21–22
+minute** video to clear 7 minutes of AVD. Informational talking-head content is
+targeted at 15–20 minutes.
+
+The competitor's 6:55 cannot reach 7 minutes of AVD at any retention rate. A
+14-minute version of ours would land around 4 minutes. So this is built long on
+purpose, and the per-phase chapters are what make length survivable — viewers
+scrub to their phase, and scrubbing forward still accumulates watch time.
 
 ## How to read this
 
 - `[FRAME nn_name]` — cut to that PNG from `tools/map/output/frames/`
 - `[KAREN]` — Karen must confirm this before recording. Do not read it as-is.
+- `[INVENTORY]` — read the live snapshot for this phase off the block printed by
+  `python tools/map/inventory_report.py --csv <Karen's export>`. Say it as
+  **"as I'm recording this, in [Month Year], Phase X has N resales listed and N
+  new lots — by the time you watch this that will be different, message me and
+  I'll send you today's actual list."** Never state it as a permanent fact.
 - `[B-ROLL]` — cutaway
 - Spoken copy is the plain text. Everything in brackets is direction.
 
@@ -16,12 +35,17 @@ geotagged Phase 7 & 8 photos, community B-roll.
 
 1. **No price-by-phase.** Phases are not priced differently. Price follows the
    model, the collection and the homesite premium. Never imply a tier.
-2. **Availability is stated only where confirmed.** Anything provisional is a
-   `[KAREN]` marker, not a claim.
+2. **Live inventory is spoken and dated, never stated as permanent.** Karen's
+   own framing: *"as of this moment there are x resales listed and x lots, but
+   that will certainly change in the next 5 minutes."* That volatility is the
+   reason to contact her — it is the call to action, not a weakness.
 3. **Plat book and page on screen for every phase.** It is public record, it is
    checkable, and it is why this video is trustworthy.
 4. **No invented amenities.** If it is not on the map or in public record and
    Karen has not confirmed it, it is not in the script.
+5. **Lot numbers are never spoken as addresses.** Minto's lot numbers
+   (7001–7226, 8001–8200 …) and the county house numbers on the street sign are
+   two different series. See the Escape Avenue chapter.
 
 ---
 
@@ -124,15 +148,31 @@ twelve seconds. Do not add a "hey guys" in front of it.
 
 `[PUSH IN slightly]`
 
-> **Most of these phases have no new-build homesites left.** They are resale
-> only. `[KAREN — confirm exactly which phases still have new-build inventory
-> before recording. Do not name a phase as available or sold out until Karen
-> has checked her live inventory.]`
+> **In most of these phases, the only way in is a resale.** Minto has sold
+> through the new-build homesites in a lot of the community. So when someone
+> says "I want Phase 4," the first question isn't whether Phase 4 is nice —
+> it's whether you can even build there, or whether you're waiting for a
+> resale to come on the market. Those are completely different timelines and
+> completely different processes.
 >
-> So when someone says "I want Phase 4," the first question isn't whether
-> Phase 4 is nice. It's whether you can even build there — or whether you're
-> waiting for a resale to come on the market. Completely different timeline,
-> completely different process.
+> And I'm going to give you the actual numbers phase by phase in a minute.
+> But I want to be straight with you about something first.
+
+`[BEAT — direct to camera]`
+
+> **Those numbers are going to be wrong by the time you watch this.**
+>
+> I'm not being cute. As I'm recording this it's `[Month Year]`. Homes here
+> list and go under contract in days. A number I read you today could change
+> five minutes after I stop recording. So I'm going to tell you what it is
+> right now, so you can see the shape of it — which phases are genuinely
+> built out and which ones still have something — and then if you want the
+> real number for the phase you care about, you message me and I'll pull it
+> that day. That's a thirty-second job for me.
+>
+> Everything else in this video — the phases, the streets, the addresses, how
+> far things are from each other, what it's like to live in each one — none of
+> that changes. That's why I built it this way.
 
 ---
 
@@ -149,39 +189,59 @@ twelve seconds. Do not add a "hey guys" in front of it.
 `[FRAME 00_all-phases with overlays on — render with:
 `python render_map.py --only sequence --overlays hwy79 towncenter bandshell`]`
 
-> What *does* differ is where you are standing. Three things, and they're the
-> three I'd ask about if I were buying here tomorrow.
+> What *does* differ is where you are standing. Two things, and they're the
+> two I'd ask about if I were buying here tomorrow.
 
-**One — Highway 79.**
+**One — Highway 79. And this is the one nobody asks about.**
 
 `[highlight the Hwy 79 corridor]`
 
 > The eastern edge of the community runs along Highway 79. It's the road
-> everybody uses to get in and out, and the state has been widening it. If
-> you're close to it you get the convenience of being two minutes from the
-> gate. You also get road noise. `[KAREN — which phases does 79 noise
-> genuinely affect from your experience? Do not name a phase here until Karen
-> has said it.]`
+> everybody uses to get in and out, and the state has been widening it. Close
+> to it, you're two minutes from the gate. You also get road noise.
+>
+> `[KAREN — first-hand]` Phases 1, 2, and 3B & 3C — those all can hear 79.
+> That's it. That's the list.
+>
+> Three phases out of sixteen. So if road noise is the thing that would bother
+> you, this is a really easy filter — and it's the question almost nobody
+> thinks to ask me.
 
-**Two — the Town Center.**
+**Two — the Bandshell, which is also the middle of the Town Center.**
 
-`[highlight the Town Center walk radius]`
+`[soft gradient overlay — no hard edge, no printed radius]`
 
-> Everything social happens here. If you can walk or take the cart, you use it.
-> If you're a two-and-a-half-mile drive away — and some phases are — you use it
-> less. That's not a small thing in a 55-plus community. That's your social
-> life.
+> Now here's the one everybody *does* ask about, and I want to correct
+> something.
+>
+> People assume that if you buy far from the Bandshell, you won't hear the
+> music. `[KAREN — first-hand]` That's not really how it works. When there's a
+> big concert, it carries a couple of miles. I've heard it in 6B and 6C. I've
+> heard it in 4A. I've heard it in 3D. And honestly, probably more than that.
+>
+> So the Bandshell is not how you pick a phase. Most of this community hears a
+> loud show sometimes, and for a lot of people that's a feature — it's a
+> Margaritaville community, the music is the point.
+>
+> `[KAREN — how far does it actually carry, in your experience? And is it a
+> pro or a con for you personally? Keep the "and maybe more" honesty — that's
+> what makes people believe the rest.]`
 
-**Three — the Bandshell.**
+**Direction:** do not put a number, a radius or a hard ring on screen for the
+Bandshell. Sound varies with event volume, wind, season and tree cover, and
+Karen is speaking approximately. The map deliberately draws it as a soft
+gradient with no edge for exactly this reason.
 
-`[highlight the bandshell proximity ring]`
-
-> There is live music here, and it carries. I want to be careful about how I
-> say this, because it is genuinely a pro for a lot of people. Some buyers
-> specifically want to hear the band from their lanai. Others want a quiet
-> Saturday. Neither is wrong — but you should know which one you are *before*
-> you pick a homesite, not after. `[KAREN — how far does it actually carry, in
-> your experience? This should be your first-hand answer.]`
+> What the Bandshell *does* tell you is convenience. It sits right in the
+> middle of the amenity core — Fins Up! Fitness just north, Latitude Bar and
+> Chill and the Paradise Pool just south, the amphitheater right there. So
+> when I say "how far is this phase from the Town Center," I'm measuring from
+> the Bandshell, because that is the middle of everything.
+>
+> Close in, you walk or take the cart, and you use it constantly. That's your
+> social life, and in a 55-plus community that is not a small thing. Further
+> out, it's a drive, and you go less. Neither is wrong. But it's a real
+> difference between two homes at the same price.
 >
 > So: same price, very different daily life. That's the whole video in one
 > sentence. Let's go phase by phase.
@@ -204,7 +264,7 @@ statement is `[KAREN]`-gated.
 > Phase 1 is the first plat on the books, and almost nobody actually lives in
 > what they think of as Phase 1 — because this is where the Sales Center and
 > the model park are. Right off Highway 79, off Margaritaville Boulevard. If
-> you've been here, you've been here. `[KAREN — confirm status]`
+> you've been here, you've been here. `[INVENTORY]`
 
 ### Phase 2 — 5:15
 
@@ -212,23 +272,26 @@ statement is `[KAREN]`-gated.
 
 > Phase 2 is the first real neighborhood — Latitude Boulevard, Coral Reef Way,
 > Conch Shell Court, Flip Flop Court. This is where the community actually
-> started. Close in, mature landscaping now, and close to the Town Center.
-> `[KAREN — confirm status]`
+> started. Close in, mature landscaping now, and one of the shortest trips to
+> the Town Center in the whole community — six tenths of a mile. It's also
+> one of the three phases where `[KAREN — first-hand]` you can hear 79.
+> `[INVENTORY]`
 
 ### Phase 3A — 5:45
 
 `[FRAME 03_phase-3a]` · `PB 28/34 · 172 homesites · 92 acres`
 
 > 3A. Landshark Boulevard, Lost Shaker Way, Island Breeze Avenue, Good Life
-> Way. Original phase, well established. `[KAREN — confirm status]`
+> Way. Original phase, well established. `[INVENTORY]`
 
 ### Phase 3B & 3C — 6:10
 
 `[FRAME 04_phase-3b-3c]` · `PB 28/63 · 178 homesites · 96 acres`
 
 > 3B and 3C were recorded together on one plat. Breathe Out Way, Jollymon Way,
-> Fins Up Court, Dockside Place. Note where this sits — this is one of the
-> pockets closest to Highway 79. `[KAREN — is 79 audible here?]`
+> Fins Up Court, Dockside Place. And this is one of the three phases where
+> `[KAREN — first-hand]` you can hear Highway 79. Look where it sits — right up
+> against the highway frontage. `[INVENTORY]`
 
 ### Phase 3D — 6:35
 
@@ -237,7 +300,7 @@ statement is `[KAREN]`-gated.
 > And 3D. Forty-four homesites off Landshark Boulevard — one of the smallest
 > phases in the whole community, and recorded two plat books after 3A. This is
 > the one that gets lumped in with "Phase 3" and shouldn't be.
-> `[KAREN — confirm status]`
+> `[INVENTORY]`
 
 ### Phase 4A — 7:00
 
@@ -246,7 +309,7 @@ statement is `[KAREN]`-gated.
 > 4A is big — three hundred and thirty-two homesites. Cheeseburger Drive,
 > Seaplane Drive, Tropics Avenue, Sandbar Lane, Castaway Court, Lime Drive,
 > Weekend Drive, Treasure Past Way. Central location, good walk to the Town
-> Center. `[KAREN — confirm status]`
+> Center. `[INVENTORY]`
 
 ### Phase 4B — 7:30
 
@@ -254,7 +317,7 @@ statement is `[KAREN]`-gated.
 
 > 4B. Shell Sink Drive, and it shares Cheeseburger, Coral Reef and Weekend with
 > 4A — the two interlock, which is why people mix them up. It also fronts West
-> Bay Parkway. `[KAREN — confirm status]`
+> Bay Parkway. `[INVENTORY]`
 
 ### Phase 5A3 — 8:00
 
@@ -263,15 +326,24 @@ statement is `[KAREN]`-gated.
 > Here's our friend 5A3 again — the one people say doesn't exist. Ninety-eight
 > homesites off Margaritaville Boulevard and No Shoes Court. Recorded in plat
 > book 32, which makes it one of the *newest* plats in the community even
-> though it carries a 5. If you want to sound like you know what you're talking
-> about at the Sales Center, mention 5A3. `[KAREN — confirm status]`
+> though it carries a 5. Look at the shading on the map — 5A3 is coloured like
+> the new phases, because on the books that's exactly what it is. It was
+> recorded *after* Phase 7 and Phase 8.
+>
+> `[KAREN — 5A3 is the only 5A plat in the record. There's no 5A1 and no 5A2.
+> Do you know whether those got replatted or folded into something else? If you
+> don't know, say so — "I don't know" is a fine answer and it protects
+> everything else you said.]`
+>
+> If you want to sound like you know what you're talking about at the Sales
+> Center, mention 5A3. `[INVENTORY]`
 
 ### Phase 5B — 8:30
 
 `[FRAME 09_phase-5b]` · `PB 30/14 · 97 homesites · 35 acres`
 
 > 5B — Paradise Drive and Dreams Float Court. Small, ninety-seven homesites,
-> tucked in. `[KAREN — confirm status]`
+> tucked in. `[INVENTORY]`
 
 ### Phase 5C — 8:50
 
@@ -279,7 +351,7 @@ statement is `[KAREN]`-gated.
 
 > 5C is much bigger — Caribbean Soul Way, Compass Rose Court, Paradise Drive.
 > A hundred and eighty-four acres, so there's real space between things here.
-> `[KAREN — confirm status]`
+> `[INVENTORY]`
 
 ### Phase 6A — 9:15
 
@@ -288,8 +360,7 @@ statement is `[KAREN]`-gated.
 > 6A. Cool Breeze Drive and Hammock Lane. Look at that ratio — a hundred and
 > thirty-eight homesites across a hundred and ninety acres. That is the lowest
 > density in the community by a wide margin, and it's because so much of it is
-> preserve and water. If you want space, look at this one. `[KAREN — confirm
-> status]`
+> preserve and water. If you want space, look at this one. `[INVENTORY]`
 
 ### Phase 6B & 6C — 9:45
 
@@ -299,7 +370,7 @@ statement is `[KAREN]`-gated.
 > and forty-six homesites on ninety-four acres. Attitude Avenue, Pencil Thin
 > Avenue, Sand Dollar Drive, Parrot Place, Mermaid Court, Magic Court. Denser,
 > more neighbors, more of a street-life feel. Genuinely a preference thing.
-> `[KAREN — confirm status]`
+> `[INVENTORY]`
 
 ### Phase 7 — 10:15
 
@@ -309,7 +380,7 @@ statement is `[KAREN]`-gated.
 > sixty-three acres — and only two hundred and thirty-four homesites on it.
 > Escape Avenue, Gypsy Palace Court, Strange Bird Court, Macadamia Lane,
 > Caribbean Soul Way. This is the western side, and it is quiet out here.
-> `[B-ROLL: Karen's own Phase 7 photos]` `[KAREN — confirm status]`
+> `[B-ROLL: Karen's own Phase 7 photos]` `[INVENTORY]`
 
 ### Phase 8 — 10:50 · **the longest beat in the video**
 
@@ -319,15 +390,17 @@ statement is `[KAREN]`-gated.
 
 `[CUT TO KAREN, walking her own street]`
 
-> Phase 8. Two hundred and four homesites, lots numbered 8001 through 8200.
-> Cool Water Way, Escape Avenue, Hang Loose Court. My husband and I bought
-> here and we live here now.
+> Phase 8. Two hundred and four homesites — and the lot numbers on Minto's
+> plan run 8001 to 8200, though remember, those aren't the addresses. Cool
+> Water Way, Escape Avenue, Hang Loose Court. My husband and I bought here and
+> we live here now. `[INVENTORY]`
 >
 > `[KAREN — this is the emotional centre of the video. Speak from your own
 > experience, not from notes. Cover: why you picked Phase 8 over the others,
-> what the drive to the Town Center is really like day to day, whether you hear
-> the Bandshell from your lanai, what you'd change, and how close it is to
-> selling out.]`
+> what the trip to the Bandshell is really like day to day — walk, cart or
+> drive — and whether you hear the music from your lanai. This is the single
+> most valuable thing you say in twenty minutes, because nobody else can say
+> it.]`
 >
 > I'll tell you the honest part, too — `[KAREN: name one real trade-off about
 > Phase 8. A video where your own phase has no downsides is a video nobody
@@ -342,7 +415,7 @@ statement is `[KAREN]`-gated.
 > Phase 9 — plat book 33, so this is genuinely new. Three hundred and six
 > homesites. Siren Way, Swimsuit Circle, Puffer Fish Place, Daydream Drive,
 > State Of Mind Way, Lounging Lane, Livingston Court, Salty Boulevard, and it
-> fronts West Bay Parkway. `[KAREN — confirm status]`
+> fronts West Bay Parkway. `[INVENTORY]`
 
 ### Phase 10 — 12:05
 
@@ -351,11 +424,89 @@ statement is `[KAREN]`-gated.
 > And Phase 10 is the newest recorded plat and the biggest by homesite count —
 > three hundred and fifty-five. Beach Bum Boulevard, Daiquiri Drive, Carnival
 > Lane, Lone Palm Lane, Parakeet Place, Concoction Court, Chill Street, Salty
-> Boulevard. `[KAREN — confirm status]`
+> Boulevard. And this is the end of the line for Area 1 — I'll come back to
+> that in a minute. `[INVENTORY]`
 
 ---
 
-## THE QUESTIONS PEOPLE ACTUALLY ASK — 12:15–14:00
+## THE STREET THAT'S IN TWO PHASES — 12:15–15:00
+
+**Direction:** this is the segment nobody else has. It is practical, it is
+verifiable, and it is the reason someone shares the video. Do not rush it.
+
+`[FRAME 13_phase-7]` → `[FRAME 14_phase-8]`, cut back and forth
+
+> Now I want to show you something that trips people up constantly, because
+> once you see it you can't unsee it.
+>
+> **Escape Avenue runs through two different phases.** The south end is Phase
+> 7. It bends around, hooks north, and by the time you're up at the cul-de-sac
+> you're in Phase 8. Same street. Same street sign. Two different phases.
+
+`[on-screen: Escape Ave highlighted across the 7/8 line]`
+
+> So you're scrolling listings, you see two houses on Escape Avenue, and you
+> assume they're neighbors in the same part of the community. They might not
+> be.
+>
+> Here's how you tell, and this is straight off the Bay County parcel records.
+
+`[on-screen graphic:]`
+```
+        ESCAPE AVENUE
+  9201 – 9499  →  PHASE 7
+  9502 – 9667  →  PHASE 8
+```
+
+> **Ninety-four-ninety-nine and below is Phase 7. Ninety-five-oh-two and above
+> is Phase 8.** It's a clean break — the even side goes 9498, then 9502. The
+> odd side goes 9499, then 9503. Nothing interleaves. Write that down if you're
+> shopping Escape Avenue.
+
+`[BEAT]`
+
+> And one more thing, because this one costs people real time.
+>
+> If you've been looking at Minto's site plan, you've seen lot numbers —
+> 7001, 8042, that kind of thing. Those are **lot numbers, not addresses.**
+> Every single house on Escape Avenue has an address starting with nine. There
+> is no 8042 Escape Avenue. If you type a lot number into a search site you
+> will get nothing back and you'll think the house doesn't exist.
+>
+> Lot number tells you the phase. Street address is what you search. Two
+> different things.
+
+`[FRAME 00_all-phases]`
+
+> And Escape Avenue is not a one-off. **Twelve streets in this community run
+> through more than one phase.** Coral Reef Way is in three. So is Landshark
+> Boulevard. So is Margaritaville Boulevard. Cheeseburger Drive, Weekend
+> Drive, Paradise Drive, Caribbean Soul Way, Salty Boulevard — all of them
+> straddle a phase line.
+>
+> Which is exactly why "what phase is it in?" is a harder question than it
+> looks, and exactly why I built this map. Send me any address in here and I
+> will tell you the phase, the plat it was recorded under, and what's actually
+> around it.
+
+`[KAREN — you live on the Phase 8 side. Anything you'd add about how the two
+ends of Escape Avenue actually feel different? That's the part only you can
+say.]`
+
+**Unverified — do not state as fact on camera:**
+
+- The Phase 8 north loop carries no separate street label on Minto's plan. All
+  80 county parcels up there return `ESCAPE AVE`, which supports it staying
+  Escape Avenue, but it does not prove the cul-de-sac isn't separately signed.
+- Three parcels share house number **9551**. Probably a multi-parcel or
+  common-area record — **do not use 9551 as an on-camera example.**
+- The lot-level side assignments read off Minto's plan (which lots front Escape
+  versus Cool Water Way) have not been cross-checked against parcel geometry.
+  Talk about the *ranges*, not individual lots.
+
+---
+
+## THE QUESTIONS PEOPLE ACTUALLY ASK — 15:00–17:30
 
 `[FRAME 00_all-phases]`
 
@@ -364,11 +515,31 @@ statement is `[KAREN]`-gated.
 
 **"Is there going to be a second Town Square?"**
 
-> `[KAREN — I could not confirm a second Town Square in any public record.
-> Please answer this from what Minto has actually told you. If it isn't
-> confirmed, say so plainly — "that's the plan I've heard, but nothing is
-> recorded yet" is a better answer than a guess, and it's the kind of answer
-> that makes people trust the rest.]`
+`[FRAME 16_phase-10]` · `PB 33/98`
+
+> Before I answer that, here's something worth knowing that I don't think
+> anybody has said clearly.
+>
+> **Phase 10 is the end of Area 1.** All ten phases, sixteen recorded plats —
+> every single one of them says "Area 1" right on the plat. That is the
+> community as it exists on the books today.
+>
+> So — yes. `[KAREN — first-hand]` There's a second town square planned, and
+> it's in Area 2.
+>
+> And that is genuinely all anybody knows. Nobody has told me what's going in
+> it. Area 2 doesn't have a recorded plat yet, which means nobody can tell you
+> how it'll be laid out, how it'll be numbered, or when it lands — because
+> none of that exists in the record.
+>
+> So if you hear somebody describing what the next phase looks like, ask them
+> where they got it. I'd rather tell you "it's planned, nobody knows what's in
+> it yet, and it's a ways out" than make something up.
+
+**Direction:** do not speculate about tenants, amenities or timing, and **do
+not say "Phase 11"** — Area 2 has no recorded plat, so the numbering is not
+public. "Area 2" is the safe term. Show `PB 33/98` on screen for Phase 10 the
+same way as every other phase.
 
 **"Which phase is selling next, and when would my house be done?"**
 
@@ -395,7 +566,7 @@ statement is `[KAREN]`-gated.
 
 ---
 
-## CLOSE — 14:00–15:00
+## CLOSE — 17:30–19:00
 
 `[FRAME 00_all-phases → slow zoom to Phase 8 → back out]`
 
@@ -406,7 +577,8 @@ statement is `[KAREN]`-gated.
 >
 > If you want this map, it's free — comment the word **MAP** or email me and
 > I'll send you the full-size version with every phase, every plat number, all
-> of it.
+> of it. And if you've got an address you're looking at and you're not sure
+> which phase it's in, just put it in the comments. I'll tell you.
 >
 > And if you're serious enough to be coming down for a visit: text me
 > **before** you go to the Sales Center. Eight five zero, five one seven,
@@ -422,10 +594,15 @@ statement is `[KAREN]`-gated.
 ## Production checklist
 
 - [ ] Karen resolves every `[KAREN]` marker
-- [ ] Re-render frames after `phase_meta.json` is confirmed
-      (`python render_map.py`) so the PROVISIONAL banner is gone
+- [ ] Run `python tools/map/inventory_report.py --csv <BoldTrail export>` on
+      record day and read the `[INVENTORY]` numbers off that block. Never speak
+      an inventory number that wasn't printed that morning.
+- [ ] Every `[INVENTORY]` line is said as **"as I'm recording this, in [Month
+      Year]…"** — never as a permanent fact
 - [ ] Confirm Phase 8 B-roll is from Karen's own photo set (licensing clean)
 - [ ] Chapters entered exactly as in `metadata.md` — timestamps must match the
       final cut
-- [ ] Lower third with the contact block appears at 1:40 and again at 14:00
-- [ ] Runtime lands at 14:00 or longer
+- [ ] Lower third with the contact block appears at 1:40 and again at 17:30
+- [ ] **Runtime lands at 19:00 or longer** — the framework needs ≥7 min
+      absolute AVD, and ~28% viewed is normal, so shorter cannot get there
+- [ ] Nothing in the final cut speaks a Minto lot number as an address

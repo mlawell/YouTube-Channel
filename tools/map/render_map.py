@@ -63,11 +63,16 @@ DIM_EDGE = "#BCAF98"
 ROAD = "#8C8271"
 MUTED = "#5C6B70"
 
-STATUS = {
-    "new-build": ("#1FB894", "New-build homesites available"),
-    "resale-only": ("#F2856B", "Resale only \u2014 no new-build homesites"),
-    "unconfirmed": ("#B9B2A4", "Status not yet confirmed"),
-}
+# Phases are coloured by the plat book they were recorded in -- permanent public
+# record, and it tells a real story: Phase 5A3 sits in book 32, so it reads as
+# one of the newest parts of the community despite carrying a "5".
+#
+# Availability (new-build vs resale) is deliberately NOT on this map. Karen's
+# point: "as of this moment there are x resales and x lots, but that will
+# certainly change in the next 5 minutes." Baking a volatile number into a
+# printed asset is the one thing that would make an otherwise hard-public-record
+# map look stale. It is a spoken, dated snapshot instead -- see inventory_report.py.
+ERA = ["#12B69A", "#4EC3A8", "#8ACBA0", "#C6C98F", "#EFC079", "#F2A06B", "#EE6F5C"]
 
 FONT_DIR = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"
 
@@ -209,7 +214,6 @@ class Scene:
         self.centroids = {
             p["label"]: self.rot([tuple(p["centroid"])], project=True)[0] for p in self.phases
         }
-        self.provisional = [p["label"] for p in self.phases if not p.get("confirmed")]
 
     def rot(self, pts, project: bool = False):
         c, s = math.cos(self.theta), math.sin(self.theta)
@@ -224,8 +228,11 @@ class Scene:
     def landmark(self, name: str):
         return self.anchor_xy.get(name)
 
-    def status(self, p: dict) -> tuple[str, str]:
-        return STATUS.get(p.get("availability", "unconfirmed"), STATUS["unconfirmed"])
+    def era_colour(self, p: dict) -> str:
+        """Colour by plat book, oldest to newest across the community."""
+        books = sorted({q["plat_book"] for q in self.phases})
+        i = books.index(p["plat_book"])
+        return ERA[round(i * (len(ERA) - 1) / max(1, len(books) - 1))]
 
     def distance_mi(self, p: dict, target: str) -> float | None:
         """Straight-line miles from the phase centroid to a landmark."""
@@ -274,9 +281,9 @@ def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
     for p in s.phases:
         lab = p["label"]
         on = lab == active
-        colour, _ = s.status(p)
+        colour = s.era_colour(p)
         face = colour if (on or active is None) else DIM_FILL
-        alpha = 0.62 if on else (0.55 if active is None else 0.42)
+        alpha = 0.62 if on else (0.78 if active is None else 0.42)
         edge = DEEP if on else ("#7E8F86" if active is None else "#A99C86")
         for pts in s.phase_rings[lab]:
             ax.add_patch(MPoly(pts, closed=True, facecolor=face, alpha=alpha,
@@ -334,18 +341,27 @@ def draw_overlays(ax, s: Scene, overlays: set[str], *, lw_scale: float = 1.0) ->
                     solid_capstyle="round", zorder=1.6)
 
     lat = math.radians(30.32)
-    for key, landmark, miles, colour in (
-        ("towncenter", "Town Square Amenity", 0.5, TEAL),
-        ("bandshell", "Bandshell", 0.5, PINK),
-    ):
-        if key not in overlays:
-            continue
-        c = s.landmark(landmark)
-        if not c:
-            continue
-        radius = miles / MI_PER_M / math.cos(lat)
-        ax.add_patch(Circle(c, radius, facecolor=colour, alpha=0.10, edgecolor=colour,
+    c = s.landmark("Town Square Amenity")
+    if not c:
+        return
+
+    if "towncenter" in overlays:
+        # A half-mile walk ring. This one is a real, defensible measurement.
+        r = 0.5 / MI_PER_M / math.cos(lat)
+        ax.add_patch(Circle(c, r, facecolor=TEAL, alpha=0.10, edgecolor=TEAL,
                             lw=1.6 * lw_scale, ls=(0, (5, 4)), zorder=1.7))
+
+    if "bandshell" in overlays:
+        # Deliberately soft, with no edge and no printed radius. Karen: a loud
+        # concert carries "a few miles" and she has heard it in 6B & 6C, 4A and
+        # 3D "and maybe more". Sound varies with event volume, wind, season and
+        # tree cover, so a crisp ring with a number on it would be a made-up
+        # measurement. This is an impression, drawn like one.
+        for i in range(28):
+            f = i / 27
+            r = (0.35 + f * 2.4) / MI_PER_M / math.cos(lat)
+            ax.add_patch(Circle(c, r, facecolor=PINK, alpha=0.016 * (1 - f) ** 1.4,
+                                edgecolor="none", zorder=1.65))
 
 
 def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float = 1.0) -> None:
@@ -432,22 +448,6 @@ def ax_aspect(fig, rect) -> float:
     return (fw * rect[2]) / (fh * rect[3])
 
 
-def provisional_stamp(fig, s: Scene, y: float = 0.052) -> None:
-    """Loud, unmissable banner while any phase availability is still unconfirmed."""
-    if not s.provisional:
-        return
-    fig.patches.append(
-        FancyBboxPatch((0.315, y), 0.37, 0.030, boxstyle="round,pad=0.004",
-                       transform=fig.transFigure, facecolor="#FFE9A8",
-                       edgecolor="#C99A00", lw=1.6, zorder=40, mutation_aspect=0.4)
-    )
-    fig.text(0.5, y + 0.015,
-             f"PROVISIONAL \u2014 availability unconfirmed for "
-             f"{len(s.provisional)} of {len(s.phases)} phases",
-             fontproperties=F_BOLD, fontsize=12, color="#7A5C00",
-             ha="center", va="center", zorder=41)
-
-
 def phase_box(s: Scene, label: str):
     pts = [pt for r in s.phase_rings[label] for pt in r]
     xs = [p[0] for p in pts]
@@ -494,11 +494,16 @@ def north_arrow(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
 
 
 def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
+    books = sorted({p["plat_book"] for p in s.phases})
+    first = min(s.phases, key=lambda p: (p["plat_book"], p["plat_page"]))
+    last = max(s.phases, key=lambda p: (p["plat_book"], p["plat_page"]))
     handles = [
-        MPoly([(0, 0)], facecolor=c, edgecolor=DEEP, lw=1.0, alpha=0.6, label=t)
-        for c, t in STATUS.values()
-    ]
-    handles += [
+        MPoly([(0, 0)], facecolor=ERA[0], edgecolor=DEEP, lw=1.0, alpha=0.6,
+              label=f"Recorded first \u2014 plat book {books[0]}"),
+        MPoly([(0, 0)], facecolor=ERA[len(ERA) // 2], edgecolor=DEEP, lw=1.0, alpha=0.6,
+              label="\u2193  shaded by plat book, oldest to newest"),
+        MPoly([(0, 0)], facecolor=ERA[-1], edgecolor=DEEP, lw=1.0, alpha=0.6,
+              label=f"Recorded latest \u2014 plat book {books[-1]}"),
         MPoly([(0, 0)], facecolor=GOLD, edgecolor="#9C6B00", lw=0.6,
               label="Platted homesites in the phase being shown"),
         Line2D([0], [0], marker="o", ms=8, mfc=CORAL, mec="white", mew=1.6, ls="none",
@@ -506,7 +511,10 @@ def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
     ]
     leg = ax.legend(handles=handles, loc=loc, frameon=True, fontsize=9.5 * lw_scale,
                     prop=FontProperties(fname=F_REG.get_file(), size=9.5 * lw_scale),
-                    borderpad=0.9, labelspacing=0.7, handlelength=1.6)
+                    borderpad=0.9, labelspacing=0.7, handlelength=1.6,
+                    title=f"{first['short']} was recorded first \u00b7 {last['short']} most recently")
+    leg.get_title().set_fontproperties(FontProperties(fname=F_BOLD.get_file(),
+                                                      size=9.5 * lw_scale))
     leg.get_frame().set_facecolor("white")
     leg.get_frame().set_edgecolor(DIM_EDGE)
     leg.get_frame().set_alpha(0.95)
@@ -514,9 +522,11 @@ def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
 
 
 def credit_line(s: Scene) -> str:
+    """Two lines -- one long line overflows the frame."""
     return (
         f"{s.meta['data_credit']}  \u00b7  retrieved {date.today().isoformat()}"
-        f"   |   {s.meta['disclaimer']}"
+        f"   |   {s.meta['disclaimer']}\n"
+        f"{s.meta.get('scope', {}).get('note', '')}"
     )
 
 
@@ -542,7 +552,7 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False) -> Path:
 
     fig.text(0.025, 0.955, "Latitude Margaritaville Watersound", fontproperties=F_BLACK,
              fontsize=36, color=INK, ha="left", va="center")
-    fig.text(0.025, 0.921, "Every recorded phase, drawn from Bay County public records",
+    fig.text(0.025, 0.921, "Area 1 \u2014 every recorded phase, drawn from Bay County public records",
              fontproperties=F_REG, fontsize=16, color=MUTED, ha="left", va="center")
     fig.text(0.975, 0.955, f"{len(s.phases)} recorded phases  \u00b7  {s.total_lots:,} platted homesites"
                            f"  \u00b7  {s.total_acres:,.0f} acres",
@@ -550,8 +560,7 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False) -> Path:
     fig.text(0.975, 0.921, "  \u00b7  ".join(s.meta["agent_block"]), fontproperties=F_REG,
              fontsize=12, color=MUTED, ha="right", va="center")
     fig.text(0.5, 0.030, credit_line(s), fontproperties=F_REG, fontsize=10.5,
-             color=MUTED, ha="center", va="center")
-    provisional_stamp(fig, s)
+             color=MUTED, ha="center", va="center", linespacing=1.6)
 
     OUT.mkdir(parents=True, exist_ok=True)
     if pdf:
@@ -585,8 +594,11 @@ def render_thumbnail(s: Scene, overlays: set[str]) -> Path:
 
 
 def _panel_text(fig, s: Scene, p: dict) -> None:
-    """Right-hand info panel for a phase frame."""
-    colour, status_text = s.status(p)
+    """Right-hand info panel for a phase frame.
+
+    Everything here is permanent public record. Live inventory is deliberately
+    absent -- it is spoken and dated at record time, never printed.
+    """
     x = 0.735
     fig.patches.append(
         FancyBboxPatch((0.715, 0.03), 0.27, 0.94, boxstyle="round,pad=0.006",
@@ -600,22 +612,14 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
     if p.get("karen_lives_here"):
         fig.text(x, y, "\u2665  Karen lives here", fontproperties=F_BOLD, fontsize=15,
                  color=PINK, ha="left", va="center", zorder=21)
-        y -= 0.045
-
-    fig.patches.append(
-        FancyBboxPatch((x - 0.006, y - 0.032), 0.235, 0.046, boxstyle="round,pad=0.004",
-                       transform=fig.transFigure, facecolor=colour, edgecolor="none",
-                       zorder=21, mutation_aspect=0.5)
-    )
-    fig.text(x + 0.004, y - 0.009, status_text.upper(), fontproperties=F_BOLD, fontsize=11,
-             color=NAVY if p.get("availability") != "resale-only" else "#3A1108",
-             ha="left", va="center", zorder=22)
-    y -= 0.075
-    if not p.get("confirmed"):
-        fig.text(x, y + 0.020, "provisional \u2014 confirm current inventory",
-                 fontproperties=F_REG, fontsize=9.5, color=GOLD,
-                 ha="left", va="center", zorder=21)
-        y -= 0.012
+        y -= 0.050
+    if p.get("hwy79_audible"):
+        fig.text(x, y, "You can hear Highway 79 here", fontproperties=F_BOLD,
+                 fontsize=12, color=GOLD, ha="left", va="center", zorder=21)
+        y -= 0.026
+        fig.text(x, y, "Karen, first-hand", fontproperties=F_REG,
+                 fontsize=9.5, color=TEAL, ha="left", va="center", zorder=21)
+        y -= 0.032
 
     rows = [
         ("Recorded plat", p["plat"]),
@@ -625,7 +629,7 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
     if p.get("lot_number_range"):
         lo, hi = p["lot_number_range"]
         rows.append(("Lot numbers", f"{lo:,} \u2013 {hi:,}"))
-    for key, target in (("To Town Center", "Town Square Amenity"), ("To Bandshell", "Bandshell")):
+    for key, target in (("To Town Center", "Town Square Amenity"),):
         d = s.distance_mi(p, target)
         if d is not None:
             rows.append((key, f"{d:.1f} mi"))
@@ -713,8 +717,8 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         return fig, ax
 
     def footer(fig):
-        fig.text(0.015, 0.022, credit_line(s), fontproperties=F_REG, fontsize=8.5,
-                 color=MUTED, ha="left", va="center", zorder=1)
+        fig.text(0.015, 0.026, credit_line(s), fontproperties=F_REG, fontsize=8.0,
+                 color=MUTED, ha="left", va="center", zorder=1, linespacing=1.5)
 
     # 00 - the whole community
     fig, ax = new_fig()
@@ -731,8 +735,8 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
     legend(ax, s, loc="lower left")
     fig.text(0.722, 0.905, "ALL 16 PHASES", fontproperties=F_BLACK, fontsize=30,
              color=INK, ha="left", va="center")
-    fig.text(0.722, 0.872, "Every one is a separate recorded plat \u2014 with a\n"
-                           "plat book and page anyone can look up.",
+    fig.text(0.722, 0.872, "Area 1 \u2014 Phases 1 to 10. Every one is a separate\n"
+                           "recorded plat, with a book and page you can look up.",
              fontproperties=F_REG, fontsize=12.5, color=MUTED, ha="left", va="top")
     yy = 0.792
     for p in s.phases:
@@ -742,7 +746,6 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
                  fontsize=12, color=MUTED, ha="right", va="center")
         yy -= 0.0405
     footer(fig)
-    provisional_stamp(fig, s)
     path = frames_dir / "00_all-phases.png"
     fig.savefig(path, facecolor=SAND)
     plt.close(fig)
@@ -807,14 +810,12 @@ def main() -> None:
         got = render_sequence(s, overlays)
         print(f"  {len(got)} frames -> output/frames/")
 
-    unconfirmed = [p["label"] for p in s.phases if not p.get("confirmed")]
-    if unconfirmed:
+    if s.needs_confirmation:
         print("\nNEEDS CONFIRMATION before publishing:")
-        print(f"  availability unconfirmed for {len(unconfirmed)} phases: "
-              + ", ".join(p.replace("Phase ", "") for p in unconfirmed))
     for l in s.needs_confirmation:
         print(f"  landmark '{l['name']}': {l.get('needs', 'unconfirmed')}")
 
 
 if __name__ == "__main__":
     main()
+
