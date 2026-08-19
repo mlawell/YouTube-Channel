@@ -14,6 +14,7 @@ channel, the platform folder cross-links back to the relevant volume here.
 | Volume | Source | Primary platform | Status |
 | --- | --- | --- | --- |
 | [Channel Junkies](channel-junkies/README.md) | YouTube-for-realtors training (14 Day Sprint + Billion Dollar Channel Method) | YouTube | Complete |
+| [Competitors](competitors/README.md) | Analyses of other agents/channels in Karen's markets | All | Ongoing |
 
 ## How this library is built
 

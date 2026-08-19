@@ -566,11 +566,14 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False) -> Path:
 
 
 def render_thumbnail(s: Scene, overlays: set[str]) -> Path:
+    """Thumbnail base plate: Karen's phase highlighted, left third left clear
+    for her cutout. See platforms/youtube/.../thumbnail-brief.md."""
+    karen = next((p["label"] for p in s.phases if p.get("karen_lives_here")), None)
     fig = plt.figure(figsize=(12.8, 7.2), dpi=100, facecolor=SAND)
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_facecolor(LAND)
     draw_base(ax, s, lw_scale=1.3)
-    draw_phases(ax, s, None, lw_scale=1.3, show_lots="all")
+    draw_phases(ax, s, karen, lw_scale=1.3, show_lots="all")
     draw_roads(ax, s, lw_scale=1.3, label_hwy=False)
     set_view(ax, s.extent, 0.02, 16 / 9)
     draw_landmarks(ax, s, only_anchors=True, lw_scale=1.4)

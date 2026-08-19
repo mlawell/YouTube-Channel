@@ -27,3 +27,9 @@ Managed under the Gmail account `kalawell@gmail.com` (channel switcher):
 - `content/` — video titles, descriptions, upload-default copy, scripts, end-screen plans.
 - `assets/` — banners, thumbnails, watermarks (produced with
   [`../../tools/banner`](../../tools/banner) and [`../../tools/video`](../../tools/video)).
+
+### Video packages
+
+| Package | Channel | Status |
+| --- | --- | --- |
+| [Latitude Margaritaville Watersound — Every Phase Explained](content/latitude-phases-explained/README.md) | Living in Latitude Margaritaville Watersound | Script ready, awaiting Karen's confirmations |
