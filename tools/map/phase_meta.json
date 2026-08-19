@@ -1,0 +1,137 @@
+{
+  "_readme": [
+    "Curated, human-owned metadata for each recorded phase. Everything in tools/map/data/",
+    "is downloaded from Bay County and is regenerated on every run; THIS file is the part a",
+    "human maintains, and it is the file to edit when a phase sells out.",
+    "",
+    "availability:  new-build | resale-only | unconfirmed",
+    "  new-build    Minto still has homesites to sell here.",
+    "  resale-only  no new-build homesites left; the only way in is a resale.",
+    "  unconfirmed  renders with a hatched 'confirm' badge and is listed in the",
+    "               'needs confirmation' block on the map. Use this rather than guessing.",
+    "",
+    "confirmed:     set true ONLY once Karen has checked the phase against live inventory.",
+    "confirmed_on:  ISO date of that check.",
+    "karen_says:    first-person notes from Karen, who lives in Phase 8.",
+    "",
+    "Proximity to Hwy 79, the Town Center and the Bandshell is NOT stored here - it is",
+    "measured from the recorded plat geometry at render time, so it can never drift."
+  ],
+  "map": {
+    "community": "Latitude Margaritaville Watersound",
+    "city": "Panama City Beach, FL",
+    "builder": "Minto Communities",
+    "data_credit": "Phase boundaries & lots: Bay County, FL recorded plats (public record), plat book/page shown per phase",
+    "disclaimer": "Illustrative only — not a survey. Phase availability changes; confirm current inventory before relying on it.",
+    "agent_block": [
+      "Karen Lawell, Realtor · License #3397366",
+      "Counts Real Estate Group",
+      "850-517-8528 · Karen@nwflbeachhomes.com"
+    ]
+  },
+  "phases": {
+    "Phase 1": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "role": "Sales Center & model homes",
+      "karen_says": "This is where everyone starts — the Sales Center and the model park, not the first homes people bought.",
+      "note": "Recorded first (plat book 27). Commonly mistaken for the oldest neighborhood.",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 2": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "role": "The original neighborhood",
+      "karen_says": "The OGs. First residents in the community bought here.",
+      "note": "",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 3A": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "Phase 3 is three separate recorded plats, not one area.",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 3B & 3C": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "3B and 3C were recorded together on one plat.",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 3D": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "Recorded two plat books later than 3A — a separate release.",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 4A": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 4B": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 5A3": {
+      "availability": "new-build",
+      "confirmed": false,
+      "note": "NOT skipped. Recorded at plat book 32, page 81 — after Phase 8 — which is why it looks out of sequence.",
+      "correction": "Competitor coverage claims 5A was 'changed and kind of skipped'. Public record says otherwise.",
+      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+    },
+    "Phase 5B": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 5C": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 6A": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 6B & 6C": {
+      "availability": "resale-only",
+      "confirmed": false,
+      "note": "6B and 6C were recorded together on one plat.",
+      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+    },
+    "Phase 7": {
+      "availability": "new-build",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+    },
+    "Phase 8": {
+      "availability": "new-build",
+      "confirmed": false,
+      "karen_lives_here": true,
+      "karen_says": "This is my phase — my husband and I live here. It is very close to sold out.",
+      "note": "",
+      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+    },
+    "Phase 9": {
+      "availability": "new-build",
+      "confirmed": false,
+      "note": "",
+      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+    },
+    "Phase 10": {
+      "availability": "new-build",
+      "confirmed": false,
+      "note": "Most recently recorded plat in the community (plat book 33, page 98).",
+      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+    }
+  }
+}

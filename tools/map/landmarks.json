@@ -1,0 +1,104 @@
+{
+  "_readme": [
+    "Orientation anchors for the map. Every entry carries its own source and a",
+    "`confirmed` flag; anything with confirmed=false renders with a '?' and is listed",
+    "in the map's 'needs confirmation' block rather than being quietly published.",
+    "",
+    "anchor=true  -> stays on screen in every frame of the reveal sequence, so viewers",
+    "                never lose their bearings when the map zooms into a phase.",
+    "",
+    "Sources used here:",
+    "  county address point   Bay County Basic_Layers/MapServer/0 - public record",
+    "  site plan              read visually off the builder's published site plan",
+    "  aerial                 position read off public aerial imagery"
+  ],
+  "landmarks": [
+    {
+      "name": "Sales Center",
+      "short": "Sales Center",
+      "lat": 30.319131,
+      "lon": -85.856248,
+      "kind": "sales",
+      "anchor": true,
+      "confirmed": true,
+      "source": "county address point \u2014 9201 Highway 79"
+    },
+    {
+      "name": "Town Square Amenity",
+      "short": "Town Center",
+      "lat": 30.30725,
+      "lon": -85.86556,
+      "kind": "amenity",
+      "anchor": true,
+      "confirmed": false,
+      "source": "aerial + site plan",
+      "needs": "Karen to confirm the exact Town Center point. A county address point at 8520 Latitude Blvd (30.312154, -85.863968) is ~700 m north of the amenity complex visible from the air; the aerial position is used here."
+    },
+    {
+      "name": "Bandshell",
+      "short": "Bandshell",
+      "lat": 30.30747,
+      "lon": -85.86567,
+      "kind": "amenity",
+      "anchor": false,
+      "confirmed": false,
+      "source": "aerial",
+      "needs": "Karen to confirm. Drives the live-music proximity ring."
+    },
+    {
+      "name": "Paradise Pool",
+      "short": "Pool",
+      "lat": 30.30630,
+      "lon": -85.86578,
+      "kind": "amenity",
+      "anchor": false,
+      "confirmed": false,
+      "source": "aerial",
+      "needs": "Karen to confirm."
+    },
+    {
+      "name": "Barkaritaville Dog Park",
+      "short": "Dog Park",
+      "lat": null,
+      "lon": null,
+      "kind": "amenity",
+      "anchor": false,
+      "confirmed": false,
+      "source": "site plan \u2014 shown north-east of the Town Square, across the bridge",
+      "needs": "Coordinate not established. Karen to drop a pin."
+    },
+    {
+      "name": "Getaway Cottages",
+      "short": "Getaways",
+      "lat": null,
+      "lon": null,
+      "kind": "amenity",
+      "anchor": false,
+      "confirmed": false,
+      "source": "site plan \u2014 shown between the Town Square and Latitude Blvd, inside the gate",
+      "needs": "Coordinate not established. Karen to drop a pin."
+    },
+    {
+      "name": "Future commercial \u2014 grocery",
+      "short": "Grocery (future)",
+      "lat": null,
+      "lon": null,
+      "kind": "future",
+      "anchor": false,
+      "confirmed": false,
+      "source": "site plan \u2014 parcel east of Margaritaville Blvd is labelled 'Future Commercial (with grocery)'",
+      "needs": "Confirm current construction status and exact parcel before naming a tenant on screen."
+    },
+    {
+      "name": "Port of Indecision Kayak Launch",
+      "short": "Kayak Launch",
+      "lat": null,
+      "lon": null,
+      "kind": "amenity",
+      "anchor": false,
+      "confirmed": false,
+      "source": "site plan \u2014 shown on the Intracoastal side of the Town Square",
+      "needs": "Coordinate not established."
+    }
+  ]
+}
