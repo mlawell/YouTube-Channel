@@ -22,7 +22,22 @@
       "Karen Lawell, Realtor · License #3397366",
       "Counts Real Estate Group",
       "850-517-8528 · Karen@nwflbeachhomes.com"
-    ]
+    ],
+    "amenities": [
+      "Bandshell",
+      "Town Square Amphitheater",
+      "Fins Up! Fitness Center",
+      "Workin' N' Playin' Center",
+      "Latitude Bar and Chill Restaurant",
+      "Paradise Pool",
+      "Community Services Building",
+      "Pickleball & Tennis",
+      "Multi-Purpose Court & Bocce",
+      "Lawn Games / Park Area",
+      "Port of Indecision Kayak Launch",
+      "Barkaritaville Dog Park"
+    ],
+    "amenities_source": "Minto's amenity site plan. Only the Town Center point itself is a confirmed coordinate, so these are listed against it rather than pinned individually."
   },
   "phases": {
     "Phase 1": {

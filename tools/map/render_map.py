@@ -22,9 +22,11 @@ Run:
 from __future__ import annotations
 
 import argparse
+import colorsys
 import json
 import math
 import os
+import re
 from datetime import date
 from pathlib import Path
 
@@ -32,9 +34,18 @@ import matplotlib
 
 matplotlib.use("Agg")
 
+# Vector output is the canonical master for print, so fonts must travel with the
+# file -- a print shop that substitutes a font silently reflows the whole sheet.
+# fonttype 42 embeds a TrueType subset in PDF; 'path' converts SVG text to
+# outlines, which cannot substitute at all.
+matplotlib.rcParams["pdf.fonttype"] = 42
+matplotlib.rcParams["ps.fonttype"] = 42
+matplotlib.rcParams["svg.fonttype"] = "path"
+
 import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.collections import LineCollection, PolyCollection
 from matplotlib.font_manager import FontProperties
 from matplotlib.lines import Line2D
 from matplotlib.patches import Circle, FancyBboxPatch, Polygon as MPoly, Rectangle
@@ -63,16 +74,140 @@ DIM_EDGE = "#BCAF98"
 ROAD = "#8C8271"
 MUTED = "#5C6B70"
 
-# Phases are coloured by the plat book they were recorded in -- permanent public
-# record, and it tells a real story: Phase 5A3 sits in book 32, so it reads as
-# one of the newest parts of the community despite carrying a "5".
+# ---------------------------------------------------------------- phase palette
+# One hue family per phase NUMBER, one lightness tint per lettered sub-phase, so
+# 3A / 3B & 3C / 3D read as three shades of the same colour. A viewer learns ten
+# colours instead of sixteen and the map teaches the numbering scheme by itself.
 #
-# Availability (new-build vs resale) is deliberately NOT on this map. Karen's
-# point: "as of this moment there are x resales and x lots, but that will
-# certainly change in the next 5 minutes." Baking a volatile number into a
-# printed asset is the one thing that would make an otherwise hard-public-record
-# map look stale. It is a spoken, dated snapshot instead -- see inventory_report.py.
-ERA = ["#12B69A", "#4EC3A8", "#8ACBA0", "#C6C98F", "#EFC079", "#F2A06B", "#EE6F5C"]
+# Hues avoid ~185-265 deg (water) and ~350-15 deg (landmark pins), which leaves
+# two usable arcs and only ~245 deg to fit ten families into. Hue alone is not
+# enough at that spacing -- three of them would land in the greens -- so each
+# family also gets its own base lightness. Hue plus value together is what keeps
+# neighbouring phases apart; `python render_map.py --check-palette` measures it.
+#
+# The assignment is deliberately NOT in phase order: consecutive phase numbers
+# tend to be geographically adjacent, and adjacent regions are exactly the ones
+# that have to be told apart.
+# Hues avoid the pale cyan of water (~194 deg, lightness ~0.78) and the coral of
+# the landmark pins (~6 deg), which leaves little room for ten families -- five
+# of them would otherwise pile into the greens. So each family carries its own
+# hue, lightness AND saturation. A deep navy at lightness 0.40 is unmistakable
+# against pale water even though the hues are neighbours; value and saturation
+# do the work that hue alone cannot at this spacing.
+#
+# The assignment is deliberately NOT in phase order: consecutive phase numbers
+# tend to be geographically adjacent, and adjacent regions are exactly the ones
+# that have to be told apart. `--check-palette` measures the result in CIE Lab.
+PHASE_STYLE = {
+    #      hue   light  sat
+    1:  (180, 0.42, 0.55),   # deep teal
+    2:  (133, 0.66, 0.52),   # light green
+    3:  (305, 0.50, 0.45),   # orchid
+    4:  (218, 0.40, 0.52),   # deep navy -- far from the bay, and far darker than water
+    5:  (345, 0.58, 0.50),   # rose
+    6:  (73,  0.66, 0.55),   # light yellow-green
+    7:  (20,  0.58, 0.55),   # light orange
+    8:  (265, 0.52, 0.45),   # purple
+    9:  (155, 0.40, 0.45),   # dark green
+    10: (43,  0.44, 0.55),   # bronze
+}
+PHASE_LIGHT_SPREAD = 0.19  # total spread across a family's sub-phases
+
+
+def _hls(h_deg: float, light: float, sat: float) -> str:
+    r, g, b = colorsys.hls_to_rgb((h_deg % 360) / 360.0, light, sat)
+    return "#%02X%02X%02X" % (round(r * 255), round(g * 255), round(b * 255))
+
+
+def phase_number(label: str) -> int:
+    m = re.search(r"(\d+)", label)
+    return int(m.group(1)) if m else 0
+
+
+def build_palette(labels: list[str]) -> dict[str, str]:
+    """label -> hex. Sub-phases of one number share a hue and vary in lightness."""
+    families: dict[int, list[str]] = {}
+    for lab in labels:
+        families.setdefault(phase_number(lab), []).append(lab)
+    out: dict[str, str] = {}
+    for num, members in families.items():
+        hue, light, sat = PHASE_STYLE.get(num, ((num * 37) % 360, 0.52, 0.50))
+        if len(members) == 1:
+            out[members[0]] = _hls(hue, light, sat)
+            continue
+        lo = light - PHASE_LIGHT_SPREAD / 2
+        step = PHASE_LIGHT_SPREAD / (len(members) - 1)
+        for i, lab in enumerate(members):
+            out[lab] = _hls(hue, lo + i * step, sat)
+    return out
+
+
+def shade(hex_colour: str, *, light_delta: float = 0.0, sat_scale: float = 1.0) -> str:
+    r, g, b = (int(hex_colour[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    h, l, sat = colorsys.rgb_to_hls(r, g, b)
+    return _hls(h * 360, min(1.0, max(0.0, l + light_delta)), min(1.0, sat * sat_scale))
+
+
+def muted(hex_colour: str, *, light: float = 0.84, sat: float = 0.10) -> str:
+    """Push a colour to a fixed pale value, keeping only a hint of its hue.
+
+    Absolute rather than relative: a relative lightening leaves the dark phases
+    (navy, deep green) still reading as heavy blocks when they should be
+    receding, so every inactive phase has to land on the same value.
+    """
+    r, g, b = (int(hex_colour[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    h, _, s0 = colorsys.rgb_to_hls(r, g, b)
+    return _hls(h * 360, light, min(sat, s0))
+
+
+def _lab(hex_colour: str) -> tuple[float, float, float]:
+    """sRGB -> CIE Lab (D65). Perceptual, so colour distance means something."""
+    def lin(c):
+        c /= 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+    r, g, b = (lin(int(hex_colour[i:i + 2], 16)) for i in (1, 3, 5))
+    x = (0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047
+    y = (0.2126 * r + 0.7152 * g + 0.0722 * b)
+    z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883
+    f = lambda t: t ** (1 / 3) if t > 0.008856 else 7.787 * t + 16 / 116
+    fx, fy, fz = f(x), f(y), f(z)
+    return 116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)
+
+
+def palette_report(palette: dict[str, str]) -> None:
+    """Check separation, treating within-family and cross-family differently.
+
+    Sub-phases of one number are *supposed* to look related, so they only need
+    to be tellable apart (deltaE >= 9). Different phase numbers have to be
+    unmistakable (deltaE >= 20).
+    """
+    items = list(palette.items())
+    print(f"{'phase':<14}{'hex':<10}{'nearest other family':<22}deltaE")
+    worst_cross, worst_within = 999.0, 999.0
+    problems = []
+    for lab, hexa in items:
+        l1 = _lab(hexa)
+        fam = phase_number(lab)
+        cross = [(o, math.dist(l1, _lab(h))) for o, h in items if phase_number(o) != fam]
+        within = [(o, math.dist(l1, _lab(h))) for o, h in items
+                  if phase_number(o) == fam and o != lab]
+        near, d = min(cross, key=lambda t: t[1])
+        worst_cross = min(worst_cross, d)
+        flag = ""
+        if d < 20:
+            flag = "   <-- too close"
+            problems.append(f"{lab} vs {near} ({d:.1f})")
+        print(f"  {lab:<14}{hexa:<10}{near:<22}{d:5.1f}{flag}")
+        for o, dw in within:
+            worst_within = min(worst_within, dw)
+            if dw < 9:
+                problems.append(f"{lab} vs {o} ({dw:.1f}, same family)")
+
+    print(f"\ncross-family minimum   deltaE {worst_cross:5.1f}   (want >= 20)")
+    if worst_within < 999:
+        print(f"within-family minimum  deltaE {worst_within:5.1f}   (want >= 9, "
+              f"they should look related)")
+    print("OK" if not problems else "RETUNE PHASE_STYLE: " + "; ".join(sorted(set(problems))))
 
 FONT_DIR = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"
 
@@ -214,6 +349,27 @@ class Scene:
         self.centroids = {
             p["label"]: self.rot([tuple(p["centroid"])], project=True)[0] for p in self.phases
         }
+        self.palette = build_palette([p["label"] for p in self.phases])
+
+        # Street name label anchors, projected and rotated with everything else.
+        # `label_angle` comes out of build_features as a bearing in lon/lat space;
+        # the scene rotation has to be added on top of it.
+        rot_deg = math.degrees(self.theta)
+        self.street_labels = []
+        for p in self.phases:
+            for st in p.get("streets", []):
+                ll = st.get("label_lonlat")
+                if not ll:
+                    continue
+                ang = st.get("label_angle", 0.0) + rot_deg
+                ang = (ang + 90) % 180 - 90          # keep text upright
+                self.street_labels.append({
+                    "phase": p["label"],
+                    "name": st["name"],
+                    "xy": self.rot([tuple(ll)], project=True)[0],
+                    "angle": ang,
+                    "address_range": st.get("address_range"),
+                })
 
     def rot(self, pts, project: bool = False):
         c, s = math.cos(self.theta), math.sin(self.theta)
@@ -228,11 +384,8 @@ class Scene:
     def landmark(self, name: str):
         return self.anchor_xy.get(name)
 
-    def era_colour(self, p: dict) -> str:
-        """Colour by plat book, oldest to newest across the community."""
-        books = sorted({q["plat_book"] for q in self.phases})
-        i = books.index(p["plat_book"])
-        return ERA[round(i * (len(ERA) - 1) / max(1, len(books) - 1))]
+    def colour(self, label: str) -> str:
+        return self.palette[label]
 
     def distance_mi(self, p: dict, target: str) -> float | None:
         """Straight-line miles from the phase centroid to a landmark."""
@@ -278,36 +431,62 @@ def draw_base(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
 
 def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
                 show_lots: str = "active") -> None:
+    """Phase fills and lot linework.
+
+    Uses PolyCollection rather than one patch per polygon -- there are 3,229
+    lots, and at poster resolution per-patch drawing is the whole render time.
+    """
     for p in s.phases:
         lab = p["label"]
         on = lab == active
-        colour = s.era_colour(p)
-        face = colour if (on or active is None) else DIM_FILL
-        alpha = 0.62 if on else (0.78 if active is None else 0.42)
-        edge = DEEP if on else ("#7E8F86" if active is None else "#A99C86")
-        for pts in s.phase_rings[lab]:
-            ax.add_patch(MPoly(pts, closed=True, facecolor=face, alpha=alpha,
-                               edgecolor=edge, lw=(3.2 if on else 1.5) * lw_scale,
-                               zorder=2 if not on else 2.5))
+        colour = s.colour(lab)
+        if active is None or on:
+            face, alpha = colour, (0.95 if on else 0.92)
+            edge = shade(colour, light_delta=-0.30, sat_scale=1.1)
+        else:
+            # Everything that isn't being discussed drops to a common pale value
+            # so the active phase reads instantly.
+            face, alpha = muted(colour, light=0.86, sat=0.09), 0.85
+            edge = "#B3A992"
+        ax.add_collection(PolyCollection(
+            s.phase_rings[lab], facecolors=face, alpha=alpha, edgecolors=edge,
+            linewidths=(3.2 if on else 1.4) * lw_scale, zorder=2.5 if on else 2))
 
     # Inactive lots stay on screen, just quietly - the street pattern is what makes
     # the map readable, and dropping it leaves the rest of the community looking empty.
+    #
+    # Lots take a pale tint of their own phase colour rather than plain white.
+    # Drawn white, a fully platted phase reads as a white sheet while an
+    # undeveloped one reads as solid colour, which makes build-out look like a
+    # colour difference. Tinting keeps every phase reading as its own colour.
     if show_lots == "none":
         return
     for p in s.phases:
         lab = p["label"]
         on = lab == active
-        if show_lots == "active" and active and not on:
-            for pts in s.lot_rings.get(lab, []):
-                ax.add_patch(MPoly(pts, closed=True, facecolor="#FFFFFF", alpha=0.5,
-                                   edgecolor="#B8AC97", lw=0.28 * lw_scale, zorder=2.8))
+        rings = s.lot_rings.get(lab)
+        if not rings:
             continue
-        for pts in s.lot_rings.get(lab, []):
-            ax.add_patch(MPoly(pts, closed=True,
-                               facecolor=GOLD if on else "#FFFFFF",
-                               alpha=0.95 if on else 0.85,
-                               edgecolor="#9C6B00" if on else "#9A8E78",
-                               lw=(0.5 if on else 0.35) * lw_scale, zorder=3))
+        colour = s.colour(lab)
+        if active is not None and not on:
+            ax.add_collection(PolyCollection(
+                rings, facecolors=muted(colour, light=0.93, sat=0.06),
+                alpha=0.85, edgecolors="#BEB3A0",
+                linewidths=0.28 * lw_scale, zorder=2.8))
+            continue
+        if on:
+            # Lots of the active phase take a deeper tint of that phase's own
+            # colour, so the highlight never needs a second colour of its own.
+            face = shade(colour, light_delta=0.14, sat_scale=1.05)
+            edge = shade(colour, light_delta=-0.34, sat_scale=1.15)
+            lw = 0.55
+        else:
+            face = shade(colour, light_delta=0.30, sat_scale=0.62)
+            edge = shade(colour, light_delta=-0.18, sat_scale=0.75)
+            lw = 0.35
+        ax.add_collection(PolyCollection(
+            rings, facecolors=face, alpha=0.95, edgecolors=edge,
+            linewidths=lw * lw_scale, zorder=3))
 
 
 def draw_roads(ax, s: Scene, *, lw_scale: float = 1.0, label_hwy: bool = True) -> None:
@@ -406,7 +585,60 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
         t.set_clip_box(ax.bbox)
 
 
-def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0) -> None:
+def draw_street_labels(ax, s: Scene, *, fontsize: float = 5.0,
+                       with_ranges: bool = True) -> None:
+    """Street names written on the map, at large sizes only.
+
+    County road centrelines only cover Phases 1-3, so a label cannot be hung off
+    the line geometry for most of the community. The anchor is instead the centre
+    of the parcels carrying that street name, and the angle is the direction that
+    run of parcels lies along -- both derived from county record, neither guessed.
+    """
+    for sl in s.street_labels:
+        text = sl["name"]
+        if with_ranges and sl["address_range"]:
+            lo, hi = sl["address_range"]
+            text += f"\n{lo:,}\u2013{hi:,}"
+        t = ax.text(
+            sl["xy"][0], sl["xy"][1], text, fontproperties=F_BOLD, fontsize=fontsize,
+            color="#2A3F47", ha="center", va="center", rotation=sl["angle"],
+            rotation_mode="anchor", zorder=6.5, linespacing=1.25,
+            path_effects=[pe.withStroke(linewidth=fontsize * 0.5, foreground="white")],
+        )
+        t.set_clip_on(True)
+        t.set_clip_box(ax.bbox)
+
+
+def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0) -> None:
+    """Name the amenity core on a detailed map.
+
+    Only the Town Center point is a confirmed coordinate, so the individual
+    amenities are listed against it in a leader-lined block rather than pinned
+    to invented positions.
+    """
+    c = s.landmark("Town Square Amenity")
+    if not c or not s.meta.get("amenities"):
+        return
+    x0, x1 = ax.get_xlim()
+    y0, y1 = ax.get_ylim()
+    dx, dy = (x1 - x0) * 0.055, (y1 - y0) * 0.16
+    tx, ty = c[0] - dx, c[1] - dy
+    ax.annotate(
+        "", xy=c, xytext=(tx, ty),
+        arrowprops=dict(arrowstyle="-", color=DEEP, lw=0.9, alpha=0.8), zorder=7.4,
+    )
+    body = "\n".join("\u00b7 " + a for a in s.meta["amenities"])
+    t = ax.text(
+        tx, ty, "AT THE TOWN CENTER\n" + body, fontproperties=F_REG, fontsize=fontsize,
+        color=INK, ha="right", va="top", zorder=7.6, linespacing=1.5,
+        bbox=dict(boxstyle="round,pad=0.5", fc="white", ec=DIM_EDGE, lw=0.8, alpha=0.93),
+    )
+    t.set_clip_on(True)
+    t.set_clip_box(ax.bbox)
+
+
+def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
+                      show_plat: bool = False) -> None:
     for p in s.phases:
         lab = p["label"]
         on = lab == active
@@ -414,16 +646,24 @@ def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
             continue
         x, y = s.centroids[lab]
         text = p["short"] if active is None else p["label"]
+        if show_plat:
+            text += f"\n{p['plat']}"
         if p.get("karen_lives_here"):
             text += "  \u2014 Karen lives here" if on else " \u2665"
+        colour = s.colour(lab)
+        if on and p.get("karen_lives_here"):
+            fc, tc = PINK, "white"
+        elif on:
+            fc, tc = shade(colour, light_delta=-0.34, sat_scale=1.1), "white"
+        else:
+            fc, tc = "white", INK
         ax.text(
             x, y, text, fontproperties=F_BLACK if on else F_BOLD,
-            fontsize=(15 if on else 9.5) * lw_scale, color="white" if on else INK,
-            ha="center", va="center", zorder=8,
-            bbox=dict(boxstyle="round,pad=0.42",
-                      fc=PINK if (on and p.get("karen_lives_here")) else (DEEP if on else "white"),
-                      ec="white" if on else DIM_EDGE, lw=1.8 if on else 0.9,
-                      alpha=0.96),
+            fontsize=(15 if on else 9.5) * lw_scale, color=tc,
+            ha="center", va="center", zorder=8, linespacing=1.35,
+            bbox=dict(boxstyle="round,pad=0.42", fc=fc,
+                      ec="white" if on else shade(colour, light_delta=-0.22),
+                      lw=1.8 if on else 1.1, alpha=0.96),
         )
 
 
@@ -494,25 +734,22 @@ def north_arrow(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
 
 
 def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
-    books = sorted({p["plat_book"] for p in s.phases})
-    first = min(s.phases, key=lambda p: (p["plat_book"], p["plat_page"]))
-    last = max(s.phases, key=lambda p: (p["plat_book"], p["plat_page"]))
+    """Phase swatch key. Sub-phases of one number share a hue, so the key also
+    teaches the numbering scheme."""
     handles = [
-        MPoly([(0, 0)], facecolor=ERA[0], edgecolor=DEEP, lw=1.0, alpha=0.6,
-              label=f"Recorded first \u2014 plat book {books[0]}"),
-        MPoly([(0, 0)], facecolor=ERA[len(ERA) // 2], edgecolor=DEEP, lw=1.0, alpha=0.6,
-              label="\u2193  shaded by plat book, oldest to newest"),
-        MPoly([(0, 0)], facecolor=ERA[-1], edgecolor=DEEP, lw=1.0, alpha=0.6,
-              label=f"Recorded latest \u2014 plat book {books[-1]}"),
-        MPoly([(0, 0)], facecolor=GOLD, edgecolor="#9C6B00", lw=0.6,
-              label="Platted homesites in the phase being shown"),
-        Line2D([0], [0], marker="o", ms=8, mfc=CORAL, mec="white", mew=1.6, ls="none",
-               label="Landmark  (\u201c?\u201d = awaiting confirmation)"),
+        MPoly([(0, 0)], facecolor=s.colour(p["label"]), edgecolor=shade(s.colour(p["label"]),
+              light_delta=-0.30), lw=1.0, alpha=0.8,
+              label=f"{p['short']}   {p['plat']}")
+        for p in s.phases
     ]
-    leg = ax.legend(handles=handles, loc=loc, frameon=True, fontsize=9.5 * lw_scale,
-                    prop=FontProperties(fname=F_REG.get_file(), size=9.5 * lw_scale),
-                    borderpad=0.9, labelspacing=0.7, handlelength=1.6,
-                    title=f"{first['short']} was recorded first \u00b7 {last['short']} most recently")
+    handles.append(
+        Line2D([0], [0], marker="o", ms=8, mfc=CORAL, mec="white", mew=1.6, ls="none",
+               label="Landmark  (\u201c?\u201d = awaiting confirmation)")
+    )
+    leg = ax.legend(handles=handles, loc=loc, frameon=True, ncol=2,
+                    prop=FontProperties(fname=F_REG.get_file(), size=9.0 * lw_scale),
+                    borderpad=0.8, labelspacing=0.42, handlelength=1.4,
+                    columnspacing=1.4, title="Phases  \u00b7  recorded plat")
     leg.get_title().set_fontproperties(FontProperties(fname=F_BOLD.get_file(),
                                                       size=9.5 * lw_scale))
     leg.get_frame().set_facecolor("white")
@@ -534,8 +771,177 @@ def credit_line(s: Scene) -> str:
 POSTER_RECT = [0.025, 0.075, 0.95, 0.845]
 
 
+class Preset:
+    """A named output size.
+
+    `sheet` puts the map in a band across the top and a reference index below.
+    The community is ~3.1:1, so on a 3:2 sheet a full-width map only fills the
+    top third -- rather than pad that with whitespace or distort the geometry,
+    the space carries the street and address index that makes the big map worth
+    printing.
+
+    `panorama` is map-dominant, for the screen-shaped poster.
+    """
+
+    def __init__(self, kind, w_in, h_in, dpi, formats, detail="clean", bleed_in=0.0):
+        self.kind, self.w, self.h = kind, w_in, h_in
+        self.dpi, self.formats, self.detail, self.bleed = dpi, formats, detail, bleed_in
+
+    @property
+    def pixels(self):
+        return round(self.w * self.dpi), round(self.h * self.dpi)
+
+    def describe(self):
+        px = f"{self.pixels[0]:,} x {self.pixels[1]:,} px" if "png" in self.formats else "vector"
+        return f"{self.w:g} x {self.h:g} in @ {self.dpi} dpi  ({px})"
+
+
+PRESETS = {
+    "poster":       Preset("panorama", 20, 12, 400, ("png",)),
+    "print-36x24":  Preset("sheet", 36, 24, 150, ("pdf", "svg"), "full", 0.25),
+    "print-48x32":  Preset("sheet", 48, 32, 150, ("pdf", "svg"), "full", 0.25),
+    "giant-raster": Preset("sheet", 54, 36, 300, ("png",), "full"),
+}
+
+
+def _flow_reference(fig, s: Scene, rect, *, min_pt: float = 3.5,
+                    max_pt: float = 14.0, min_col_in: float = 2.2) -> None:
+    """The street + address index, flowed to fill the space it is given.
+
+    This is the layer that makes a printed map a reference document: point at a
+    street, read off the phase and the house-number range without looking
+    anything up. Type is sized up until the content just fills the band, rather
+    than left small with dead space under it.
+    """
+    x0, y0, w, h = rect
+    blocks = []
+    for p in s.phases:
+        lines = [("head", f"{p['label']}   {p['plat']}"),
+                 ("sub", f"{p['lot_count']:,} homesites \u00b7 {p['acres']:,.0f} acres")]
+        for st in p.get("streets", []):
+            r = st.get("address_range")
+            lines.append(("row", (st["name"], f"{r[0]:,}\u2013{r[1]:,}" if r else "\u2014")))
+        lines.append(("gap", ""))
+        blocks.append(lines)
+
+    fig_w_in, fig_h_in = fig.get_size_inches()
+
+    def pack(pt):
+        """Lay the blocks into columns at this type size, or None if it won't fit."""
+        line_h = pt * 1.55 / (fig_h_in * 72)
+        per_col = int(h / line_h)
+        if per_col < 4:
+            return None
+        cols, cur, used = [], [], 0
+        for b in blocks:
+            if used + len(b) > per_col and cur:   # never split a phase across columns
+                cols.append(cur)
+                cur, used = [], 0
+            cur.append(b)
+            used += len(b)
+        if cur:
+            cols.append(cur)
+        if (w * fig_w_in) / len(cols) < min_col_in:
+            return None
+        return cols, line_h
+
+    best = None
+    pt = min_pt
+    while pt <= max_pt:
+        got = pack(pt)
+        if got is None:
+            break
+        best, best_pt = got, pt
+        pt += 0.25
+    if best is None:
+        return
+    cols, line_h = best
+
+    col_w = w / len(cols)
+    for ci, col in enumerate(cols):
+        cx = x0 + ci * col_w
+        y = y0 + h
+        for block in col:
+            for kind, val in block:
+                if kind == "gap":
+                    y -= line_h * 0.6
+                    continue
+                if kind == "head":
+                    fig.text(cx, y, val, fontproperties=F_BLACK, fontsize=best_pt * 1.05,
+                             color=INK, ha="left", va="top")
+                elif kind == "sub":
+                    fig.text(cx, y, val, fontproperties=F_REG, fontsize=best_pt * 0.9,
+                             color=MUTED, ha="left", va="top")
+                else:
+                    name, rng = val
+                    fig.text(cx + col_w * 0.03, y, name, fontproperties=F_REG,
+                             fontsize=best_pt, color="#2A3F47", ha="left", va="top")
+                    fig.text(cx + col_w * 0.90, y, rng, fontproperties=F_REG,
+                             fontsize=best_pt, color=MUTED, ha="right", va="top")
+                y -= line_h
+
+
+def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str) -> list[Path]:
+    """Large-format sheet: title band, map band, reference index, footer."""
+    fig = plt.figure(figsize=(preset.w, preset.h), dpi=preset.dpi, facecolor=SAND)
+    W, H = preset.w, preset.h
+    margin = max(0.75, min(W, H) * 0.035)
+    safe = margin + preset.bleed          # keep type clear of the trim
+    inx = lambda v: v / W
+    iny = lambda v: v / H
+
+    title_h = H * 0.075
+    footer_h = H * 0.055
+    map_w = W - 2 * safe
+    map_h = min(map_w / 3.0, H - 2 * safe - title_h - footer_h - H * 0.30)
+    map_rect = [inx(safe), iny(H - safe - title_h - map_h), inx(map_w), iny(map_h)]
+
+    ax = fig.add_axes(map_rect)
+    ax.set_facecolor(LAND)
+    lw = max(1.0, W / 22)
+    draw_base(ax, s, lw_scale=lw * 0.7)
+    draw_phases(ax, s, None, lw_scale=lw * 0.6, show_lots="all")
+    draw_roads(ax, s, lw_scale=lw * 0.7)
+    draw_overlays(ax, s, overlays, lw_scale=lw)
+    draw_phase_labels(ax, s, None, lw_scale=lw * 0.75, show_plat=True)
+    set_view(ax, s.extent, 0.04, ax_aspect(fig, map_rect))
+    if preset.detail == "full":
+        draw_street_labels(ax, s, fontsize=max(3.6, W * 0.13))
+        draw_amenity_labels(ax, s, fontsize=max(4.5, W * 0.16))
+    draw_landmarks(ax, s, lw_scale=lw * 0.8)
+    scale_bar(ax, s, lw_scale=lw * 0.8)
+    north_arrow(ax, s, lw_scale=lw * 0.8)
+
+    fig.text(inx(safe), iny(H - safe * 0.75), "Latitude Margaritaville Watersound",
+             fontproperties=F_BLACK, fontsize=W * 1.05, color=INK, ha="left", va="top")
+    fig.text(inx(safe), iny(H - safe * 0.75 - title_h * 0.55),
+             f"Area 1 \u00b7 {len(s.phases)} recorded phases \u00b7 {s.total_lots:,} platted "
+             f"homesites \u00b7 {s.total_acres:,.0f} acres \u00b7 every boundary from Bay County "
+             f"public record",
+             fontproperties=F_REG, fontsize=W * 0.45, color=MUTED, ha="left", va="top")
+    fig.text(inx(W - safe), iny(H - safe * 0.75), "  \u00b7  ".join(s.meta["agent_block"]),
+             fontproperties=F_BOLD, fontsize=W * 0.40, color=DEEP, ha="right", va="top")
+
+    ref_top = map_rect[1] - iny(H * 0.030)
+    ref_bottom = iny(safe + footer_h)
+    _flow_reference(fig, s, [inx(safe), ref_bottom, inx(map_w), ref_top - ref_bottom])
+
+    fig.text(inx(safe), iny(safe * 0.75), credit_line(s), fontproperties=F_REG,
+             fontsize=W * 0.28, color=MUTED, ha="left", va="bottom", linespacing=1.6)
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    written = []
+    for fmt in preset.formats:
+        path = OUT / f"{name}.{fmt}"
+        fig.savefig(path, facecolor=SAND, format=fmt)
+        written.append(path)
+    plt.close(fig)
+    return written
+
+
 def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False) -> Path:
-    fig = plt.figure(figsize=(20, 12), dpi=200 if not pdf else 150, facecolor=SAND)
+    # 20 x 12 in at 400 dpi = 8000 x 4800.
+    fig = plt.figure(figsize=(20, 12), dpi=400 if not pdf else 150, facecolor=SAND)
     ax = fig.add_axes(POSTER_RECT)
     ax.set_facecolor(LAND)
 
@@ -711,7 +1117,9 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
     written: list[Path] = []
 
     def new_fig():
-        fig = plt.figure(figsize=(19.2, 10.8), dpi=100, facecolor=SAND)
+        # 3840 x 2160 -- 4K, so the editor has room to push in on a phase before
+        # exporting at 1080p.
+        fig = plt.figure(figsize=(19.2, 10.8), dpi=200, facecolor=SAND)
         ax = fig.add_axes(SEQ_RECT)
         ax.set_facecolor(LAND)
         return fig, ax
@@ -786,19 +1194,54 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__)
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--only", nargs="+",
                     choices=["poster", "print", "thumbnail", "sequence"],
-                    help="render a subset")
+                    help="render a subset of the standard outputs")
+    ap.add_argument("--preset", nargs="+", choices=sorted(PRESETS),
+                    help="large-format sizes: " + ", ".join(
+                        f"{k} ({v.describe()})" for k, v in PRESETS.items()))
+    ap.add_argument("--size", nargs=2, type=float, metavar=("WIDTH_IN", "HEIGHT_IN"),
+                    help="one-off sheet size in inches, instead of a preset")
+    ap.add_argument("--dpi", type=int, default=300, help="dpi for --size (default 300)")
+    ap.add_argument("--detail", choices=["clean", "full"], default="full",
+                    help="'full' adds street names, address ranges and the "
+                         "amenity list; only sensible at large sizes")
     ap.add_argument("--overlays", nargs="*", default=[],
                     choices=["hwy79", "towncenter", "bandshell"],
                     help="optional context layers; off by default to keep the map clean")
+    ap.add_argument("--check-palette", action="store_true",
+                    help="report perceptual separation between phase colours and exit")
     args = ap.parse_args()
 
     s = Scene(load_features())
+    if args.check_palette:
+        palette_report(s.palette)
+        return
     overlays = set(args.overlays)
-    jobs = args.only or ["poster", "print", "thumbnail", "sequence"]
 
+    if args.size:
+        w, h = args.size
+        name = f"latitude-phase-map-{w:g}x{h:g}"
+        p = Preset("sheet", w, h, args.dpi, ("png", "pdf"), args.detail, 0.25)
+        print(f"{name}  {p.describe()}")
+        for out in render_sheet(s, p, overlays, name):
+            print(f"  -> {out.name}")
+
+    for key in args.preset or []:
+        p = PRESETS[key]
+        name = f"latitude-phase-map-{key}"
+        print(f"{key}  {p.describe()}")
+        for out in render_sheet(s, p, overlays, name):
+            print(f"  -> {out.name}  ({out.stat().st_size / 1e6:.1f} MB)")
+
+    if args.preset or args.size:
+        if not args.only:
+            _report_needs(s)
+            return
+
+    jobs = args.only or ["poster", "print", "thumbnail", "sequence"]
     if "poster" in jobs:
         print("poster ->", render_poster(s, overlays).name)
     if "print" in jobs:
@@ -809,7 +1252,10 @@ def main() -> None:
         print("sequence:")
         got = render_sequence(s, overlays)
         print(f"  {len(got)} frames -> output/frames/")
+    _report_needs(s)
 
+
+def _report_needs(s: Scene) -> None:
     if s.needs_confirmation:
         print("\nNEEDS CONFIRMATION before publishing:")
     for l in s.needs_confirmation:
@@ -818,4 +1264,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

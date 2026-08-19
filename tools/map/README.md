@@ -11,31 +11,50 @@ back to a recorded plat with a book and page number anyone can look up.
 
 | File | Size | Use |
 | --- | --- | --- |
-| `output/latitude-phase-map.png` | 4000 × 2400 | Poster / lead magnet / printing |
-| `output/latitude-phase-map.pdf` | vector | Print one-pager, open-house handout |
+| `output/latitude-phase-map.png` | 8000 × 4800 | Screen-shaped poster, lead magnet |
+| `output/latitude-phase-map-print-36x24.pdf` / `.svg` | vector, 36 × 24 in | **The main print deliverable.** Full street + address index |
+| `output/latitude-phase-map-print-48x32.pdf` / `.svg` | vector, 48 × 32 in | Office wall |
+| `output/latitude-phase-map-giant-raster.png` | 16,200 × 10,800 | 300 dpi at 54 in wide, for anyone who can't take a PDF |
 | `output/latitude-phase-map-thumbnail.png` | 1280 × 720 | Thumbnail plate — drop Karen's cutout and headline on top |
-| `output/frames/00_all-phases.png` | 1920 × 1080 | Video: the whole community |
-| `output/frames/01…16_phase-*.png` | 1920 × 1080 | Video: one frame per phase, that phase highlighted, everything else dimmed |
-| `output/streets_by_phase.md` / `.json` | — | Street index per phase, with the county house-number range on every street |
+| `output/frames/00_all-phases.png` | 3840 × 2160 | Video: the whole community |
+| `output/frames/01…16_phase-*.png` | 3840 × 2160 | Video: one per phase, that phase highlighted |
+| `output/streets_by_phase.md` / `.json` | — | Street index per phase, with county house-number ranges |
+
+**Vector is the canonical master for print.** PDF and SVG are
+resolution-independent, which is what actually solves "we need it bigger" — a
+print shop can scale a PDF to any size without it going soft. Fonts are
+embedded as subsets in the PDF (`pdf.fonttype 42`) and converted to outlines in
+the SVG (`svg.fonttype path`), so nothing substitutes at the print shop. Line
+widths are in points, so they scale with the page instead of turning into
+hairlines. The giant PNG exists only for workflows that can't take vector.
+
+**Zoom frames are rendered natively at their own extent**, never cropped or
+upscaled from the wide render, so the lot linework is genuinely sharp when the
+video pushes in on a phase. 4K gives the editor room for pan-and-zoom moves
+before exporting at 1080p.
 
 The map covers **Area 1 — Phases 1 through 10, all 16 recorded plats**. Every
 plat carries `AREA 1` in its subdivision name, and Phase 10 (PB 33/98) is the
 last of them. **Area 2 has no recorded plat yet**, so how its phases will be
 numbered is not public — do not call the next one "Phase 11".
 
-The frame sequence is the video engine: talk about a phase, cut to its frame.
-Each phase frame zooms to that phase but keeps the Sales Center and Town
-Center on screen, plus a locator inset showing where you are in the community,
-so viewers never lose their bearings.
-
 ## Running it
 
 ```powershell
 python fetch_data.py         # download from Bay County ArcGIS  (~2 min, re-run monthly)
 python build_features.py     # attribute lots + streets to phases -> data/features.json
-python render_map.py         # poster, PDF, thumbnail, 17 frames
+python render_map.py         # poster, print PDF, thumbnail, 17 frames
 python export_streets.py     # streets_by_phase.md / .json
 python make_preview.py       # the small committed preview PNGs
+```
+
+Large formats are opt-in because they're slower and much larger:
+
+```powershell
+python render_map.py --preset print-36x24                    # the main print master
+python render_map.py --preset print-48x32 giant-raster
+python render_map.py --size 30 20 --dpi 300                  # any one-off size
+python render_map.py --check-palette                         # phase colour separation
 ```
 
 On record day, additionally:
@@ -49,8 +68,11 @@ Useful flags:
 ```powershell
 python fetch_data.py  --only phases lots
 python render_map.py  --only sequence
+python render_map.py  --detail clean                          # drop the dense layer
 python render_map.py  --overlays hwy79 towncenter bandshell   # off by default
 ```
+
+Whole pipeline including every preset runs in well under two minutes.
 
 Dependencies: `requests`, `shapely`, `matplotlib`, `pillow`.
 
@@ -195,17 +217,43 @@ use.
 
 ## Design notes
 
-- **The map is rotated.** The community runs north-west to south-east, so a
-  north-up map wastes most of a 16:9 frame. A PCA fit finds the long axis and
-  rotates the whole scene onto it; the north arrow rotates to match. This was
-  the single biggest legibility win.
-- **Phases are coloured by plat book**, oldest to newest. It is permanent
-  public record and it tells a real story — Phase 5A3 sits in book 32, so it
-  visibly reads as one of the newest parts of the community despite carrying a
-  "5". The map proves the correction without a word of commentary.
-- **Inactive phases keep their lots.** Dimmed, but drawn. The lot-and-street
-  texture is what makes the map read as a real place; hide it and the frame
-  looks empty.
+- **The map is rotated.** The community runs north-west to south-east and is
+  about **3.1 : 1** — a north-up map wastes most of any frame. A PCA fit finds
+  the long axis and rotates the whole scene onto it; the north arrow rotates to
+  match. This was the single biggest legibility win.
+- **That 3.1 : 1 shape drives the print layout.** On a 3:2 sheet a full-width
+  map only fills the top third. Rather than pad that with whitespace or distort
+  the geometry to fill it, the space below carries the street and address
+  index — which is what makes a big map worth printing in the first place.
+- **One hue per phase number, one tint per sub-phase.** 3A / 3B & 3C / 3D are
+  three shades of one colour, 4A / 4B two shades of another. A viewer learns
+  ten colours instead of sixteen and the map teaches the numbering scheme
+  without narration. Every polygon still carries a printed label, because
+  sixteen categories is past what colour alone can safely carry.
+- **The palette is measured, not eyeballed.** Hues avoid the pale cyan of water
+  and the coral of the landmark pins, which leaves only ~245° for ten families —
+  five of them would otherwise pile into the greens. So each family carries its
+  own hue, lightness *and* saturation, including one deep navy that reads
+  nothing like pale water. `--check-palette` reports CIE Lab separation and
+  fails loudly if two different phase numbers get too close (cross-family
+  ΔE ≥ 20; within a family ≥ 9, since sub-phases *should* look related).
+- **Inactive phases drop to one common pale value**, not a relative lightening.
+  Relative shifts leave the dark phases still reading as heavy blocks when they
+  should be receding.
+- **Lots are tinted with their phase colour**, not drawn white. Drawn white, a
+  fully platted phase reads as a white sheet while an undeveloped one reads as
+  solid colour — which makes build-out look like a colour difference.
+- **The coloured band along Margaritaville Blvd is not a device.** It is the
+  right-of-way strip that each plat carries, so it takes the colour of whatever
+  phase it runs through. It changes colour at every plat line because that is
+  genuinely where the phases change.
+- **Collections, not patches.** 3,229 lots drawn one patch at a time was the
+  whole render time at poster size; `PolyCollection` made the poster ~2 s.
+- **Street labels come from parcel data, not road lines.** County road
+  centrelines only cover Phases 1–3, so for most of the community there is no
+  line to hang a label off. The anchor is the centre of the parcels carrying
+  that street name, and the angle is the direction that run of parcels lies
+  along — both from county record, neither guessed.
 - **The Bandshell overlay has no hard edge and no printed radius.** Karen says
   a loud concert carries "a few miles" and she has heard it in 6B & 6C, 4A and
   3D "and maybe more". Sound varies with event volume, wind, season and tree
@@ -217,6 +265,22 @@ use.
   numbers are true ground distances.
 - **Context is clipped** to a padded community extent. Bay County's creek layer
   otherwise fills the frame with drainage that has nothing to do with Latitude.
+
+## Printing
+
+- **Send the PDF.** It is vector and scales to any size cleanly.
+- **Fonts are embedded** (PDF subsets) or outlined (SVG), so nothing
+  substitutes.
+- **0.25 in bleed** on the print presets, and Karen's contact block sits inside
+  the safe margin so it cannot be trimmed off.
+- **Aspect is taken from the real community footprint.** Nothing is stretched
+  to hit a nominal size.
+- Source, retrieval date and the "illustrative, not a survey" line appear on
+  every size.
+
+If Karen has a specific print size or vendor in mind, add it to `PRESETS` in
+`render_map.py` — it is one line — or render it once with
+`--size <width> <height> --dpi <n>`.
 
 ## Accuracy rules this tool follows
 
@@ -251,10 +315,13 @@ use.
 Nothing blocking — these are map polish.
 
 - [ ] Pins for Barkaritaville Dog Park, the Getaway Cottages and the Port of
-      Indecision kayak launch; confirm the Paradise Pool pin.
+      Indecision kayak launch. They are named in the Town Center amenity block
+      but have no coordinate, so nothing is drawn for them.
 - [ ] The future-commercial parcel — confirm construction status and whether
       the grocery tenant can be named on screen.
 - [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping
       Minto lot numbers in county data. Interleaved numbering, or lots sitting
       across a plat line?
+- [ ] Were **5A1 and 5A2** ever platted? Only PH 5A3 exists in the record.
 - [ ] One clipped label on Minto's Phase 4/5 panel still reads only "…IK DR".
+- [ ] A specific print size or vendor, if she has one in mind.

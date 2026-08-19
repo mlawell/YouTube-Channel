@@ -50,14 +50,13 @@
     },
     {
       "name": "Paradise Pool",
-      "short": "Pool",
+      "short": "Paradise Pool",
       "lat": 30.30630,
       "lon": -85.86578,
       "kind": "amenity",
       "anchor": false,
-      "confirmed": false,
-      "source": "aerial",
-      "needs": "Karen to confirm the pin. The amenity itself is confirmed \u2014 it is on Minto's amenity site plan."
+      "confirmed": true,
+      "source": "Karen \u2014 \"that is the correct location for the pool\""
     },
     {
       "name": "Barkaritaville Dog Park",
