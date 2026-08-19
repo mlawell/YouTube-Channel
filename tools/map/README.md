@@ -16,7 +16,12 @@ back to a recorded plat with a book and page number anyone can look up.
 | `output/latitude-phase-map-thumbnail.png` | 1280 × 720 | Thumbnail plate — drop Karen's cutout and headline on top |
 | `output/frames/00_all-phases.png` | 1920 × 1080 | Video: the whole community |
 | `output/frames/01…16_phase-*.png` | 1920 × 1080 | Video: one frame per phase, that phase highlighted, everything else dimmed |
-| `output/streets_by_phase.md` / `.json` | — | Street index per phase, each name tagged with its public-record source |
+| `output/streets_by_phase.md` / `.json` | — | Street index per phase, with the county house-number range on every street |
+
+The map covers **Area 1 — Phases 1 through 10, all 16 recorded plats**. Every
+plat carries `AREA 1` in its subdivision name, and Phase 10 (PB 33/98) is the
+last of them. **Area 2 has no recorded plat yet**, so how its phases will be
+numbered is not public — do not call the next one "Phase 11".
 
 The frame sequence is the video engine: talk about a phase, cut to its frame.
 Each phase frame zooms to that phase but keeps the Sales Center and Town
@@ -26,10 +31,17 @@ so viewers never lose their bearings.
 ## Running it
 
 ```powershell
-python fetch_data.py        # download from Bay County ArcGIS  (~2 min, re-run monthly)
-python build_features.py    # attribute lots + streets to phases -> data/features.json
-python render_map.py        # poster, PDF, thumbnail, 17 frames
-python export_streets.py    # streets_by_phase.md / .json
+python fetch_data.py         # download from Bay County ArcGIS  (~2 min, re-run monthly)
+python build_features.py     # attribute lots + streets to phases -> data/features.json
+python render_map.py         # poster, PDF, thumbnail, 17 frames
+python export_streets.py     # streets_by_phase.md / .json
+python make_preview.py       # the small committed preview PNGs
+```
+
+On record day, additionally:
+
+```powershell
+python inventory_report.py --csv <Karen's listings export>
 ```
 
 Useful flags:
@@ -77,64 +89,100 @@ Server quirks, all handled in `fetch_data.py`:
 
 ## The files you edit
 
-### `phase_meta.json` — the one to keep current
+### `phase_meta.json` — narrative + the inventory snapshot
 
-Per phase: `availability` (`new-build` / `resale-only` / `unconfirmed`),
-`confirmed`, `karen_says`, `note`, `availability_basis`.
+Per phase: `role`, `karen_says`, `note`, `karen_lives_here`, `hwy79_audible`,
+and `inventory_snapshot`.
 
-**Every phase currently has `confirmed: false`.** The availability values are
-provisional inferences from plat recording order, not verified inventory.
-Until Karen sets `confirmed: true`, the poster carries a PROVISIONAL banner and
-each phase frame carries a "confirm current inventory" caption. That is
-deliberate — the map should refuse to look authoritative until it is.
+**Availability is deliberately NOT rendered.** Karen's framing:
 
-When a phase sells out of new-build homesites:
+> "as of this moment there are x number of resales listed and x number of lots,
+> but that will certainly change in the next 5 minutes."
 
-```jsonc
-"Phase 8": {
-  "availability": "resale-only",
-  "confirmed": true,
-  "availability_basis": "Karen, 2026-09-01 — last new-build homesite closed"
-}
-```
+Baking a number that volatile into a printed asset guarantees it goes stale,
+and it is the one thing on an otherwise hard-public-record map that would make
+the whole thing look untrustworthy. So live inventory is spoken and dated at
+record time instead, and that volatility becomes the call to action — it is the
+reason a viewer contacts Karen rather than relying on the video.
 
-then `python render_map.py`. Done.
+The file also carries `karen_first_hand` (her Highway 79 and Bandshell noise
+calls, with her exact quotes) and `scope`, which records that the map covers
+**Area 1 — Phases 1 through 10, all 16 recorded plats** and that Area 2 has no
+recorded plat yet. It also notes that **plat order is not phase order**: PH 5A3
+is PB 32/81, recorded *after* Phases 7 and 8. That single counterexample is why
+availability can never be inferred from recording order.
 
 ### `landmarks.json`
 
 Landmark coordinates, each with `confirmed`, `source` and `needs`.
 Unconfirmed landmarks render with a `?` after the label so nothing unverified
-sneaks onto screen looking certain. Several still have `null` coordinates and
-simply do not draw until Karen drops a pin.
+sneaks onto screen looking certain. Entries with `null` coordinates simply do
+not draw.
 
-Only the **Sales Center** (9201 Highway 79 → 30.319131, −85.856248) is
-confirmed, from a county address point.
+Confirmed:
+
+- **Sales Center** — 9201 Highway 79 → 30.319131, −85.856248 (county address point)
+- **Town Center & Bandshell** — 30.30734, −85.86556, the centre of the
+  Bandshell, confirmed by Karen. It is the middle of the amenity core, so it is
+  the origin for every "distance to Town Center" on the map.
 
 ### `street_index.json`
 
-Curated gap-filler and the list of labels that could not be verified. Only
-touch it for names Karen confirms from her own knowledge.
+Curated gap-filler, the `unverified` clipped-label list, and the two-number-series
+warning. Only touch it for names Karen confirms from her own knowledge.
+
+## Record day — the inventory snapshot
+
+```powershell
+python inventory_report.py --csv <Karen's BoldTrail export>
+```
+
+Assigns every listing to a phase geometrically, then prints a block to read
+straight off the screen:
+
+```
+AS OF 2026-08-19
+                  resales  new lots
+Phase 1                 2         0
+Phase 2                 5         0
+...
+```
+
+It writes the same numbers into `phase_meta.json` so the script prep and the
+spoken numbers cannot drift apart. Use `--no-write` to print only.
 
 ## Which phase is this address in?
 
-`phase_lookup.py` answers it geometrically — lat/lon → point-in-recorded-plat
-→ phase. It needs no street list, so it works for the newest phases where the
-county has no address coverage at all.
+`phase_lookup.py` answers it three ways.
 
 ```powershell
-python phase_lookup.py --latlon 30.319131 -85.856248
-python phase_lookup.py --lot 8042
-python phase_lookup.py --csv listings.csv --out listings_with_phase.csv
+python phase_lookup.py --address "9502 Escape Ave"     # by county house number
+python phase_lookup.py --latlon 30.319131 -85.856248   # by coordinate
+python phase_lookup.py --lot 8042                      # by MINTO LOT number
+python phase_lookup.py --csv listings.csv --out tagged.csv
 ```
 
-The CSV mode is how active for-sale inventory gets tagged to a phase: Karen
-exports her listings from BoldTrail with latitude/longitude columns, this adds
-a `phase` column. No scraping, no MLS redistribution.
+The coordinate path is the robust one — point-in-recorded-plat needs no street
+list, so it works for the newest phases where the county has no address
+coverage at all. The CSV mode is how active for-sale inventory gets tagged:
+Karen exports her listings from BoldTrail with latitude/longitude columns, this
+adds a `phase` column. No scraping, no MLS redistribution.
 
-Lot numbers are a useful secondary index because Minto prefixes them by phase
-from Phase 4 onward (4xxx … 10xxx), so a lot number alone usually identifies
-its phase. Phases 1–3 share one unprefixed run of 1–381, so `--lot` is
-ambiguous down there and the tool says so instead of guessing.
+### Two number series — do not confuse them
+
+**Minto lot numbers** are phase-prefixed from Phase 4 onward (4xxx … 10xxx);
+phases 1–3 use one unprefixed run of 1–381. They identify a phase but are
+useless for searching.
+
+**County house numbers** are the searchable street address, and they are a
+completely different series. On Escape Avenue the county range is **9201–9499
+in Phase 7** and **9502–9667 in Phase 8** — so Minto lot 8042 is in Phase 8,
+but there is no *8042 Escape Avenue*. Quote house numbers to buyers, never lot
+numbers.
+
+`streets_by_phase.md` publishes the house-number range for every street in
+every phase, and calls out the **12 streets that cross a phase boundary** —
+those are the ones that catch buyers out.
 
 ### Automating listings later
 
@@ -142,8 +190,8 @@ Karen's site (`karenlawell.countspcb.com`) is BoldTrail/kvCORE. Search results
 are rendered client-side, so there is no server-side URL that returns
 subdivision-filtered listings. The supported route is the kvCORE Feeds API —
 `https://api.kvcore.com/export/listings/{zapKey}/17` — which needs a `zapKey`
-from Karen's BoldTrail dashboard. Until then, the CSV export path above is the
-one to use.
+from Karen's BoldTrail dashboard. Until then, the CSV export path is the one to
+use.
 
 ## Design notes
 
@@ -151,11 +199,21 @@ one to use.
   north-up map wastes most of a 16:9 frame. A PCA fit finds the long axis and
   rotates the whole scene onto it; the north arrow rotates to match. This was
   the single biggest legibility win.
+- **Phases are coloured by plat book**, oldest to newest. It is permanent
+  public record and it tells a real story — Phase 5A3 sits in book 32, so it
+  visibly reads as one of the newest parts of the community despite carrying a
+  "5". The map proves the correction without a word of commentary.
 - **Inactive phases keep their lots.** Dimmed, but drawn. The lot-and-street
   texture is what makes the map read as a real place; hide it and the frame
   looks empty.
+- **The Bandshell overlay has no hard edge and no printed radius.** Karen says
+  a loud concert carries "a few miles" and she has heard it in 6B & 6C, 4A and
+  3D "and maybe more". Sound varies with event volume, wind, season and tree
+  cover, so a crisp ring with a number on it would be an invented measurement.
+  It is an impression, and it is drawn like one. The Town Center half-mile walk
+  ring *is* a hard ring, because that one is genuinely measurable.
 - **Web Mercator inflates distance** by `1/cos(latitude)`. Every mile figure on
-  the map is corrected for it, so the scale bar and the "2.6 mi to Town Center"
+  the map is corrected for it, so the scale bar and the "0.6 mi to Town Center"
   numbers are true ground distances.
 - **Context is clipped** to a padded community extent. Bay County's creek layer
   otherwise fills the frame with drainage that has nothing to do with Latitude.
@@ -165,34 +223,38 @@ one to use.
 1. **Nothing is invented.** Every phase boundary, lot, road and water body on
    the map came from a county layer. No amenity, phase, homesite or future
    feature is drawn unless it exists in public record or Karen confirms it.
+   Area 2 has no recorded plat, so nothing of it is drawn or named.
 2. **No street is renamed or inferred.** A street name only attaches to a phase
    when a county feature carrying that name physically sits inside that phase's
    recorded plat. Where the county has no coverage the entry stays blank and is
    flagged for Karen — never filled in by guessing from a neighbouring phase.
-3. **Unverified things look unverified.** Provisional availability, `?` on
-   unconfirmed landmarks, a PROVISIONAL banner while any phase is unconfirmed.
-4. **Every render prints a NEEDS CONFIRMATION list** of what is still
+3. **Nothing volatile is printed.** Live inventory changes by the hour, so it
+   never goes on the map. Everything rendered is either public record or a
+   confirmed first-hand call from Karen, attributed as such.
+4. **Approximate things look approximate.** No hard edge or number on the
+   Bandshell overlay; `?` on unconfirmed landmarks.
+5. **Every render prints a NEEDS CONFIRMATION list** of what is still
    unverified, so it cannot quietly ship.
 
 ## Disclaimer carried on every export
 
 > Phase boundaries & lots: Bay County, FL recorded plats (public record), plat
 > book/page shown per phase · retrieved *date* | Illustrative only — not a
-> survey. Phase availability changes; confirm current inventory before relying
-> on it.
+> survey. Boundaries, homesite counts and street data are public record; for
+> what is actually for sale today, ask Karen.
+> Area 1 is Phases 1 through 10 — all 16 plats recorded, Phase 10 (PB 33/98)
+> the last of them. Area 2 has no recorded plat yet, so how its phases will be
+> numbered is not public.
 
 ## Still needs Karen
 
-- [ ] Confirm new-build vs resale-only for all 16 phases — all provisional.
-- [ ] Resolve the Town Center point. The amenity complex reads at
-      ≈ 30.30725, −85.86556 from the air; a county address point for
-      8520 Latitude Blvd sits ≈ 700 m north at 30.312154, −85.863968.
-- [ ] Drop pins: Barkaritaville Dog Park, the Getaway Cottages, the Port of
-      Indecision kayak launch.
-- [ ] Confirm the Bandshell point — it drives the live-music proximity ring.
-- [ ] Confirm the noise / Highway 79 / Town Center calls per phase.
-- [ ] Confirm the future-commercial parcel and whether the grocery tenant can
-      be named on screen.
-- [ ] Phase 4A (#4001–4515) and Phase 4B (#4318–4509) have overlapping lot
-      numbers in county data. Interleaved numbering, or lots sitting across a
-      plat line? Karen or a plat read can settle it.
+Nothing blocking — these are map polish.
+
+- [ ] Pins for Barkaritaville Dog Park, the Getaway Cottages and the Port of
+      Indecision kayak launch; confirm the Paradise Pool pin.
+- [ ] The future-commercial parcel — confirm construction status and whether
+      the grocery tenant can be named on screen.
+- [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping
+      Minto lot numbers in county data. Interleaved numbering, or lots sitting
+      across a plat line?
+- [ ] One clipped label on Minto's Phase 4/5 panel still reads only "…IK DR".

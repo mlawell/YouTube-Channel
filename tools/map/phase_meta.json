@@ -1,28 +1,23 @@
 {
   "_readme": [
-    "Curated, human-owned metadata for each recorded phase. Everything in tools/map/data/",
-    "is downloaded from Bay County and is regenerated on every run; THIS file is the part a",
-    "human maintains, and it is the file to edit when a phase sells out.",
+    "Human-maintained notes per phase. Everything RENDERED on the map is hard public",
+    "record; this file holds the narrative layer plus the live-inventory snapshot.",
     "",
-    "availability:  new-build | resale-only | unconfirmed",
-    "  new-build    Minto still has homesites to sell here.",
-    "  resale-only  no new-build homesites left; the only way in is a resale.",
-    "  unconfirmed  renders with a hatched 'confirm' badge and is listed in the",
-    "               'needs confirmation' block on the map. Use this rather than guessing.",
+    "AVAILABILITY IS NOT RENDERED. Karen: \"as of this moment there are x number of",
+    "resales listed and x number of lots, but that will certainly change in the next",
+    "5 minutes.\" Baking that into a printed asset guarantees it goes stale, so it is",
+    "spoken and dated at record time instead. Run inventory_report.py on record day;",
+    "it fills inventory_snapshot here and prints a block to read on camera.",
     "",
-    "confirmed:     set true ONLY once Karen has checked the phase against live inventory.",
-    "confirmed_on:  ISO date of that check.",
-    "karen_says:    first-person notes from Karen, who lives in Phase 8.",
-    "",
-    "Proximity to Hwy 79, the Town Center and the Bandshell is NOT stored here - it is",
-    "measured from the recorded plat geometry at render time, so it can never drift."
+    "Fields: role, karen_says, note = narrative. karen_lives_here = the Phase 8 flag.",
+    "inventory_snapshot = {as_of, resales_listed, new_lots}, written by the tool."
   ],
   "map": {
     "community": "Latitude Margaritaville Watersound",
     "city": "Panama City Beach, FL",
     "builder": "Minto Communities",
     "data_credit": "Phase boundaries & lots: Bay County, FL recorded plats (public record), plat book/page shown per phase",
-    "disclaimer": "Illustrative only — not a survey. Phase availability changes; confirm current inventory before relying on it.",
+    "disclaimer": "Illustrative only — not a survey. Boundaries, homesite counts and street data are public record; for what is actually for sale today, ask Karen.",
     "agent_block": [
       "Karen Lawell, Realtor · License #3397366",
       "Counts Real Estate Group",
@@ -31,107 +26,178 @@
   },
   "phases": {
     "Phase 1": {
-      "availability": "resale-only",
-      "confirmed": false,
       "role": "Sales Center & model homes",
       "karen_says": "This is where everyone starts — the Sales Center and the model park, not the first homes people bought.",
       "note": "Recorded first (plat book 27). Commonly mistaken for the oldest neighborhood.",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      },
+      "hwy79_audible": true
     },
     "Phase 2": {
-      "availability": "resale-only",
-      "confirmed": false,
       "role": "The original neighborhood",
       "karen_says": "The OGs. First residents in the community bought here.",
       "note": "",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      },
+      "hwy79_audible": true
     },
     "Phase 3A": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "Phase 3 is three separate recorded plats, not one area.",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 3B & 3C": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "3B and 3C were recorded together on one plat.",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      },
+      "hwy79_audible": true
     },
     "Phase 3D": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "Recorded two plat books later than 3A — a separate release.",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 4A": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 4B": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 5A3": {
-      "availability": "new-build",
-      "confirmed": false,
       "note": "NOT skipped. Recorded at plat book 32, page 81 — after Phase 8 — which is why it looks out of sequence.",
       "correction": "Competitor coverage claims 5A was 'changed and kind of skipped'. Public record says otherwise.",
-      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 5B": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 5C": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 6A": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 6B & 6C": {
-      "availability": "resale-only",
-      "confirmed": false,
       "note": "6B and 6C were recorded together on one plat.",
-      "availability_basis": "provisional: an early recorded plat, expected to be resale-only"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 7": {
-      "availability": "new-build",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 8": {
-      "availability": "new-build",
-      "confirmed": false,
       "karen_lives_here": true,
-      "karen_says": "This is my phase — my husband and I live here. It is very close to sold out.",
+      "karen_says": "This is my phase — my husband and I live here.",
       "note": "",
-      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 9": {
-      "availability": "new-build",
-      "confirmed": false,
       "note": "",
-      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     },
     "Phase 10": {
-      "availability": "new-build",
-      "confirmed": false,
       "note": "Most recently recorded plat in the community (plat book 33, page 98).",
-      "availability_basis": "provisional: among the most recently recorded plats, so new-build homesites are expected"
+      "inventory_snapshot": {
+        "as_of": null,
+        "resales_listed": null,
+        "new_lots": null
+      }
     }
+  },
+  "karen_first_hand": {
+    "_source": "Karen Lawell, resident of Phase 8, 2026-08-19. Her own experience, not a measurement.",
+    "hwy79_audible": {
+      "phases": [
+        "Phase 1",
+        "Phase 2",
+        "Phase 3B & 3C"
+      ],
+      "quote": "Phases 1, 2, and 3b & C all could hear 79",
+      "note": "The real noise discriminator. A short, specific list that maps to three recorded plats on the Hwy 79 frontage."
+    },
+    "bandshell_audible": {
+      "phases_named": [
+        "Phase 6B & 6C",
+        "Phase 4A",
+        "Phase 3D"
+      ],
+      "quote": "you know where the bandshell is, anything within a few miles could hear a loud concert, 6bc, 4a, 3D... and maybe more",
+      "note": "NOT a discriminator between phases -- most of the community hears a loud show sometimes. Never render a hard ring or print a radius: sound varies with event volume, wind, season and tree cover, and Karen is speaking approximately. Keep the \"and maybe more\" hedge."
+    }
+  },
+  "scope": {
+    "area": "Area 1",
+    "recorded_through": "Phase 10",
+    "note": "Area 1 is Phases 1 through 10 — all 16 plats recorded, Phase 10 (PB 33/98) the last of them. Area 2 has no recorded plat yet, so how its phases will be numbered is not public.",
+    "verified": "Every recorded plat carries AREA 1 in its subdivision name; the distinct AREA values in Bay County record are exactly [1]. Phase 10 is both the highest phase number and the highest plat book/page.",
+    "do_not_say": "Do not call the next phase \"Phase 11\" on camera or in writing. The record does not support the name. \"Area 2\" is the safe term.",
+    "second_town_square": {
+      "status": "planned, confirmed by Karen",
+      "where": "Area 2",
+      "contents": "unknown — do not speculate about tenants or amenities",
+      "timing": "a ways out; Area 2 is not recorded yet. Any specific timing is a guess and must be labelled as one."
+    },
+    "plat_order_is_not_phase_order": "PH 5A3 is PB 32/81 — recorded AFTER Phase 7 (PB 31/14) and Phase 8 (PB 31/71). It is a late infill plat, which is why it has no lot numbers in county data yet. This is also why availability can never be inferred from recording order.",
+    "missing_plats": "Only PH 5A3 is recorded — there is no 5A1 or 5A2 plat. Ask Karen whether they were replatted or folded into another plat."
   }
 }

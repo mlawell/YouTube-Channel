@@ -9,7 +9,10 @@ Three ways in:
     # a coordinate
     python phase_lookup.py --latlon 30.312154 -85.863968
 
-    # a lot number (Phase 4 onward carries a phase prefix)
+    # a street address, the way it appears on a listing
+    python phase_lookup.py --address "9502 Escape Ave"
+
+    # a Minto lot number -- NOT an address, see the warning below
     python phase_lookup.py --lot 8042
 
     # a CSV of listings exported from Karen's dashboard
@@ -19,6 +22,15 @@ The CSV needs latitude/longitude columns (any of lat/latitude/Lat and
 lon/lng/longitude/Long). A `phase` column is added to every row. This is how
 active for-sale inventory gets tagged to a phase -- Karen exports from
 BoldTrail, this tags it, no scraping and no MLS redistribution.
+
+TWO NUMBER SERIES -- do not confuse them
+----------------------------------------
+Minto **lot numbers** are phase-prefixed from Phase 4 onward (4xxx ... 10xxx).
+County **house numbers** -- the searchable street address -- are a completely
+different series. Minto lot 8042 is in Phase 8, but every Escape Avenue address
+is 9xxx: the county range is 9201-9499 in Phase 7 and 9502-9667 in Phase 8.
+Searching "8042 Escape Ave" finds nothing. `--lot` takes a lot number and
+`--address` takes an address; they are not interchangeable.
 """
 
 from __future__ import annotations
@@ -26,6 +38,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -34,6 +47,18 @@ FEATURES = HERE / "data" / "features.json"
 
 LAT_KEYS = ("latitude", "lat", "y", "geo_lat", "map_lat")
 LON_KEYS = ("longitude", "long", "lon", "lng", "x", "geo_lon", "map_lon")
+
+STREET_ABBREV = {
+    "avenue": "ave", "boulevard": "blvd", "circle": "cir", "court": "ct",
+    "drive": "dr", "lane": "ln", "parkway": "pkwy", "place": "pl",
+    "road": "rd", "street": "st", "way": "way", "terrace": "ter",
+}
+
+
+def norm_street(name: str) -> str:
+    """'Escape Avenue' == 'ESCAPE AVE' == 'escape ave.'"""
+    words = re.findall(r"[a-z0-9]+", name.lower())
+    return " ".join(STREET_ABBREV.get(w, w) for w in words)
 
 
 def load_phases() -> list[dict]:
@@ -72,6 +97,33 @@ class Lookup:
                 hits.append(p)
         return hits
 
+    def by_address(self, addr: str) -> list[tuple[dict, dict]]:
+        """Match '9502 Escape Ave' against the county house-number range each
+        street occupies in each phase. Returns (phase, street) pairs."""
+        m = re.match(r"^\s*(\d+)\s+(.+)$", addr)
+        if not m:
+            return []
+        num, street = int(m.group(1)), norm_street(m.group(2))
+        hits = []
+        for p in self.phases:
+            for st in p.get("streets", []):
+                if norm_street(st["name"]) != street:
+                    continue
+                rng = st.get("address_range")
+                if rng and rng[0] <= num <= rng[1]:
+                    hits.append((p, st))
+        return hits
+
+    def street_everywhere(self, street: str) -> list[tuple[dict, dict]]:
+        """Every phase a street appears in, whatever the number."""
+        want = norm_street(street)
+        return [
+            (p, st)
+            for p in self.phases
+            for st in p.get("streets", [])
+            if norm_street(st["name"]) == want
+        ]
+
 
 def describe(p: dict) -> str:
     lines = [
@@ -81,13 +133,15 @@ def describe(p: dict) -> str:
     ]
     rng = p.get("lot_number_range")
     if rng:
-        lines.append(f"  lot numbers       {rng[0]:,}-{rng[1]:,}")
+        lines.append(f"  lot numbers       {rng[0]:,}-{rng[1]:,}"
+                     "   (Minto lot numbers, not addresses)")
     status = p.get("availability", "unconfirmed")
     flag = "" if p.get("confirmed") else "   [PROVISIONAL - confirm before quoting]"
     lines.append(f"  availability      {status}{flag}")
-    streets = [st["name"] for st in p.get("streets", [])]
-    if streets:
-        lines.append(f"  streets           {', '.join(streets)}")
+    for st in p.get("streets", []):
+        r = st.get("address_range")
+        lines.append(f"  street            {st['name']}"
+                     + (f"   {r[0]:,}-{r[1]:,}" if r else "   (no county addresses)"))
     return "\n".join(lines)
 
 
@@ -152,12 +206,15 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--latlon", nargs=2, type=float, metavar=("LAT", "LON"))
-    ap.add_argument("--lot", type=int)
+    ap.add_argument("--address", metavar="ADDR",
+                    help="a street address, e.g. \"9502 Escape Ave\"")
+    ap.add_argument("--lot", type=int,
+                    help="a MINTO LOT number -- not an address")
     ap.add_argument("--csv", type=Path)
     ap.add_argument("--out", type=Path)
     a = ap.parse_args()
 
-    if not (a.latlon or a.lot is not None or a.csv):
+    if not (a.latlon or a.address or a.lot is not None or a.csv):
         ap.print_help()
         sys.exit(1)
 
@@ -169,9 +226,36 @@ def main() -> None:
         print(f"{lat}, {lon}")
         print(describe(p) if p else "  not inside any recorded Latitude plat")
 
+    if a.address:
+        hits = lk.by_address(a.address)
+        print(a.address)
+        if hits:
+            for p, st in hits:
+                rng = st["address_range"]
+                print(describe(p))
+                print(f"  matched on       {st['name']} {rng[0]:,}-{rng[1]:,} "
+                      f"(county record)")
+            if len(hits) > 1:
+                print("  NOTE: more than one phase matched -- check the "
+                      "coordinate to be certain.")
+        else:
+            m = re.match(r"^\s*\d+\s+(.+)$", a.address)
+            everywhere = lk.street_everywhere(m.group(1)) if m else []
+            if everywhere:
+                print("  that street exists, but no phase covers that house "
+                      "number in county record:")
+                for p, st in everywhere:
+                    rng = st.get("address_range")
+                    print(f"    {p['label']:<15}{st['name']}"
+                          + (f"  {rng[0]:,}-{rng[1]:,}" if rng else "  (no county addresses)"))
+                print("  Either the number is newer than the county data, or "
+                      "check the spelling. Do not guess -- use --latlon.")
+            else:
+                print("  no county record for that street in any phase")
+
     if a.lot is not None:
         hits = lk.by_lot(a.lot)
-        print(f"lot {a.lot:,}")
+        print(f"Minto lot {a.lot:,}  (a lot number, NOT a street address)")
         if not hits:
             print("  no phase carries that lot number")
         elif len(hits) > 1:

@@ -57,10 +57,12 @@ the first one **must** be `0:00`.
 10:50 Phase 8 — where I live
 11:45 Phase 9
 12:05 Phase 10
-12:15 Is there a second Town Square?
-12:50 Which phase sells next & how long does a build take?
-13:20 If you're 2 years out from retiring
-14:00 Get the map + how to register with me
+12:15 The street that's in two phases (Escape Avenue)
+14:00 Lot numbers are not addresses
+15:00 Phase 10 is the end of Area 1 — and the second Town Square
+15:40 Which phase sells next & how long does a build take?
+16:20 If you're 2 years out from retiring
+17:30 Get the map + how to register with me
 ```
 
 ## Description
@@ -69,8 +71,8 @@ First two lines are what shows above the fold. Put the search term and the
 authority claim there.
 
 ```
-Latitude Margaritaville Watersound has 16 recorded phases — and most of them
-have no new-build homesites left. I'm Karen Lawell, I live in Phase 8, and in
+Latitude Margaritaville Watersound has 16 recorded phases — and in most of them
+the only way in now is a resale. I'm Karen Lawell, I live in Phase 8, and in
 this video I walk every single phase on a map I built from Bay County's own
 public records.
 
@@ -79,17 +81,32 @@ Two things you'll hear repeated that are simply wrong: Phase 3 isn't one phase
 never "skipped" (5A3 is a recorded plat, book 32 page 81). Both are checkable
 at the Bay County Clerk's office, and I show you the book and page for all 16.
 
+⏱️ ABOUT THE INVENTORY NUMBERS: the resale and homesite counts I give in this
+video were true the day I recorded it and they will be different by the time
+you watch. That's just how fast this community moves. Everything else here —
+the phases, the streets, the addresses, the distances — doesn't change. For
+today's actual numbers on any phase, message me and I'll pull them for you.
+
 What this video actually answers:
-• Which phases are new-build and which are resale only
+• Which phases still have new-build homesites and which are resale only
 • Why the phases are NOT priced differently — and what really drives price
-• The three things that genuinely differ by phase: Highway 79 noise,
-  distance to the Town Center, and how far the Bandshell carries
+• The trade-off that decides everything: the Bandshell is the middle of the
+  Town Center, so the closer you are, the more you get AND the more you hear
+• Highway 79 noise on the eastern edge
+• Escape Avenue runs through TWO phases — 9499 and below is Phase 7, 9502 and
+  above is Phase 8. Twelve streets here cross a phase line.
+• Why Minto's lot numbers are not addresses (there is no 8042 Escape Ave)
+• Phase 10 is the end of Area 1 — every one of the 16 plats says "Area 1",
+  and Area 2 isn't recorded yet, so nobody can tell you what's next
 • What it's honestly like to live in Phase 8, including the trade-offs
 • Is there a second Town Square? Which phase releases next? What to do if
   you're two years out from retiring?
 
 📍 WANT THE MAP? Comment "MAP" below or email me and I'll send you the
 full-size phase map — all 16 phases, plat book and page for each one, free.
+
+📬 GOT AN ADDRESS? Drop it in the comments and I'll tell you which phase it's
+in, which plat it was recorded under, and what's around it.
 
 ⚠️ REGISTER BEFORE YOUR FIRST VISIT. Minto pays the buyer's agent commission,
 so having me with you costs you nothing — but only if you register with me
@@ -103,9 +120,9 @@ can't represent you on a new build. Text me first.
 Karen Lawell, Realtor | License #3397366 | Brokered by Counts Real Estate Group
 
 Map data: Bay County, Florida recorded plats (public record), plat book and
-page shown per phase. Illustrative only — not a survey. Phase availability
-changes; confirm current inventory before relying on it. This channel is not
-affiliated with or endorsed by Minto Communities.
+page shown per phase. Illustrative only — not a survey. For what is actually
+for sale today, contact me. This channel is not affiliated with or endorsed by
+Minto Communities.
 
 #LatitudeMargaritaville #Watersound #PanamaCityBeach #55PlusCommunity #ActiveAdultLiving
 ```

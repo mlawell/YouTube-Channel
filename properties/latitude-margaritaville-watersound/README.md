@@ -3,9 +3,10 @@
 Bay County → Panama City Beach → West Bay & Hwy 79 Corridor → **Latitude
 Margaritaville Watersound**
 
-Minto's 55+ active-adult community off Highway 79. **16 recorded phases ·
-3,229 platted homesites · ~2,123 acres**, all verifiable in Bay County public
-record.
+Minto's 55+ active-adult community off Highway 79. **Area 1 — Phases 1 through
+10, 16 recorded plats · 3,229 platted homesites · ~2,123 acres**, all
+verifiable in Bay County public record. Area 2 is planned but has no recorded
+plat yet.
 
 Karen and her husband live in **Phase 8**.
 
@@ -13,7 +14,7 @@ Karen and her husband live in **Phase 8**.
 
 | File | What it is |
 | --- | --- |
-| [`phase-status.md`](phase-status.md) | Per-phase new-build vs resale-only table, with everything unverified flagged |
+| [`phase-status.md`](phase-status.md) | Permanent per-phase facts, Karen's first-hand noise calls, and the record-day inventory workflow |
 | [`streets_by_phase.md`](streets_by_phase.md) | Every street in every phase, each name tagged with the public record it came from |
 | `streets_by_phase.json` | Same, machine-readable |
 
@@ -37,7 +38,14 @@ Both `streets_by_phase` files are **generated** — run
 
 - Phases are **not priced differently.** Price follows model, collection and
   homesite premium. Never publish a price-by-phase tier.
-- **Most phases are resale-only.** Availability is the headline buyer fact and
-  it changes — always re-confirm against live inventory before publishing.
+- **Live inventory is never printed.** It changes by the hour. It is a spoken,
+  dated snapshot — run `tools/map/inventory_report.py` on record day and say
+  "as I'm recording this, in [Month Year]…". That volatility is the call to
+  action, not a caveat.
+- **Minto lot numbers are not house numbers.** Quote the county address.
+- **Highway 79 noise is the real per-phase discriminator** (Phases 1, 2 and
+  3B & 3C). The Bandshell is not — a loud show carries for miles.
+- **Do not say "Phase 11."** Area 2 has no recorded plat.
 - Nothing gets added to the map or these documents unless it is in public
-  record or Karen has confirmed it first-hand.
+  record or Karen has confirmed it first-hand, and first-hand calls are
+  attributed to her as such.
