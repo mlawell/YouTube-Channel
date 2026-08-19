@@ -797,12 +797,49 @@ def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
     leg.set_zorder(10)
 
 
+def draw_watermark(ax, s: Scene, *, fontsize: float = 9.0, alpha: float = 0.115,
+                   angle: float = -28.0) -> None:
+    """Tile the ownership line faintly across the map body.
+
+    Sits above the fills but *below* every label, so it can never cost
+    legibility -- which is the whole point of this map. Deliberately a fixed
+    diagonal rather than aligned to the scene rotation, because an aligned
+    repeat reads as a data label instead of a watermark.
+
+    It doubles as marketing: if someone lifts the map, the phone number goes
+    with it.
+    """
+    text = (s.meta.get("watermark") or {}).get("text")
+    if not text:
+        return
+    # Tile in axes fraction so spacing is independent of zoom and output size.
+    step_x, step_y = 0.42, 0.155
+    rows = int(1 / step_y) + 3
+    cols = int(1 / step_x) + 3
+    for r in range(-1, rows):
+        for c in range(-1, cols):
+            x = c * step_x + (r % 2) * step_x / 2 - 0.15
+            y = r * step_y - 0.10
+            t = ax.text(x, y, text, transform=ax.transAxes,
+                        fontproperties=F_BOLD, fontsize=fontsize, color=INK,
+                        alpha=alpha, ha="left", va="center", rotation=angle,
+                        rotation_mode="anchor", zorder=5.5)
+            t.set_clip_on(True)
+            t.set_clip_box(ax.bbox)
+
+
+def copyright_line(s: Scene) -> str:
+    c = s.meta.get("copyright") or {}
+    return c.get("notice", "")
+
+
 def credit_line(s: Scene) -> str:
-    """Two lines -- one long line overflows the frame."""
+    """Three lines: sources, scope, ownership."""
     return (
         f"{s.meta['data_credit']}  \u00b7  retrieved {date.today().isoformat()}"
         f"   |   {s.meta['disclaimer']}\n"
-        f"{s.meta.get('scope', {}).get('note', '')}"
+        f"{s.meta.get('scope', {}).get('note', '')}\n"
+        f"{copyright_line(s)}"
     )
 
 
@@ -920,7 +957,8 @@ def _flow_reference(fig, s: Scene, rect, *, min_pt: float = 3.5,
                 y -= line_h
 
 
-def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str) -> list[Path]:
+def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
+                 *, watermark: bool = True) -> list[Path]:
     """Large-format sheet: title band, map band, reference index, footer."""
     fig = plt.figure(figsize=(preset.w, preset.h), dpi=preset.dpi, facecolor=SAND)
     W, H = preset.w, preset.h
@@ -944,6 +982,8 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str) -> lis
     draw_overlays(ax, s, overlays, lw_scale=lw)
     draw_phase_labels(ax, s, None, lw_scale=lw * 0.75, show_plat=True)
     set_view(ax, s.extent, 0.04, ax_aspect(fig, map_rect))
+    if watermark:
+        draw_watermark(ax, s, fontsize=max(7.5, W * 0.42))
     if preset.detail == "full":
         draw_street_labels(ax, s, fontsize=max(3.6, W * 0.13))
         draw_amenity_labels(ax, s, fontsize=max(4.5, W * 0.16))
@@ -978,7 +1018,8 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str) -> lis
     return written
 
 
-def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False) -> Path:
+def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False,
+                  watermark: bool = True) -> Path:
     # 20 x 12 in at 400 dpi = 8000 x 4800.
     fig = plt.figure(figsize=(20, 12), dpi=400 if not pdf else 150, facecolor=SAND)
     ax = fig.add_axes(POSTER_RECT)
@@ -990,6 +1031,8 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False) -> Path:
     draw_overlays(ax, s, overlays)
     draw_phase_labels(ax, s, None)
     set_view(ax, s.extent, 0.05, ax_aspect(fig, POSTER_RECT))
+    if watermark:
+        draw_watermark(ax, s, fontsize=14.0)
     draw_landmarks(ax, s)
     scale_bar(ax, s)
     north_arrow(ax, s)
@@ -1252,6 +1295,8 @@ def main() -> None:
                     help="optional context layers; off by default to keep the map clean")
     ap.add_argument("--check-palette", action="store_true",
                     help="report perceptual separation between phase colours and exit")
+    ap.add_argument("--no-watermark", action="store_true",
+                    help="render without the tiled ownership watermark")
     args = ap.parse_args()
 
     s = Scene(load_features())
@@ -1259,20 +1304,21 @@ def main() -> None:
         palette_report(s.palette)
         return
     overlays = set(args.overlays)
+    wm = not args.no_watermark
 
     if args.size:
         w, h = args.size
         name = f"latitude-phase-map-{w:g}x{h:g}"
         p = Preset("sheet", w, h, args.dpi, ("png", "pdf"), args.detail, 0.25)
         print(f"{name}  {p.describe()}")
-        for out in render_sheet(s, p, overlays, name):
+        for out in render_sheet(s, p, overlays, name, watermark=wm):
             print(f"  -> {out.name}")
 
     for key in args.preset or []:
         p = PRESETS[key]
         name = f"latitude-phase-map-{key}"
         print(f"{key}  {p.describe()}")
-        for out in render_sheet(s, p, overlays, name):
+        for out in render_sheet(s, p, overlays, name, watermark=wm):
             print(f"  -> {out.name}  ({out.stat().st_size / 1e6:.1f} MB)")
 
     if args.preset or args.size:
@@ -1282,9 +1328,9 @@ def main() -> None:
 
     jobs = args.only or ["poster", "print", "thumbnail", "sequence"]
     if "poster" in jobs:
-        print("poster ->", render_poster(s, overlays).name)
+        print("poster ->", render_poster(s, overlays, watermark=wm).name)
     if "print" in jobs:
-        print("print  ->", render_poster(s, overlays, pdf=True).name)
+        print("print  ->", render_poster(s, overlays, pdf=True, watermark=wm).name)
     if "thumbnail" in jobs:
         print("thumb  ->", render_thumbnail(s, overlays).name)
     if "sequence" in jobs:
@@ -1303,6 +1349,7 @@ def _report_needs(s: Scene) -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
