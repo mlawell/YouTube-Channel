@@ -331,6 +331,38 @@ If Karen has a specific print size or vendor in mind, add it to `PRESETS` in
 > the last of them. Area 2 has no recorded plat yet, so how its phases will be
 > numbered is not public.
 
+## Copyright and watermark
+
+Every large output carries two things.
+
+**A copyright notice** in the footer: *© 2026 Karen Lawell · Counts Real Estate
+Group. Map design and compilation.*
+
+The wording is deliberate. It claims **our original cartography and
+compilation** — the palette, the layout, the phase-to-street attribution, the
+address index. It does **not** claim the underlying data, because Bay County's
+recorded plats, lots and address points are public record and nobody can own
+them. Overclaiming there would undercut the honesty the rest of this map is
+built on.
+
+**A tiled watermark** across the map body: `KAREN LAWELL · NWFLBEACHHOMES.COM ·
+850-517-8528`. It sits above the fills but *below* every label in z-order, so
+it can never cost legibility — which is the entire point of this map. It's set
+at a fixed diagonal rather than aligned to the scene rotation, because an
+aligned repeat reads as a data label instead of a watermark. It also does
+double duty: if someone lifts the map, the phone number goes with it.
+
+Both are configured in `phase_meta.json` under `map.copyright` and
+`map.watermark`.
+
+Watermark applies to the poster and every print/giant preset. It is **not** on
+the video frames — those get Karen's own branding in the edit — or on the
+thumbnail plate, which gets overlaid. For a clean copy:
+
+```powershell
+python render_map.py --preset print-36x24 --no-watermark
+```
+
 ## Still needs Karen
 
 Nothing blocking — these are map polish.

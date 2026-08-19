@@ -37,7 +37,17 @@
       "Port of Indecision Kayak Launch",
       "Barkaritaville Dog Park"
     ],
-    "amenities_source": "Minto's amenity site plan. Only the Town Center point itself is a confirmed coordinate, so these are listed against it rather than pinned individually."
+    "amenities_source": "Minto's amenity site plan. Only the Town Center point itself is a confirmed coordinate, so these are listed against it rather than pinned individually.",
+    "copyright": {
+      "holder": "Karen Lawell, Counts Real Estate Group",
+      "year": 2026,
+      "notice": "© 2026 Karen Lawell · Counts Real Estate Group. Map design and compilation.",
+      "basis": "The notice covers our original cartography and compilation only. The underlying boundary, lot and address data is Bay County, Florida public record and is not claimed."
+    },
+    "watermark": {
+      "text": "KAREN LAWELL  ·  NWFLBEACHHOMES.COM  ·  850-517-8528",
+      "note": "Tiled faintly across large outputs. Deters lifting, and doubles as marketing if the map is reshared. Kept under the labels in z-order so it never costs legibility."
+    }
   },
   "phases": {
     "Phase 1": {

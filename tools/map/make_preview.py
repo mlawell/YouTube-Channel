@@ -57,7 +57,13 @@ def main() -> None:
             print(f"  skip {src.name} (not rendered yet)")
             continue
         dst = PREVIEW / src.name
-        shutil.copy2(src, dst)
+        try:
+            shutil.copy2(src, dst)
+        except PermissionError:
+            # Usually a PDF viewer holding the file open. Not worth aborting the
+            # rest of the run over.
+            print(f"  SKIP {src.name} -- destination is locked (close it and re-run)")
+            continue
         kb = dst.stat().st_size / 1024
         total += kb
         print(f"  {src.name}  (verbatim)  {kb:,.0f} KB")
