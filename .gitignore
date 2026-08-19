@@ -24,7 +24,9 @@ knowledge/channel-junkies/srt/
 knowledge/channel-junkies/resources/
 
 # Phase map: regenerable. `data/` is a live pull from Bay County ArcGIS,
-# `output/` is rendered from it. Both rebuild with three commands â€” see
-# tools/map/README.md. A downscaled preview PNG is committed under preview/.
+# `output/` is rendered from it and includes very large print masters (the
+# giant raster alone is ~15 MB, the 4K frames more). Everything rebuilds with
+# four commands â€” see tools/map/README.md. Downscaled previews are committed
+# under tools/map/preview/ so the map is visible without running anything.
 tools/map/data/
 tools/map/output/

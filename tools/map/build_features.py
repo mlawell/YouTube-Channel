@@ -152,6 +152,33 @@ def build_lot_ranges(lot_ids: list[str]) -> dict:
             "lot_number_outliers": 0}
 
 
+def centroid_of(geom: dict) -> tuple[float, float] | None:
+    g = shape(geom)
+    if not g.is_valid:
+        g = g.buffer(0)
+    if g.is_empty:
+        return None
+    p = g.representative_point()
+    return (p.x, p.y)
+
+
+def principal_angle_deg(pts: list[tuple[float, float]]) -> float:
+    """Direction a run of parcels lies along, so a street label can follow it."""
+    n = len(pts)
+    if n < 3:
+        return 0.0
+    mx = sum(p[0] for p in pts) / n
+    my = sum(p[1] for p in pts) / n
+    # Latitude compression: a degree of longitude is shorter than a degree of
+    # latitude, so compare in locally-equal units or every angle comes out wrong.
+    k = math.cos(math.radians(my))
+    sxx = sum(((p[0] - mx) * k) ** 2 for p in pts)
+    syy = sum((p[1] - my) ** 2 for p in pts)
+    sxy = sum(((p[0] - mx) * k) * (p[1] - my) for p in pts)
+    ang = math.degrees(0.5 * math.atan2(2 * sxy, sxx - syy))
+    return round(ang, 2)
+
+
 def street_key(name: str) -> str:
     """Group spellings of the same street: 'Flipflop Ct' == 'Flip Flop Ct' == 'Flip Flop'."""
     words = [w for w in re.split(r"\s+", name.upper()) if w]
@@ -168,9 +195,10 @@ def collect_streets(idx: PhaseIndex) -> dict:
     differ between layers are grouped, and the fullest form (the one that still has
     its street type) becomes the display name.
     """
-    found: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(lambda: {"names": set(), "sources": set(), "numbers": []}))
+    found: dict[str, dict[str, dict]] = defaultdict(lambda: defaultdict(lambda: {"names": set(), "sources": set(), "numbers": [], "pts": []}))
 
-    def add(label: str | None, raw: str, source: str, number: int | None = None) -> None:
+    def add(label: str | None, raw: str, source: str, number: int | None = None,
+            pt: tuple[float, float] | None = None) -> None:
         if not label:
             return
         name = titlecase_street(raw)
@@ -181,6 +209,8 @@ def collect_streets(idx: PhaseIndex) -> dict:
         rec["sources"].add(source)
         if number is not None:
             rec["numbers"].append(number)
+        if pt is not None:
+            rec["pts"].append(pt)
 
     for f in load("roads.geojson")["features"]:
         name = (f["properties"].get("FULL_NAME") or "").strip()
@@ -197,7 +227,7 @@ def collect_streets(idx: PhaseIndex) -> dict:
         lon, lat = f["geometry"]["coordinates"][:2]
         num = pr.get("ADDRNUM") or pr.get("HOUSENUM")
         add(idx.lookup(lon, lat), name, "county address point",
-            int(num) if str(num).isdigit() else None)
+            int(num) if str(num).isdigit() else None, (lon, lat))
 
     for f in load("street_points.geojson")["features"]:
         pr = f["properties"]
@@ -211,7 +241,7 @@ def collect_streets(idx: PhaseIndex) -> dict:
         if not re.search(r"[A-Z]{3}", name.upper()):
             continue
         add(idx.lookup_geom(f["geometry"]), name, "county parcel site address",
-            int(m.group(1)) if m else None)
+            int(m.group(1)) if m else None, centroid_of(f["geometry"]))
 
     out = {}
     for label, streets in found.items():
@@ -226,6 +256,17 @@ def collect_streets(idx: PhaseIndex) -> dict:
                 # lot numbers, which are a different series entirely.
                 row["address_range"] = [nums[0], nums[-1]]
                 row["addressed_parcels"] = len(nums)
+            pts = rec["pts"]
+            if pts:
+                # Where to write the street name on a detailed map. County road
+                # centrelines only cover Phases 1-3, so for the newer phases the
+                # only way to place a label is the centre of the parcels that
+                # carry the name -- which is real data, not a guess.
+                row["label_lonlat"] = [
+                    round(sum(p[0] for p in pts) / len(pts), 6),
+                    round(sum(p[1] for p in pts) / len(pts), 6),
+                ]
+                row["label_angle"] = principal_angle_deg(pts)
             variants = sorted(rec["names"] - {display})
             if variants:
                 row["also_spelled"] = variants

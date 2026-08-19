@@ -21,14 +21,29 @@ PREVIEW = HERE / "preview"
 # (source, destination, target width)
 ITEMS = [
     (OUT / "latitude-phase-map.png", "latitude-phase-map-preview.png", 1600),
+    (OUT / "latitude-phase-map-print-36x24.png", "print-sheet-preview.png", 1600),
     (OUT / "frames" / "00_all-phases.png", "frame-00-all-phases.png", 1280),
     (OUT / "frames" / "14_phase-8.png", "frame-14-phase-8.png", 1280),
     (OUT / "latitude-phase-map-thumbnail.png", "thumbnail-plate.png", 960),
 ]
 
 
+def rasterise_sheet() -> None:
+    """The print sheet is vector-only, so make a raster of it to preview."""
+    src = OUT / "latitude-phase-map-print-36x24.pdf"
+    if not src.exists():
+        return
+    try:
+        import pymupdf
+    except ImportError:
+        return
+    doc = pymupdf.open(src)
+    doc[0].get_pixmap(dpi=60).save(OUT / "latitude-phase-map-print-36x24.png")
+
+
 def main() -> None:
     PREVIEW.mkdir(parents=True, exist_ok=True)
+    rasterise_sheet()
     total = 0
     for src, name, width in ITEMS:
         if not src.exists():
