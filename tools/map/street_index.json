@@ -1,0 +1,59 @@
+{
+  "_readme": [
+    "Street names that Bay County's public layers do NOT cover, transcribed by eye from",
+    "the builder's published site plan. build_features.py derives most streets",
+    "geometrically from county road centerlines, address points and parcel site",
+    "addresses; this file only fills the gaps.",
+    "",
+    "RULES",
+    "  * Transcribe exactly what is printed. Never normalise, abbreviate or invent.",
+    "  * Never infer a full name from a clipped label - put it in `unverified` instead.",
+    "  * A name only goes under a phase if it was read inside that phase's boundary.",
+    "",
+    "`unverified` holds labels that were partially legible. They are printed in the",
+    "map's 'needs confirmation' block and never drawn on the map as fact."
+  ],
+
+  "phases": {},
+
+  "read_from_site_plan_pending_phase_assignment": [
+    "Breathe Out Way", "Castaway Ct", "Cheeseburger Dr", "Compass Rose Ct",
+    "Cool Breeze Dr", "Coral Reef Way", "Dockside Pl", "Dreams Float Ct",
+    "Fins Up Ct", "Flip Flop Ct", "Good Life Way", "Hammock Ln",
+    "Island Breeze Ave", "Jollymon Way", "Landshark Blvd", "Latitude Blvd",
+    "Lime Dr", "Lost Shaker Way", "Margarita Pl", "Margaritaville Blvd",
+    "Mermaid Ct", "No Shoes Ct", "Paradise Dr", "Parrot Pl", "Sandbar Ln",
+    "Seaplane Dr", "Tropics Ave", "Weekend Dr", "West Bay Pkwy"
+  ],
+
+  "unverified": [
+    {
+      "reads_as": "\u2026URE PAST WAY",
+      "seen_near": "Phase 4 pod, east of Castaway Ct",
+      "note": "Label clipped at the left. Do not guess the first word."
+    },
+    {
+      "reads_as": "\u2026IK DR",
+      "seen_near": "Phase 4/5 pod, between Coral Reef Way and Weekend Dr",
+      "note": "Label clipped at the left."
+    },
+    {
+      "reads_as": "STRANGE B\u2026",
+      "seen_near": "Phase 7 / Phase 8 panel",
+      "note": "Label clipped at the right."
+    },
+    {
+      "reads_as": "LOO\u2026",
+      "seen_near": "Phase 9 panel",
+      "note": "Label clipped at a crop edge."
+    }
+  ],
+
+  "non_street_features_on_the_plan": [
+    "Tiki Huts", "Mail Kiosks", "Gated Entry", "Cart Path", "Cart Underpass",
+    "Trail", "Bridge", "Lift Station", "Irrigation Station", "Preserve",
+    "Drainage Pond", "Future Development", "Future Commercial", "Model Homes",
+    "Getaway Cottages", "Barkaritaville Dog Park", "Town Square Amenity",
+    "Port of Indecision Kayak Launch", "Intracoastal Waterway"
+  ]
+}

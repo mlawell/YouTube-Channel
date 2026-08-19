@@ -1,0 +1,740 @@
+{
+  "community": "Latitude Margaritaville Watersound",
+  "county": "Bay County, Florida",
+  "generated": "2026-08-19",
+  "sources": [
+    "Bay County FL ArcGIS -- Property/MapServer/2 (recorded subdivision plats)",
+    "Bay County FL ArcGIS -- Property/MapServer/0 (subdivision lots)",
+    "Bay County FL ArcGIS -- Basic_Layers/MapServer/2 (road centerlines)",
+    "Bay County FL ArcGIS -- Basic_Layers/MapServer/0 (address points)",
+    "Bay County FL ArcGIS -- TEST_Parcels/MapServer/1 (parcel site addresses)"
+  ],
+  "method": "Streets are attributed to a phase geometrically: every county road centreline, address point and parcel site address inside a recorded plat polygon contributes its street name to that phase. Nothing is inferred from a site plan or from a neighbouring phase.",
+  "lot_numbering": "From Phase 4 onward the lot number carries a phase prefix (4xxx, 5xxx ... 10xxx), so a lot number alone identifies its phase. Phases 1-3 use one unprefixed run of 1-381 across 3A, 3B & 3C and 3D. Phase 5A3 lots have no LOTID in the county data yet -- it is the newest plat.",
+  "phases": [
+    {
+      "phase": "Phase 1",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 1",
+      "plat_book": 27,
+      "plat_page": 73,
+      "acres": 34.3,
+      "platted_lots": 59,
+      "lot_number_range": [
+        1,
+        48
+      ],
+      "streets": [
+        {
+          "name": "Highway 79",
+          "sources": [
+            "address point"
+          ]
+        },
+        {
+          "name": "Margaritaville Blvd",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        }
+      ],
+      "street_count": 2
+    },
+    {
+      "phase": "Phase 2",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 2",
+      "plat_book": 28,
+      "plat_page": 8,
+      "acres": 103.3,
+      "platted_lots": 213,
+      "lot_number_range": [
+        1,
+        200
+      ],
+      "streets": [
+        {
+          "name": "Conch Shell Ct",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Coral Reef Way",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Flip Flop Ct",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Latitude Blvd",
+          "sources": [
+            "address point",
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Margaritaville Blvd",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        }
+      ],
+      "street_count": 5
+    },
+    {
+      "phase": "Phase 3A",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 3A",
+      "plat_book": 28,
+      "plat_page": 34,
+      "acres": 91.5,
+      "platted_lots": 172,
+      "lot_number_range": [
+        1,
+        167
+      ],
+      "streets": [
+        {
+          "name": "Good Life Way",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Island Breeze Ave",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Landshark Blvd",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Latitude Blvd",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Lost Shaker Way",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Margarita Pl",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Steel Field Road",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 7
+    },
+    {
+      "phase": "Phase 3B & 3C",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 3B & 3C",
+      "plat_book": 28,
+      "plat_page": 63,
+      "acres": 95.7,
+      "platted_lots": 178,
+      "lot_number_range": [
+        168,
+        339
+      ],
+      "streets": [
+        {
+          "name": "Breathe Out Way",
+          "sources": [
+            "address point",
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Dockside Pl",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Fins Up Ct",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Highway 79",
+          "sources": [
+            "address point"
+          ]
+        },
+        {
+          "name": "Jollymon Way",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        },
+        {
+          "name": "Landshark Blvd",
+          "sources": [
+            "address point",
+            "parcel site address",
+            "road centerline"
+          ]
+        }
+      ],
+      "street_count": 6
+    },
+    {
+      "phase": "Phase 3D",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 3D",
+      "plat_book": 30,
+      "plat_page": 8,
+      "acres": 24.8,
+      "platted_lots": 44,
+      "lot_number_range": [
+        340,
+        381
+      ],
+      "streets": [
+        {
+          "name": "Landshark Blvd",
+          "sources": [
+            "parcel site address",
+            "road centerline"
+          ]
+        }
+      ],
+      "street_count": 1
+    },
+    {
+      "phase": "Phase 4A",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 4A",
+      "plat_book": 29,
+      "plat_page": 23,
+      "acres": 142.2,
+      "platted_lots": 332,
+      "lot_number_range": [
+        4001,
+        4515
+      ],
+      "streets": [
+        {
+          "name": "Castaway Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Cheeseburger Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Coral Reef Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Lime Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Sandbar Ln",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Seaplane Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Treasure Past Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Tropics Ave",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Weekend Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 9
+    },
+    {
+      "phase": "Phase 4B",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 4B",
+      "plat_book": 29,
+      "plat_page": 76,
+      "acres": 83.6,
+      "platted_lots": 205,
+      "lot_number_range": [
+        4318,
+        4509
+      ],
+      "streets": [
+        {
+          "name": "Cheeseburger Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Coral Reef Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Shell Sink Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Weekend Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "West Bay Pkwy",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 5
+    },
+    {
+      "phase": "Phase 5A3",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 5A3",
+      "plat_book": 32,
+      "plat_page": 81,
+      "acres": 62.2,
+      "platted_lots": 98,
+      "lot_number_range": null,
+      "streets": [
+        {
+          "name": "Margaritaville Blvd",
+          "sources": [
+            "address point"
+          ]
+        },
+        {
+          "name": "No Shoes Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 2
+    },
+    {
+      "phase": "Phase 5B",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 5B",
+      "plat_book": 30,
+      "plat_page": 14,
+      "acres": 34.5,
+      "platted_lots": 97,
+      "lot_number_range": [
+        5001,
+        5092
+      ],
+      "streets": [
+        {
+          "name": "Dreams Float Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Paradise Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 2
+    },
+    {
+      "phase": "Phase 5C",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 5C",
+      "plat_book": 30,
+      "plat_page": 27,
+      "acres": 184.0,
+      "platted_lots": 248,
+      "lot_number_range": [
+        5093,
+        5335
+      ],
+      "streets": [
+        {
+          "name": "Caribbean Soul Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Compass Rose Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Paradise Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 3
+    },
+    {
+      "phase": "Phase 6A",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE  6A",
+      "plat_book": 30,
+      "plat_page": 39,
+      "acres": 189.6,
+      "platted_lots": 138,
+      "lot_number_range": [
+        6001,
+        6132
+      ],
+      "streets": [
+        {
+          "name": "Cool Breeze Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Hammock Ln",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 2
+    },
+    {
+      "phase": "Phase 6B & 6C",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE  6B & 6C",
+      "plat_book": 30,
+      "plat_page": 80,
+      "acres": 94.1,
+      "platted_lots": 346,
+      "lot_number_range": [
+        6201,
+        6538
+      ],
+      "streets": [
+        {
+          "name": "Attitude Ave",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Magic Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Mermaid Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Parrot Pl",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Pencil Thin Ave",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Sand Dollar Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 6
+    },
+    {
+      "phase": "Phase 7",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 7",
+      "plat_book": 31,
+      "plat_page": 14,
+      "acres": 363.3,
+      "platted_lots": 234,
+      "lot_number_range": [
+        7001,
+        7226
+      ],
+      "streets": [
+        {
+          "name": "Caribbean Soul Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Escape Ave",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Gypsy Palace Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Macadamia Ln",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Strange Bird Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 5
+    },
+    {
+      "phase": "Phase 8",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 8",
+      "plat_book": 31,
+      "plat_page": 71,
+      "acres": 180.2,
+      "platted_lots": 204,
+      "lot_number_range": [
+        8001,
+        8200
+      ],
+      "streets": [
+        {
+          "name": "Cool Water Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Escape Ave",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Hang Loose Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 3
+    },
+    {
+      "phase": "Phase 9",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 9",
+      "plat_book": 33,
+      "plat_page": 57,
+      "acres": 203.4,
+      "platted_lots": 306,
+      "lot_number_range": [
+        9001,
+        9288
+      ],
+      "streets": [
+        {
+          "name": "Daydream Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Livingston Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Lounging Ln",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Puffer Fish Pl",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Salty Blvd",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Siren Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "State Of Mind Way",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Swimsuit Cir",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "West Bay Pkwy",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 9
+    },
+    {
+      "phase": "Phase 10",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 10",
+      "plat_book": 33,
+      "plat_page": 98,
+      "acres": 236.8,
+      "platted_lots": 355,
+      "lot_number_range": [
+        10001,
+        10343
+      ],
+      "streets": [
+        {
+          "name": "Beach Bum Blvd",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Carnival Ln",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Chill St",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Concoction Ct",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Daiquiri Dr",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Lone Palm Ln",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Parakeet Pl",
+          "sources": [
+            "parcel site address"
+          ]
+        },
+        {
+          "name": "Salty Blvd",
+          "sources": [
+            "parcel site address"
+          ]
+        }
+      ],
+      "street_count": 8
+    }
+  ],
+  "totals": {
+    "phases": 16,
+    "platted_lots": 3229,
+    "acres": 2123.0,
+    "distinct_streets": 60
+  }
+}
