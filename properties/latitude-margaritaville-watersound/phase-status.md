@@ -175,14 +175,27 @@ out will land.
 
 Nothing is blocking the script. Remaining items are map polish:
 
-- [ ] Pins measured off the builder's site plan and awaiting Karen's
+- [x] Pins measured off the builder's site plan and awaiting Karen's
       confirmation: Barkaritaville Dog Park, the Port of Indecision kayak
-      launch, and the future marina.
-- [ ] The future-commercial parcel — confirm construction status and whether
-      the grocery tenant can be named on screen.
-- [ ] Phase 4A (#4,001–4,515) and 4B (#4,318–4,509) have overlapping Minto lot
-      numbers in county data. Interleaved numbering, or lots sitting across a
-      plat line?
+      launch, and the future marina. **All three confirmed** — Karen marked each
+      on an aerial and every pin was re-read off a georeferenced shot. Her
+      wording for the marina is *"the future location of the marina"*; do not
+      say "under construction" on screen.
+- [ ] The future-commercial parcel. **The tenant is settled: Karen confirms it
+      is Publix**, so the name can be said on screen, and it sits in
+      **Watersound West Bay Center** — a St. Joe development at the community
+      entrance on Hwy 79. Square footages and opening dates in trade press are
+      trade press, not public record; don't state them as fact on camera.
+      What is still missing is the parcel — Publix owns no land here yet (their
+      only Bay County parcel is 17 km south) and the county has neither a
+      planning project nor a platted legal for the centre, so the map draws
+      nothing rather than guessing. Karen ringing the site on an aerial, or
+      confirming the one candidate address point, is all that is needed.
+- [x] Phase 4A and 4B looked like they had overlapping Minto lot numbers. They
+      never did: **4A owns 4001–4317 and 4510–4515, 4B owns 4318–4509**, sharing
+      no number, and the plats do not overlap on the ground. The appearance was
+      our own — printing min–max let 4A's six-lot tail swallow all of 4B. Lot
+      numbers now print as runs.
 - [ ] Karen says the block the builder's plan still marks "Future Development",
       just west of the Stay & Play cottages, is also Stay & Play. Not in the
       public record, so it is not drawn as an area — confirm the extent.
