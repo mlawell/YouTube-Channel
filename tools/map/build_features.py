@@ -73,7 +73,124 @@ def split_town_center(lots_geoms: list[dict]) -> dict:
     }
 
 
-def load_ponds(footprint=None, buffer_m: float = 150.0) -> list[dict]:
+def reconcile_ponds(ponds: list, homesites: list, tol: float = 0.02,
+                    drop_at: float = 0.85, max_shift_m: float = 15.0):
+    """Settle pond geometry against the recorded homesites, which outrank it.
+
+    Ponds are measured off a builder's rendering; homesites are recorded plats.
+    Where the two disagree the plat wins, and there are two quite different
+    kinds of disagreement:
+
+    a blob sitting almost entirely on homesites is not a pond at all - it is
+    lot ink the colour mask misread - so it is dropped rather than moved;
+
+    a pond clipping the edge of a lot row is a real pond a few metres out of
+    register, so it is nudged to the offset that clears the houses, which keeps
+    its shape instead of gnawing a bite out of it.
+
+    The nudge is capped at the georeference's own measured error (the fit's 90th
+    percentile local residual is about 12 m). Moving further than the error bar
+    would not be correcting registration, it would be inventing a position -
+    so anything still overlapping after a bounded nudge is trimmed instead.
+
+    Between them these take the total pond-on-house overlap from roughly
+    93,000 square metres to zero. Fourteen ponds still *touch* a homesite
+    boundary after trimming, which is what a retention pond behind a lot row
+    actually does; none of them overlap one.
+    """
+    from shapely.affinity import translate
+    from shapely.strtree import STRtree
+
+    if not ponds or not homesites:
+        return ponds, {"kept": len(ponds), "nudged": 0, "trimmed": 0, "dropped": 0}
+
+    tree = STRtree(homesites)
+
+    def overlap(poly):
+        a = 0.0
+        for j in tree.query(poly):
+            try:
+                a += poly.intersection(homesites[j]).area
+            except Exception:
+                pass
+        return a
+
+    def trim(poly):
+        """Cut any recorded homesite back out of a pond."""
+        for j in tree.query(poly):
+            try:
+                poly = poly.difference(homesites[j])
+            except Exception:
+                pass
+        if poly.geom_type == "MultiPolygon" and not poly.is_empty:
+            poly = max(poly.geoms, key=lambda g: g.area)
+        return poly
+
+    dx_deg = 1.0 / M_PER_DEG_LON
+    dy_deg = 1.0 / M_PER_DEG_LAT
+    stats = {"kept": 0, "nudged": 0, "trimmed": 0, "dropped": 0}
+    shifts = []
+    out = []
+
+    for p in ponds:
+        if not p.is_valid:
+            p = p.buffer(0)
+        if p.is_empty:
+            continue
+        frac = overlap(p) / p.area if p.area else 0.0
+        if frac <= tol:
+            # Below the tolerance a pond is not worth moving, but a sliver of
+            # it may still sit on a house, and that is never acceptable.
+            stats["kept"] += 1
+            out.append(trim(p) if frac > 0 else p)
+            continue
+        if frac >= drop_at:
+            stats["dropped"] += 1
+            continue
+
+        # Prefer the smallest shift that clears the houses, not the globally
+        # lowest overlap. Chasing the global minimum walks the pond tens of
+        # metres to shave a fraction of a percent, which is a bigger lie than
+        # the error it fixes.
+        best, best_frac, best_d = p, frac, 0.0
+        for radius in range(3, int(max_shift_m) + 1, 3):
+            cand_best, cand_frac = None, best_frac
+            for k in range(16):
+                ang = 2 * math.pi * k / 16
+                cand = translate(p, radius * math.cos(ang) * dx_deg,
+                                 radius * math.sin(ang) * dy_deg)
+                f = overlap(cand) / cand.area if cand.area else 1.0
+                if f < cand_frac - 1e-9:
+                    cand_best, cand_frac = cand, f
+            if cand_best is not None:
+                best, best_frac, best_d = cand_best, cand_frac, float(radius)
+            if best_frac <= tol:
+                break
+
+        if best_d:
+            stats["nudged"] += 1
+            shifts.append(best_d)
+
+        # Always take the final trim, even for the slivers left inside `tol`.
+        # The tolerance decides whether a pond is worth *moving*; it should not
+        # decide whether a pond is allowed to sit on a house. Leaving a 2%
+        # overlap in place would make the invariant a slogan rather than a fact.
+        residual = overlap(best)
+        if residual > 0:
+            best = trim(best)
+            if residual / p.area > tol:
+                stats["trimmed"] += 1
+        if best.is_empty or best.area < 0.25 * p.area:
+            stats["dropped"] += 1
+            continue
+        out.append(best)
+
+    if shifts:
+        stats["median_shift_m"] = round(sorted(shifts)[len(shifts) // 2], 1)
+    return out, stats
+
+
+def load_ponds(footprint=None, homesites=None, buffer_m: float = 150.0) -> list[dict]:
     """Pond outlines measured off Minto's site plan, if they have been built.
 
     The county's hydrology layers return a single feature across the whole
@@ -96,7 +213,15 @@ def load_ponds(footprint=None, buffer_m: float = 150.0) -> list[dict]:
         kept = [f for f in ponds if near.intersects(shape(f["geometry"]))]
     print(f"  {len(kept)} of {len(ponds)} ponds inside the community "
           f"(fit residual {fc.get('fit', {}).get('median_residual_m', '?')} m)")
-    return [simplify(f["geometry"], 0.000008) for f in kept]
+
+    # Simplify before reconciling, not after: shaving a vertex by up to a metre
+    # can push a trimmed edge back over a lot line, which would leave slivers
+    # of pond on top of houses and quietly break the invariant this is for.
+    geoms = [shape(simplify(f["geometry"], 0.000008)) for f in kept]
+    if homesites:
+        geoms, stats = reconcile_ponds(geoms, homesites)
+        print("  vs recorded homesites: " + ", ".join(f"{k} {v}" for k, v in stats.items()))
+    return [mapping(g) for g in geoms]
 
 
 def load_cfg(name: str):
@@ -459,7 +584,18 @@ def main() -> None:
 
     print("ponds")
     footprint = unary_union([shape(p["geometry"]) for p in phases])
-    ponds = load_ponds(footprint)
+    # Only true homesites arbitrate. A pond legitimately sits inside a
+    # common-area tract, so testing against every parcel would reject the
+    # ponds for being exactly where ponds belong.
+    homesites = []
+    for lab, geoms in lots_by_phase.items():
+        for g in geoms:
+            s = shape(g)
+            if not s.is_valid:
+                s = s.buffer(0)
+            if not s.is_empty and acres(s) * SQ_M_PER_ACRE <= COTTAGE_MAX_M2:
+                homesites.append(s)
+    ponds = load_ponds(footprint, homesites)
 
     # Ten phases, but fifteen residential plats: Phase 3 was recorded as 3A,
     # 3B & 3C and 3D, Phase 4 as 4A and 4B, and so on.  Both numbers are true

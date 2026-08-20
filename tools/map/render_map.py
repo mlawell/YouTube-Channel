@@ -1131,6 +1131,15 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
     fig.text(inx(safe), iny(safe * 0.75), credit_line(s), fontproperties=F_REG,
              fontsize=W * 0.28, color=MUTED, ha="left", va="bottom", linespacing=1.6)
 
+    # The sheet labels every phase in place, so it needs no colour key -- but it
+    # does print "?" on unconfirmed landmarks, and an unexplained "?" on a wall
+    # map is worse than no mark at all. The poster says this in its legend.
+    if s.needs_confirmation:
+        fig.text(inx(W - safe), iny(safe * 0.75),
+                 "Landmark \u201c?\u201d = position not yet confirmed",
+                 fontproperties=F_REG, fontsize=W * 0.28, color=MUTED,
+                 ha="right", va="bottom")
+
     OUT.mkdir(parents=True, exist_ok=True)
     written = []
     for fmt in preset.formats:

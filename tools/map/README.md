@@ -143,6 +143,43 @@ recorded parcel outlines, so overlap is capped well below 1 even when the
 registration is perfect. Local residual displacement is what actually decides
 whether a pond lands in the right place, so that is what is measured.
 
+### Ponds are then reconciled against the recorded plats
+
+A 12 m fit is fine for a map and still enough to float a pond onto somebody's
+back yard. Worse, the Caribbean Collection's villa pods are drawn in a pale cyan
+that passes any blue-dominant water test, so a handful of "ponds" were never
+water at all. `build_features.reconcile_ponds()` lets the public record arbitrate,
+because between an artist's rendering and a recorded plat the plat wins:
+
+| Rule | Why |
+| --- | --- |
+| **Drop** a pond ≥85% inside recorded homesites | Not a pond. That is a lot pod that happened to be cyan. |
+| **Nudge** the rest, 16-direction spiral in 3 m steps, **capped at 15 m** | 15 m is the fit's own measured error. Past that we would not be correcting a fit, we would be inventing a position. |
+| **Trim** whatever still overlaps, always | Cheaper than a wrong outline, and the residual is dust. |
+
+Current pass over 87 extracted ponds: kept 57, nudged 16, trimmed 14, **dropped
+14**, median shift 15.0 m → **73 rendered**. Total pond-on-homesite overlap goes
+from **93,359 m² to zero**. Fourteen ponds still share a boundary with a
+homesite, which is exactly what a retention pond behind a lot row does; none of
+them sit on one.
+
+Two things learned the hard way:
+
+- **Simplify before reconciling, not after.** Shaving a vertex off an outline
+  that was just trimmed to a lot line pushes it straight back over the line.
+- **Do not fix this upstream by excluding developed area from the water mask.**
+  That was tried; it over-corrects badly (pond acreage 223 → 70) because it also
+  strips real shallows and every anti-aliased pond edge. The reconcile step is
+  the right place — it can see the plats.
+
+Google Maps satellite imagery would settle every one of these instantly and is
+**not** usable here: it is licensed imagery going into a commercial product,
+which is the same trap as the builder's site plan.
+
+Bay County's `CityStormwater` / `CountyStormwater` services do publish a
+**Retention Ponds** layer. It returns zero features for this community. Checked
+so nobody checks again.
+
 Server quirks, all handled in `fetch_data.py`:
 
 - `resultOffset` paging silently returns zero rows — use `returnIdsOnly=true`,
@@ -438,9 +475,14 @@ python render_map.py --preset print-36x24 --no-watermark
 
 Nothing blocking — these are map polish.
 
-- [ ] Confirm the three pins measured off the builder's site plan:
-      Barkaritaville Dog Park, the Port of Indecision kayak launch, and the
-      future marina. All three render with a `?` until she does.
+- [ ] Confirm the two pins measured off the builder's site plan: Barkaritaville
+      Dog Park and the Port of Indecision kayak launch. Both render with a `?`
+      until she does.
+- [x] The future marina. Karen placed it herself — open ground between Phase 4
+      and the Town Center tract, on the water. It renders without a `?`; the
+      "(future)" in the label carries the caveat. It is deliberately a labelled
+      point and **not** a basin outline: the builder's plan does not show a
+      marina yet, so there is no shape anyone could stand behind.
 - [ ] The future-commercial parcel — confirm construction status and whether
       the grocery tenant can be named on screen.
 - [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping

@@ -102,20 +102,26 @@
     {
       "name": "Future marina",
       "short": "Marina (future)",
-      "lat": 30.31048,
-      "lon": -85.87078,
+      "lat": 30.31176,
+      "lon": -85.86960,
       "kind": "future",
       "anchor": false,
-      "confirmed": false,
-      "source": "KAREN \u2014 the stretch of waterfront between Phase 4 and the Town Center. Point is the shoreline nearest the midpoint of those two, from county hydrology.",
-      "needs": [
-        "Karen to confirm the pin. This is a planned facility, not a built one:",
-        "land-use permits secured, water permits pending.",
+      "confirmed": true,
+      "source": "KAREN \u2014 the open ground between Phase 4 and the Town Center, on the water side. She placed it on the rendered map directly.",
+      "note": [
+        "Planned, not built: land-use permits secured, water permits pending.",
+        "The '(future)' in the label is doing that work, so the marker no longer",
+        "carries a '?' \u2014 the position is Karen's, and it is not in doubt.",
         "",
-        "It is NOT on the builder's June 2026 site plan - Karen's words were that",
+        "It is NOT on the builder's June 2026 site plan. Karen's words were that",
         "it 'is not on their maps yet, that is just the area they are building'.",
         "So no footprint is drawn and no basin shape is implied; the marker marks",
-        "roughly where, and nothing more."
+        "roughly where, and nothing more.",
+        "",
+        "The coordinate is the pole of inaccessibility of the open land between",
+        "the Phase 4 plats, the Town Center tract and the bay \u2014 167 m clear of",
+        "both the water and the nearest plat \u2014 so the label sits in open ground",
+        "rather than out on the water, and it stays there if the map is re-cut."
       ]
     },
     {
