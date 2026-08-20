@@ -134,6 +134,18 @@ COTTAGE_FILL = "#F4D06B"
 # about 5 m and should not look sharper than they are.
 BUILDING_FILL = "#EDE7DA"
 BUILDING_EDGE = "#8A8578"
+# The racquet courts sit on the same dark tract but must not read as buildings,
+# and above all must not read as WATER -- they are surrounded by ponds, and blue
+# on this map means water. Real court paint is blue, but a blue-green court fill
+# measured only deltaE 23 from the pond blue, which is exactly the kind of
+# ambiguity this map exists to avoid. Clay is the next most court-like surface
+# there is, and it measures 56.9 from water, 44 from the cottages, 44 from the
+# buildings, 40 from the tract and 38 from the coral pins -- the best worst-case
+# separation of every candidate tested. Legibility beats literalism.
+# Unlike the buildings these were machine-fitted, so the edge is allowed to be
+# crisp: it is honest about being the more precise of the two layers.
+COURT_FILL = "#B57A5C"
+COURT_EDGE = "#7E4F38"
 # Ponds take the same blue as West Bay and the Intracoastal. They are the same
 # substance, and giving them a colour of their own made the map look like it
 # was drawing two different kinds of thing.
@@ -424,6 +436,11 @@ class Scene:
              [self.rot(project_ring(r)) for r in rings(b["geometry"])])
             for b in tc.get("buildings", [])
         ]
+        self.tc_courts = [
+            (c.get("name"), c.get("confirmed_name", False),
+             [self.rot(project_ring(r)) for r in rings(c["geometry"])])
+            for c in tc.get("courts", [])
+        ]
         self.creeks = clip_to(
             [self.rot(project_ring(l)) for g in f["creeks"] for l in lines(g)],
             self.extent, 0.06,
@@ -565,6 +582,7 @@ def draw_town_center(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
             edgecolors=shade(COTTAGE_FILL, light_delta=-0.28),
             linewidths=0.5 * lw_scale, alpha=0.95 if on else 0.8, zorder=2.7))
     draw_tc_buildings(ax, s, on=on, lw_scale=lw_scale)
+    draw_tc_courts(ax, s, on=on, lw_scale=lw_scale)
     if label and s.cottage_xy and on:
         ax.annotate(s.cottages_label, s.cottage_xy, ha="center", va="center",
                     fontsize=fontsize, fontproperties=F_BOLD, color="#4A3F2C", zorder=6,
@@ -594,6 +612,28 @@ def draw_tc_buildings(ax, s: Scene, *, on: bool = True, lw_scale: float = 1.0) -
         rings_, facecolors=BUILDING_FILL if on else muted(BUILDING_FILL),
         edgecolors=BUILDING_EDGE, linewidths=0.9 * lw_scale,
         alpha=0.95 if on else 0.75, zorder=2.75))
+
+
+def draw_tc_courts(ax, s: Scene, *, on: bool = True, lw_scale: float = 1.0) -> None:
+    """The racquet and multi-purpose courts.
+
+    These are the one Town Center surface that did not have to be read by a
+    human: court paint samples b-r = +65 against +18 to +28 for every roof and
+    every stretch of asphalt, so it thresholds cleanly and each court is fitted
+    with a minimum-area rectangle. See town_center_courts.json.
+
+    Because they are machine-fitted they are held to about 3 m rather than the
+    buildings' 5 m, and are allowed a crisp edge to match.
+    """
+    if not s.tc_courts:
+        return
+    rings_ = [r for _, _, rr in s.tc_courts for r in rr]
+    if not rings_:
+        return
+    ax.add_collection(PolyCollection(
+        rings_, facecolors=COURT_FILL if on else muted(COURT_FILL),
+        edgecolors=COURT_EDGE, linewidths=0.7 * lw_scale,
+        alpha=0.95 if on else 0.75, zorder=2.76))
 
 
 def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
@@ -724,7 +764,47 @@ def draw_overlays(ax, s: Scene, overlays: set[str], *, lw_scale: float = 1.0) ->
                                 edgecolor="none", zorder=1.65))
 
 
-def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float = 1.0) -> None:
+def phase_label_boxes(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
+                      show_plat: bool = False) -> list[tuple[float, float, float, float]]:
+    """Approximate axes-fraction boxes for the phase plaques.
+
+    Landmark labels are placed by collision search, but the search only knew
+    about other landmark labels -- so 'Pickleball & Tennis' happily landed under
+    the 'Town Center PB 32/81' plaque, which is exactly the kind of unreadable
+    overlap this map exists to avoid. Feeding these boxes in as obstacles fixes
+    that. The sizes are estimated from the text the same way draw_landmarks
+    estimates its own, rather than measured, because a real text extent needs a
+    renderer pass and an estimate is enough to push a label clear.
+    """
+    x0, x1 = ax.get_xlim()
+    y0, y1 = ax.get_ylim()
+    span_x, span_y = x1 - x0, y1 - y0
+    ext = ax.get_window_extent()
+    ax_w_pt = max(ext.width / ax.figure.dpi * 72, 1.0)
+    ax_h_pt = max(ext.height / ax.figure.dpi * 72, 1.0)
+
+    boxes = []
+    for p in s.phases:
+        lab = p["label"]
+        on = lab == active
+        if active is not None and not on:
+            continue
+        x, y = s.centroids[lab]
+        lines = [p["short"] if active is None else p["label"]]
+        if show_plat:
+            lines.append(p["plat"])
+        if p.get("karen_lives_here"):
+            lines[0] += "  \u2014 Karen lives here" if on else " \u2665"
+        fs = (15 if on else 9.5) * lw_scale
+        w = max(len(t) for t in lines) * fs * 0.56 / ax_w_pt
+        h = len(lines) * fs * 1.7 / ax_h_pt
+        fx, fy = (x - x0) / span_x, (y - y0) / span_y
+        boxes.append((fx - w / 2, fy - h / 2, fx + w / 2, fy + h / 2))
+    return boxes
+
+
+def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float = 1.0,
+                   avoid: list[tuple[float, float, float, float]] | None = None) -> None:
     """Draw landmark pins with labels. Call *after* set_view -- placement is
     collision-aware and needs the final axes limits.
 
@@ -757,7 +837,7 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
     fs = 11 * lw_scale
     h = fs * 1.7 / ax_h_pt
 
-    placed: list[tuple[float, float, float, float]] = []
+    placed: list[tuple[float, float, float, float]] = list(avoid or [])
     for fy, fx, x, y, l in visible:
         ax.plot([x], [y], marker="o", ms=9 * lw_scale, mfc=CORAL, mec="white",
                 mew=2.0 * lw_scale, zorder=7)
@@ -1214,7 +1294,9 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
     if preset.detail == "full":
         draw_street_labels(ax, s, fontsize=max(3.6, W * 0.13))
         draw_amenity_labels(ax, s, fontsize=max(4.5, W * 0.16))
-    draw_landmarks(ax, s, lw_scale=lw * 0.8)
+    draw_landmarks(ax, s, lw_scale=lw * 0.8,
+                   avoid=phase_label_boxes(ax, s, None, lw_scale=lw * 0.75,
+                                           show_plat=True))
     scale_bar(ax, s, lw_scale=lw * 0.8)
     north_arrow(ax, s, lw_scale=lw * 0.8)
 
@@ -1268,7 +1350,7 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False,
     set_view(ax, s.extent, 0.05, ax_aspect(fig, POSTER_RECT))
     if watermark:
         draw_watermark(ax, s, fontsize=14.0)
-    draw_landmarks(ax, s)
+    draw_landmarks(ax, s, avoid=phase_label_boxes(ax, s, None))
     scale_bar(ax, s)
     north_arrow(ax, s)
     legend(ax, s)
@@ -1467,7 +1549,7 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
     draw_overlays(ax, s, overlays)
     draw_phase_labels(ax, s, None)
     set_view(ax, s.extent, 0.04, aspect)
-    draw_landmarks(ax, s)
+    draw_landmarks(ax, s, avoid=phase_label_boxes(ax, s, None))
     scale_bar(ax, s)
     north_arrow(ax, s)
     legend(ax, s, loc="lower left")
@@ -1512,7 +1594,8 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         xs = [box[0], box[2]] + [a[0] for a in anchors if a]
         ys = [box[1], box[3]] + [a[1] for a in anchors if a]
         set_view(ax, (min(xs), min(ys), max(xs), max(ys)), 0.12, aspect)
-        draw_landmarks(ax, s, only_anchors=False, lw_scale=1.4)
+        draw_landmarks(ax, s, only_anchors=False, lw_scale=1.4,
+                       avoid=phase_label_boxes(ax, s, lab, lw_scale=1.4))
         # On the Town Center frame the viewer is looking straight at the amenity
         # core and will ask what is in it, so name the amenities here. The
         # buildings themselves are drawn as measured massing by

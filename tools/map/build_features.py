@@ -110,6 +110,39 @@ def town_center_buildings() -> list[dict]:
     return out
 
 
+def town_center_courts() -> list[dict]:
+    """Turn the snapped court rectangles into polygons.
+
+    Same parametric form as the buildings, and the same origin, so the two
+    layers cannot drift apart. Unlike the buildings these were fitted rather
+    than read by eye -- court paint is the one Town Center surface with its own
+    colour signature -- which is why they are held to a tighter tolerance.
+    See town_center_courts.json.
+    """
+    cfg = json.loads((HERE / "town_center_courts.json").read_text(encoding="utf-8"))
+    lat0, lon0 = cfg["origin"]["lat"], cfg["origin"]["lon"]
+    m_lon = 111_320.0 * math.cos(math.radians(lat0))
+    out = []
+    for c in cfg["courts"]:
+        a = math.radians(c["angle_deg"])
+        ca, sa = math.cos(a), math.sin(a)
+        hl, hw = c["length_m"] / 2, c["width_m"] / 2
+        ring = []
+        for dx, dy in ((-hl, -hw), (hl, -hw), (hl, hw), (-hl, hw), (-hl, -hw)):
+            e = c["east_m"] + dx * ca - dy * sa
+            n = c["north_m"] + dx * sa + dy * ca
+            ring.append([round(lon0 + e / m_lon, 7), round(lat0 + n / M_PER_DEG_LAT, 7)])
+        out.append({
+            "name": c.get("name"),
+            "confirmed_name": c.get("confirmed_name", False),
+            "area_m2": round(c["length_m"] * c["width_m"]),
+            "geometry": {"type": "Polygon", "coordinates": [ring]},
+        })
+    print(f"town center: {len(out)} snapped court areas "
+          f"({sum(c['area_m2'] for c in out):,} m2), label {cfg['label']!r}")
+    return out
+
+
 def reconcile_ponds(ponds: list, homesites: list, tol: float = 0.02,
                     drop_at: float = 0.85, max_shift_m: float = 15.0):
     """Settle pond geometry against the recorded homesites, which outrank it.
@@ -663,6 +696,7 @@ def main() -> None:
             "cottage_hull": tc.get("cottage_hull"),
             "cottage_centroid": tc.get("cottage_centroid"),
             "buildings": town_center_buildings(),
+            "courts": town_center_courts(),
         },
         "ponds": ponds,
         "highways": hwy,

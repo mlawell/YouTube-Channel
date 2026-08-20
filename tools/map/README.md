@@ -268,6 +268,13 @@ Town Center tract. See *Town Center buildings* below for how they were obtained
 and what they are and are not. The file carries its own provenance keys — read
 those before editing it.
 
+### `town_center_courts.json`
+
+The racquet and multi-purpose courts, in the same parametric form and against
+the same origin as the buildings, so the two layers cannot drift apart. Unlike
+the buildings these were *fitted* rather than read by eye. See *Town Center
+courts* below.
+
 ### `street_index.json`
 
 Curated gap-filler, the `unverified` clipped-label list, and the two-number-series
@@ -484,7 +491,7 @@ from OpenStreetMap (ODbL) and likewise is not published.
 
 ## Town Center buildings
 
-Karen asked twice for the Town Center buildings, so the map now carries four of
+Karen asked twice for the Town Center buildings, so the map now carries five of
 them, in `town_center_buildings.json`. They are **indicative massing, good to
 about ±5 m** — enough to show a viewer that there is a built cluster there and
 roughly how it is laid out, not enough to measure anything from.
@@ -513,7 +520,8 @@ not redo these blind:
   vegetation test — it classifies every neutral roof as vegetation.
 
 The courts *are* separable (b−r = +65 is their own signature) and could be
-snapped automatically if Karen wants them. They are deliberately not in yet.
+snapped automatically if Karen wants them. **They now are** — see *Town Center
+courts* below.
 
 ### How they were actually obtained
 
@@ -525,25 +533,98 @@ is immune to viewer rescaling**, which is the failure mode that has produced
 three wrong answers in this project.
 
 Each block was then drawn back onto the imagery and corrected, three rounds,
-until all four sat on their buildings.
+until all four sat on their buildings. The fifth, the Town Square building, came
+later and by a different route — see below.
 
 ### What they are not
 
 - **Not traced.** A building's position, footprint size and orientation are
   facts about the physical world. We measured those facts. No pixels from
   anyone's imagery or artwork are in the output.
-- **Not complete.** Four blocks, not every structure. A fifth candidate near the
-  pool was dropped because a roof could not be told from a pool deck there.
+- **Not complete.** Five blocks, not every structure. A sixth candidate near the
+  pool was dropped because a roof could not be told from a pool deck there, and
+  the long retail row east of the square still resists every threshold.
 - **Not named,** except one. Only the fitness centre is labelled, because Google
-  independently marks it. The other three stay unnamed rather than guessed.
+  independently marks it. The other four stay unnamed rather than guessed.
 - **Not a survey.** ±5 m. Do not scale off them.
 
-The independent check: all four blocks fall **100% inside the recorded 49-acre
-Town Center tract**, which comes from county records and not from any image.
+The independent check: all five blocks — and all four court areas — fall **100%
+inside the recorded 49-acre Town Center tract**, which comes from county records
+and not from any image, and none of them overlap each other.
 
 The large curved feature north of them is the **Town Square / bandshell plaza,
 not a building** — the Town Square amenity pin sits at its centre. It is not
 drawn as massing.
+
+### The negative result is narrower than it first looked
+
+The paragraph above about segmentation was measured on the **marina** frame at
+1.2486 m/px, and it holds there. It does **not** fully hold on the **Town
+Center** frame at 1.0348 m/px, which was georeferenced later (see below). On
+that finer frame a bright-roof threshold — value > 180, saturation < 0.22, with
+Google's pure-white label text masked and dilated away — recovers two roofs
+cleanly, confirmed by drawing them back onto the imagery.
+
+One of them is the **largest building on the site**, the Town Square building in
+the middle of the oval drive, which the hand-digitised pass had missed
+altogether. It is now block 5. The other duplicated a block already there.
+
+So state it precisely: automatic extraction here is unreliable and recovers only
+the brightest roofs — but it is not useless, and on the better frame it found a
+building a human reader had walked straight past. The long retail row east of
+the square is plainly a building and still resists every threshold; it is not on
+the map.
+
+## Town Center courts
+
+`town_center_courts.json`. Four court areas — three banks plus one separate
+court — good to about **±3 m**, which is tighter than the buildings because they
+are machine-fitted rather than read by eye.
+
+They are the one Town Center surface with a colour signature of its own: court
+paint samples **b−r = +65** against +18 to +28 for every roof and every stretch
+of asphalt. So they threshold cleanly, and each is reduced to its minimum-area
+rectangle rather than digitised.
+
+Two numbers say the fit is right. The largest bank measures 77.4 × 41.2 m and
+holds four courts at **19.3 m per bay**, against 18.3 m for a tennis court with
+its run-off. And the single separate court fits its rectangle at **fill 1.01**.
+
+**One label for three banks, deliberately.** The big bank is plainly tennis and
+the other two are banks of smaller courts, but which is which was not
+established, so the cluster carries the amenity list's own wording —
+*"Pickleball & Tennis"* — which is true of all of it. The separate court is the
+**Multi-Purpose Court**, confirmed by Karen.
+
+A fifth blue blob 230 m east passed the colour test and was **rejected**: it
+sits among houses, is 21.8 × 19.2 m, nearly square, and fits its rectangle at
+only 0.65. It is a private pool, not a court.
+
+**Colour.** Real court paint is blue, and the courts were first drawn blue —
+but blue on this map means water, and they sit surrounded by ponds. Measured,
+that fill was only **ΔE 23.4** from the pond blue. Clay is the next most
+court-like surface there is and measures **56.9 from water**, 44 from the
+cottages, 44 from the buildings, 40 from the tract and 38 from the coral pins —
+the best worst-case separation of every candidate tested. Legibility beats
+literalism; this map exists because the competitor's was unreadable.
+
+### Re-solving the Town Center frame
+
+Getting the courts onto the map needed that frame georeferenced, and the
+original solve had not been kept. Both re-solves are worth knowing about:
+
+- The **marina** frame was re-solved from scratch by correlating its water mask
+  against the reconciled pond and shoreline network over every possible offset,
+  with the scale swept rather than assumed. The sweep peaked at **1.2486 m/px**,
+  independently reproducing the recorded figure, at 35.9σ.
+- Correlating *filled* water was **degenerate** — the bay is one enormous blob,
+  so the shot scored 100% parked anywhere inside it and landed 9.7 km out.
+  Correlating **shorelines** fixed it: an outline only matches where the shape
+  genuinely agrees.
+- The **Town Center** frame was then chained off it by matching the courts,
+  which are machine-detectable in both frames. The correspondence was found by
+  trying every assignment rather than assumed, and solves at **1.0348 m/px with
+  rms 1.5 m**.
 
 ## Disclaimer carried on every export
 
@@ -605,12 +686,17 @@ Nothing blocking — these are map polish.
       permits are still pending.
 - [ ] The future-commercial parcel — confirm construction status and whether
       the grocery tenant can be named on screen.
-- [x] The Town Center buildings. Four indicative masses are on the map now,
+- [x] The Town Center buildings. Five indicative masses are on the map now,
       measured off the verified aerial to about ±5 m — see "Town Center
-      buildings" below for why nothing more exact was possible. Two follow-ups
-      for Karen: (a) three of the four are unnamed because only the fitness
-      centre is independently confirmed — she can name the others; (b) the
-      racquet courts *can* be added automatically and are not in yet.
+      buildings" below for why nothing more exact was possible. Follow-up for
+      Karen: **four of the five are unnamed**, because only the fitness centre
+      is independently confirmed. She can name them from
+      `town-center-buildings-key.png`.
+- [x] Pickleball and tennis. Karen asked for these by name. Four court areas
+      are machine-fitted onto the map to about ±3 m, and she confirmed the
+      separate one as the Multi-Purpose Court. Open: which of the two smaller
+      banks is pickleball and which is tennis — the cluster carries one
+      combined label until that is settled.
 - [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping
       Minto lot numbers in county data. Interleaved numbering, or lots sitting
       across a plat line?
