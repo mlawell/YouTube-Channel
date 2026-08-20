@@ -764,8 +764,23 @@ Nothing blocking — these are map polish.
       plainly under way — about 14 acres are graded — but do not say "under
       construction" on screen. The marina itself is not being built yet; water
       permits are still pending.
-- [ ] The future-commercial parcel — confirm construction status and whether
-      the grocery tenant can be named on screen.
+- [ ] The future-commercial parcel. **The tenant is settled — Karen confirms it
+      is Publix**, so the name can be said on screen, and it is part of
+      **Watersound West Bay Center**, a St. Joe development at the community
+      entrance on Hwy 79 (St. Joe announced commencement in its own investor
+      release). Treat the square footages and opening date circulating in trade
+      press as trade press, not public record.
+
+      What is missing is the *parcel*. Publix owns no land here yet (their only
+      Bay County parcel is 17 km south), no legal description or subdivision
+      mentions West Bay Center, and the county's PlanningProjects layer has
+      nothing near the community. The address layer holds exactly one point in
+      the 8300–8600 West Bay Pkwy range — `8433 WEST BAY PKWY` at
+      30.31621, −85.85695 — but that is the address of a St. Joe *holding*, not
+      of a store, and a 110-acre centre is ~670 m across, about five inches on
+      the 36-inch print. So the landmark still has null coordinates and draws
+      nothing. Karen either ringing the site on an aerial, or simply confirming
+      or rejecting that coordinate, would finish it.
 - [x] The Town Center buildings. Five indicative masses are on the map now,
       measured off the verified aerial to about ±5 m — see "Town Center
       buildings" below for why nothing more exact was possible. **All five are
