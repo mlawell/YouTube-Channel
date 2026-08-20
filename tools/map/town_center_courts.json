@@ -34,17 +34,33 @@
   "_accuracy": "+/-3 m, better than the buildings because the edges are machine-fitted rather than read by eye. Court 1 measures 77.4 x 41.2 m for four courts -- 19.3 m per court against a tennis court's 18.3 m with run-off -- and court 4 fits its rectangle at fill 1.01, both of which say the scale and the edges are right.",
 
   "_naming": [
-    "The cluster carries one label, 'Pickleball & Tennis', which is the wording from",
-    "Karen's own amenity list. Court 1 is plainly four tennis courts -- four bays at",
-    "19.3 m each, with service boxes and net posts visible -- and courts 2 and 3 are",
-    "banks of smaller courts. Rather than assert which individual bank is pickleball",
-    "and which is tennis, the cluster is labelled once, correctly, as both.",
-    "Court 4 is a single separate surface next to the fitness centre. It was measured",
-    "and drawn unnamed, with the multi-purpose court noted only as a likelihood;",
-    "Karen then confirmed the identification, so it is now named on her authority.",
-    "It is named 'Multi-Purpose Court' and not 'Multi-Purpose Court & Bocce' as the",
-    "amenity list has it, because whether the bocce lanes are this surface or a",
-    "separate one next to it was not established."
+    "SETTLED. Minto's published amenity site plan labels the western bank 'Tennis' and",
+    "the eastern group 'Pickleball', with the 'Community Services Building' standing",
+    "between them. That split matches this geometry exactly: court 1 runs from -111 to",
+    "-34 m east, then there is a 38 m gap -- the building -- and then courts 2 and 3 run",
+    "from +4 to +87 m east with only 5 m between them. West of the gap is tennis, east of",
+    "it is pickleball.",
+    "The measurements agree independently. Court 1 is 77.4 x 41.2 m: four bays at 19.3 m",
+    "against 18.3 m for a tennis court with run-off, and 41.2 m deep against 36.6 m for a",
+    "tennis court's length with run-off. Courts 2 and 3 are the same overall depth but",
+    "divided far more finely, which is what a pickleball bank looks like.",
+    "Reading a NAME off Minto's plan is reference use and not derivative work -- the plan",
+    "is licensed for use as-is, and which sport is played on a court is a fact rather than",
+    "the artwork. No geometry came from it; every rectangle here is still machine-fitted",
+    "from the aerial.",
+    "Court 4 is a single separate surface next to the fitness centre, confirmed by Karen",
+    "as the Multi-Purpose Court. It is named 'Multi-Purpose Court' and not 'Multi-Purpose",
+    "Court & Bocce' as the amenity list has it, because whether the bocce lanes are this",
+    "surface or a separate one next to it was not established -- and Minto's plan marks",
+    "'Bocce' as its own item some way west of here, which suggests they are separate."
+  ],
+
+  "_one_label_on_the_map": [
+    "The three racquet banks still carry ONE combined map label, 'Pickleball & Tennis'.",
+    "That is now a layout decision rather than an admission of doubt: at community scale",
+    "the tennis and pickleball centroids are 115 m apart, which is a few millimetres on",
+    "the printed sheet, so two labels would collide and read worse than one true one.",
+    "The per-bank identification lives here in the data, where it is exact."
   ],
 
   "_dropped": [
@@ -60,19 +76,22 @@
   "courts": [
     {
       "note": "four tennis courts in one bank, 19.3 m per bay",
-      "name": null, "confirmed_name": false,
+      "name": "Tennis", "confirmed_name": true,
+      "confirmed_by": "Minto's published amenity site plan labels this western bank 'Tennis'; the bay measurements agree independently.",
       "east_m": -72.5, "north_m": 100.9,
       "length_m": 77.4, "width_m": 41.2, "angle_deg": 0.0
     },
     {
-      "note": "court bank",
-      "name": null, "confirmed_name": false,
+      "note": "court bank, east of the Community Services Building",
+      "name": "Pickleball", "confirmed_name": true,
+      "confirmed_by": "Minto's published amenity site plan labels the eastern group 'Pickleball'.",
       "east_m": 24.3, "north_m": 109.0,
       "length_m": 49.9, "width_m": 41.2, "angle_deg": -90.0
     },
     {
-      "note": "court bank",
-      "name": null, "confirmed_name": false,
+      "note": "court bank, adjacent to court 2 with only 5 m between them",
+      "name": "Pickleball", "confirmed_name": true,
+      "confirmed_by": "Minto's published amenity site plan labels the eastern group 'Pickleball'.",
       "east_m": 68.6, "north_m": 105.2,
       "length_m": 40.0, "width_m": 37.5, "angle_deg": 90.0
     },

@@ -54,11 +54,24 @@
   "_accuracy": "+/-5 m. The imagery is 1.01 m/px and Google's own place markers sit over part of the fitness centre. Published as indicative massing, never as survey, and styled so it reads as approximate.",
 
   "_naming": [
-    "Only the fitness centre is named, because Google independently places its own",
-    "'Fins Up! Fitness Center' marker on that roof. The other three are real buildings",
-    "measured in the right place, but nothing confirms which business each one is, so they",
-    "stay unnamed. Reading names off the arrangement of Minto's plan would be a guess",
-    "wearing a label, and the amenity list is printed alongside instead."
+    "Karen named these from the numbered key (town-center-buildings-key.png) and pointed",
+    "at Minto's published amenity site plan for the wording. Her answer: blocks 1 and 2",
+    "are both Fins Up! Fitness Center, block 3 is the Workin' 'N' Playin' Center, and",
+    "block 4 is part of the Latitude Bar and Chill Restaurant.",
+    "Block 5 she did not name. It is the Bandshell, and that is not a guess: Karen's own",
+    "confirmed Bandshell landmark pin (30.30734, -85.86556) falls 14 m from this block's",
+    "centre, which is inside the block and within its +/-5 m tolerance plus the pin's own",
+    "placement. Minto's amenity plan independently labels the building in the middle of",
+    "the oval drive 'Bandshell', with the amphitheater seating immediately south of it,",
+    "which is exactly what the aerial shows here. Two independent sources, same answer.",
+    "Reading a NAME off Minto's plan is reference use, not derivative work: the plan is",
+    "licensed for use as-is, and a building's name is a fact, not the artwork. No geometry",
+    "came from it -- every footprint below was measured off the aerial, as before."
+  ],
+
+  "_naming_superseded": [
+    "Previously only the fitness centre was named, because only it had an independent",
+    "confirmation (Google's own marker). That hedge is no longer needed."
   ],
 
   "_dropped": [
@@ -76,36 +89,53 @@
     {
       "name": "Fins Up! Fitness Center",
       "confirmed_name": true,
+      "_note": "Block 1 of 2. Google places its own 'Fins Up! Fitness Center' marker on this roof, and Karen confirmed blocks 1 and 2 are both the fitness centre.",
+      "part_of": "Fins Up! Fitness Center",
       "east_m": -19.0, "north_m": 1.0,
       "length_m": 34.0, "width_m": 18.0, "angle_deg": -33.0
     },
     {
-      "name": null,
-      "confirmed_name": false,
+      "name": "Fins Up! Fitness Center",
+      "confirmed_name": true,
+      "confirmed_by": "Karen, who lives in the community: '1 and 2 are the Fins Up fitness'.",
+      "_note": "Block 2 of 2. The second structure of the same complex, which is why the pair carries one label rather than two.",
+      "part_of": "Fins Up! Fitness Center",
       "east_m": 18.0, "north_m": -22.0,
       "length_m": 42.0, "width_m": 19.0, "angle_deg": -30.0
     },
     {
-      "name": null,
-      "confirmed_name": false,
+      "name": "Workin' 'N' Playin' Center",
+      "confirmed_name": true,
+      "confirmed_by": "Karen, from the numbered key. Minto's published amenity site plan carries the same name in the same place, east of the Town Square.",
       "_note": "The long retail row southeast of the square. Recorded here because a later pass nearly re-added it as 'missing' -- no brightness threshold recovers it, but it was digitised by hand off the metre grid and it is on the map.",
       "east_m": 43.6, "north_m": -82.0,
       "length_m": 58.0, "width_m": 26.0, "angle_deg": -80.0
     },
     {
-      "name": null,
-      "confirmed_name": false,
+      "name": "Latitude Bar and Chill Restaurant",
+      "confirmed_name": true,
+      "confirmed_by": "Karen: '4 IS part of the Bar and Chill Restaurant'.",
+      "_note": "PART of the restaurant complex, not its full extent -- Karen's own wording. The rest of the complex runs south into the Paradise Pool deck, which is the same ground the sixth candidate was dropped over: at this resolution no roof edge is separable from pool deck there. So this block is honest about what was measured and does not claim the whole building.",
+      "partial_extent": true,
       "east_m": -78.0, "north_m": -124.0,
       "length_m": 22.0, "width_m": 18.0, "angle_deg": -35.0
     },
     {
-      "name": null,
-      "confirmed_name": false,
+      "name": "Bandshell",
+      "confirmed_name": true,
+      "confirmed_by": "Two independent sources agreeing: Karen's own confirmed Bandshell landmark pin lands 14 m from this block's centre, and Minto's published amenity plan labels the building in the middle of the oval drive 'Bandshell' with the amphitheater immediately south -- which is what the aerial shows.",
       "_note": "The largest structure on the site, in the middle of the oval drive, with the amphitheater seating immediately south of it. Recovered automatically on the 1.0348 m/px frame and verified by overlay; the first hand-digitised pass missed it entirely.",
       "_source": "bright-roof threshold on the Town Center frame, minimum-area rectangle, 883 m2 of roof at fill 0.66",
       "east_m": -23.3, "north_m": -64.5,
       "length_m": 45.0, "width_m": 29.9, "angle_deg": -147.1
     }
+  ],
+
+  "_known_missing": [
+    "Minto's amenity plan names a 'Community Services Building' between the tennis bank",
+    "and the pickleball banks. There is a ~38 m gap between court 1 and court 2 in",
+    "town_center_courts.json which is where it sits, and it is NOT in this file -- it was",
+    "never measured. Listed here so it is a known gap rather than a silent one."
   ],
 
   "_not_included": [

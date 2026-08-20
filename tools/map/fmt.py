@@ -9,6 +9,7 @@ Quantities -- homesite counts, acreages -- take the separator as normal.
 
     ident(9201)          -> '9201'
     ident_range(9201, 9499) -> '9201-9499'
+    ident_runs([[4001, 4317], [4510, 4515]]) -> '4001-4317, 4510-4515'
     qty(3229)            -> '3,229'
 """
 
@@ -31,6 +32,20 @@ def ident_range(lo, hi, *, dash: str = DASH, empty: str = "\u2014") -> str:
         return empty
     lo, hi = int(lo), int(hi)
     return ident(lo) if lo == hi else f"{ident(lo)}{dash}{ident(hi)}"
+
+
+def ident_runs(runs, *, dash: str = DASH, sep: str = ", ",
+               empty: str = "\u2014") -> str:
+    """Several spans of identifiers: '4001-4317, 4510-4515'.
+
+    Phase 4A owns two separate blocks of lot numbers with Phase 4B's block
+    sitting in the gap. Printing only the outer span reads as one continuous
+    run and quietly claims 192 lots belonging to the next phase, so wherever
+    lot numbers are shown to a reader, show the runs.
+    """
+    if not runs:
+        return empty
+    return sep.join(ident_range(lo, hi, dash=dash) for lo, hi in runs)
 
 
 def qty(n) -> str:

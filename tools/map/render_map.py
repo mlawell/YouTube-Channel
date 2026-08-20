@@ -50,7 +50,7 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.lines import Line2D
 from matplotlib.patches import Circle, FancyBboxPatch, Polygon as MPoly, Rectangle
 
-from fmt import ident, ident_range, qty
+from fmt import ident, ident_range, ident_runs, qty
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
@@ -1430,9 +1430,9 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
         (p.get("homesite_label") or "Platted homesites", f"{p['lot_count']:,}"),
         ("Size", f"{p['acres']:,.0f} acres"),
     ]
-    if p.get("lot_number_range"):
-        lo, hi = p["lot_number_range"]
-        rows.append(("Lot numbers", ident_range(lo, hi, dash=" \u2013 ")))
+    if p.get("lot_number_runs") or p.get("lot_number_range"):
+        runs = p.get("lot_number_runs") or [p["lot_number_range"]]
+        rows.append(("Lot numbers", ident_runs(runs, dash=" \u2013 ")))
     # Distance to the Town Center is meaningless on the Town Center's own frame.
     if p["label"] != s.tc_label:
         for key, target in (("To Town Center", "Town Square Amenity"),):
