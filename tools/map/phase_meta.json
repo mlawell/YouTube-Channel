@@ -16,7 +16,7 @@
     "community": "Latitude Margaritaville Watersound",
     "city": "Panama City Beach, FL",
     "builder": "Minto Communities",
-    "data_credit": "Phase boundaries & lots: Bay County, FL recorded plats (public record), plat book/page shown per phase",
+    "data_credit": "Phase boundaries, lots & the Town Center tract: Bay County, FL recorded plats (public record), plat book/page shown per phase. Lake and pond positions measured from the builder's June 2026 site plan and redrawn.",
     "disclaimer": "Illustrative only — not a survey. Boundaries, homesite counts and street data are public record; for what is actually for sale today, ask Karen.",
     "agent_block": [
       "Karen Lawell, Realtor · License #3397366",
@@ -113,9 +113,10 @@
         "new_lots": null
       }
     },
-    "Phase 5A3": {
-      "note": "NOT skipped. Recorded at plat book 32, page 81 — after Phase 8 — which is why it looks out of sequence.",
-      "correction": "Competitor coverage claims 5A was 'changed and kind of skipped'. Public record says otherwise.",
+    "Town Center": {
+      "note": "Recorded as 'PH 5A3' at plat book 32, page 81 — but 48 of its 62 acres are one tract, and the Bandshell and Paradise Pool are both inside it. Its only homesites are the Stay & Play cottages, which is why there is no Phase 5A to buy in.",
+      "homesite_label": "Stay & Play cottages",
+      "correction": "There is no Phase 5A neighbourhood to buy in. A plat numbered 5A3 does exist, but it is the Town Center parcel, not a residential phase — so both the competitor's 'they skipped 5A' and a flat reading of the plat index get it wrong.",
       "inventory_snapshot": {
         "as_of": null,
         "resales_listed": null,
@@ -213,7 +214,7 @@
   "scope": {
     "area": "Area 1",
     "recorded_through": "Phase 10",
-    "note": "Area 1 is Phases 1 through 10 — all 16 plats recorded, Phase 10 (PB 33/98) the last of them. Area 2 has no recorded plat yet, so how its phases will be numbered is not public.",
+    "note": "Area 1 is Phases 1 through 10 — ten phases across sixteen recorded plats, Phase 10 (PB 33/98) the last of them. The sixteenth plat is the Town Center, not an eleventh phase: there is no Phase 5A to buy in. Area 2 has no recorded plat yet, so how its phases will be numbered is not public.",
     "verified": "Every recorded plat carries AREA 1 in its subdivision name; the distinct AREA values in Bay County record are exactly [1]. Phase 10 is both the highest phase number and the highest plat book/page.",
     "do_not_say": "Do not call the next phase \"Phase 11\" on camera or in writing. The record does not support the name. \"Area 2\" is the safe term.",
     "second_town_square": {
@@ -222,7 +223,13 @@
       "contents": "unknown — do not speculate about tenants or amenities",
       "timing": "a ways out; Area 2 is not recorded yet. Any specific timing is a guess and must be labelled as one."
     },
-    "plat_order_is_not_phase_order": "PH 5A3 is PB 32/81 — recorded AFTER Phase 7 (PB 31/14) and Phase 8 (PB 31/71). It is a late infill plat, which is why it has no lot numbers in county data yet. This is also why availability can never be inferred from recording order.",
-    "missing_plats": "Only PH 5A3 is recorded — there is no 5A1 or 5A2 plat. Ask Karen whether they were replatted or folded into another plat."
+    "plat_order_is_not_phase_order": "PH 5A3 is PB 32/81 — recorded AFTER Phase 7 (PB 31/14) and Phase 8 (PB 31/71). It is a late plat, which is why it sits out of sequence in the plat index. This is also why availability can never be inferred from recording order.",
+    "no_phase_5a": {
+      "karen": "There isn't a phase 5A.",
+      "record": "A plat named 'LATITUDE AT WATERSOUND AREA 1 PH 5A3' is recorded at PB 32/81, and there is no 5A1 or 5A2. But point-in-polygon against the recorded parcels puts both the Bandshell and Paradise Pool inside it: 48.3 of its 62.2 acres are one tract, and that tract is the Town Center.",
+      "conclusion": "Karen is right in the sense a buyer means it. The map labels this plat 'Town Center' and keeps the PB 32/81 citation. Its only homesites are the Stay & Play cottages.",
+      "supersedes": "An earlier draft of this project used '5A3 is a recorded plat, so the competitor was wrong to say 5A was skipped' as an authority beat. That beat was itself wrong and has been removed."
+    },
+    "phase_count": "Ten residential phases, sixteen recorded plats. The sixteenth plat is the Town Center, not an eleventh phase."
   }
 }

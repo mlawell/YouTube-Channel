@@ -25,7 +25,7 @@
     },
     {
       "name": "Town Square Amenity",
-      "short": "Town Center & Bandshell",
+      "short": "Bandshell",
       "lat": 30.30734,
       "lon": -85.86556,
       "kind": "amenity",
@@ -61,24 +61,32 @@
     {
       "name": "Barkaritaville Dog Park",
       "short": "Dog Park",
-      "lat": null,
-      "lon": null,
+      "lat": 30.30976,
+      "lon": -85.86222,
       "kind": "amenity",
       "anchor": false,
       "confirmed": false,
-      "source": "site plan \u2014 shown north-east of the Town Square, across the bridge",
-      "needs": "Coordinate not established. Karen to drop a pin."
+      "source": "position measured off the builder's site plan via the solved georeference (see extract_plan_features.py)",
+      "needs": "Karen to confirm the pin. It is north-east of the Town Square, across the bridge."
     },
     {
-      "name": "Getaway Cottages",
-      "short": "Getaways",
-      "lat": null,
-      "lon": null,
+      "name": "Stay & Play Cottages",
+      "short": "Stay & Play",
+      "lat": 30.31107,
+      "lon": -85.86542,
       "kind": "amenity",
       "anchor": false,
-      "confirmed": false,
-      "source": "site plan \u2014 shown between the Town Square and Latitude Blvd, inside the gate",
-      "needs": "Coordinate not established. Karen to drop a pin."
+      "confirmed": true,
+      "source": "centroid of the recorded cottage homesites inside the Town Center plat (PB 32/81)",
+      "note": [
+        "Marketed as the Getaway Cottages. These are the only homesites in the",
+        "plat recorded as 'PH 5A3' - everything else in it is the amenity tract,",
+        "which is why there is no Phase 5A neighbourhood.",
+        "",
+        "KAREN: the block the builder's plan still marks 'Future Development',",
+        "immediately west of these, is also Stay & Play. That expansion is not in",
+        "the public record, so it is drawn as an unconfirmed marker only."
+      ]
     },
     {
       "name": "Future commercial \u2014 grocery",
@@ -92,15 +100,34 @@
       "needs": "Confirm current construction status and exact parcel before naming a tenant on screen."
     },
     {
+      "name": "Future marina",
+      "short": "Marina (future)",
+      "lat": 30.31048,
+      "lon": -85.87078,
+      "kind": "future",
+      "anchor": false,
+      "confirmed": false,
+      "source": "KAREN \u2014 the stretch of waterfront between Phase 4 and the Town Center. Point is the shoreline nearest the midpoint of those two, from county hydrology.",
+      "needs": [
+        "Karen to confirm the pin. This is a planned facility, not a built one:",
+        "land-use permits secured, water permits pending.",
+        "",
+        "It is NOT on the builder's June 2026 site plan - Karen's words were that",
+        "it 'is not on their maps yet, that is just the area they are building'.",
+        "So no footprint is drawn and no basin shape is implied; the marker marks",
+        "roughly where, and nothing more."
+      ]
+    },
+    {
       "name": "Port of Indecision Kayak Launch",
       "short": "Kayak Launch",
-      "lat": null,
-      "lon": null,
+      "lat": 30.30595,
+      "lon": -85.86452,
       "kind": "amenity",
       "anchor": false,
       "confirmed": false,
-      "source": "site plan \u2014 shown on the Intracoastal side of the Town Square",
-      "needs": "Coordinate not established."
+      "source": "position measured off the builder's site plan via the solved georeference (see extract_plan_features.py)",
+      "needs": "Karen to confirm the pin."
     }
   ]
 }

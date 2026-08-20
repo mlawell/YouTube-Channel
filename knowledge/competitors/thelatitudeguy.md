@@ -33,15 +33,39 @@ own, no on-screen text. Ends with a register-with-me-before-you-visit pitch.
 
 ## Where he's wrong — factually
 
-Both verified against Bay County recorded plats, both are strong video hooks.
+Verified against Bay County recorded plats.
 
 | Claim | Public record |
 | --- | --- |
 | Treats **Phase 3** as one area | Three separate recorded plats: **3A** (PB 28/34), **3B & 3C** (PB 28/63), **3D** (PB 30/8) |
-| "**5A** they changed and kind of skipped" | **PH 5A3 is a recorded plat** — PB 32/81, 98 homesites. It reads out of sequence because it was recorded *after* Phase 8 |
+| "**5A** they changed and kind of skipped" | Half-right, and the full answer is better than either version — see below |
 
-Leading with these establishes authority in the first minute and costs him
-credibility with anyone who checks.
+### The Phase 5A correction — read this before using it
+
+An earlier draft of this file claimed he was flatly wrong, on the grounds that
+`LATITUDE AT WATERSOUND AREA 1 PH 5A3` is a recorded plat at PB 32/81 with 98
+parcels. **That rebuttal was itself wrong, and it must not go on camera.**
+
+What the record actually shows, checked by point-in-polygon against the county's
+parcel layer:
+
+- The plat exists — 62.2 acres, PB 32/81.
+- **48.3 of those 62.2 acres are a single tract**, and both the Bandshell
+  (30.30734, −85.86556) and Paradise Pool (30.30630, −85.86578) fall inside it.
+  That tract is the Town Center.
+- Its only homesites are the **Stay & Play cottages** off Margaritaville Blvd
+  and No Shoes Ct.
+
+So there is no Phase 5A *neighbourhood* — which is what a buyer means by the
+question, and what Karen says outright: *"there isn't a phase 5A."* He lands
+closer to the truth than the plat index does, but for the wrong reason.
+
+Our version is stronger than either: the plat is real, it's the Town Center, and
+that's why you can't buy in it. Ten phases, sixteen recorded plats, the
+sixteenth being the amenity core.
+
+Leading with the Phase 3 split and this correction establishes authority in the
+first minute.
 
 ## The gaps we exploit
 

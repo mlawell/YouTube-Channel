@@ -42,11 +42,15 @@ numbered is not public — do not call the next one "Phase 11".
 
 ```powershell
 python fetch_data.py         # download from Bay County ArcGIS  (~2 min, re-run monthly)
+python extract_plan_features.py water   # pond positions off the builder's site plan
 python build_features.py     # attribute lots + streets to phases -> data/features.json
 python render_map.py         # poster, print PDF, thumbnail, 17 frames
 python export_streets.py     # streets_by_phase.md / .json
 python make_preview.py       # committed previews + the print master
 ```
+
+`extract_plan_features.py` only needs re-running if the builder publishes a new
+site plan; its output and the solved transform are cached in `data/`.
 
 Large formats are opt-in because they're slower and much larger:
 
@@ -104,9 +108,40 @@ the county's own ArcGIS REST services.
 | Address points | `Basic_Layers/MapServer/0` | Street names, Sales Center anchor |
 | Parcel site addresses | `TEST_Parcels/MapServer/1` | Street names (Phases 4B–10) |
 | Highways | `Basic_Layers/MapServer/1` | Highway 79 |
-| Waterbodies / creeks | `PhysicalTopography/MapServer/2` and `/1` | West Bay, ponds, drainage |
+| Waterbodies / creeks | `PhysicalTopography/MapServer/2` and `/1` | West Bay, the Intracoastal, drainage |
 
 Base URL: `https://gis.baycountyfl.gov/arcgis/rest/services/`
+
+### The one thing the county does not have: the ponds
+
+`PhysicalTopography/MapServer/2` returns exactly **one** waterbody across the
+whole community, `Basic_Layers/MapServer/20` (Water) returns none, and
+`Basic_Layers/MapServer/21` (Building Footprints) returns **zero** features
+inside the Town Center. OpenStreetMap has nothing inside the amenity core
+either. So the eighty-odd lakes and stormwater ponds are not obtainable from
+any public dataset.
+
+They come instead from the builder's own June 2026 site plan, via
+`extract_plan_features.py` — and the important part is *how*:
+
+- The sheet is not traced, recoloured, cropped or republished. What is taken is
+  factual: **where the water is**. The outlines are simplified well past the
+  drawn linework and redrawn in our own styling.
+- The plan is **georeferenced by solving for it**, not by assuming. A similarity
+  transform is fitted by aligning the plan's drawn lot fabric against the 3,151
+  recorded homesites we already hold from the county.
+- The fit is then **measured**: the map is cut into tiles and each tile's own
+  residual shift is solved independently. Current fit is +0.77°, median residual
+  **0 m** and 90th percentile **12.5 m** across 28 tiles — comfortably finer
+  than a pond.
+- Below `--max-error` the script **writes nothing at all**. Geometry placed by a
+  fit nobody checked is a guess with extra steps.
+
+IoU is deliberately *not* the acceptance test. The sheet is an artist's
+rendering that draws homesites as tidy uniform rectangles nowhere near the
+recorded parcel outlines, so overlap is capped well below 1 even when the
+registration is perfect. Local residual displacement is what actually decides
+whether a pond lands in the right place, so that is what is measured.
 
 Server quirks, all handled in `fetch_data.py`:
 
@@ -140,10 +175,37 @@ reason a viewer contacts Karen rather than relying on the video.
 
 The file also carries `karen_first_hand` (her Highway 79 and Bandshell noise
 calls, with her exact quotes) and `scope`, which records that the map covers
-**Area 1 — Phases 1 through 10, all 16 recorded plats** and that Area 2 has no
-recorded plat yet. It also notes that **plat order is not phase order**: PH 5A3
-is PB 32/81, recorded *after* Phases 7 and 8. That single counterexample is why
-availability can never be inferred from recording order.
+**Area 1 — ten phases across sixteen recorded plats** and that Area 2 has no
+recorded plat yet. It also notes that **plat order is not phase order**: the
+Town Center plat is PB 32/81, recorded *after* Phases 7 and 8. That single
+counterexample is why availability can never be inferred from recording order.
+
+### There is no Phase 5A — and the map has to say so
+
+Karen: *"There isn't a phase 5A."* A plat named `PH 5A3` **is** recorded at PB
+32/81. Both statements are true, and the resolution is the most useful fact on
+the map.
+
+Point-in-polygon against the county's own parcel layer shows that **48.3 of that
+plat's 62.2 acres are one single tract**, and that both the Bandshell
+(30.30734, −85.86556) and Paradise Pool (30.30630, −85.86578) fall inside it.
+That tract is the Town Center. The plat's only homesites are the Stay & Play
+cottages.
+
+So `build_features.py` labels this plat **Town Center**, not "Phase 5A3", splits
+it into the amenity tract plus the cottages, and gives it a warm neutral fill
+outside every phase hue — because drawing it as a phase would put it right back
+into the sequence the map exists to take it out of. The `PB 32/81` citation is
+kept in the legend.
+
+This also means two counts, both correct and constantly confused:
+`phase_count` = **10** and `plat_count` = **16**. Phase 3 was recorded as
+3A / 3B & 3C / 3D and Phase 4 as 4A / 4B, and the sixteenth plat is the Town
+Center rather than an eleventh phase.
+
+> **Superseded.** An earlier version of this project used *"5A3 is a recorded
+> plat, so the claim that 5A was skipped is wrong"* as an authority beat in the
+> video. That was wrong on the substance. Do not reintroduce it.
 
 ### `landmarks.json`
 
@@ -376,14 +438,16 @@ python render_map.py --preset print-36x24 --no-watermark
 
 Nothing blocking — these are map polish.
 
-- [ ] Pins for Barkaritaville Dog Park, the Getaway Cottages and the Port of
-      Indecision kayak launch. They are named in the Town Center amenity block
-      but have no coordinate, so nothing is drawn for them.
+- [ ] Confirm the three pins measured off the builder's site plan:
+      Barkaritaville Dog Park, the Port of Indecision kayak launch, and the
+      future marina. All three render with a `?` until she does.
 - [ ] The future-commercial parcel — confirm construction status and whether
       the grocery tenant can be named on screen.
 - [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping
       Minto lot numbers in county data. Interleaved numbering, or lots sitting
       across a plat line?
-- [ ] Were **5A1 and 5A2** ever platted? Only PH 5A3 exists in the record.
+- [ ] Karen says the block the builder's plan still marks "Future Development",
+      just west of the Stay & Play cottages, is also Stay & Play. It is not in
+      the public record, so no area is drawn for it — confirm the extent.
 - [ ] One clipped label on Minto's Phase 4/5 panel still reads only "…IK DR".
 - [ ] A specific print size or vendor, if she has one in mind.

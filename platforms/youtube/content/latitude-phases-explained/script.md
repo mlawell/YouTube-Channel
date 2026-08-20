@@ -97,16 +97,28 @@ twelve seconds. Do not add a "hey guys" in front of it.
 > looking at a resale and someone tells you "that's Phase 3," ask which one,
 > because 3D was recorded two whole plat books later than 3A.
 
-`[FRAME 08_phase-5a3]`
+`[FRAME 16_towncenter]`
 
-> **Number two, and this is the big one. Phase 5A was not skipped.** I have
-> heard people say Minto changed their mind and skipped it. That's not what
-> happened. Phase 5A3 is a recorded plat — book 32, page 81 —
-> `[on-screen: PB 32/81]` ninety-eight homesites, right here. The reason it
-> looks out of order is that it was recorded *after* Phase 8. It's a later
-> plat with an earlier number. That's all.
+> **Number two, and this is the big one. There is no Phase 5A.** You'll hear
+> people say Minto changed their mind and skipped it. You'll also hear people
+> who've looked at the plat index say the opposite — that 5A does exist,
+> because there's a recorded plat called 5A3, book 32, page 81.
+> `[on-screen: PB 32/81]`
 >
-> You can look both of those up yourself at the Bay County Clerk's office.
+> Both of those are wrong, and here's the part nobody checks. That plat is
+> real — but it isn't a neighborhood. Sixty-two acres, and forty-eight of them
+> are one single tract. `[on-screen: 48.3 of 62.2 acres — one tract]` Drop a
+> pin on the Bandshell and a pin on Paradise Pool and run them against the
+> county's parcel map: **they both land inside it.** That plat *is* the Town
+> Center. The only homesites on it are the Stay & Play cottages.
+>
+> So Karen's right, and she's right for a better reason than "they skipped it."
+> There's nothing called Phase 5A to buy in, because that plat number belongs
+> to the amenity core. `[KAREN — "there isn't a phase 5A"]`
+>
+> Ten phases. Sixteen recorded plats. The sixteenth one is the Town Center.
+>
+> You can look every bit of that up yourself at the Bay County Clerk's office.
 > That's the standard I'm holding this whole video to.
 
 ---
@@ -319,24 +331,33 @@ statement is `[KAREN]`-gated.
 > 4A — the two interlock, which is why people mix them up. It also fronts West
 > Bay Parkway. `[INVENTORY]`
 
-### Phase 5A3 — 8:00
+### The Town Center — 8:00
 
-`[FRAME 08_phase-5a3]` · `PB 32/81 · 98 homesites · 62 acres`
+`[FRAME 16_towncenter]` · `PB 32/81 · 48.3-acre amenity tract · 62 acres total`
 
-> Here's our friend 5A3 again — the one people say doesn't exist. Ninety-eight
-> homesites off Margaritaville Boulevard and No Shoes Court. Recorded in plat
-> book 32, which makes it one of the *newest* plats in the community even
-> though it carries a 5. Look at the shading on the map — 5A3 is coloured like
-> the new phases, because on the books that's exactly what it is. It was
-> recorded *after* Phase 7 and Phase 8.
+> This is the one that trips everybody up, so slow down here.
 >
-> `[KAREN — 5A3 is the only 5A plat in the record. There's no 5A1 and no 5A2.
-> Do you know whether those got replatted or folded into something else? If you
-> don't know, say so — "I don't know" is a fine answer and it protects
-> everything else you said.]`
+> On the plat index this reads "Phase 5A3." On the ground it's the Town Center.
+> Forty-eight of its sixty-two acres are a single tract, and that tract holds
+> the Bandshell, Paradise Pool, the fitness center, the restaurant, the courts —
+> the whole amenity core. `[on-screen: Bandshell + Paradise Pool → inside PB 32/81]`
 >
-> If you want to sound like you know what you're talking about at the Sales
-> Center, mention 5A3. `[INVENTORY]`
+> The only homesites on it are the Stay & Play cottages, right here off
+> Margaritaville Boulevard and No Shoes Court. That's it. That's the entire
+> residential content of "Phase 5A."
+>
+> So when someone tells you 5A got skipped, or someone else tells you it didn't
+> — they're both arguing about the wrong thing. The plat exists. It just isn't
+> a neighborhood. There is nothing called Phase 5A to buy in.
+>
+> `[KAREN — this is your line: "there isn't a phase 5A." Say it in your own
+> words. If you know why the numbering ended up like that, say it; if you
+> don't, "I don't know why they numbered it that way, but that's what it is"
+> is a perfectly good answer and it protects everything else you said.]`
+>
+> Worth knowing: this plat was recorded in book 32 — *after* Phase 7 and Phase
+> 8. Plat order is not phase order, which is the other reason people get
+> confused reading the index. `[INVENTORY — Stay & Play cottages only]`
 
 ### Phase 5B — 8:30
 

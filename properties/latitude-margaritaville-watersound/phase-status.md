@@ -29,7 +29,6 @@ into a lead generator every time it's watched.
 | Phase 3D | PB 30/8 | 24.8 | 44 | 340–381 |
 | Phase 4A | PB 29/23 | 142.2 | 332 | 4,001–4,515 |
 | Phase 4B | PB 29/76 | 83.6 | 205 | 4,318–4,509 |
-| Phase 5A3 | PB 32/81 | 62.2 | 98 | not yet in county data |
 | Phase 5B | PB 30/14 | 34.5 | 97 | 5,001–5,092 |
 | Phase 5C | PB 30/27 | 184.0 | 248 | 5,093–5,335 |
 | Phase 6A | PB 30/39 | 189.6 | 138 | 6,001–6,132 |
@@ -38,7 +37,35 @@ into a lead generator every time it's watched.
 | Phase 8 | PB 31/71 | 180.2 | 204 | 8,001–8,200 |
 | Phase 9 | PB 33/57 | 203.4 | 306 | 9,001–9,288 |
 | Phase 10 | PB 33/98 | 236.8 | 355 | 10,001–10,343 |
-| **Total** | **16 plats** | **2,123** | **3,229** | |
+| *Town Center* (see below) | PB 32/81 | 62.2 | 96 cottages | not yet in county data |
+| **Total** | **16 plats** | **2,123** | **3,227** | |
+
+## There is no Phase 5A
+
+Karen: *"There isn't a phase 5A."* She is right, and the public record explains
+why in a way that is more useful than either side of the usual argument.
+
+A plat named `LATITUDE AT WATERSOUND AREA 1 PH 5A3` **is** recorded, at PB
+32/81, covering 62.2 acres. But point-in-polygon against the county's parcel
+layer shows what it actually contains:
+
+- **48.3 of the 62.2 acres are one single tract**, and both the Bandshell
+  (30.30734, −85.86556) and Paradise Pool (30.30630, −85.86578) sit inside it.
+  That tract is the **Town Center**.
+- Its only homesites are the **96 Stay & Play cottages** off Margaritaville Blvd
+  and No Shoes Ct — cottage-sized parcels, 348–769 m².
+
+So the plat is real but it is not a neighbourhood. The map labels it *Town
+Center*, keeps the PB 32/81 citation, and draws the cottages as their own area.
+
+**Ten phases, sixteen recorded plats** — the sixteenth is the amenity core, not
+an eleventh phase. Phase 3 was recorded as 3A / 3B & 3C / 3D and Phase 4 as
+4A / 4B, which is why the two counts differ.
+
+> **Superseded.** An earlier version of this file, and of the video script,
+> used *"5A3 is a recorded plat, so the claim that 5A was skipped is wrong"* as
+> an authority beat. That was wrong on the substance and has been removed. Do
+> not reintroduce it.
 
 **Scope.** These are all 16 recorded plats, and **every one of them carries
 `AREA 1`** in its subdivision name — the distinct AREA values in Bay County
@@ -50,13 +77,9 @@ plat book/page.
 public. **Do not say "Phase 11"** on camera or in writing — the record does not
 support the name. "Area 2" is the safe term.
 
-**Plat order is not phase order.** PH 5A3 is PB 32/81, recorded *after* Phase 7
-(PB 31/14) and Phase 8 (PB 31/71) — a late infill plat, which is why it still
-has no lot numbers in county data. That single counterexample is why
-availability can never be inferred from recording order.
-
-**Only PH 5A3 is recorded** — there is no 5A1 or 5A2 plat. Ask Karen whether
-they were replatted or folded into another plat.
+**Plat order is not phase order.** The Town Center plat is PB 32/81, recorded
+*after* Phase 7 (PB 31/14) and Phase 8 (PB 31/71). That single counterexample
+is why availability can never be inferred from recording order.
 
 > **Minto lot numbers are not house numbers.** They are a plan-and-plat
 > convention. Every house on Escape Avenue has an address in the 9000s even
@@ -152,14 +175,20 @@ out will land.
 
 Nothing is blocking the script. Remaining items are map polish:
 
-- [ ] Pins for Barkaritaville Dog Park, the Getaway Cottages, the Port of
-      Indecision kayak launch, and confirmation of the Paradise Pool pin.
+- [ ] Pins measured off the builder's site plan and awaiting Karen's
+      confirmation: Barkaritaville Dog Park, the Port of Indecision kayak
+      launch, and the future marina.
 - [ ] The future-commercial parcel — confirm construction status and whether
       the grocery tenant can be named on screen.
 - [ ] Phase 4A (#4,001–4,515) and 4B (#4,318–4,509) have overlapping Minto lot
       numbers in county data. Interleaved numbering, or lots sitting across a
       plat line?
-- [ ] Were **5A1 and 5A2** ever platted? Only PH 5A3 exists in the record.
+- [ ] Karen says the block the builder's plan still marks "Future Development",
+      just west of the Stay & Play cottages, is also Stay & Play. Not in the
+      public record, so it is not drawn as an area — confirm the extent.
+- [ ] Why the Town Center plat is numbered 5A3 when there is no 5A1 or 5A2.
+      Not needed for the video; "I don't know why they numbered it that way"
+      is an acceptable on-camera answer.
 - [ ] One clipped label on Minto's Phase 4/5 panel still reads only "…IK DR".
       Shell Sink Dr is the nearest county match but it's not close enough to
       call. Left `UNVERIFIED` in `tools/map/street_index.json`.
