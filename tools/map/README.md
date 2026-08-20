@@ -258,6 +258,16 @@ Confirmed:
   Bandshell, confirmed by Karen. It is the middle of the amenity core, so it is
   the origin for every "distance to Town Center" on the map.
 
+### `town_center_buildings.json`
+
+Four indicative building masses in the Town Center, each stored as
+`east_m` / `north_m` / `length_m` / `width_m` / `angle_deg` from a single origin
+(Google's own Town Center marker, 30.30796, −85.86546). `build_features.py`
+turns each block into a rectangle; `render_map.py` draws them in cream over the
+Town Center tract. See *Town Center buildings* below for how they were obtained
+and what they are and are not. The file carries its own provenance keys — read
+those before editing it.
+
 ### `street_index.json`
 
 Curated gap-filler, the `unverified` clipped-label list, and the two-number-series
@@ -429,6 +439,112 @@ If Karen has a specific print size or vendor in mind, add it to `PRESETS` in
 5. **Every render prints a NEEDS CONFIRMATION list** of what is still
    unverified, so it cannot quietly ship.
 
+## Reading positions off Karen's aerials
+
+Three landmarks — the dog park, the kayak launch and the future marina — are
+not in any public layer. Nobody surveyed them and the builder's plan is
+licensed for use as-is, so it cannot be traced. What we had instead was Karen
+marking each one on a satellite screenshot.
+
+A screenshot is not a coordinate. Reading one off by eye is worthless, because
+whatever views the image rescales it. So each shot was georeferenced first:
+
+- Google satellite is north-up Web Mercator, so per shot the only unknowns are
+  scale and translation. **Two correspondences fix a shot completely.**
+- The **73 reconciled pond outlines are the control network** — many, scattered,
+  distinctive, and already fitted to the recorded plats. The marina shot solved
+  against them at 1.2486 m/px.
+- The Town Center shot was then chained off it: Google's own *Fins Up! Fitness
+  Center* marker appears in both, which with Paradise Pool gives a two-point
+  solve at 1.0146 m/px.
+
+Two rules made the difference, and both are worth keeping:
+
+**Verify a fit by drawing your own geometry over the shot**, not by trusting an
+inlier count. Ponds landing on ponds and plat lines landing on real edges is
+honest evidence; a correlation score is not.
+
+**Check against something not used in the solve.** The Bandshell was held back
+from the Town Center solve, predicted at px (181, 569), and landed on the
+amphitheater. That is what makes the fit trustworthy.
+
+The dog park resisted every fit — it is nearly all tree canopy, and canopy
+makes false correlation peaks cheap. One such peak was confidently wrong and
+Karen caught it. It was solved in the end by *not* fitting her screenshot at
+all: the same scene turned out to sit inside the already-verified marina shot,
+so the clearing was measured there instead. That landed 6 m from the position
+already derived from the builder's site plan — two independent routes agreeing,
+which is why it is now confirmed rather than merely plausible.
+
+**Legal note.** These aerials are licensed imagery. We take *positions* off
+them, exactly as we take positions off the builder's site plan; we never trace,
+reproduce, crop or publish the imagery itself. The published map is drawn from
+county plat geometry alone. Road geometry used to cross-check the fits came
+from OpenStreetMap (ODbL) and likewise is not published.
+
+## Town Center buildings
+
+Karen asked twice for the Town Center buildings, so the map now carries four of
+them, in `town_center_buildings.json`. They are **indicative massing, good to
+about ±5 m** — enough to show a viewer that there is a built cluster there and
+roughly how it is laid out, not enough to measure anything from.
+
+### Why they are not automatic
+
+Every route that would have produced real footprints was tried and failed. Do
+not redo these blind:
+
+- **Bay County building footprints** (`Basic_Layers/MapServer/21`) — 96 features
+  in the whole layer, every one of them east of longitude −85.863. No coverage
+  here at all.
+- **OpenStreetMap** — zero buildings inside the Town Center bounding box.
+- **Colour-extraction from the builder's plan** — the 600 dpi crop has twenty-odd
+  blended tones and none holds more than 5% of the area. It is a textured
+  illustration, not flat vector fill. The extraction landed on the pickleball
+  courts and the pool deck.
+- **Segmenting the aerial** — this is the interesting failure. Measured surface
+  signatures: white roof 203, bandshell plaza 186, blue-grey roof 183, parking
+  asphalt 159, all at saturation 0.05–0.24; tree canopy 62 (sat 0.54); water 39
+  (sat 0.84). Brightness separates *built* from *natural* cleanly and **nothing
+  separates a roof from the asphalt next to it**. Threshold sweeps, morphology
+  and seeded region-growing all either merged roofs into a 298 m parking-lot
+  blob or under-segmented to 5–13% of the building. The imagery is also
+  blue-shifted (median r−g = −12), which silently breaks the usual `g >= r`
+  vegetation test — it classifies every neutral roof as vegetation.
+
+The courts *are* separable (b−r = +65 is their own signature) and could be
+snapped automatically if Karen wants them. They are deliberately not in yet.
+
+### How they were actually obtained
+
+Photo-interpretation against a drawn metre grid — the same way OSM footprints
+are made. The already-verified Town Center georeference (1.0146 m/px) was used
+to draw a 20 m, then a 10 m, grid over the imagery, and each block was read off
+as grid coordinates and dimensions. **Reading against a grid you drew yourself
+is immune to viewer rescaling**, which is the failure mode that has produced
+three wrong answers in this project.
+
+Each block was then drawn back onto the imagery and corrected, three rounds,
+until all four sat on their buildings.
+
+### What they are not
+
+- **Not traced.** A building's position, footprint size and orientation are
+  facts about the physical world. We measured those facts. No pixels from
+  anyone's imagery or artwork are in the output.
+- **Not complete.** Four blocks, not every structure. A fifth candidate near the
+  pool was dropped because a roof could not be told from a pool deck there.
+- **Not named,** except one. Only the fitness centre is labelled, because Google
+  independently marks it. The other three stay unnamed rather than guessed.
+- **Not a survey.** ±5 m. Do not scale off them.
+
+The independent check: all four blocks fall **100% inside the recorded 49-acre
+Town Center tract**, which comes from county records and not from any image.
+
+The large curved feature north of them is the **Town Square / bandshell plaza,
+not a building** — the Town Square amenity pin sits at its centre. It is not
+drawn as massing.
+
 ## Disclaimer carried on every export
 
 > Phase boundaries & lots: Bay County, FL recorded plats (public record), plat
@@ -475,16 +591,26 @@ python render_map.py --preset print-36x24 --no-watermark
 
 Nothing blocking — these are map polish.
 
-- [ ] Confirm the two pins measured off the builder's site plan: Barkaritaville
-      Dog Park and the Port of Indecision kayak launch. Both render with a `?`
-      until she does.
-- [x] The future marina. Karen placed it herself — open ground between Phase 4
-      and the Town Center tract, on the water. It renders without a `?`; the
-      "(future)" in the label carries the caveat. It is deliberately a labelled
-      point and **not** a basin outline: the builder's plan does not show a
-      marina yet, so there is no shape anyone could stand behind.
+- [x] Confirm the two pins measured off the builder's site plan: Barkaritaville
+      Dog Park and the Port of Indecision kayak launch. Karen marked both on
+      aerials — see "Reading positions off Karen's aerials" below. Neither
+      renders with a `?` any more.
+- [x] The future marina. Karen ringed the site on an aerial. It renders without
+      a `?`; the "(future)" in the label carries the caveat. It is deliberately
+      a labelled point and **not** a basin outline: the builder's plan does not
+      show a marina yet, so there is no shape anyone could stand behind.
+      **Karen's language: "the future location of the marina".** Site work is
+      plainly under way — about 14 acres are graded — but do not say "under
+      construction" on screen. The marina itself is not being built yet; water
+      permits are still pending.
 - [ ] The future-commercial parcel — confirm construction status and whether
       the grocery tenant can be named on screen.
+- [x] The Town Center buildings. Four indicative masses are on the map now,
+      measured off the verified aerial to about ±5 m — see "Town Center
+      buildings" below for why nothing more exact was possible. Two follow-ups
+      for Karen: (a) three of the four are unnamed because only the fitness
+      centre is independently confirmed — she can name the others; (b) the
+      racquet courts *can* be added automatically and are not in yet.
 - [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping
       Minto lot numbers in county data. Interleaved numbering, or lots sitting
       across a plat line?
