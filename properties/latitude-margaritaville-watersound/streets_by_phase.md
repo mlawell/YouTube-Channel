@@ -40,7 +40,7 @@ the address range tells you which phase you are looking at.
 | Phase 3A | PB 28/34 | 91.5 | 172 | 1–167 | 7 |
 | Phase 3B & 3C | PB 28/63 | 95.7 | 178 | 168–339 | 6 |
 | Phase 3D | PB 30/8 | 24.8 | 44 | 340–381 | 1 |
-| Phase 4A | PB 29/23 | 142.2 | 332 | 4001–4515 | 9 |
+| Phase 4A | PB 29/23 | 142.2 | 332 | 4001–4317, 4510–4515 | 9 |
 | Phase 4B | PB 29/76 | 83.6 | 205 | 4318–4509 | 5 |
 | Phase 5B | PB 30/14 | 34.5 | 97 | 5001–5092 | 2 |
 | Phase 5C | PB 30/27 | 184.0 | 248 | 5093–5335 | 3 |

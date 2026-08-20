@@ -244,6 +244,38 @@ Center rather than an eleventh phase.
 > plat, so the claim that 5A was skipped is wrong"* as an authority beat in the
 > video. That was wrong on the substance. Do not reintroduce it.
 
+### Lot numbers are runs, not spans
+
+A phase's Minto lot numbers print as **runs** — `4001–4317, 4510–4515` — not as
+one min-to-max span. That distinction is the whole fix for a bug this project
+carried for a while and had written down as a question for Karen.
+
+The symptom: Phase 4A read `4001–4515` and Phase 4B read `4318–4509`, so 4A
+appeared to swallow 4B whole, and `phase_lookup.by_lot(4400)` answered with
+**both phases**. A buyer holding lot 4400 got two different neighbourhoods.
+
+Asking the county data settled it in one pass, and the answer was that there was
+never an overlap at all:
+
+- **4A** owns 4001–4317, plus a six-lot tail at 4510–4515
+- **4B** owns 4318–4509, contiguous, 192 lots
+- the two share **not a single number**, and the plats do not overlap on the
+  ground either (intersection 0.00 acres)
+
+The whole appearance of a conflict was ours, manufactured by printing only the
+first and last number. The tail dragged 4A's printed range across all of 4B.
+
+So the rule now: **merge across empty gaps, split at occupied ones.** 4A is also
+missing 4004 and 4117–4120 and nobody owns those, so splitting there would print
+noise; 4318–4509 belongs to 4B, so that one splits. There is no threshold to
+tune — the other phases' numbers decide, which is the only thing that ever
+mattered. `build_features.py` also now fails loudly if two phases ever do claim
+one prefixed number.
+
+Numbers below 1000 are exempt and always were: Minto only began prefixing lot
+numbers with the phase at Phase 4, so Phases 1–3 each restart at 1 and genuinely
+do repeat. `by_lot(50)` returning Phase 2 *and* Phase 3A is correct.
+
 ### `landmarks.json`
 
 Landmark coordinates, each with `confirmed`, `source` and `needs`.
@@ -558,6 +590,39 @@ The large curved feature north of them is the **Town Square / bandshell plaza,
 not a building** — the Town Square amenity pin sits at its centre. It is not
 drawn as massing.
 
+### They are named now
+
+Karen named them from the numbered key, and pointed at Minto's published amenity
+site plan for the wording:
+
+| Block | Name | Confirmed by |
+| --- | --- | --- |
+| 1 | Fins Up! Fitness Center | Google's own marker, and Karen |
+| 2 | Fins Up! Fitness Center | Karen — *"1 and 2 are the Fins Up fitness"* |
+| 3 | Workin' 'N' Playin' Center | Karen; Minto's plan names it in the same place |
+| 4 | Latitude Bar and Chill Restaurant | Karen — *"4 IS **part of** the Bar and Chill"* |
+| 5 | Bandshell | Two independent sources — see below |
+
+Block 5 Karen did not name, and it is still not a guess. Her own confirmed
+**Bandshell landmark pin lands 14 m from the block's centre** — inside it, well
+within the ±5 m tolerance plus the pin's own placement — and Minto's plan
+independently labels the building in the middle of the oval drive *Bandshell*,
+with the amphitheater immediately south, which is exactly what the aerial shows.
+Two sources that know nothing about each other, same answer.
+
+Block 4 is deliberately named as **part of** the restaurant, Karen's own wording.
+The rest of the complex runs south into the pool deck — the same ground the sixth
+candidate was dropped over — so the block claims only what was measured.
+
+**Reading a name off Minto's plan is reference use, not derivative work.** The
+plan is licensed for use as-is; a building's *name* is a fact, not the artwork.
+No geometry came from it. Every footprint here is still measured off the aerial.
+
+**Known missing:** Minto's plan names a *Community Services Building* between the
+tennis and pickleball banks. There is a 38 m gap between court 1 and court 2
+where it sits. It has never been measured and is **not** on the map — recorded
+here so it stays a known gap rather than a silent one.
+
 ### The negative result is narrower than it first looked
 
 The paragraph above about segmentation was measured on the **marina** frame at
@@ -597,11 +662,19 @@ Two numbers say the fit is right. The largest bank measures 77.4 × 41.2 m and
 holds four courts at **19.3 m per bay**, against 18.3 m for a tennis court with
 its run-off. And the single separate court fits its rectangle at **fill 1.01**.
 
-**One label for three banks, deliberately.** The big bank is plainly tennis and
-the other two are banks of smaller courts, but which is which was not
-established, so the cluster carries the amenity list's own wording —
-*"Pickleball & Tennis"* — which is true of all of it. The separate court is the
-**Multi-Purpose Court**, confirmed by Karen.
+**Which bank is which: settled.** Minto's published amenity plan labels the
+western bank **Tennis** and the eastern group **Pickleball**, with the Community
+Services Building standing between them. That split matches this geometry
+exactly: court 1 runs from −111 to −34 m east, then a **38 m gap** — the
+building — then courts 2 and 3 run from +4 to +87 m east with only 5 m between
+them. West of the gap is tennis, east of it is pickleball, and each bank is named
+individually in `town_center_courts.json`.
+
+**One label for three banks, still** — but now as a layout decision rather than
+an admission of doubt. At community scale the tennis and pickleball centroids are
+115 m apart, a few millimetres on the printed sheet, so two labels would collide
+and read worse than one true one. *"Pickleball & Tennis"* is true of all of it.
+The separate court is the **Multi-Purpose Court**, confirmed by Karen.
 
 A fifth blue blob 230 m east passed the colour test and was **rejected**: it
 sits among houses, is 21.8 × 19.2 m, nearly square, and fits its rectangle at
@@ -695,18 +768,22 @@ Nothing blocking — these are map polish.
       the grocery tenant can be named on screen.
 - [x] The Town Center buildings. Five indicative masses are on the map now,
       measured off the verified aerial to about ±5 m — see "Town Center
-      buildings" below for why nothing more exact was possible. Follow-up for
-      Karen: **four of the five are unnamed**, because only the fitness centre
-      is independently confirmed. She can name them from
-      `town-center-buildings-key.png`.
-- [x] Pickleball and tennis. Karen asked for these by name. Four court areas
-      are machine-fitted onto the map to about ±3 m, and she confirmed the
-      separate one as the Multi-Purpose Court. Open: which of the two smaller
-      banks is pickleball and which is tennis — the cluster carries one
-      combined label until that is settled.
-- [ ] Phase 4A (#4,001–4,515) and Phase 4B (#4,318–4,509) have overlapping
-      Minto lot numbers in county data. Interleaved numbering, or lots sitting
-      across a plat line?
+      buildings" below for why nothing more exact was possible. **All five are
+      named**: Karen named blocks 1–4 from `town-center-buildings-key.png`, and
+      block 5 is the Bandshell on two independent confirmations.
+      Still open: the *Community Services Building* on Minto's plan, between the
+      court banks, has never been measured and is not on the map.
+- [x] Pickleball and tennis. Four court areas are machine-fitted onto the map to
+      about ±3 m. Karen confirmed the separate one as the Multi-Purpose Court,
+      and Minto's amenity plan settles the rest: **western bank tennis, eastern
+      banks pickleball**, matching the measured 38 m gap between them. The map
+      keeps one combined label for layout reasons, not for doubt.
+- [x] Phase 4A and Phase 4B looked like they had overlapping Minto lot numbers.
+      They do not — the county data was asked directly. **4A owns 4001–4317 and
+      4510–4515; 4B owns 4318–4509 contiguously, and they share not one number.**
+      The apparent overlap was our own doing: printing min–max only made 4A's
+      six-lot tail swallow the whole of 4B. Now fixed everywhere — see
+      "Lot numbers are runs, not spans" below.
 - [ ] Karen says the block the builder's plan still marks "Future Development",
       just west of the Stay & Play cottages, is also Stay & Play. It is not in
       the public record, so no area is drawn for it — confirm the extent.

@@ -42,7 +42,7 @@ import re
 import sys
 from pathlib import Path
 
-from fmt import ident, ident_range, qty
+from fmt import ident, ident_range, ident_runs, qty
 
 HERE = Path(__file__).parent
 FEATURES = HERE / "data" / "features.json"
@@ -91,11 +91,19 @@ class Lookup:
         return None
 
     def by_lot(self, lot: int) -> list[dict]:
-        """Lot numbers are only unique from Phase 4 up; 1-381 spans Phase 1-3."""
+        """Lot numbers are only unique from Phase 4 up; 1-381 spans Phase 1-3.
+
+        Matched against the runs a phase actually owns, not its outer span:
+        Phase 4A runs 4001-4317 and 4510-4515, so lot 4400 belongs to Phase 4B
+        alone even though it falls inside 4A's first and last number.
+        """
         hits = []
         for p in self.phases:
-            rng = p.get("lot_number_range")
-            if rng and rng[0] <= lot <= rng[1]:
+            runs = p.get("lot_number_runs")
+            if not runs:
+                rng = p.get("lot_number_range")
+                runs = [rng] if rng else []
+            if any(lo <= lot <= hi for lo, hi in runs):
                 hits.append(p)
         return hits
 
@@ -133,9 +141,10 @@ def describe(p: dict) -> str:
         f"  recorded plat     PB {p['plat_book']}/{p['plat_page']}",
         f"  platted homesites {qty(p['lot_count'])}   ({p['acres']:,.1f} acres)",
     ]
-    rng = p.get("lot_number_range")
-    if rng:
-        lines.append(f"  lot numbers       {ident_range(rng[0], rng[1], dash='-')}"
+    runs = p.get("lot_number_runs") or ([p["lot_number_range"]]
+                                        if p.get("lot_number_range") else [])
+    if runs:
+        lines.append(f"  lot numbers       {ident_runs(runs, dash='-')}"
                      "   (Minto lot numbers, not addresses)")
     for st in p.get("streets", []):
         r = st.get("address_range")

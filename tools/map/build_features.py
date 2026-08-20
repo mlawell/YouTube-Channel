@@ -28,6 +28,8 @@ from pathlib import Path
 from shapely.geometry import mapping, shape
 from shapely.ops import unary_union
 
+from fmt import ident_runs
+
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 
@@ -396,33 +398,76 @@ class PhaseIndex:
         return self.lookup(p.x, p.y)
 
 
-def build_lot_ranges(lot_ids: list[str]) -> dict:
-    """Lot-number span for a phase, ignoring stray misfiled lot numbers.
+def kept_lot_numbers(lot_ids: list[str]) -> tuple[list[int], int, int]:
+    """The lot numbers a phase can honestly claim, dropping stray misfilings.
 
     From Phase 4 onward Minto prefixes lot numbers with the phase (4xxx ...
     10xxx), so a phase's lots cluster in one thousands band. A handful of
     county records carry a number from a different band -- keeping them would
     stretch the printed range far past reality (Phase 6B & 6C reads 6201-9400
-    on the raw data). Report the dominant band and count the strays.
+    on the raw data). Return the dominant band and count the strays.
     """
     nums = sorted(int(x) for x in lot_ids if x and str(x).isdigit())
     if not nums or len(nums) < max(5, 0.25 * len(lot_ids)):
         # Too few county records carry a number to state a range honestly.
-        return {"lot_number_range": None, "numbered_lots": len(nums),
-                "lot_number_outliers": 0}
+        return [], len(nums), 0
     bands = Counter(n // 1000 for n in nums)
     if len(bands) > 1 and max(nums) >= 1000:
         band, count = bands.most_common(1)[0]
         # Only trust the band if it clearly dominates; otherwise report as-is.
         if count / len(nums) >= 0.9:
             kept = [n for n in nums if n // 1000 == band]
-            return {
-                "lot_number_range": [kept[0], kept[-1]],
-                "numbered_lots": len(nums),
-                "lot_number_outliers": len(nums) - len(kept),
-            }
-    return {"lot_number_range": [nums[0], nums[-1]], "numbered_lots": len(nums),
-            "lot_number_outliers": 0}
+            return kept, len(nums), len(nums) - len(kept)
+    return nums, len(nums), 0
+
+
+def lot_number_runs(nums: list[int], foreign: set[int]) -> list[list[int]]:
+    """Contiguous runs of lot numbers, split only where another phase stands.
+
+    Phase 4A holds 4001-4317 and then 4510-4515, with Phase 4B's 4318-4509
+    sitting in the gap between them. Reported as a single span, 4A reads
+    '4001-4515' -- not a lie about its own lots, but it silently swallows 192
+    lots belonging to 4B, and it makes a lot-number lookup answer with two
+    phases for every number in between.
+
+    A gap only matters when someone else is standing in it. 4A is also missing
+    4004 and 4117-4120, and nobody else owns those, so splitting there would
+    print noise. Hence: merge across empty gaps, split at occupied ones. No
+    threshold to tune -- the data decides.
+    """
+    if not nums:
+        return []
+    runs: list[list[int]] = []
+    start = prev = nums[0]
+    for n in nums[1:]:
+        if n != prev + 1:
+            runs.append([start, prev])
+            start = n
+        prev = n
+    runs.append([start, prev])
+
+    merged = [runs[0]]
+    for lo, hi in runs[1:]:
+        gap_lo, gap_hi = merged[-1][1] + 1, lo - 1
+        if any(gap_lo <= f <= gap_hi for f in foreign):
+            merged.append([lo, hi])
+        else:
+            merged[-1][1] = hi
+    return merged
+
+
+def build_lot_ranges(lot_ids: list[str], foreign: set[int] | None = None) -> dict:
+    """Lot numbers for one phase: the outer span, and the runs it really owns."""
+    kept, numbered, outliers = kept_lot_numbers(lot_ids)
+    if not kept:
+        return {"lot_number_range": None, "lot_number_runs": [],
+                "numbered_lots": numbered, "lot_number_outliers": 0}
+    return {
+        "lot_number_range": [kept[0], kept[-1]],
+        "lot_number_runs": lot_number_runs(kept, foreign or set()),
+        "numbered_lots": numbered,
+        "lot_number_outliers": outliers,
+    }
 
 
 def centroid_of(geom: dict) -> tuple[float, float] | None:
@@ -593,7 +638,11 @@ def main() -> None:
     tc_homesites = tc.get("cottage_count") if tc else None
 
     phases = []
+    # A phase's lot numbers can only be described honestly against the others':
+    # a gap in one phase's numbering matters when the next phase occupies it.
+    kept_nums = {lab: kept_lot_numbers(lotids[lab])[0] for lab in idx.labels()}
     for lab in idx.labels():
+        foreign = {n for other, v in kept_nums.items() if other != lab for n in v}
         pr = by_id[lab]["properties"]
         geom = shape(by_id[lab]["geometry"])
         county = streets.get(lab, [])
@@ -616,7 +665,7 @@ def main() -> None:
                 "acres": round(acres(geom), 1),
                 "lot_count": (tc_homesites if lab == TOWN_CENTER_LABEL and tc_homesites is not None
                               else len(lots_by_phase[lab])),
-                **build_lot_ranges(lotids[lab]),
+                **build_lot_ranges(lotids[lab], foreign),
                 "centroid": [geom.centroid.x, geom.centroid.y],
                 "bounds": list(geom.bounds),
                 "streets": sorted(merged, key=lambda d: d["name"]),
@@ -625,11 +674,31 @@ def main() -> None:
             }
         )
         p = phases[-1]
-        rng = p["lot_number_range"]
+        runs = p["lot_number_runs"]
         kind = "homesites" if p["kind"] == "phase" else "cottages"
+        shown = "#" + ident_runs(runs, dash="-") if runs else "unnumbered"
         print(f"  {lab:<15}{p['plat']:<10}{p['acres']:>7.1f} ac{p['lot_count']:>5} {kind:<10}"
-              f"{'#' + str(rng[0]) + '-' + str(rng[1]) if rng else 'unnumbered':<14}"
-              f"{len(p['streets'])} streets")
+              f"{shown:<24}{len(p['streets'])} streets")
+
+    # Two phases claiming the same lot number would make every lookup ambiguous.
+    # Below 1000 that is expected and already documented: Minto only began
+    # prefixing lot numbers with the phase at Phase 4, so Phases 1-3 each
+    # restart at 1. Above 1000 a collision would be a real fault.
+    seen: dict[int, str] = {}
+    clashes = []
+    for lab, nums in kept_nums.items():
+        for n in sorted(set(nums)):
+            if n < 1000:
+                continue
+            if n in seen:
+                clashes.append(f"{n} ({seen[n]} / {lab})")
+            seen[n] = lab
+    if clashes:
+        print(f"  !! {len(clashes)} prefixed lot numbers claimed by two phases: "
+              f"{', '.join(clashes[:5])}")
+    twice = sum(len(v) - len(set(v)) for v in kept_nums.values())
+    if twice:
+        print(f"  {twice} lot numbers carry two county records inside one phase")
 
     print("context")
     hwy = [
