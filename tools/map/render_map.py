@@ -117,13 +117,20 @@ PHASE_SAT_SPREAD = 0.24    # saturation ramp across them, for extra separation
 MIN_BG_DELTA = 30.0        # every fill must clear the paper by at least this
 
 # The Town Center is not a phase and must not look like one, or the map
-# reintroduces exactly the "Phase 5A" confusion it exists to clear up. It gets a
-# warm neutral outside every phase hue, and the cottages inside it a lighter
-# relative of the same, so the two read as related but distinct.
-TOWN_CENTER_FILL = "#8C7B62"
-COTTAGE_FILL = "#C2A878"
-POND_FILL = "#8FB8D4"
-POND_EDGE = "#5C87A8"
+# reintroduces exactly the "Phase 5A" confusion it exists to clear up. It takes
+# a dark slate that no phase occupies - phases are held between lightness 0.34
+# and 0.62, so going darker and greyer than any of them reads as "civic" rather
+# than as another neighbourhood. The cottages inside it take a warm gold: they
+# are a different thing from the amenity tract and need to be told apart at a
+# glance, so the pair is separated by lightness, hue and saturation at once
+# (deltaE 70) rather than being two tints of one brown.
+TOWN_CENTER_FILL = "#4E5A52"
+COTTAGE_FILL = "#F4D06B"
+# Ponds take the same blue as West Bay and the Intracoastal. They are the same
+# substance, and giving them a colour of their own made the map look like it
+# was drawing two different kinds of thing.
+POND_FILL = WATER
+POND_EDGE = WATER_EDGE
 
 
 def _hls(h_deg: float, light: float, sat: float) -> str:
@@ -138,6 +145,17 @@ def is_phase(label: str) -> bool:
 def phase_number(label: str) -> int:
     m = re.search(r"(\d+)", label)
     return int(m.group(1)) if m else 0
+
+
+def colour_family(label: str):
+    """Grouping key for the palette check.
+
+    Sub-phases of one number are *meant* to look related, so they are checked
+    against a lower bar. Everything that is not a phase gets its own family -
+    the Town Center and the cottages are different things and have to be
+    unmistakable from each other, not merely tellable apart.
+    """
+    return phase_number(label) if is_phase(label) else label
 
 
 def build_palette(labels: list[str]) -> dict[str, str]:
@@ -224,12 +242,12 @@ def palette_report(palette: dict[str, str]) -> None:
     problems = []
     for lab, hexa in items:
         l1 = _lab(hexa)
-        fam = phase_number(lab)
+        fam = colour_family(lab)
         d_bg = math.dist(l1, bg)
         worst_bg = min(worst_bg, d_bg)
         if d_bg < MIN_BG_DELTA:
             problems.append(f"{lab} too pale against the paper ({d_bg:.1f})")
-        cross = [(o, math.dist(l1, _lab(h))) for o, h in items if phase_number(o) != fam]
+        cross = [(o, math.dist(l1, _lab(h))) for o, h in items if colour_family(o) != fam]
         near, d = min(cross, key=lambda t: t[1])
         worst_cross = min(worst_cross, d)
         if d < 20:
@@ -238,7 +256,7 @@ def palette_report(palette: dict[str, str]) -> None:
                 ("  <-- too close" if d < 20 else "")
         print(f"  {lab:<14}{hexa:<10}{d_bg:>9.1f}   {near:<22}{d:5.1f}{flags}")
         for o, h in items:
-            if phase_number(o) == fam and o != lab:
+            if colour_family(o) == fam and o != lab:
                 dw = math.dist(l1, _lab(h))
                 worst_within = min(worst_within, dw)
                 if dw < 8:
@@ -497,17 +515,20 @@ def draw_base(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
 
 
 def draw_ponds(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
-    """Stormwater ponds, over the phase fills so they read as water not as land.
+    """Stormwater ponds, above the lot linework so they read as water.
 
-    They sit above the phase colour deliberately: a pond inside a phase is a
-    hole in the developable land, and drawing it underneath would let the
-    phase tint wash it out into just another shade of the neighbourhood.
+    Z-order matters more than it looks here. A pond is a hole in the
+    developable land, so it has to sit above the lots, not just above the phase
+    fill - drawn underneath, the ponds in the densely platted western phases
+    disappear entirely under the lot hatching while the ones in open ground
+    still show, which reads as "the west has no lakes" rather than as a
+    drawing-order artefact. It stays below the roads, which really do cross it.
     """
     if not s.ponds:
         return
     ax.add_collection(PolyCollection(
         s.ponds, facecolors=POND_FILL, edgecolors=POND_EDGE,
-        linewidths=0.7 * lw_scale, alpha=0.95, zorder=2.9))
+        linewidths=0.7 * lw_scale, alpha=0.95, zorder=3.15))
 
 
 def draw_town_center(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
@@ -877,8 +898,8 @@ def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
                              edgecolor=shade(COTTAGE_FILL, light_delta=-0.28), lw=1.0, alpha=0.9,
                              label=f"{s.cottages_label}   (in PB 32/81)"))
     if s.ponds:
-        handles.append(MPoly([(0, 0)], facecolor=POND_FILL, edgecolor=POND_EDGE, lw=1.0,
-                             alpha=0.95, label="Lakes & stormwater ponds"))
+        handles.append(MPoly([(0, 0)], facecolor=POND_FILL, edgecolor=WATER_EDGE, lw=1.0,
+                             alpha=0.95, label="Water \u2014 bay, lakes & ponds"))
     handles.append(
         Line2D([0], [0], marker="o", ms=8, mfc=CORAL, mec="white", mew=1.6, ls="none",
                label="Landmark  (\u201c?\u201d = awaiting confirmation)")
