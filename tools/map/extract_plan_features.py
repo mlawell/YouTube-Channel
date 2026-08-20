@@ -126,9 +126,20 @@ def colour_masks(rgb: np.ndarray, flip: bool = True) -> dict[str, np.ndarray]:
     yellow = (r > 200) & (g > 180) & (b < 165) & (r - b > 60) & (abs(r - g) < 45)
     cyan = (b > 150) & (g > 150) & (b - r > 25) & (g - r > 10)
     orange = (r > 190) & (g > 90) & (g < 180) & (b < 120)
+    developed = (pink | yellow | cyan | orange) & ~chrome
 
     out = {
-        "developed": (pink | yellow | cyan | orange) & ~chrome,
+        "developed": developed,
+        # Ponds are the only blue-dominant fill on the sheet.
+        #
+        # The Caribbean Collection's homesites also print in a pale cyan that
+        # passes this test, so a few villa pods come through as "ponds". Do not
+        # try to fix that here: excluding everything the lot masks claim also
+        # strips the lighter shallows and anti-aliased edges of real ponds, and
+        # costs about 70% of the mapped water. It is settled downstream instead,
+        # where the recorded plats can arbitrate - a blob sitting almost
+        # entirely on recorded homesites is not a pond, and the county's plat is
+        # a better authority on that than any colour threshold.
         "water": (b > 130) & (b - r > 22) & (b - g > 8) & (r > 70) & (b < 235) & ~chrome,
         # Amenity buildings print as flat mid-tone warm greys and taupes, well
         # darker than both paper and lot fill and with far less red bias.
