@@ -647,10 +647,26 @@ def cmd_buildings(args, fit, masks) -> int:
     and deliberately discard Minto's outline, so what our map draws is our own
     generalisation rather than a trace of their drawing.
 
-    Detection runs on a high-DPI render of the Town Center window only.  At
-    fit resolution these buildings are a handful of pixels across and merge
-    into one blob; the transform is reused unchanged, so nothing about the
-    georeferencing depends on the finer raster.
+    NOT WIRED INTO THE RENDER, AND DELIBERATELY SO. The output was checked by
+    overlaying it on the Town Center aerial, which is independently
+    georeferenced and verified against the Bandshell. The boxes land on the
+    pickleball courts, the pool deck and a patch of empty trees, and miss every
+    actual building. Two further attempts failed the same check:
+
+      * Bay County's Building Footprints layer (Basic_Layers/MapServer/21) has
+        no coverage of the Town Center - its footprints in this area stop east
+        of longitude -85.863, around Highway 79. OpenStreetMap has none either.
+      * Detecting roofs on the aerial instead picks up parking rows and bare
+        graded earth, and merges large roofs into adjacent pavement.
+
+    The reason this is hard is visible in the plan itself: at the Town Center
+    the sheet is a textured illustration, not flat vector fills - a colour
+    census of that window returns twenty-plus blended tones, none over 5%, so
+    there is no clean "building" colour to select.
+
+    So the Town Center is rendered as a named amenity list against its one
+    confirmed coordinate (draw_amenity_labels), not as footprints. Do not wire
+    this output into the map without re-running that overlay check first.
     """
     import cv2
     from shapely.geometry import Polygon, shape as shp

@@ -73,6 +73,43 @@ def split_town_center(lots_geoms: list[dict]) -> dict:
     }
 
 
+def town_center_buildings() -> list[dict]:
+    """Turn the measured building blocks into polygons.
+
+    Kept parametric (centre, length, width, angle in metres) rather than stored
+    as rings because that is the form they were measured in, and because it
+    stays legible: a reviewer can see that a block is 34 x 18 m and check it,
+    which a list of seven-decimal corners does not allow.
+
+    See town_center_buildings.json for why these are photo-interpreted rather
+    than taken from a dataset -- briefly, no authoritative source covers this
+    ground, and roof and asphalt are indistinguishable in the imagery, so no
+    threshold can outline them.
+    """
+    cfg = json.loads((HERE / "town_center_buildings.json").read_text(encoding="utf-8"))
+    lat0, lon0 = cfg["origin"]["lat"], cfg["origin"]["lon"]
+    m_lon = 111_320.0 * math.cos(math.radians(lat0))
+    out = []
+    for b in cfg["blocks"]:
+        a = math.radians(b["angle_deg"])
+        ca, sa = math.cos(a), math.sin(a)
+        hl, hw = b["length_m"] / 2, b["width_m"] / 2
+        ring = []
+        for dx, dy in ((-hl, -hw), (hl, -hw), (hl, hw), (-hl, hw), (-hl, -hw)):
+            e = b["east_m"] + dx * ca - dy * sa
+            n = b["north_m"] + dx * sa + dy * ca
+            ring.append([round(lon0 + e / m_lon, 7), round(lat0 + n / M_PER_DEG_LAT, 7)])
+        out.append({
+            "name": b["name"],
+            "confirmed_name": b["confirmed_name"],
+            "area_m2": round(b["length_m"] * b["width_m"]),
+            "geometry": {"type": "Polygon", "coordinates": [ring]},
+        })
+    print(f"town center: {len(out)} measured building blocks "
+          f"({sum(b['area_m2'] for b in out):,} m2), accuracy {cfg['_accuracy'][:6]}")
+    return out
+
+
 def reconcile_ponds(ponds: list, homesites: list, tol: float = 0.02,
                     drop_at: float = 0.85, max_shift_m: float = 15.0):
     """Settle pond geometry against the recorded homesites, which outrank it.
@@ -625,6 +662,7 @@ def main() -> None:
             "cottage_count": tc.get("cottage_count", 0),
             "cottage_hull": tc.get("cottage_hull"),
             "cottage_centroid": tc.get("cottage_centroid"),
+            "buildings": town_center_buildings(),
         },
         "ponds": ponds,
         "highways": hwy,

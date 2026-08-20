@@ -1,0 +1,88 @@
+{
+  "_what": "Town Center building massing, photo-interpreted from georeferenced aerial imagery.",
+
+  "_why_this_file_exists": [
+    "Karen asked for the Town Center buildings and pointed out that they appear on Minto's",
+    "site plan. They do -- but Minto's plan is licensed to her for use as-is, and its footer",
+    "forbids reproducing, altering or deriving from it, so it cannot be traced. Everything",
+    "below was measured off the ground instead."
+  ],
+
+  "_why_not_automatic": [
+    "Every authoritative source was checked first and none covers this ground:",
+    "  * Bay County GIS building footprints (Basic_Layers/MapServer/21) return 96 features",
+    "    in the query box, all east of lon -85.863 near Hwy 79. No Town Center coverage.",
+    "  * OpenStreetMap has zero buildings in the Town Center box.",
+    "  * Extracting them from Minto's plan by colour failed: a 600 dpi crop of that window",
+    "    has 20+ blended tones with none over 5%, because it is a textured illustration",
+    "    rather than flat vector fill. The boxes that came out landed on the pickleball",
+    "    courts and the pool deck.",
+    "Automatic extraction from the aerial also fails, and it fails for a measurable reason:",
+    "sampled off the imagery, a white roof reads 203, the bandshell plaza 186, a blue-grey",
+    "roof 183 and parking asphalt 159, all at saturation 0.05-0.24. Brightness separates",
+    "built surfaces from vegetation (62) and water (39) cleanly, and nothing separates a",
+    "roof from the car park beside it. So a reader has to say where the building ends --",
+    "which is exactly how OpenStreetMap building footprints are made."
+  ],
+
+  "_how_measured": [
+    "Google satellite imagery, georeferenced against the same 73-pond control network used",
+    "for the marina pad, the dog park clearing and the kayak launch; this shot solves at",
+    "1.0146 m/px. A metre grid was drawn from that georeference and each block read against",
+    "it, then drawn back onto the imagery and checked (tools/map/work/_tcmass.py).",
+    "Positions are metres east/north of the Town Center marker at the origin below."
+  ],
+
+  "_accuracy": "+/-5 m. The imagery is 1.01 m/px and Google's own place markers sit over part of the fitness centre. Published as indicative massing, never as survey, and styled so it reads as approximate.",
+
+  "_naming": [
+    "Only the fitness centre is named, because Google independently places its own",
+    "'Fins Up! Fitness Center' marker on that roof. The other three are real buildings",
+    "measured in the right place, but nothing confirms which business each one is, so they",
+    "stay unnamed. Reading names off the arrangement of Minto's plan would be a guess",
+    "wearing a label, and the amenity list is printed alongside instead."
+  ],
+
+  "_dropped": [
+    "A fifth block south of the poolside pavilion was measured and then dropped: that ground",
+    "is bright paving plus one of Google's place icons, and a roof could not be told from a",
+    "pool deck there. An unverifiable block is left out rather than shipped."
+  ],
+
+  "origin": { "lat": 30.30796, "lon": -85.86546, "what": "Google's Town Center place marker" },
+
+  "blocks": [
+    {
+      "name": "Fins Up! Fitness Center",
+      "confirmed_name": true,
+      "east_m": -19.0, "north_m": 1.0,
+      "length_m": 34.0, "width_m": 18.0, "angle_deg": -33.0
+    },
+    {
+      "name": null,
+      "confirmed_name": false,
+      "east_m": 18.0, "north_m": -22.0,
+      "length_m": 42.0, "width_m": 19.0, "angle_deg": -30.0
+    },
+    {
+      "name": null,
+      "confirmed_name": false,
+      "east_m": 43.6, "north_m": -82.0,
+      "length_m": 58.0, "width_m": 26.0, "angle_deg": -80.0
+    },
+    {
+      "name": null,
+      "confirmed_name": false,
+      "east_m": -78.0, "north_m": -124.0,
+      "length_m": 22.0, "width_m": 18.0, "angle_deg": -35.0
+    }
+  ],
+
+  "_not_included": [
+    "The tennis and pickleball courts are the one Town Center surface with a colour",
+    "signature of their own -- a court samples b-r = +65 against +18 to +28 for roofs and",
+    "asphalt -- so unlike the buildings they could be thresholded and contour-traced",
+    "automatically. They are left out of this pass only because Karen asked for the",
+    "buildings; if the racquet courts are wanted, they can be snapped rather than read."
+  ]
+}

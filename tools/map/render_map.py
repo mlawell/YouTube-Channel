@@ -126,6 +126,14 @@ MIN_BG_DELTA = 30.0        # every fill must clear the paper by at least this
 # (deltaE 70) rather than being two tints of one brown.
 TOWN_CENTER_FILL = "#4E5A52"
 COTTAGE_FILL = "#F4D06B"
+
+# The measured Town Center buildings sit on top of that dark slate tract, so
+# they take a near-white warm grey: it reads as "building" at a glance and has
+# the contrast to survive being 2 mm across on a 36-inch sheet. The edge is
+# deliberately soft rather than a crisp survey line, because these are good to
+# about 5 m and should not look sharper than they are.
+BUILDING_FILL = "#EDE7DA"
+BUILDING_EDGE = "#8A8578"
 # Ponds take the same blue as West Bay and the Intracoastal. They are the same
 # substance, and giving them a colour of their own made the map look like it
 # was drawing two different kinds of thing.
@@ -411,6 +419,11 @@ class Scene:
         self.cottage_hull = [self.rot(project_ring(r)) for r in rings(tc.get("cottage_hull") or {})]
         cc = tc.get("cottage_centroid")
         self.cottage_xy = self.rot([tuple(cc)], project=True)[0] if cc else None
+        self.tc_buildings = [
+            (b.get("name"), b.get("confirmed_name", False),
+             [self.rot(project_ring(r)) for r in rings(b["geometry"])])
+            for b in tc.get("buildings", [])
+        ]
         self.creeks = clip_to(
             [self.rot(project_ring(l)) for g in f["creeks"] for l in lines(g)],
             self.extent, 0.06,
@@ -551,10 +564,36 @@ def draw_town_center(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
             s.cottage_lots, facecolors=COTTAGE_FILL if on else muted(COTTAGE_FILL),
             edgecolors=shade(COTTAGE_FILL, light_delta=-0.28),
             linewidths=0.5 * lw_scale, alpha=0.95 if on else 0.8, zorder=2.7))
+    draw_tc_buildings(ax, s, on=on, lw_scale=lw_scale)
     if label and s.cottage_xy and on:
         ax.annotate(s.cottages_label, s.cottage_xy, ha="center", va="center",
                     fontsize=fontsize, fontproperties=F_BOLD, color="#4A3F2C", zorder=6,
                     path_effects=[pe.withStroke(linewidth=fontsize * 0.5, foreground="white")])
+
+
+def draw_tc_buildings(ax, s: Scene, *, on: bool = True, lw_scale: float = 1.0) -> None:
+    """The Town Center buildings, drawn as measured massing.
+
+    Karen asked for these twice and noted they appear on Minto's site plan.
+    They do, but that plan is licensed for use as-is and forbids derivative
+    work, so these were measured off georeferenced aerial imagery instead --
+    see town_center_buildings.json for the full derivation and for why no
+    authoritative dataset and no automatic extraction could supply them.
+
+    They are good to about 5 m, so they are drawn to *look* like massing: solid
+    enough to read as buildings at a glance, without the crisp survey edge that
+    would claim more precision than was measured. That is the same rule the
+    rest of the map follows -- an unverified thing has to look unverified.
+    """
+    if not s.tc_buildings:
+        return
+    rings_ = [r for _, _, rr in s.tc_buildings for r in rr]
+    if not rings_:
+        return
+    ax.add_collection(PolyCollection(
+        rings_, facecolors=BUILDING_FILL if on else muted(BUILDING_FILL),
+        edgecolors=BUILDING_EDGE, linewidths=0.9 * lw_scale,
+        alpha=0.95 if on else 0.75, zorder=2.75))
 
 
 def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
@@ -687,7 +726,16 @@ def draw_overlays(ax, s: Scene, overlays: set[str], *, lw_scale: float = 1.0) ->
 
 def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float = 1.0) -> None:
     """Draw landmark pins with labels. Call *after* set_view -- placement is
-    collision-aware and needs the final axes limits."""
+    collision-aware and needs the final axes limits.
+
+    Labels are tried all round the pin, nearest position first, and any label
+    that ends up off its pin gets a leader line. Both matter in the amenity
+    core, where the Bandshell, Paradise Pool, the kayak launch, the cottages
+    and the dog park sit within a few hundred metres of each other. The
+    previous version could only push a label straight down, with nothing
+    joining it back to its marker -- so the kayak launch ended up apparently
+    floating in open ground well south of the water it launches into.
+    """
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
     span_x, span_y = x1 - x0, y1 - y0
@@ -703,24 +751,58 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
         visible.append((fy, fx, x, y, l))
     visible.sort(key=lambda t: -t[0])
 
-    gap = 0.036 * lw_scale
-    placed: list[tuple[float, float]] = []
+    ext = ax.get_window_extent()
+    ax_w_pt = max(ext.width / ax.figure.dpi * 72, 1.0)
+    ax_h_pt = max(ext.height / ax.figure.dpi * 72, 1.0)
+    fs = 11 * lw_scale
+    h = fs * 1.7 / ax_h_pt
+
+    placed: list[tuple[float, float, float, float]] = []
     for fy, fx, x, y, l in visible:
         ax.plot([x], [y], marker="o", ms=9 * lw_scale, mfc=CORAL, mec="white",
                 mew=2.0 * lw_scale, zorder=7)
-        # Near the right edge the label would run off the map (or under the
-        # info panel), so hang it off the left of the pin instead.
-        flip = fx > 0.70
-        lx = fx - 0.012 if flip else fx + 0.012
-        ly = fy + 0.016
-        while any(abs(ly - py) < gap and abs(lx - px) < 0.24 for px, py in placed):
-            ly -= gap
-        placed.append((lx, ly))
         label = l["short"] + ("" if l.get("confirmed") else " ?")
+        w = len(label) * fs * 0.56 / ax_w_pt
+
+        # Near the right edge a label would run off the map or under the info
+        # panel, so try the left of the pin first there.
+        sides = (-1, 1) if fx > 0.70 else (1, -1)
+        chosen = None
+        for step in range(8):
+            r = 0.010 + step * 0.024
+            for dy_mul in (0.0, 0.8, -0.8, 1.7, -1.7):
+                for side in sides:
+                    lx, ly = fx + side * r, fy + dy_mul * r
+                    bx = lx - w if side < 0 else lx
+                    box = (bx - 0.004, ly - h / 2, bx + w + 0.004, ly + h / 2)
+                    if box[0] < 0.004 or box[2] > 0.996 or box[1] < 0.004 or box[3] > 0.996:
+                        continue
+                    if any(box[0] < q[2] and q[0] < box[2]
+                           and box[1] < q[3] and q[1] < box[3] for q in placed):
+                        continue
+                    chosen = (lx, ly, side, box)
+                    break
+                if chosen:
+                    break
+            if chosen:
+                break
+        if chosen is None:
+            lx, ly, side = fx + 0.012, fy + 0.016, 1
+            chosen = (lx, ly, side, (lx, ly - h / 2, lx + w, ly + h / 2))
+        lx, ly, side, box = chosen
+        placed.append(box)
+
+        # A displaced label is ambiguous without a leader; a touching one is
+        # cluttered by it. Only draw the line once the label has actually moved.
+        if math.hypot((lx - fx) * span_x / span_y, ly - fy) > 0.030:
+            ax.plot([x, x0 + lx * span_x], [y, y0 + ly * span_y],
+                    color=DEEP, lw=0.8 * lw_scale, alpha=0.75, zorder=7.2,
+                    solid_capstyle="round")
+
         t = ax.text(
             x0 + lx * span_x, y0 + ly * span_y, label,
-            fontproperties=F_BOLD, fontsize=11 * lw_scale, color=INK, zorder=7.5,
-            ha="right" if flip else "left", va="center",
+            fontproperties=F_BOLD, fontsize=fs, color=INK, zorder=7.5,
+            ha="right" if side < 0 else "left", va="center",
             path_effects=[pe.withStroke(linewidth=3.5 * lw_scale, foreground="white")],
         )
         t.set_clip_on(True)
@@ -751,12 +833,22 @@ def draw_street_labels(ax, s: Scene, *, fontsize: float = 5.0,
         t.set_clip_box(ax.bbox)
 
 
-def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0) -> None:
+def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
+                        corner: str = "auto") -> None:
     """Name the amenity core on a detailed map.
 
-    Only the Town Center point is a confirmed coordinate, so the individual
-    amenities are listed against it in a leader-lined block rather than pinned
-    to invented positions.
+    Only one Town Center building has a confirmed identity (Google puts its own
+    marker on the fitness centre), so the rest of the amenities are listed
+    against the tract on a leader rather than attached to a particular roof.
+    Guessing which measured block is the theatre would look authoritative and
+    be a guess.
+
+    The block is parked in a corner rather than hung off the pin. Hanging it
+    off the pin put it straight over the Town Center on the zoomed frame,
+    hiding the very thing being named, and the list is tall enough that no
+    fixed offset stays clear at every zoom. `corner` is explicit where the
+    layout already owns some corners -- the video frames carry a locator inset
+    top-left and an info panel down the right, which "auto" cannot know about.
     """
     c = s.landmark("Town Square Amenity")
     if not c or not s.meta.get("amenities"):
@@ -765,15 +857,26 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0) -> None:
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
 
-    # Keep the whole block inside the axes -- it hangs below-left of the pin,
-    # and the Town Center sits low enough that it would otherwise be clipped.
-    ax_h_pt = ax.get_window_extent().height / ax.figure.dpi * 72
-    block_frac = (len(names) + 1) * fontsize * 1.55 / max(ax_h_pt, 1)
-    top_frac = (c[1] - y0) / (y1 - y0) - 0.02
-    top_frac = min(max(top_frac, block_frac + 0.03), 0.98)
+    if corner == "auto":
+        # Just below-left of the pin, clamped inside the axes. On a big sheet
+        # this is the tidy option: the block sits beside what it names on a
+        # short leader. It only fails when the map is zoomed right into the
+        # tract, where a near-pin block covers the subject -- hence `corner`.
+        ax_h_pt = ax.get_window_extent().height / ax.figure.dpi * 72
+        block_frac = (len(names) + 1) * fontsize * 1.55 / max(ax_h_pt, 1)
+        ly = min(max((c[1] - y0) / (y1 - y0) - 0.02, block_frac + 0.03), 0.98)
+        tx, ty = c[0] - (x1 - x0) * 0.045, y0 + ly * (y1 - y0)
+        ha, va = "right", "top"
+    else:
+        vert, horiz = corner.split("-")
+        right, top = horiz == "right", vert == "top"
+        lx = 0.985 if right else 0.015
+        # Bottom placements clear the scale bar, which is drawn afterwards along
+        # the bottom-left and would otherwise be struck through the list.
+        ly = 0.975 if top else 0.075
+        tx, ty = x0 + lx * (x1 - x0), y0 + ly * (y1 - y0)
+        ha, va = ("right" if right else "left"), ("top" if top else "bottom")
 
-    tx = c[0] - (x1 - x0) * 0.045
-    ty = y0 + top_frac * (y1 - y0)
     ax.annotate(
         "", xy=c, xytext=(tx, ty),
         arrowprops=dict(arrowstyle="-", color=DEEP, lw=0.9, alpha=0.8), zorder=7.4,
@@ -781,7 +884,7 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0) -> None:
     body = "\n".join("\u00b7 " + a for a in names)
     t = ax.text(
         tx, ty, "AT THE TOWN CENTER\n" + body, fontproperties=F_REG, fontsize=fontsize,
-        color=INK, ha="right", va="top", zorder=7.6, linespacing=1.55,
+        color=INK, ha=ha, va=va, zorder=7.6, linespacing=1.55,
         bbox=dict(boxstyle="round,pad=0.5", fc="white", ec=DIM_EDGE, lw=0.8, alpha=0.93),
     )
     t.set_clip_on(True)
@@ -1399,11 +1502,25 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
 
         box = phase_box(s, lab)
         # Keep the Sales Center and Town Center in shot so viewers stay oriented.
-        anchors = [s.landmark(n) for n in ("Sales Center", "Town Square Amenity")]
+        # Not on the Town Center's own frame though: the Sales Center is 1.5 km
+        # north-east, so anchoring to it zoomed this frame out until the tract
+        # was a thumbnail and its buildings, cottages and pool were invisible --
+        # on the one frame whose whole job is to show what is in there. The
+        # locator inset already says where it sits in the community.
+        anchors = [] if lab == s.tc_label else [
+            s.landmark(n) for n in ("Sales Center", "Town Square Amenity")]
         xs = [box[0], box[2]] + [a[0] for a in anchors if a]
         ys = [box[1], box[3]] + [a[1] for a in anchors if a]
         set_view(ax, (min(xs), min(ys), max(xs), max(ys)), 0.12, aspect)
         draw_landmarks(ax, s, only_anchors=False, lw_scale=1.4)
+        # On the Town Center frame the viewer is looking straight at the amenity
+        # core and will ask what is in it, so name the amenities here. The
+        # buildings themselves are drawn as measured massing by
+        # draw_tc_buildings, but only one of them has a confirmed identity, so
+        # the rest of the names are listed against the tract rather than
+        # attached to a particular roof.
+        if lab == "Town Center":
+            draw_amenity_labels(ax, s, fontsize=11.0, corner="bottom-left")
         scale_bar(ax, s, lw_scale=1.2)
         north_arrow(ax, s, lw_scale=1.2)
         _panel_text(fig, s, p)
