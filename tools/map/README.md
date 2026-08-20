@@ -543,7 +543,9 @@ later and by a different route — see below.
   anyone's imagery or artwork are in the output.
 - **Not complete.** Five blocks, not every structure. A sixth candidate near the
   pool was dropped because a roof could not be told from a pool deck there, and
-  the long retail row east of the square still resists every threshold.
+  the whole Paradise Pool complex south of block 4 was swept again on the metre
+  grid and left out for the same reason: at 1.03 m/px, with Google's own labels
+  printed across it, no roof edge is separable from deck.
 - **Not named,** except one. Only the fitness centre is labelled, because Google
   independently marks it. The other four stay unnamed rather than guessed.
 - **Not a survey.** ±5 m. Do not scale off them.
@@ -571,9 +573,14 @@ altogether. It is now block 5. The other duplicated a block already there.
 
 So state it precisely: automatic extraction here is unreliable and recovers only
 the brightest roofs — but it is not useless, and on the better frame it found a
-building a human reader had walked straight past. The long retail row east of
-the square is plainly a building and still resists every threshold; it is not on
-the map.
+building a human reader had walked straight past.
+
+The long retail row southeast of the square still resists every threshold — but
+it **is** on the map. It is **block 3**, read by hand off the metre grid and
+re-checked against it. An earlier version of this section said it was missing;
+that confused *the threshold does not find it* with *it is not there*. Worth
+recording, because it is the same class of mistake this whole document exists to
+prevent — a confident claim that was never checked.
 
 ## Town Center courts
 

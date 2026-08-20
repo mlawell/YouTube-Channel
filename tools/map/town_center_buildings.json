@@ -37,8 +37,10 @@
     "So the honest statement is narrower than the original one: automatic extraction is",
     "unreliable here and recovers only the brightest roofs, but it is not useless, and it",
     "found the biggest building on the site when a human reader did not.",
-    "The long retail row east of the square is plainly a building and is still not recovered",
-    "by any threshold; it is not in this file."
+    "The long retail row southeast of the square is still not recovered by any threshold.",
+    "It IS in this file, though -- it is block 3, read by hand off the metre grid and",
+    "re-checked against it. An earlier version of this note said it was missing, which",
+    "confused 'the threshold does not find it' with 'it is not there'. It is there."
   ],
 
   "_how_measured": [
@@ -62,7 +64,10 @@
   "_dropped": [
     "A fifth block south of the poolside pavilion was measured and then dropped: that ground",
     "is bright paving plus one of Google's place icons, and a roof could not be told from a",
-    "pool deck there. An unverifiable block is left out rather than shipped."
+    "pool deck there. An unverifiable block is left out rather than shipped.",
+    "The whole Paradise Pool complex south of block 4 was later swept again on the metre grid",
+    "(work/_grid.py -115 -15 -200 -130) and left out for the same reason: at 1.03 m/px, with",
+    "Google's own label text printed across it, no roof edge is separable from pool deck."
   ],
 
   "origin": { "lat": 30.30796, "lon": -85.86546, "what": "Google's Town Center place marker" },
@@ -83,6 +88,7 @@
     {
       "name": null,
       "confirmed_name": false,
+      "_note": "The long retail row southeast of the square. Recorded here because a later pass nearly re-added it as 'missing' -- no brightness threshold recovers it, but it was digitised by hand off the metre grid and it is on the map.",
       "east_m": 43.6, "north_m": -82.0,
       "length_m": 58.0, "width_m": 26.0, "angle_deg": -80.0
     },
