@@ -1,6 +1,6 @@
 # Streets by phase - Latitude Margaritaville Watersound
 
-*Generated 2026-08-19 from Bay County, Florida public records.*
+*Generated 2026-08-20 from Bay County, Florida public records.*
 
 Streets are attributed to a phase geometrically: every county road centreline, address point and parcel site address inside a recorded plat polygon contributes its street name to that phase. Nothing is inferred from a site plan or from a neighbouring phase.
 
@@ -20,7 +20,7 @@ the address range tells you which phase you are looking at.
 | --- | ---: | --- |
 | Coral Reef Way | 3 | Phase 2 8402–8522 · Phase 4A 8600–8815 · Phase 4B 8814–9011 |
 | Landshark Blvd | 3 | Phase 3A 8392–8418 · Phase 3B & 3C 8200–8486 · Phase 3D 8490–8583 |
-| Margaritaville Blvd | 3 | Phase 1 8402–8498 · Phase 2 8459–8631 · Phase 5A3 (no county addresses) |
+| Margaritaville Blvd | 3 | Phase 1 8402–8498 · Phase 2 8459–8631 · Town Center (no county addresses) |
 | Caribbean Soul Way | 2 | Phase 5C 9100–9263 · Phase 7 9300–9389 |
 | Cheeseburger Dr | 2 | Phase 4A 8740–8836 · Phase 4B 8700–8736 |
 | Escape Ave | 2 | Phase 7 9201–9499 · Phase 8 9502–9667 |
@@ -42,7 +42,6 @@ the address range tells you which phase you are looking at.
 | Phase 3D | PB 30/8 | 24.8 | 44 | 340–381 | 1 |
 | Phase 4A | PB 29/23 | 142.2 | 332 | 4001–4515 | 9 |
 | Phase 4B | PB 29/76 | 83.6 | 205 | 4318–4509 | 5 |
-| Phase 5A3 | PB 32/81 | 62.2 | 98 | not yet in county data | 2 |
 | Phase 5B | PB 30/14 | 34.5 | 97 | 5001–5092 | 2 |
 | Phase 5C | PB 30/27 | 184.0 | 248 | 5093–5335 | 3 |
 | Phase 6A | PB 30/39 | 189.6 | 138 | 6001–6132 | 2 |
@@ -51,7 +50,8 @@ the address range tells you which phase you are looking at.
 | Phase 8 | PB 31/71 | 180.2 | 204 | 8001–8200 | 3 |
 | Phase 9 | PB 33/57 | 203.4 | 306 | 9001–9288 | 9 |
 | Phase 10 | PB 33/98 | 236.8 | 355 | 10001–10343 | 8 |
-| **Total** | **16 recorded plats** | **2,123** | **3,229** | | **60 distinct** |
+| Town Center | PB 32/81 | 62.2 | 96 | not yet in county data | 2 |
+| **Total** | **16 recorded plats** | **2,123** | **3,227** | | **60 distinct** |
 
 ## Per phase
 
@@ -138,15 +138,6 @@ the address range tells you which phase you are looking at.
 | Shell Sink Dr | 8600–8676 | parcel site address |
 | Weekend Dr | 8601–8664 | parcel site address |
 | West Bay Pkwy | — | parcel site address |
-
-### Phase 5A3
-
-`LATITUDE AT WATERSOUND AREA 1 PH 5A3` - plat book 32, page 81
-
-| Street | House numbers (county record) | Public-record source |
-| --- | --- | --- |
-| Margaritaville Blvd | — | address point |
-| No Shoes Ct | 8604–8619 | parcel site address |
 
 ### Phase 5B
 
@@ -241,6 +232,15 @@ the address range tells you which phase you are looking at.
 | Lone Palm Ln | 9500–9545 | parcel site address |
 | Parakeet Pl | 9895–9954 | parcel site address |
 | Salty Blvd | 9500–9928 | parcel site address |
+
+### Town Center
+
+`LATITUDE AT WATERSOUND AREA 1 PH 5A3` - plat book 32, page 81
+
+| Street | House numbers (county record) | Public-record source |
+| --- | --- | --- |
+| Margaritaville Blvd | — | address point |
+| No Shoes Ct | 8604–8619 | parcel site address |
 
 ## Sources
 

@@ -43,3 +43,4 @@ knowledge/reference-videos/scored.json
 # under tools/map/preview/ so the map is visible without running anything.
 tools/map/data/
 tools/map/output/
+tools/map/work/

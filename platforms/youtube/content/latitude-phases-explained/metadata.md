@@ -48,7 +48,7 @@ the first one **must** be `0:00`.
 6:35 Phase 3D
 7:00 Phase 4A
 7:30 Phase 4B
-8:00 Phase 5A3 — the phase people say was skipped
+8:00 The Town Center — why there is no Phase 5A
 8:30 Phase 5B
 8:50 Phase 5C
 9:15 Phase 6A — the lowest density in the community
@@ -77,9 +77,10 @@ this video I walk every single phase on a map I built from Bay County's own
 public records.
 
 Two things you'll hear repeated that are simply wrong: Phase 3 isn't one phase
-(it's three separate recorded plats — 3A, 3B & 3C, and 3D), and Phase 5A was
-never "skipped" (5A3 is a recorded plat, book 32 page 81). Both are checkable
-at the Bay County Clerk's office, and I show you the book and page for all 16.
+(it's three separate recorded plats — 3A, 3B & 3C, and 3D), and there is no
+Phase 5A to buy in — the plat numbered 5A3 is the Town Center, with the
+Bandshell and Paradise Pool sitting inside it. Both are checkable at the Bay
+County Clerk's office, and I show you the book and page for all 16 plats.
 
 ⏱️ ABOUT THE INVENTORY NUMBERS: the resale and homesite counts I give in this
 video were true the day I recorded it and they will be different by the time
@@ -161,7 +162,8 @@ Bay County Clerk:
 
 1. Phase 3 is THREE recorded plats, not one — 3A (PB 28/34), 3B & 3C (PB 28/63)
    and 3D (PB 30/8).
-2. Phase 5A was not skipped. 5A3 is a recorded plat — PB 32/81, 98 homesites.
+2. There is no Phase 5A. The plat numbered 5A3 (PB 32/81) is the Town Center
+   — 48 of its 62 acres hold the Bandshell and Paradise Pool.
 
 Want the full-size map? Reply "MAP" and I'll send it.
 
@@ -205,6 +207,6 @@ drops off a cliff.
 | Platform | Cut |
 | --- | --- |
 | Facebook group | Full video, native upload, with the map image as the first comment |
-| Instagram / TikTok | 45-sec vertical: the "Phase 5A3 was never skipped" correction — it's the most shareable beat |
+| Instagram / TikTok | 45-sec vertical: the "there is no Phase 5A, it is the Town Center" correction — it's the most shareable beat |
 | Pinterest | The static poster PNG, linked to the video |
 | Email list | The poster as a PDF lead magnet |

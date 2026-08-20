@@ -25,12 +25,25 @@ PREVIEW = HERE / "preview"
 # Copied verbatim -- small enough to commit, and the actual deliverable.
 VERBATIM = [OUT / "latitude-phase-map-print-36x24.pdf"]
 
+
+def frame(suffix: str) -> Path:
+    """Find a reveal frame by name rather than by its sequence number.
+
+    Frames are numbered by position, so adding or reordering one silently
+    renumbers the rest. Matching on the phase name keeps the preview pointing
+    at the right image instead of quietly skipping it.
+    """
+    hits = sorted((OUT / "frames").glob(f"*_{suffix}.png"))
+    return hits[0] if hits else OUT / "frames" / f"{suffix}.png"
+
+
 # (source, destination, target width)
 ITEMS = [
     (OUT / "latitude-phase-map.png", "latitude-phase-map-preview.png", 1600),
     (OUT / "latitude-phase-map-print-36x24.png", "print-sheet-preview.png", 1600),
-    (OUT / "frames" / "00_all-phases.png", "frame-00-all-phases.png", 1280),
-    (OUT / "frames" / "14_phase-8.png", "frame-14-phase-8.png", 1280),
+    (frame("all-phases"), "frame-00-all-phases.png", 1280),
+    (frame("phase-8"), "frame-phase-8-karen.png", 1280),
+    (frame("towncenter"), "frame-town-center.png", 1280),
     (OUT / "latitude-phase-map-thumbnail.png", "thumbnail-plate.png", 960),
 ]
 

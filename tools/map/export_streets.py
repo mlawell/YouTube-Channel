@@ -208,7 +208,7 @@ def main() -> None:
         (folder / "streets_by_phase.json").write_text(js, encoding="utf-8")
         (folder / "streets_by_phase.md").write_text(md, encoding="utf-8")
         print(f"streets_by_phase.json / .md -> {folder}")
-    print(f"  {idx['totals']['phases']} phases, "
+    print(f"  {idx['totals']['phases']} recorded plats, "
           f"{idx['totals']['distinct_streets']} distinct streets")
     empty = [p["phase"] for p in idx["phases"] if not p["streets"]]
     if empty:

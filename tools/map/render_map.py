@@ -81,15 +81,6 @@ MUTED = "#5C6B70"
 # 3A / 3B & 3C / 3D read as three shades of the same colour. A viewer learns ten
 # colours instead of sixteen and the map teaches the numbering scheme by itself.
 #
-# Hues avoid ~185-265 deg (water) and ~350-15 deg (landmark pins), which leaves
-# two usable arcs and only ~245 deg to fit ten families into. Hue alone is not
-# enough at that spacing -- three of them would land in the greens -- so each
-# family also gets its own base lightness. Hue plus value together is what keeps
-# neighbouring phases apart; `python render_map.py --check-palette` measures it.
-#
-# The assignment is deliberately NOT in phase order: consecutive phase numbers
-# tend to be geographically adjacent, and adjacent regions are exactly the ones
-# that have to be told apart.
 # Hues avoid the pale cyan of water (~194 deg, lightness ~0.78) and the coral of
 # the landmark pins (~6 deg), which leaves little room for ten families -- five
 # of them would otherwise pile into the greens. So each family carries its own
@@ -125,10 +116,23 @@ PHASE_LIGHT_SPREAD = 0.20  # lightness spread across a family's sub-phases
 PHASE_SAT_SPREAD = 0.24    # saturation ramp across them, for extra separation
 MIN_BG_DELTA = 30.0        # every fill must clear the paper by at least this
 
+# The Town Center is not a phase and must not look like one, or the map
+# reintroduces exactly the "Phase 5A" confusion it exists to clear up. It gets a
+# warm neutral outside every phase hue, and the cottages inside it a lighter
+# relative of the same, so the two read as related but distinct.
+TOWN_CENTER_FILL = "#8C7B62"
+COTTAGE_FILL = "#C2A878"
+POND_FILL = "#8FB8D4"
+POND_EDGE = "#5C87A8"
+
 
 def _hls(h_deg: float, light: float, sat: float) -> str:
     r, g, b = colorsys.hls_to_rgb((h_deg % 360) / 360.0, light, sat)
     return "#%02X%02X%02X" % (round(r * 255), round(g * 255), round(b * 255))
+
+
+def is_phase(label: str) -> bool:
+    return label.startswith("Phase ")
 
 
 def phase_number(label: str) -> int:
@@ -137,11 +141,19 @@ def phase_number(label: str) -> int:
 
 
 def build_palette(labels: list[str]) -> dict[str, str]:
-    """label -> hex. Sub-phases of one number share a hue and vary in lightness."""
+    """label -> hex. Sub-phases of one number share a hue and vary in lightness.
+
+    The Town Center is handled outside the families: it is a recorded plat but
+    not a neighbourhood, and giving it a phase hue would put it back in the
+    sequence the map is trying to take it out of.
+    """
     families: dict[int, list[str]] = {}
-    for lab in labels:
-        families.setdefault(phase_number(lab), []).append(lab)
     out: dict[str, str] = {}
+    for lab in labels:
+        if is_phase(lab):
+            families.setdefault(phase_number(lab), []).append(lab)
+        else:
+            out[lab] = TOWN_CENTER_FILL
     for num, members in families.items():
         hue, light, sat = PHASE_STYLE.get(num, ((num * 37) % 360, 0.50, 0.50))
         sat = max(sat, PHASE_SAT_MIN)
@@ -331,6 +343,14 @@ class Scene:
         self.meta = f["meta"]
         self.phases = f["phases"]
         self.total_lots = f["total_lots"]
+        # Ten phases, sixteen plats. Phase 3 was recorded as 3A, 3B & 3C and 3D,
+        # Phase 4 as 4A and 4B, and the sixteenth plat is the Town Center rather
+        # than an eleventh phase. Conflating the two numbers is the single most
+        # common way this community gets described wrongly.
+        self.phase_count = f.get("phase_count", 10)
+        self.plat_count = f.get("plat_count", len(f["phases"]))
+        self.summary = (f"{self.phase_count} phases \u00b7 {self.plat_count} recorded plats "
+                        f"\u00b7 {self.total_lots:,} platted homesites")
         self.total_acres = f["total_acres"]
 
         raw = {
@@ -356,6 +376,23 @@ class Scene:
             [self.rot(project_ring(r)) for g in f["waterbodies"] for r in rings(g)],
             self.extent, 0.20,
         )
+        # Stormwater ponds. The county's hydrology layers return a single
+        # feature across the whole community, so these are measured off the
+        # builder's site plan instead; see extract_plan_features.py.
+        self.ponds = [self.rot(project_ring(r)) for g in f.get("ponds", []) for r in rings(g)]
+
+        tc = f.get("town_center") or {}
+        self.tc_label = tc.get("label", "Town Center")
+        self.tc_plat = tc.get("plat")
+        self.tc_acres = tc.get("tract_acres")
+        self.tc_tract = [self.rot(project_ring(r)) for r in rings(tc.get("tract") or {})]
+        self.cottages_label = tc.get("cottages_label", "Stay & Play Cottages")
+        self.cottage_count = tc.get("cottage_count", 0)
+        self.cottage_lots = [self.rot(project_ring(r))
+                             for g in tc.get("cottage_lots", []) for r in rings(g)]
+        self.cottage_hull = [self.rot(project_ring(r)) for r in rings(tc.get("cottage_hull") or {})]
+        cc = tc.get("cottage_centroid")
+        self.cottage_xy = self.rot([tuple(cc)], project=True)[0] if cc else None
         self.creeks = clip_to(
             [self.rot(project_ring(l)) for g in f["creeks"] for l in lines(g)],
             self.extent, 0.06,
@@ -459,6 +496,46 @@ def draw_base(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
         ax.plot(*zip(*pts), color=WATER_EDGE, lw=0.9 * lw_scale, solid_capstyle="round", zorder=1.1)
 
 
+def draw_ponds(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
+    """Stormwater ponds, over the phase fills so they read as water not as land.
+
+    They sit above the phase colour deliberately: a pond inside a phase is a
+    hole in the developable land, and drawing it underneath would let the
+    phase tint wash it out into just another shade of the neighbourhood.
+    """
+    if not s.ponds:
+        return
+    ax.add_collection(PolyCollection(
+        s.ponds, facecolors=POND_FILL, edgecolors=POND_EDGE,
+        linewidths=0.7 * lw_scale, alpha=0.95, zorder=2.9))
+
+
+def draw_town_center(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
+                     label: bool = True, fontsize: float = 8.0) -> None:
+    """The amenity tract and the Stay & Play cottages inside it.
+
+    Both come out of the plat recorded as 'PH 5A3'.  They are drawn as what
+    they are rather than as a phase, because there is no Phase 5A to buy in -
+    48 of the plat's 62 acres are the single tract holding the Bandshell and
+    Paradise Pool, and its only homesites are the cottages.
+    """
+    on = active in (None, s.tc_label)
+    if s.tc_tract:
+        ax.add_collection(PolyCollection(
+            s.tc_tract, facecolors=TOWN_CENTER_FILL if on else muted(TOWN_CENTER_FILL),
+            edgecolors=shade(TOWN_CENTER_FILL, light_delta=-0.22),
+            linewidths=1.6 * lw_scale, alpha=0.92 if on else 0.8, zorder=2.6))
+    if s.cottage_lots:
+        ax.add_collection(PolyCollection(
+            s.cottage_lots, facecolors=COTTAGE_FILL if on else muted(COTTAGE_FILL),
+            edgecolors=shade(COTTAGE_FILL, light_delta=-0.28),
+            linewidths=0.5 * lw_scale, alpha=0.95 if on else 0.8, zorder=2.7))
+    if label and s.cottage_xy and on:
+        ax.annotate(s.cottages_label, s.cottage_xy, ha="center", va="center",
+                    fontsize=fontsize, fontproperties=F_BOLD, color="#4A3F2C", zorder=6,
+                    path_effects=[pe.withStroke(linewidth=fontsize * 0.5, foreground="white")])
+
+
 def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
                 show_lots: str = "active") -> None:
     """Phase fills and lot linework.
@@ -489,10 +566,21 @@ def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
     # Drawn white, a fully platted phase reads as a white sheet while an
     # undeveloped one reads as solid colour, which makes build-out look like a
     # colour difference. Tinting keeps every phase reading as its own colour.
+    # Inactive lots stay on screen, just quietly - the street pattern is what makes
+    # the map readable, and dropping it leaves the rest of the community looking empty.
+    #
+    # Lots take a pale tint of their own phase colour rather than plain white.
+    # Drawn white, a fully platted phase reads as a white sheet while an
+    # undeveloped one reads as solid colour, which makes build-out look like a
+    # colour difference. Tinting keeps every phase reading as its own colour.
     if show_lots == "none":
+        draw_town_center(ax, s, active, lw_scale=lw_scale, label=False)
+        draw_ponds(ax, s, lw_scale=lw_scale)
         return
     for p in s.phases:
         lab = p["label"]
+        if lab == s.tc_label:
+            continue        # drawn by draw_town_center, as a tract plus cottages
         on = lab == active
         rings = s.lot_rings.get(lab)
         if not rings:
@@ -517,6 +605,9 @@ def draw_phases(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
         ax.add_collection(PolyCollection(
             rings, facecolors=face, alpha=0.95, edgecolors=edge,
             linewidths=lw * lw_scale, zorder=3))
+
+    draw_town_center(ax, s, active, lw_scale=lw_scale, label=False)
+    draw_ponds(ax, s, lw_scale=lw_scale)
 
 
 def draw_roads(ax, s: Scene, *, lw_scale: float = 1.0, label_hwy: bool = True) -> None:
@@ -781,6 +872,13 @@ def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
               label=f"{p['short']}   {p['plat']}")
         for p in s.phases
     ]
+    if s.cottage_lots:
+        handles.append(MPoly([(0, 0)], facecolor=COTTAGE_FILL,
+                             edgecolor=shade(COTTAGE_FILL, light_delta=-0.28), lw=1.0, alpha=0.9,
+                             label=f"{s.cottages_label}   (in PB 32/81)"))
+    if s.ponds:
+        handles.append(MPoly([(0, 0)], facecolor=POND_FILL, edgecolor=POND_EDGE, lw=1.0,
+                             alpha=0.95, label="Lakes & stormwater ponds"))
     handles.append(
         Line2D([0], [0], marker="o", ms=8, mfc=CORAL, mec="white", mew=1.6, ls="none",
                label="Landmark  (\u201c?\u201d = awaiting confirmation)")
@@ -834,10 +932,15 @@ def copyright_line(s: Scene) -> str:
 
 
 def credit_line(s: Scene) -> str:
-    """Three lines: sources, scope, ownership."""
+    """Four lines: sources, the standing disclaimer, scope, ownership.
+
+    Kept as separate lines rather than one run-on: at poster width a single
+    line of this length clips at both margins, and the first thing lost is the
+    disclaimer, which is the one part that is not optional.
+    """
     return (
-        f"{s.meta['data_credit']}  \u00b7  retrieved {date.today().isoformat()}"
-        f"   |   {s.meta['disclaimer']}\n"
+        f"{s.meta['data_credit']}  \u00b7  retrieved {date.today().isoformat()}\n"
+        f"{s.meta['disclaimer']}\n"
         f"{s.meta.get('scope', {}).get('note', '')}\n"
         f"{copyright_line(s)}"
     )
@@ -994,9 +1097,8 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
     fig.text(inx(safe), iny(H - safe * 0.75), "Latitude Margaritaville Watersound",
              fontproperties=F_BLACK, fontsize=W * 1.05, color=INK, ha="left", va="top")
     fig.text(inx(safe), iny(H - safe * 0.75 - title_h * 0.55),
-             f"Area 1 \u00b7 {len(s.phases)} recorded phases \u00b7 {s.total_lots:,} platted "
-             f"homesites \u00b7 {s.total_acres:,.0f} acres \u00b7 every boundary from Bay County "
-             f"public record",
+             f"Area 1 \u00b7 {s.summary} \u00b7 {s.total_acres:,.0f} acres \u00b7 "
+             f"every boundary from Bay County public record",
              fontproperties=F_REG, fontsize=W * 0.45, color=MUTED, ha="left", va="top")
     fig.text(inx(W - safe), iny(H - safe * 0.75), "  \u00b7  ".join(s.meta["agent_block"]),
              fontproperties=F_BOLD, fontsize=W * 0.40, color=DEEP, ha="right", va="top")
@@ -1042,13 +1144,12 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False,
              fontsize=36, color=INK, ha="left", va="center")
     fig.text(0.025, 0.921, "Area 1 \u2014 every recorded phase, drawn from Bay County public records",
              fontproperties=F_REG, fontsize=16, color=MUTED, ha="left", va="center")
-    fig.text(0.975, 0.955, f"{len(s.phases)} recorded phases  \u00b7  {s.total_lots:,} platted homesites"
-                           f"  \u00b7  {s.total_acres:,.0f} acres",
+    fig.text(0.975, 0.955, f"{s.summary}  \u00b7  {s.total_acres:,.0f} acres",
              fontproperties=F_BOLD, fontsize=15, color=DEEP, ha="right", va="center")
     fig.text(0.975, 0.921, "  \u00b7  ".join(s.meta["agent_block"]), fontproperties=F_REG,
              fontsize=12, color=MUTED, ha="right", va="center")
-    fig.text(0.5, 0.030, credit_line(s), fontproperties=F_REG, fontsize=10.5,
-             color=MUTED, ha="center", va="center", linespacing=1.6)
+    fig.text(0.5, 0.032, credit_line(s), fontproperties=F_REG, fontsize=9.5,
+             color=MUTED, ha="center", va="center", linespacing=1.55)
 
     OUT.mkdir(parents=True, exist_ok=True)
     if pdf:
@@ -1111,16 +1212,18 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
 
     rows = [
         ("Recorded plat", p["plat"]),
-        ("Platted homesites", f"{p['lot_count']:,}"),
+        (p.get("homesite_label") or "Platted homesites", f"{p['lot_count']:,}"),
         ("Size", f"{p['acres']:,.0f} acres"),
     ]
     if p.get("lot_number_range"):
         lo, hi = p["lot_number_range"]
         rows.append(("Lot numbers", ident_range(lo, hi, dash=" \u2013 ")))
-    for key, target in (("To Town Center", "Town Square Amenity"),):
-        d = s.distance_mi(p, target)
-        if d is not None:
-            rows.append((key, f"{d:.1f} mi"))
+    # Distance to the Town Center is meaningless on the Town Center's own frame.
+    if p["label"] != s.tc_label:
+        for key, target in (("To Town Center", "Town Square Amenity"),):
+            d = s.distance_mi(p, target)
+            if d is not None:
+                rows.append((key, f"{d:.1f} mi"))
     d79 = s.hwy79_distance_mi(p)
     if d79 is not None:
         rows.append(("To Hwy 79", f"{d79:.1f} mi"))
@@ -1150,7 +1253,14 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
     note = p.get("karen_says") or p.get("note") or ""
     if note:
         y = max(y - 0.015, 0.10)
-        wrapped = _wrap(note, 34)[:4]
+        # Silently dropping the tail of a note is how a hedged statement turns
+        # into an unhedged one, so an over-long note is flagged rather than cut.
+        wrapped = _wrap(note, 34)
+        limit = max(1, int((y - 0.055) / 0.026))
+        if len(wrapped) > limit:
+            print(f"  NOTE TOO LONG for the {p['label']} panel: "
+                  f"{len(wrapped)} lines, room for {limit}. Shorten it in phase_meta.json.")
+            wrapped = wrapped[:limit - 1] + ["..."]
         for ln in wrapped:
             fig.text(x, y, ln, fontproperties=F_REG, fontsize=11, color="#9FB6BC",
                      ha="left", va="center", zorder=21)
@@ -1196,6 +1306,11 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
     OUT.mkdir(parents=True, exist_ok=True)
     frames_dir = OUT / "frames"
     frames_dir.mkdir(exist_ok=True)
+    # Frames are numbered by position, so renaming or reordering a phase leaves
+    # the old file behind under its old number. An editor pulling frames by
+    # filename would then cut a stale image into the video.
+    for stale in frames_dir.glob("*.png"):
+        stale.unlink()
     written: list[Path] = []
 
     def new_fig():
@@ -1301,7 +1416,9 @@ def main() -> None:
 
     s = Scene(load_features())
     if args.check_palette:
-        palette_report(s.palette)
+        # The cottages are not a phase and so are not in the phase palette, but
+        # they are a fill on the same paper and have to clear it just the same.
+        palette_report({**s.palette, s.cottages_label: COTTAGE_FILL})
         return
     overlays = set(args.overlays)
     wm = not args.no_watermark

@@ -25,7 +25,7 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from shapely.geometry import shape
+from shapely.geometry import mapping, shape
 from shapely.ops import unary_union
 
 HERE = Path(__file__).resolve().parent
@@ -47,18 +47,96 @@ def load(name: str):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
 
 
+def split_town_center(lots_geoms: list[dict]) -> dict:
+    """Separate the Town Center plat into the amenity tract and the cottages.
+
+    The plat recorded as PH 5A3 is two quite different things sharing one
+    boundary: one 48-acre tract carrying the Bandshell, Paradise Pool and the
+    rest of the amenity core, and a pocket of cottage-sized homesites.  Drawn
+    as a single 'phase' it reads as a neighbourhood, which is exactly the
+    confusion Karen is trying to clear up, so it is split here.
+    """
+    polys = [(shape(g), g) for g in lots_geoms]
+    polys = [(p, g) for p, g in polys if not p.is_empty]
+    if not polys:
+        return {}
+    tract, tract_geom = max(polys, key=lambda t: t[0].area)
+    cottages = [g for p, g in polys if acres(p) * 4046.86 <= COTTAGE_MAX_M2]
+    hull = unary_union([shape(g) for g in cottages]).convex_hull if cottages else None
+    return {
+        "tract": tract_geom,
+        "tract_acres": round(acres(tract), 1),
+        "cottage_lots": cottages,
+        "cottage_count": len(cottages),
+        "cottage_hull": mapping(hull) if hull is not None and not hull.is_empty else None,
+        "cottage_centroid": [hull.centroid.x, hull.centroid.y] if hull is not None else None,
+    }
+
+
+def load_ponds(footprint=None, buffer_m: float = 150.0) -> list[dict]:
+    """Pond outlines measured off Minto's site plan, if they have been built.
+
+    The county's hydrology layers return a single feature across the whole
+    community, so the ponds have to come from somewhere else; see
+    extract_plan_features.py for how they are georeferenced and checked.
+
+    The builder's sheet covers more than the recorded plats, so ponds are kept
+    only where they touch the platted footprint.  Otherwise the map sprouts
+    water in Area 2 and on neighbouring land, which we are not describing.
+    """
+    path = DATA / "plan_water.geojson"
+    if not path.exists():
+        print("  no plan_water.geojson - run extract_plan_features.py water")
+        return []
+    fc = json.loads(path.read_text(encoding="utf-8"))
+    ponds = [f for f in fc["features"] if f["properties"].get("kind") == "pond"]
+    kept = ponds
+    if footprint is not None:
+        near = footprint.buffer(buffer_m / M_PER_DEG_LON)
+        kept = [f for f in ponds if near.intersects(shape(f["geometry"]))]
+    print(f"  {len(kept)} of {len(ponds)} ponds inside the community "
+          f"(fit residual {fc.get('fit', {}).get('median_residual_m', '?')} m)")
+    return [simplify(f["geometry"], 0.000008) for f in kept]
+
+
 def load_cfg(name: str):
     return json.loads((HERE / name).read_text(encoding="utf-8"))
 
 
+TOWN_CENTER_PLAT = "5A3"
+TOWN_CENTER_LABEL = "Town Center"
+COTTAGES_LABEL = "Stay & Play Cottages"
+
+# A homesite is a few hundred square metres; anything far larger inside a plat
+# is a tract - stormwater, preserve, right-of-way, or the amenity parcel itself.
+COTTAGE_MAX_M2 = 1500.0
+
+
 def phase_label(subdivid: str) -> str:
-    """'LATITUDE AT WATERSOUND AREA 1 PHASE  6B & 6C' -> 'Phase 6B & 6C'."""
+    """'LATITUDE AT WATERSOUND AREA 1 PHASE  6B & 6C' -> 'Phase 6B & 6C'.
+
+    The plat recorded as 'PH 5A3' is the exception, and it is why buyers are
+    told there is no Phase 5A to buy in: 48 of its 62 acres are the single
+    tract that holds the Town Center, and its only homesites are the Stay &
+    Play cottages.  Calling it 'Phase 5A3' on the map would invent a
+    neighbourhood that does not exist, so it carries its real name and keeps
+    its plat citation.
+    """
     tail = subdivid.upper().split("AREA 1", 1)[-1]
     tail = re.sub(r"\bPHASE\b|\bPH\b", " ", tail)
-    return "Phase " + " ".join(tail.split())
+    body = " ".join(tail.split())
+    if body == TOWN_CENTER_PLAT:
+        return TOWN_CENTER_LABEL
+    return "Phase " + body
+
+
+def is_phase(label: str) -> bool:
+    return label.startswith("Phase ")
 
 
 def sort_key(label: str) -> tuple:
+    if not is_phase(label):
+        return (98, label)
     body = label.replace("Phase ", "")
     head = body.split("&")[0].strip()
     num = ""
@@ -309,6 +387,16 @@ def main() -> None:
     streets = collect_streets(idx)
     curated = load_cfg("street_index.json")["phases"]
 
+    print("town center")
+    tc = split_town_center(lots_by_phase.get(TOWN_CENTER_LABEL, []))
+    if tc:
+        print(f"  amenity tract {tc['tract_acres']} acres · "
+              f"{tc['cottage_count']} {COTTAGES_LABEL.lower()}")
+    # The plat's parcel count includes the amenity tract itself and a second
+    # common-area tract. Neither is a homesite, and reporting them as such puts
+    # two houses on the map that do not exist.
+    tc_homesites = tc.get("cottage_count") if tc else None
+
     phases = []
     for lab in idx.labels():
         pr = by_id[lab]["properties"]
@@ -324,13 +412,15 @@ def main() -> None:
         phases.append(
             {
                 "label": lab,
-                "short": lab.replace("Phase ", "Ph "),
+                "short": lab.replace("Phase ", "Ph ") if is_phase(lab) else lab,
+                "kind": "phase" if is_phase(lab) else "town_center",
                 "subdivid": pr["SUBDIVID"],
                 "plat": f"PB {pr['PLATTBOOK']}/{pr['BOOKPAGE']}",
                 "plat_book": pr["PLATTBOOK"],
                 "plat_page": pr["BOOKPAGE"],
                 "acres": round(acres(geom), 1),
-                "lot_count": len(lots_by_phase[lab]),
+                "lot_count": (tc_homesites if lab == TOWN_CENTER_LABEL and tc_homesites is not None
+                              else len(lots_by_phase[lab])),
                 **build_lot_ranges(lotids[lab]),
                 "centroid": [geom.centroid.x, geom.centroid.y],
                 "bounds": list(geom.bounds),
@@ -341,7 +431,8 @@ def main() -> None:
         )
         p = phases[-1]
         rng = p["lot_number_range"]
-        print(f"  {lab:<15}{p['plat']:<10}{p['acres']:>7.1f} ac{p['lot_count']:>5} lots  "
+        kind = "homesites" if p["kind"] == "phase" else "cottages"
+        print(f"  {lab:<15}{p['plat']:<10}{p['acres']:>7.1f} ac{p['lot_count']:>5} {kind:<10}"
               f"{'#' + str(rng[0]) + '-' + str(rng[1]) if rng else 'unnumbered':<14}"
               f"{len(p['streets'])} streets")
 
@@ -366,15 +457,40 @@ def main() -> None:
     ]
     print(f"  {len(hwy)} highway, {len(roads)} road, {len(water)} waterbody, {len(creeks)} creek features")
 
+    print("ponds")
+    footprint = unary_union([shape(p["geometry"]) for p in phases])
+    ponds = load_ponds(footprint)
+
+    # Ten phases, but fifteen residential plats: Phase 3 was recorded as 3A,
+    # 3B & 3C and 3D, Phase 4 as 4A and 4B, and so on.  Both numbers are true
+    # and they get confused constantly, so both are carried explicitly.
+    phase_numbers = {re.match(r"Phase (\d+)", p["label"]).group(1)
+                     for p in phases if p["kind"] == "phase"}
+    homesites = sum(p["lot_count"] for p in phases)
+
     footprint = unary_union([shape(p["geometry"]) for p in phases])
     out = {
-        "generated_from": "Bay County FL public GIS (recorded plats, lots, roads, addresses, hydrology)",
-        "reference_lat": REF_LAT,
+        "generated_from": "Bay County FL public GIS (recorded plats, lots, roads, addresses, hydrology)",        "reference_lat": REF_LAT,
         "bounds": list(footprint.bounds),
         "total_acres": round(acres(footprint), 1),
-        "total_lots": sum(p["lot_count"] for p in phases),
+        "total_lots": homesites,
+        "phase_count": len(phase_numbers),
+        "residential_plat_count": sum(1 for p in phases if p["kind"] == "phase"),
+        "plat_count": len(phases),
         "phases": phases,
         "lots_by_phase": lots_by_phase,
+        "town_center": {
+            "label": TOWN_CENTER_LABEL,
+            "cottages_label": COTTAGES_LABEL,
+            "plat": next((p["plat"] for p in phases if p["label"] == TOWN_CENTER_LABEL), None),
+            "tract": tc.get("tract"),
+            "tract_acres": tc.get("tract_acres"),
+            "cottage_lots": tc.get("cottage_lots", []),
+            "cottage_count": tc.get("cottage_count", 0),
+            "cottage_hull": tc.get("cottage_hull"),
+            "cottage_centroid": tc.get("cottage_centroid"),
+        },
+        "ponds": ponds,
         "highways": hwy,
         "roads": roads,
         "waterbodies": water,
@@ -385,9 +501,10 @@ def main() -> None:
     }
     path = DATA / "features.json"
     path.write_text(json.dumps(out), encoding="utf-8")
-    print(f"\n{len(phases)} recorded phases · {out['total_lots']:,} platted lots · "
-          f"{out['total_acres']:,.0f} acres -> data/features.json "
-          f"({path.stat().st_size / 1024 / 1024:.1f} MB)")
+    print(f"\n{out['phase_count']} phases across {out['residential_plat_count']} plats, "
+          f"plus the Town Center = {out['plat_count']} recorded plats · "
+          f"{out['total_lots']:,} platted homesites · {out['total_acres']:,.0f} acres "
+          f"-> data/features.json ({path.stat().st_size / 1024 / 1024:.1f} MB)")
 
 
 if __name__ == "__main__":

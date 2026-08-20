@@ -1,7 +1,7 @@
 {
   "community": "Latitude Margaritaville Watersound",
   "county": "Bay County, Florida",
-  "generated": "2026-08-19",
+  "generated": "2026-08-20",
   "sources": [
     "Bay County FL ArcGIS -- Property/MapServer/2 (recorded subdivision plats)",
     "Bay County FL ArcGIS -- Property/MapServer/0 (subdivision lots)",
@@ -84,7 +84,7 @@
           ]
         },
         {
-          "phase": "Phase 5A3",
+          "phase": "Town Center",
           "address_range": null
         }
       ],
@@ -762,35 +762,6 @@
       "street_count": 5
     },
     {
-      "phase": "Phase 5A3",
-      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 5A3",
-      "plat_book": 32,
-      "plat_page": 81,
-      "acres": 62.2,
-      "platted_lots": 98,
-      "lot_number_range": null,
-      "streets": [
-        {
-          "name": "Margaritaville Blvd",
-          "sources": [
-            "address point"
-          ]
-        },
-        {
-          "name": "No Shoes Ct",
-          "sources": [
-            "parcel site address"
-          ],
-          "address_range": [
-            8604,
-            8619
-          ],
-          "addressed_parcels": 16
-        }
-      ],
-      "street_count": 2
-    },
-    {
       "phase": "Phase 5B",
       "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PHASE 5B",
       "plat_book": 30,
@@ -1327,11 +1298,40 @@
         }
       ],
       "street_count": 8
+    },
+    {
+      "phase": "Town Center",
+      "subdivision_name": "LATITUDE AT WATERSOUND AREA 1 PH 5A3",
+      "plat_book": 32,
+      "plat_page": 81,
+      "acres": 62.2,
+      "platted_lots": 96,
+      "lot_number_range": null,
+      "streets": [
+        {
+          "name": "Margaritaville Blvd",
+          "sources": [
+            "address point"
+          ]
+        },
+        {
+          "name": "No Shoes Ct",
+          "sources": [
+            "parcel site address"
+          ],
+          "address_range": [
+            8604,
+            8619
+          ],
+          "addressed_parcels": 16
+        }
+      ],
+      "street_count": 2
     }
   ],
   "totals": {
     "phases": 16,
-    "platted_lots": 3229,
+    "platted_lots": 3227,
     "acres": 2123.0,
     "distinct_streets": 60
   }

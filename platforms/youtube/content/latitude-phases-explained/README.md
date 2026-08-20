@@ -183,9 +183,11 @@ plan with a mouse scribble per phase. See
 
 1. **He gets Phase 3 wrong** — treats it as one blob. Public record shows three
    separate recorded plats: 3A, 3B & 3C, 3D.
-2. **He gets 5A wrong** — "they changed it and kind of skipped." PH 5A3 is a
-   recorded plat, book 32 page 81. Our map colours phases by plat book, so 5A3
-   visibly reads as one of the newest parts of the community.
+2. **Everyone gets 5A wrong, in both directions.** He says it was "changed and
+   kind of skipped." The plat index says it exists. The record says the plat is
+   real *and* isn't a neighbourhood — 48.3 of its 62.2 acres are the tract that
+   holds the Bandshell and Paradise Pool, so PB 32/81 is the Town Center. There
+   is no Phase 5A to buy in, which is exactly what Karen says.
 3. **Nobody has the Escape Avenue chapter.** One street, two phases, with the
    county address break at 9499 | 9502 — plus the fact that Minto lot numbers
    aren't addresses at all.
@@ -208,8 +210,9 @@ places where the script needs her own words rather than a written line:
   for her personally
 - Why she and her husband picked Phase 8, and one honest trade-off about it
 - Whether the two ends of Escape Avenue feel different
-- Whether 5A1 and 5A2 were ever platted (only 5A3 is in the record) — "I don't
-  know" is a perfectly good answer and protects everything else
+- Her own words on there being no Phase 5A. If she knows why the Town Center
+  plat is numbered 5A3, great; "I don't know why they numbered it that way" is
+  a perfectly good answer and protects everything else
 - Her current answer on which phase releases next and a realistic build timeline
 
 ## Things not to say on camera
