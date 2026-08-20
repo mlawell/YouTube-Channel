@@ -165,6 +165,34 @@
         "This moved the pin about 35 m from the site-plan reading, which had it",
         "up on the bank rather than at the water."
       ]
+    },
+    {
+      "name": "Pickleball & Tennis",
+      "short": "Pickleball & Tennis",
+      "lat": 30.30890,
+      "lon": -85.86558,
+      "kind": "amenity",
+      "anchor": false,
+      "confirmed": true,
+      "source": "area-weighted centroid of the three court banks, which are machine-fitted from georeferenced aerial imagery \u2014 see town_center_courts.json",
+      "note": [
+        "Karen asked for these by name. The courts are the one Town Center surface",
+        "that did not have to be read by eye: court paint samples b-r = +65 against",
+        "+18 to +28 for every roof and every stretch of asphalt, so it thresholds",
+        "cleanly and each bank is fitted with a minimum-area rectangle.",
+        "",
+        "The largest bank measures 77.4 x 41.2 m and holds four courts at 19.3 m per",
+        "bay, against 18.3 m for a tennis court with its run-off. That is a genuine",
+        "check on the scale as well as the shape.",
+        "",
+        "ONE LABEL FOR THREE BANKS, DELIBERATELY. The big bank is plainly tennis and",
+        "the other two are banks of smaller courts, but which bank is pickleball and",
+        "which is tennis was not established, so the cluster carries the amenity",
+        "list's own wording \u2014 'Pickleball & Tennis' \u2014 which is true of all of it.",
+        "",
+        "The single court south-west of these is drawn separately and is the",
+        "Multi-Purpose Court, confirmed by Karen."
+      ]
     }
   ]
 }

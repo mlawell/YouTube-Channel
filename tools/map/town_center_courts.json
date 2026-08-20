@@ -1,0 +1,87 @@
+{
+  "_what": "Racquet and multi-purpose court surfaces at the Town Center, snapped from georeferenced aerial imagery.",
+
+  "_why_this_file_exists": [
+    "Karen asked for 'Pickleball and Tennis'. town_center_buildings.json had already",
+    "flagged the courts as the one Town Center surface that could be fitted",
+    "automatically rather than read by a human, and left them out only because that",
+    "pass was about buildings. This is that follow-up."
+  ],
+
+  "_why_these_could_be_automatic_when_the_buildings_could_not": [
+    "Court paint is the single Town Center surface with a colour signature of its own:",
+    "a court samples b-r = +65, against +18 to +28 for every roof and every stretch of",
+    "asphalt. Roofs and car parks are inseparable from each other by any threshold --",
+    "that is why the buildings had to be read by eye -- but the courts separate cleanly,",
+    "so these are thresholded and fitted with a minimum-area rectangle rather than",
+    "digitised by hand."
+  ],
+
+  "_how_measured": [
+    "Same Google satellite frame used for the marina pad and the dog park. Its",
+    "georeference was re-solved for this pass rather than reused: the shot's water",
+    "mask was correlated against the reconciled pond and shoreline network over every",
+    "possible offset, and the scale was swept rather than assumed.",
+    "The sweep peaked at 1.2486 m/px -- independently reproducing the figure already",
+    "recorded in the README -- at 35.9 sigma above the correlation surface.",
+    "The fit was then verified the way this project requires: known pond outlines were",
+    "drawn back onto the shot and land on real ponds (19 of them in frame).",
+    "Each court blob was reduced to its minimum-area rectangle, which is the honest",
+    "shape for a court, and is expressed below in metres east/north of the same Town",
+    "Center origin the buildings use."
+  ],
+
+  "_accuracy": "+/-3 m, better than the buildings because the edges are machine-fitted rather than read by eye. Court 1 measures 77.4 x 41.2 m for four courts -- 19.3 m per court against a tennis court's 18.3 m with run-off -- and court 4 fits its rectangle at fill 1.01, both of which say the scale and the edges are right.",
+
+  "_naming": [
+    "The cluster carries one label, 'Pickleball & Tennis', which is the wording from",
+    "Karen's own amenity list. Court 1 is plainly four tennis courts -- four bays at",
+    "19.3 m each, with service boxes and net posts visible -- and courts 2 and 3 are",
+    "banks of smaller courts. Rather than assert which individual bank is pickleball",
+    "and which is tennis, the cluster is labelled once, correctly, as both.",
+    "Court 4 is a single separate surface next to the fitness centre. It was measured",
+    "and drawn unnamed, with the multi-purpose court noted only as a likelihood;",
+    "Karen then confirmed the identification, so it is now named on her authority.",
+    "It is named 'Multi-Purpose Court' and not 'Multi-Purpose Court & Bocce' as the",
+    "amenity list has it, because whether the bocce lanes are this surface or a",
+    "separate one next to it was not established."
+  ],
+
+  "_dropped": [
+    "A fifth blue blob 230 m east passed the colour test and was rejected: it sits",
+    "among houses on a residential street, is 21.8 x 19.2 m and nearly square, and",
+    "fits its rectangle at only 0.65. It is a private pool or a roof, not a court."
+  ],
+
+  "origin": { "lat": 30.30796, "lon": -85.86546, "what": "Google's Town Center place marker -- the same origin town_center_buildings.json uses" },
+
+  "label": "Pickleball & Tennis",
+
+  "courts": [
+    {
+      "note": "four tennis courts in one bank, 19.3 m per bay",
+      "name": null, "confirmed_name": false,
+      "east_m": -72.5, "north_m": 100.9,
+      "length_m": 77.4, "width_m": 41.2, "angle_deg": 0.0
+    },
+    {
+      "note": "court bank",
+      "name": null, "confirmed_name": false,
+      "east_m": 24.3, "north_m": 109.0,
+      "length_m": 49.9, "width_m": 41.2, "angle_deg": -90.0
+    },
+    {
+      "note": "court bank",
+      "name": null, "confirmed_name": false,
+      "east_m": 68.6, "north_m": 105.2,
+      "length_m": 40.0, "width_m": 37.5, "angle_deg": 90.0
+    },
+    {
+      "note": "single separate court by the fitness centre",
+      "name": "Multi-Purpose Court", "confirmed_name": true,
+      "confirmed_by": "Karen, who lives in the community, confirmed this identification directly.",
+      "east_m": -49.4, "north_m": 49.0,
+      "length_m": 35.0, "width_m": 21.2, "angle_deg": 90.0
+    }
+  ]
+}

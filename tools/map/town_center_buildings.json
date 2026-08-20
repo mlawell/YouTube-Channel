@@ -25,6 +25,22 @@
     "which is exactly how OpenStreetMap building footprints are made."
   ],
 
+  "_partly_superseded": [
+    "The paragraph above was measured on the marina frame at 1.2486 m/px and holds there.",
+    "It does NOT fully hold on the Town Center frame at 1.0348 m/px, which was georeferenced",
+    "later by matching the courts (rms 1.5 m). On that finer frame a bright-roof threshold",
+    "(value > 180, saturation < 0.22, with Google's pure-white label text masked out and",
+    "dilated) does recover two roofs cleanly, verified by drawing them back onto the imagery.",
+    "One of them is block 5 below -- the main Town Square building, which the first",
+    "hand-digitised pass missed altogether. The other duplicated block 2 and was discarded",
+    "in favour of the existing entry.",
+    "So the honest statement is narrower than the original one: automatic extraction is",
+    "unreliable here and recovers only the brightest roofs, but it is not useless, and it",
+    "found the biggest building on the site when a human reader did not.",
+    "The long retail row east of the square is plainly a building and is still not recovered",
+    "by any threshold; it is not in this file."
+  ],
+
   "_how_measured": [
     "Google satellite imagery, georeferenced against the same 73-pond control network used",
     "for the marina pad, the dog park clearing and the kayak launch; this shot solves at",
@@ -75,6 +91,14 @@
       "confirmed_name": false,
       "east_m": -78.0, "north_m": -124.0,
       "length_m": 22.0, "width_m": 18.0, "angle_deg": -35.0
+    },
+    {
+      "name": null,
+      "confirmed_name": false,
+      "_note": "The largest structure on the site, in the middle of the oval drive, with the amphitheater seating immediately south of it. Recovered automatically on the 1.0348 m/px frame and verified by overlay; the first hand-digitised pass missed it entirely.",
+      "_source": "bright-roof threshold on the Town Center frame, minimum-area rectangle, 883 m2 of roof at fill 0.66",
+      "east_m": -23.3, "north_m": -64.5,
+      "length_m": 45.0, "width_m": 29.9, "angle_deg": -147.1
     }
   ],
 
