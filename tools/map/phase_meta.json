@@ -114,6 +114,12 @@
     "Town Center": {
       "note": "Recorded as 'PH 5A3' at plat book 32, page 81 — but 48 of its 62 acres are one tract, and the Bandshell and Paradise Pool are both inside it. Its only homesites are the Stay & Play cottages, which is why there is no Phase 5A to buy in.",
       "homesite_label": "Stay & Play cottages",
+      "label_nudge_pt": {
+        "x": 4.5,
+        "y": 9.0,
+        "_why": "Karen: 'the Town Center label box is still overlapping the Pickleball & Tennis point. Move the label box up 10 px and to the right 5 px.' Measured, she was exactly right: the pin's centre sat on the box's bottom edge, so the box covered the top half of the dot. The zoomed frames already move this plaque off the pins automatically, but the community-scale sheets place every plaque at its phase centroid, and the Town Center's centroid lands on that pin.",
+        "_units": "Points, applied as an offset to the plaque and scaled with the type, so the nudge stays in the same proportion on every output. 10 px on the 1600-wide preview Karen reviews is 9.0 pt; 5 px is 4.5 pt. Only used where the plaque sits at the raw centroid -- the per-phase reveal frames place it algorithmically and are left alone."
+      },
       "correction": "There is no Phase 5A neighbourhood to buy in. A plat numbered 5A3 does exist, but it is the Town Center parcel, not a residential phase — so both the competitor's 'they skipped 5A' and a flat reading of the plat index get it wrong.",
       "inventory_snapshot": {
         "as_of": null,

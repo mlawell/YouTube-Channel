@@ -50,6 +50,7 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.lines import Line2D
 from matplotlib.patches import Circle, FancyBboxPatch, Polygon as MPoly, Rectangle
 from matplotlib.path import Path as MplPath
+from matplotlib.transforms import offset_copy
 
 from fmt import ident, ident_range, ident_runs, qty
 
@@ -925,6 +926,26 @@ def draw_overlays(ax, s: Scene, overlays: set[str], *, lw_scale: float = 1.0) ->
                                 edgecolor="none", zorder=1.65))
 
 
+def label_nudge(p: dict, active: bool, lw_scale: float) -> tuple[float, float]:
+    """A hand-set offset for one phase plaque, in points.
+
+    The per-phase reveal frames move the active plaque off the landmark pins by
+    search. The community-scale sheets do not: they place every plaque at its
+    phase centroid, and the Town Center's centroid lands on the Pickleball &
+    Tennis pin -- measured, the pin's centre sat exactly on the box's bottom
+    edge, so the box covered the top half of the dot.
+
+    Karen asked for that box "up 10 px and to the right 5 px" on the 1600-wide
+    preview she reviews, which is 9.0 pt and 4.5 pt. It lives in phase_meta.json
+    so a layout tweak is a data change, and it scales with the type so it stays
+    in the same proportion on the poster, the 36x24 and the 48x32.
+    """
+    n = p.get("label_nudge_pt") if not active else None
+    if not isinstance(n, dict):
+        return 0.0, 0.0
+    return float(n.get("x", 0.0)) * lw_scale, float(n.get("y", 0.0)) * lw_scale
+
+
 def phase_label_boxes(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
                       show_plat: bool = False) -> list[tuple[float, float, float, float]]:
     """Approximate axes-fraction boxes for the phase plaques.
@@ -960,6 +981,11 @@ def phase_label_boxes(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
         w = max(len(t) for t in lines) * fs * 0.56 / ax_w_pt
         h = len(lines) * fs * 1.7 / ax_h_pt
         fx, fy = (x - x0) / span_x, (y - y0) / span_y
+        # Same nudge the plaque itself gets, or these obstacle boxes would sit
+        # where the plaque used to be and push landmark labels the wrong way.
+        nx, ny = label_nudge(p, on, lw_scale)
+        fx += nx / ax_w_pt
+        fy += ny / ax_h_pt
         boxes.append((fx - w / 2, fy - h / 2, fx + w / 2, fy + h / 2))
     return boxes
 
@@ -1256,10 +1282,16 @@ def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
             fc, tc = shade(colour, light_delta=-0.34, sat_scale=1.1), "white"
         else:
             fc, tc = "white", INK
+        nx, ny = label_nudge(p, on, lw_scale)
+        trans = ax.transData
+        if nx or ny:
+            trans = offset_copy(ax.transData, fig=ax.figure,
+                                x=nx / 72.0, y=ny / 72.0, units="inches")
         ax.text(
             x, y, text, fontproperties=F_BLACK if on else F_BOLD,
             fontsize=(12.5 if on else 9.5) * lw_scale, color=tc,
             ha="center", va="center", zorder=8, linespacing=1.35,
+            transform=trans,
             bbox=dict(boxstyle="round,pad=0.42", fc=fc,
                       ec="white" if on else shade(colour, light_delta=-0.22),
                       lw=1.8 if on else 1.1, alpha=0.96),

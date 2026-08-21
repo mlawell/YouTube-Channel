@@ -845,6 +845,44 @@ beside platted phases and neither is one.
 Current worst adjacent pair is the West Bay Center against the roads at **ΔE
 18.4**, against a floor of 12.
 
+### Straight down is not due south
+
+**This map is rotated 40.12°** onto its long axis, so any instruction given
+about the *sheet* — "move it up", "straight down", "to the right" — is in a
+frame turned 40° from the compass. Acting on one of those as though it were a
+bearing puts the thing 40° wrong, and on a 157 m move that is 100 m of error.
+
+Karen asked for the marina pin to go "straight down and on the border between
+the land and water". So the pin was dropped by casting a ray straight down
+**in the rotated frame the map is drawn in** — `Scene.rot` space, not lon/lat —
+finding the first water edge below it at 157 m, and setting the centre 6 m
+landward of that line so the dot straddles the border instead of floating in
+the bay.
+
+The inverse transform used to turn that back into lon/lat was checked by
+round-tripping the *original* pin through it first and confirming it returned
+30.31230, −85.87105 exactly. An unverified inverse is how a landmark silently
+moves 100 m.
+
+### Nudging a plaque
+
+Karen: *"the Town Center label box is still overlapping the Pickleball & Tennis
+point. Move the label box up 10 px and to the right 5 px."* Measured, she was
+exactly right — the pin's centre sat **on the box's bottom edge**, so the box
+covered the top half of the dot.
+
+The cause is worth recording: `phase_label_xy()` moves the active plaque off the
+landmark pins, but **only on the per-phase reveal frames**. The community-scale
+sheets draw every plaque at its phase centroid, and the Town Center's centroid
+lands on that pin. The earlier fix never applied to the sheet Karen reviews.
+
+`label_nudge_pt` in `phase_meta.json` holds the offset **in points**, so a
+layout tweak is a data change rather than a code change, and it scales with the
+type — 10 px on the 1600-wide preview is 9.0 pt, and that same 9.0 pt stays in
+proportion on the poster, the 36×24 and the 48×32. `phase_label_boxes()` applies
+the identical nudge, or the obstacle boxes fed to the landmark placer would
+still describe where the plaque *used* to be.
+
 ## Disclaimer carried on every export
 
 > Phase boundaries & lots: Bay County, FL recorded plats (public record), plat
@@ -990,6 +1028,10 @@ Nothing blocking — these are map polish.
       plainly under way — about 14 acres are graded — but do not say "under
       construction" on screen. The marina itself is not being built yet; water
       permits are still pending.
+      **The pin sits on the shoreline**, by Karen's direction — "just move it
+      straight down and on the border between the land and water". It used to
+      mark the centroid of the graded pad, which answered "where are the works"
+      but read as a dot floating in sand. See "Straight down is not due south".
 - [x] The future-commercial parcel. **Karen confirms it is Publix**, and the
       whole centre is now on the map as a hatched block labelled **West Bay
       Center**, with her tenant list: Publix, Electric Cart, Capital City Bank,
