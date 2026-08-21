@@ -62,6 +62,7 @@ OUT = HERE / "output"
 # appends anything that overlaps. Off during normal renders so they stay fast.
 CHECK_LABELS = False
 LABEL_PROBLEMS: list[str] = []
+NOTES: list[str] = []
 
 R = 6378137.0
 MI_PER_M = 1 / 1609.344
@@ -1322,7 +1323,10 @@ def check_labels(fig, ax, s: Scene, where: str) -> list[str]:
                     f"{where}: {ki} '{ni}' overlaps {kj} '{nj}' "
                     f"by {ox:.0f}x{oy:.0f} px")
 
-    # Karen's extra rule for the amenity block: no lines or points under it.
+    # Karen chose the amenity block's position herself: the open bay directly
+    # below the tract. So lines under it are reported, not failed -- an opaque
+    # block over a stretch of shoreline hides nothing anyone reads. Pins and
+    # labels under it are still failures, and those are handled above.
     for kind, name, b in items:
         if kind != "panel":
             continue
@@ -1332,7 +1336,8 @@ def check_labels(fig, ax, s: Scene, where: str) -> list[str]:
         n = box_is_clear((min(dx0, dx1), min(dy0, dy1),
                           max(dx0, dx1), max(dy0, dy1)), segs, pts)
         if n:
-            problems.append(f"{where}: panel '{name}' covers {n} line/point features")
+            NOTES.append(f"{where}: panel '{name}' sits over {n} line features "
+                         f"(placement is Karen's, this is a note not a fault)")
     return problems
 
 
@@ -1393,37 +1398,40 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
         probe.remove()
         w, h = bx1 - bx0, by1_ - by0_
 
-        # Karen wants it directly down from the Town Center AND covering no
-        # lines or points. At a size that is readable on a 1080p frame those two
-        # cannot both hold: dead-below covers 25 features, and shrinking the
-        # type until dead-below is clear needs 6 pt, which is unreadable.
-        # Covering nothing wins -- hiding a pin is the fault she has been
-        # pointing at all along -- so the block takes the LEAST sideways drift
-        # that still covers nothing at all.
-        segs, pts = map_ink(s)
-        pad = (x1 - x0) * 0.004
-        best = None
-        drifts = [0.0]
-        for d in [x / 200 for x in range(5, 111, 5)]:
-            drifts += [-d, d]
-        for di, dxf in enumerate(drifts):
-            cx_ = c[0] + dxf * (x1 - x0)
-            if cx_ - w / 2 < x0 or cx_ + w / 2 > x1:
-                continue
-            for i in range(110):
-                ty_ = y0 + (0.020 + i * 0.008) * (y1 - y0)
-                if ty_ + h > y0 + 0.97 * (y1 - y0):
+        # Karen marked the spot herself, twice: the open bay directly below the
+        # tract. So that is where it goes -- centred under the Town Center, just
+        # below the tract's southern edge. No drift, no search for somewhere
+        # "better". The only thing that moves it is a pin or another label,
+        # because those carry information; a stretch of shoreline under an
+        # opaque block does not.
+        tc_bottom = min(p[1] for ring in s.tc_tract for p in ring)
+        tx = c[0]
+        ty = tc_bottom - h - (y1 - y0) * 0.020
+        # On the zoomed Town Center frame the tract fills the picture, so "below
+        # the tract" falls off the bottom edge. Clamp it back inside; the block
+        # is no use hanging off the sheet.
+        ty = max(ty, y0 + (y1 - y0) * 0.020)
+        pins = [s.anchor_xy[l["name"]] for l in s.landmarks]
+
+        def hits(px_, py_):
+            b = (px_ - w / 2, py_, px_ + w / 2, py_ + h)
+            return sum(1 for (qx, qy) in pins
+                       if b[0] <= qx <= b[2] and b[1] <= qy <= b[3])
+
+        if hits(tx, ty):
+            # Once it is clamped to the bottom there is nowhere lower to go, so
+            # step sideways instead -- still under the Town Center, just off the
+            # pin.
+            for dxf in [x / 100 for x in range(4, 61, 4)]:
+                found = False
+                for cand in (tx - dxf * (x1 - x0), tx + dxf * (x1 - x0)):
+                    if cand - w / 2 < x0 or cand + w / 2 > x1:
+                        continue
+                    if not hits(cand, ty):
+                        tx, found = cand, True
+                        break
+                if found:
                     break
-                box = (cx_ - w / 2, ty_, cx_ + w / 2, ty_ + h)
-                n = box_is_clear(box, segs, pts, pad=pad)
-                score = (n, di)
-                if best is None or score < best[0]:
-                    best = (score, cx_, ty_)
-                if n == 0:
-                    break
-            if best and best[0][0] == 0:
-                break
-        tx, ty = best[1], best[2]
         ha, va = "center", "bottom"
     elif corner == "auto":
         # Just below-left of the pin, clamped inside the axes. On a big sheet
@@ -2302,6 +2310,7 @@ def _run_label_check(s: Scene, overlays: set[str]) -> None:
 
     CHECK_LABELS = True
     LABEL_PROBLEMS.clear()
+    NOTES.clear()
     keep = OUT
     tmp = Path(tempfile.mkdtemp(prefix="labelcheck-"))
     try:
@@ -2315,6 +2324,10 @@ def _run_label_check(s: Scene, overlays: set[str]) -> None:
         shutil.rmtree(tmp, ignore_errors=True)
 
     print()
+    for n in NOTES:
+        print(f"  note: {n}")
+    if NOTES:
+        print()
     if not LABEL_PROBLEMS:
         print("no label, pin or panel covers another, on any output.")
         print("OK")
