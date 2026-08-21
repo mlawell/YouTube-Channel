@@ -49,6 +49,7 @@ from matplotlib.collections import LineCollection, PolyCollection
 from matplotlib.font_manager import FontProperties
 from matplotlib.lines import Line2D
 from matplotlib.patches import Circle, FancyBboxPatch, Polygon as MPoly, Rectangle
+from matplotlib.path import Path as MplPath
 
 from fmt import ident, ident_range, ident_runs, qty
 
@@ -152,6 +153,28 @@ BUILDING_EDGE = "#8A8578"
 WBC_FILL = "#BDB2A3"
 WBC_EDGE = "#6F6555"
 WBC_HATCH = "#9A8F7E"
+
+# The Paradise Pool is the one place on this map where blue SHOULD read as
+# water, so unlike the courts it keeps the water palette -- but it must not be
+# the SAME blue, or the pool becomes another pond. The first try, a pale bright
+# cyan, measured deltaE 3.9 from the pond edge and 9.3 from pond water: it would
+# have read as a pond, which is exactly what paradise_pool.json warns about.
+# A sweep of the cyan-to-azure band returned this: still obviously water, but
+# 22.9 from every pond tone and 30.7 from everything else on the sheet. The
+# furthest-from-pond answer was a deep navy, rejected as semantically wrong --
+# a swimming pool should not read as deep water.
+POOL_FILL = "#0088CC"
+POOL_EDGE = "#005E8C"
+
+# The dog park is open parkland sitting inside the Town Center plat, and the
+# tract's dark slate was colouring it the same as the Bandshell and the fitness
+# centre. Karen asked for it green, and she is right: it is the one part of that
+# tract that is grass rather than building. A mid green reads as parkland and
+# sits clear of the pale LAND outside the community and of Phase 2's green,
+# which is both lighter and far more saturated.
+PARK_FILL = "#4E7A46"
+PARK_EDGE = "#33502E"
+PARK_ROAD = "#B9B3A6"
 # The racquet courts sit on the same dark tract but must not read as buildings,
 # and above all must not read as WATER -- they are surrounded by ponds, and blue
 # on this map means water. Real court paint is blue, but a blue-green court fill
@@ -307,6 +330,74 @@ def palette_report(palette: dict[str, str]) -> None:
               f"they should look related)")
     print("OK" if not problems else "RETUNE PHASE_STYLE: " + "; ".join(sorted(set(problems))))
 
+
+# Everything on the sheet that is not a phase fill still has to be told apart
+# from whatever it actually touches. Checking every pair would be worse than
+# useless: buildings measure deltaE 4.3 from the paper, which sounds alarming
+# and means nothing, because a building is only ever drawn inside the dark Town
+# Center tract and never touches the paper. A check that cries wolf is a check
+# people learn to ignore, so this lists what is genuinely adjacent instead.
+#
+# Two entries carry a requirement beyond legibility. The dog park green and the
+# West Bay Center fill must each clear EVERY phase colour, because both sit
+# beside platted phases and neither is one -- Karen's words about the woods were
+# "not really part of 3 ... just green space", and the West Bay Center is not
+# part of the community at all.
+def _phase_fills() -> dict[str, str]:
+    out = {}
+    for key, style in PHASE_STYLE.items():
+        col = style.get("color") if isinstance(style, dict) else style
+        if isinstance(col, str) and col.startswith("#"):
+            out[f"Phase {key}"] = col
+    return out
+
+
+def overlay_report() -> None:
+    """Check the non-phase surfaces against what each one actually sits beside."""
+    phases = _phase_fills()
+    base = {
+        "the paper": SAND,
+        "land outside": LAND,
+        "pond water": WATER,
+        "pond edge": WATER_EDGE,
+        "Town Center tract": TOWN_CENTER_FILL,
+        "roads": ROAD,
+        "buildings": BUILDING_FILL,
+        "courts": COURT_FILL,
+        "cottages": COTTAGE_FILL,
+        "dog park green": PARK_FILL,
+    }
+    adjacency = {
+        "Paradise Pool": (POOL_FILL,
+                          ["Town Center tract", "pond water", "pond edge", "buildings"]),
+        "dog park green": (PARK_FILL,
+                           ["Town Center tract", "roads", "pond water", "land outside"]
+                           + list(phases)),
+        "dog park drive": (PARK_ROAD, ["dog park green", "Town Center tract"]),
+        "West Bay Center": (WBC_FILL,
+                            ["the paper", "land outside", "roads", "pond water"]
+                            + list(phases)),
+        "courts": (COURT_FILL, ["Town Center tract", "buildings", "pond water"]),
+        "buildings": (BUILDING_FILL, ["Town Center tract", "courts", "cottages"]),
+        "cottages": (COTTAGE_FILL, ["Town Center tract", "pond water"]),
+    }
+    lookup = {**base, **phases}
+
+    floor = 12.0
+    print(f"\n{'surface':<18}{'hex':<10}{'nearest thing it touches':<26}deltaE")
+    worst, problems = 999.0, []
+    for name, (hexa, touches) in adjacency.items():
+        l1 = _lab(hexa)
+        near, d = min(((t, math.dist(l1, _lab(lookup[t]))) for t in touches),
+                      key=lambda t: t[1])
+        worst = min(worst, d)
+        if d < floor:
+            problems.append(f"{name} vs {near} ({d:.1f})")
+        flag = "  <-- too close" if d < floor else ""
+        print(f"  {name:<18}{hexa:<10}{near:<26}{d:5.1f}{flag}")
+    print(f"\nadjacent-surface minimum  deltaE {worst:5.1f}   (want >= {floor:.0f})")
+    print("OK" if not problems else "RETUNE: " + "; ".join(problems))
+
 FONT_DIR = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"
 
 
@@ -459,6 +550,9 @@ class Scene:
              [self.rot(project_ring(r)) for r in rings(c["geometry"])])
             for c in tc.get("courts", [])
         ]
+        pool = tc.get("pool")
+        self.tc_pool = ([self.rot(project_ring(r)) for r in rings(pool["geometry"])]
+                        if pool else [])
         self.creeks = clip_to(
             [self.rot(project_ring(l)) for g in f["creeks"] for l in lines(g)],
             self.extent, 0.06,
@@ -479,6 +573,15 @@ class Scene:
         self.needs_confirmation = [l for l in f["landmarks"] if not l.get("confirmed")]
         self.anchor_xy = {l["name"]: self.rot([(l["lon"], l["lat"])], project=True)[0]
                           for l in self.landmarks}
+
+        dp = f.get("dog_park")
+        self.dog_park = None
+        if dp:
+            self.dog_park = {
+                "rings": [self.rot(project_ring(r)) for r in rings(dp["geometry"])],
+                "road": ([self.rot(project_ring(r)) for r in rings(dp["road"])]
+                         if dp.get("road") else []),
+            }
 
         wbc = f.get("west_bay_center")
         self.wbc = None
@@ -619,6 +722,28 @@ def draw_town_center(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
             linewidths=0.5 * lw_scale, alpha=0.95 if on else 0.8, zorder=2.7))
     draw_tc_buildings(ax, s, on=on, lw_scale=lw_scale)
     draw_tc_courts(ax, s, on=on, lw_scale=lw_scale)
+    if s.dog_park:
+        # Above the lot layer, not below it: the county records these woods as
+        # one large common-area parcel inside Phase 3A, and that parcel is drawn
+        # with the lots at zorder 2.8 -- which was painting straight over the
+        # park. Still below the ponds and the roads.
+        ax.add_collection(PolyCollection(
+            s.dog_park["rings"],
+            facecolors=PARK_FILL if on else muted(PARK_FILL),
+            edgecolors=PARK_EDGE, linewidths=1.0 * lw_scale,
+            alpha=0.92 if on else 0.75, zorder=3.05))
+        if s.dog_park["road"]:
+            ax.add_collection(PolyCollection(
+                s.dog_park["road"], facecolors=PARK_ROAD, edgecolors=PARK_ROAD,
+                linewidths=0.6 * lw_scale, alpha=0.95 if on else 0.75,
+                zorder=3.08))
+    if s.tc_pool:
+        # Drawn above the buildings and courts, because the pool deck runs right
+        # up to the Bar and Chill block and the water is the thing being named.
+        ax.add_collection(PolyCollection(
+            s.tc_pool, facecolors=POOL_FILL if on else muted(POOL_FILL),
+            edgecolors=POOL_EDGE, linewidths=0.9 * lw_scale,
+            alpha=0.95 if on else 0.8, zorder=2.8))
     if label and s.cottage_xy and on:
         ax.annotate(s.cottages_label, s.cottage_xy, ha="center", va="center",
                     fontsize=fontsize, fontproperties=F_BOLD, color="#4A3F2C", zorder=6,
@@ -825,13 +950,13 @@ def phase_label_boxes(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
         on = lab == active
         if active is not None and not on:
             continue
-        x, y = s.centroids[lab]
+        x, y = phase_label_xy(s, lab, on)
         lines = [p["short"] if active is None else p["label"]]
         if show_plat:
             lines.append(p["plat"])
         if p.get("karen_lives_here"):
             lines[0] += "  \u2014 Karen lives here" if on else " \u2665"
-        fs = (15 if on else 9.5) * lw_scale
+        fs = (12.5 if on else 9.5) * lw_scale
         w = max(len(t) for t in lines) * fs * 0.56 / ax_w_pt
         h = len(lines) * fs * 1.7 / ax_h_pt
         fx, fy = (x - x0) / span_x, (y - y0) / span_y
@@ -908,7 +1033,7 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
     ext = ax.get_window_extent()
     ax_w_pt = max(ext.width / ax.figure.dpi * 72, 1.0)
     ax_h_pt = max(ext.height / ax.figure.dpi * 72, 1.0)
-    fs = 11 * lw_scale
+    fs = 8.6 * lw_scale
     h = fs * 1.7 / ax_h_pt
 
     placed: list[tuple[float, float, float, float]] = list(avoid or [])
@@ -919,8 +1044,17 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
         w = len(label) * fs * 0.56 / ax_w_pt
 
         # Near the right edge a label would run off the map or under the info
-        # panel, so try the left of the pin first there.
-        sides = (-1, 1) if fx > 0.70 else (1, -1)
+        # panel, so try the left of the pin first there. A landmark may also
+        # pin its own side: Paradise Pool and the kayak launch sit within a
+        # couple of hundred metres of each other and the automatic choice put
+        # them on top of one another, so landmarks.json can say which way.
+        want = l.get("label_side")
+        if want == "left":
+            sides = (-1,)
+        elif want == "right":
+            sides = (1,)
+        else:
+            sides = (-1, 1) if fx > 0.70 else (1, -1)
         chosen = None
         for step in range(8):
             r = 0.010 + step * 0.024
@@ -948,10 +1082,16 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
 
         # A displaced label is ambiguous without a leader; a touching one is
         # cluttered by it. Only draw the line once the label has actually moved.
+        # The leader is gold, not ink: half these pins sit on the Town Center's
+        # dark slate or on water, where a dark line simply disappears. Gold is
+        # the one brand colour that holds up on both the dark tract and the
+        # cream paper, and it is cased in white so it survives either.
         if math.hypot((lx - fx) * span_x / span_y, ly - fy) > 0.030:
             ax.plot([x, x0 + lx * span_x], [y, y0 + ly * span_y],
-                    color=DEEP, lw=0.8 * lw_scale, alpha=0.75, zorder=7.2,
-                    solid_capstyle="round")
+                    color=GOLD, lw=1.5 * lw_scale, alpha=0.98, zorder=7.2,
+                    solid_capstyle="round",
+                    path_effects=[pe.withStroke(linewidth=3.0 * lw_scale,
+                                                foreground="white", alpha=0.85)])
 
         t = ax.text(
             x0 + lx * span_x, y0 + ly * span_y, label,
@@ -1031,9 +1171,16 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
         tx, ty = x0 + lx * (x1 - x0), y0 + ly * (y1 - y0)
         ha, va = ("right" if right else "left"), ("top" if top else "bottom")
 
+    # Gold, cased in white, for the same reason the landmark leaders are: this
+    # line runs across the Town Center's dark slate, where an ink-coloured
+    # hairline simply disappears.
     ax.annotate(
         "", xy=c, xytext=(tx, ty),
-        arrowprops=dict(arrowstyle="-", color=DEEP, lw=0.9, alpha=0.8), zorder=7.4,
+        arrowprops=dict(arrowstyle="-", color=GOLD, lw=1.5, alpha=0.98,
+                        path_effects=[pe.withStroke(linewidth=3.0,
+                                                    foreground="white",
+                                                    alpha=0.85)]),
+        zorder=7.4,
     )
     body = "\n".join("\u00b7 " + a for a in names)
     t = ax.text(
@@ -1045,6 +1192,50 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
     t.set_clip_box(ax.bbox)
 
 
+def phase_label_xy(s: Scene, lab: str, active: bool):
+    """Where a phase's plaque goes.
+
+    The centroid, unless something is already there. On the Town Center frame
+    the centroid sits right on top of the Pickleball & Tennis pin and its
+    leader, so the plaque swallowed both. Landmark pins are fixed points we
+    know in advance, so the active plaque is moved off them first and the
+    labels are laid out around it afterwards.
+
+    Candidates stay inside the phase's own outline -- a plaque floating outside
+    the shape it names is worse than an overlap.
+    """
+    cx, cy = s.centroids[lab]
+    if not active:
+        return cx, cy
+    pins = [s.anchor_xy[l["name"]] for l in s.landmarks]
+    if not pins:
+        return cx, cy
+
+    rings_ = s.phase_rings.get(lab) or []
+    if not rings_:
+        return cx, cy
+    outline = max(rings_, key=len)
+    path = MplPath(outline)
+    xs = [p[0] for p in outline]
+    ys = [p[1] for p in outline]
+    step = max(max(xs) - min(xs), max(ys) - min(ys)) / 14.0
+
+    def clearance(px, py):
+        return min(math.hypot(px - qx, py - qy) for qx, qy in pins)
+
+    best = (clearance(cx, cy), cx, cy)
+    for i in range(-4, 5):
+        for j in range(-4, 5):
+            px, py = cx + i * step, cy + j * step
+            if not path.contains_point((px, py)):
+                continue
+            # Prefer clear ground, but do not wander to the far edge for it.
+            score = clearance(px, py) - 0.35 * math.hypot(px - cx, py - cy)
+            if score > best[0]:
+                best = (score, px, py)
+    return best[1], best[2]
+
+
 def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
                       show_plat: bool = False) -> None:
     for p in s.phases:
@@ -1052,7 +1243,7 @@ def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
         on = lab == active
         if active is not None and not on:
             continue
-        x, y = s.centroids[lab]
+        x, y = phase_label_xy(s, lab, on)
         text = p["short"] if active is None else p["label"]
         if show_plat:
             text += f"\n{p['plat']}"
@@ -1067,7 +1258,7 @@ def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
             fc, tc = "white", INK
         ax.text(
             x, y, text, fontproperties=F_BLACK if on else F_BOLD,
-            fontsize=(15 if on else 9.5) * lw_scale, color=tc,
+            fontsize=(12.5 if on else 9.5) * lw_scale, color=tc,
             ha="center", va="center", zorder=8, linespacing=1.35,
             bbox=dict(boxstyle="round,pad=0.42", fc=fc,
                       ec="white" if on else shade(colour, light_delta=-0.22),
@@ -1727,6 +1918,7 @@ def main() -> None:
         # The cottages are not a phase and so are not in the phase palette, but
         # they are a fill on the same paper and have to clear it just the same.
         palette_report({**s.palette, s.cottages_label: COTTAGE_FILL})
+        overlay_report()
         return
     overlays = set(args.overlays)
     wm = not args.no_watermark

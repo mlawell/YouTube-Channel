@@ -737,6 +737,105 @@ original solve had not been kept. Both re-solves are worth knowing about:
   trying every assignment rather than assumed, and solves at **1.0348 m/px with
   rms 1.5 m**.
 
+## Reading the Town Center
+
+Karen's first look at the Town Center frame was a legibility list, not a
+correction list — everything on it was *drawn right and read wrong*, which on a
+map that exists because the competitor's was unreadable is the same as being
+wrong. Six things, and what each one turned out to need.
+
+**Labels were too big.** Landmark type went 11 → **8.6**, the active phase plaque
+15 → **12.5**. At community scale the plaque was fine; zoomed into one plat it
+was a billboard.
+
+**The "Town Center" plaque sat on top of "Pickleball & Tennis".** The plaque used
+to be placed from the phase's geometry alone, which knows nothing about the pins.
+`phase_label_xy()` now places it away from the landmark pins as well, so the two
+label systems stop fighting.
+
+**"Stay & Play" pointed at a pond.** Not a typo — a bad anchor. `split_town_center`
+took the *hull centroid* of the cottage blocks, and the cottages wrap around a
+pond, so the centre of their hull is water. The anchor is now an interior point
+of the largest cottage block, verified to land inside an actual cottage lot.
+Any anchor taken from a centroid deserves this check; concave things have
+centroids outside themselves.
+
+**Paradise Pool and Kayak Launch labels overlapped.** Landmarks now take an
+optional `label_side` in `landmarks.json` — the pool's label goes left, the
+launch's right, and they clear each other.
+
+**The leader lines vanished.** They were grey, drawn across the dark Town Center
+tract. They are now **gold with a white casing**, which survives both the dark
+tract and the pale paper.
+
+**The dog park was invisible** — see below.
+
+### The Paradise Pool
+
+`paradise_pool.json`. The biggest amenity in the community had only a pin: it
+labelled a spot and drew nothing. It is now a traced outline, **1,245 m²**, good
+to about ±3 m, on the same 1.0348 m/px solve as the buildings and courts so it
+cannot drift relative to them.
+
+Thresholded, not drawn. Treated pool water is the one surface down there with a
+colour of its own — bright *and* blue, where the stormwater ponds are the same
+hue but far darker (value 39 measured) and every roof and path is bright but
+neutral. Google prints its own place marker on top of the pool, punching a notch
+out of the water, so the mask is closed over the icon and its enclosed holes
+filled before tracing.
+
+Two things that check is worth keeping:
+
+- **An outline must not claim detail finer than its own accuracy.** The first
+  trace carried a 12 m × 2 m spur — partly a stray blue speck that the closing
+  had bridged to the pool. The fix is one **opening with a 3 m disc**, a rule
+  applied to the whole mask, not a vertex deleted by hand. It cost 28 m².
+- **A pool is water, but it must not be the *same* water.** The first pool blue
+  measured **ΔE 3.9 from the pond edge** and 9.3 from pond water — it would have
+  read as a pond, which is exactly what the file itself warns about. A sweep of
+  the cyan-to-azure band returned `#0088CC`: still obviously water, **22.9 from
+  every pond tone** and 30.7 from everything else. The sweep's own top answer was
+  a deep navy, rejected as semantically wrong — a swimming pool should not read
+  as deep water. Furthest apart is not always right.
+
+A second bright-blue blob of 318 m² by the Latitude Bar and Chill was dropped: at
+this resolution a small blue roof and a small pool are the same thing.
+
+### The dog park, and why it was invisible
+
+`dog_park.json`. Karen drew the wooded area around the dog park on our own poster
+and asked for it green with its access road, "so it's easier to see the dog
+park". Three separate traps on the way in, all worth remembering.
+
+**"Not really part of 3 — just green space."** Karen said so, and it is checkable
+rather than a matter of opinion: **0 of 3,229 homesites** fall inside her green.
+It is drawn as green space, not as part of Phase 3A.
+
+**"Lots" are not homesites.** `lots_by_phase` includes large common-area tracts,
+and the woods sit *inside* one — so subtracting all lots deleted the park
+entirely. The green is trimmed against the `COTTAGE_MAX_M2` homesite filter, the
+same rule the ponds already use.
+
+**Zorder, twice.** Drawn at 2.65 the park simply did not appear: the Phase 3A
+*tract parcel* draws with the lots at 2.8, straight over it. The green now sits
+at **3.05** with the drive at 3.08 — above the lots, below the ponds and roads.
+
+### Colours get measured, and only against what they touch
+
+`--check-palette` now also reports the non-phase surfaces. It checks each one
+only against what it is **actually adjacent to**, and that scoping is the whole
+point: buildings measure **ΔE 4.3 from the paper**, which sounds alarming and
+means nothing, because a building is only ever drawn inside the dark Town Center
+tract and never touches the paper. A check that cries wolf is a check people
+learn to ignore.
+
+Two entries carry a requirement beyond legibility. The dog park green and the
+West Bay Center fill must each clear **every phase colour**, because both sit
+beside platted phases and neither is one.
+
+Current worst adjacent pair is the West Bay Center against the roads at **ΔE
+18.4**, against a floor of 12.
+
 ## Disclaimer carried on every export
 
 > Phase boundaries & lots: Bay County, FL recorded plats (public record), plat

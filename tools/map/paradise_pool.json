@@ -1,0 +1,97 @@
+{
+  "_what": "Paradise Pool outline, traced from georeferenced aerial imagery.",
+  "_why_this_file_exists": [
+    "Karen asked for a blue shape the shape of the pool where the pool should be.",
+    "The pool had only a landmark pin before, which put the label in roughly the",
+    "right place but drew nothing -- so the biggest amenity in the Town Center was",
+    "invisible on a map whose whole job is showing what is there."
+  ],
+  "_how_measured": [
+    "Thresholded, not drawn by hand. Treated pool water is the one surface down",
+    "there with a colour of its own: it samples b-r > 25 at value > 120 and",
+    "saturation > 0.25, where the stormwater ponds are the same blue but far darker",
+    "(value 39 measured) and every roof and path is bright but neutral.",
+    "Google prints its own place marker on top of the pool, which punched a notch",
+    "out of the water, so the mask is closed over the icon and its enclosed holes",
+    "filled before the outline is traced with marching squares.",
+    "The mask is then opened once with a 3 m disc, because an outline good to",
+    "+/-3 m must not claim detail finer than that -- and because closing over the",
+    "marker can bridge a stray blue speck to the pool and leave a spur. That is a",
+    "rule applied to the whole mask, not a vertex deleted by hand; it cost 28 m2.",
+    "Georeference is the same 1.0348 m/px solve the Town Center buildings and courts",
+    "use, fitted from the court rectangles at rms 1.5 m, so the pool cannot drift",
+    "relative to them.",
+    "Verified the way everything here is verified: drawn back onto the imagery."
+  ],
+  "_accuracy": "About +/-3 m, and 1,245 m2 of water. It is a traced outline of a real edge, not a survey, and it is drawn with a soft edge to say so.",
+  "_not_included": [
+    "A second bright-blue blob of 318 m2 sits about 80 m north-west, by the Latitude",
+    "Bar and Chill. It was dropped: at this resolution a small blue roof and a small",
+    "pool are the same thing, and an extra blue shape beside the water would read as",
+    "a pond."
+  ],
+  "name": "Paradise Pool",
+  "area_m2": 1245,
+  "ring": [
+    [
+      -85.8657169,
+      30.3059503
+    ],
+    [
+      -85.8657653,
+      30.305955
+    ],
+    [
+      -85.8657815,
+      30.3060252
+    ],
+    [
+      -85.8659914,
+      30.3060205
+    ],
+    [
+      -85.8659807,
+      30.3061515
+    ],
+    [
+      -85.8659484,
+      30.3061702
+    ],
+    [
+      -85.8659322,
+      30.3062217
+    ],
+    [
+      -85.8658838,
+      30.3062264
+    ],
+    [
+      -85.8658622,
+      30.3063012
+    ],
+    [
+      -85.865803,
+      30.306334
+    ],
+    [
+      -85.8656523,
+      30.306334
+    ],
+    [
+      -85.86555,
+      30.3062451
+    ],
+    [
+      -85.86555,
+      30.3060954
+    ],
+    [
+      -85.8655769,
+      30.3060907
+    ],
+    [
+      -85.8657169,
+      30.3059503
+    ]
+  ]
+}
