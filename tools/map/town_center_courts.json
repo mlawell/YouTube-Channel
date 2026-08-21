@@ -40,6 +40,9 @@
     "-34 m east, then there is a 38 m gap -- the building -- and then courts 2 and 3 run",
     "from +4 to +87 m east with only 5 m between them. West of the gap is tennis, east of",
     "it is pickleball.",
+    "That building is Minto's name for it. Karen, who lives here, says 'people know it as",
+    "HOA Office', which is what the map's amenity list calls it. Minto's wording is kept",
+    "in this file because here it is evidence for the court split, not a label.",
     "The measurements agree independently. Court 1 is 77.4 x 41.2 m: four bays at 19.3 m",
     "against 18.3 m for a tennis court with run-off, and 41.2 m deep against 36.6 m for a",
     "tennis court's length with run-off. Courts 2 and 3 are the same overall depth but",
@@ -82,7 +85,7 @@
       "length_m": 77.4, "width_m": 41.2, "angle_deg": 0.0
     },
     {
-      "note": "court bank, east of the Community Services Building",
+      "note": "court bank, east of the HOA Office",
       "name": "Pickleball", "confirmed_name": true,
       "confirmed_by": "Minto's published amenity site plan labels the eastern group 'Pickleball'.",
       "east_m": 24.3, "north_m": 109.0,

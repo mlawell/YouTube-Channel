@@ -30,12 +30,12 @@
       "Workin' N' Playin' Center",
       "Latitude Bar and Chill Restaurant",
       "Paradise Pool",
-      "Community Services Building",
+      "HOA Office",
       "Pickleball & Tennis",
       "Multi-Purpose Court & Bocce",
       "Lawn Games / Park Area"
     ],
-    "amenities_source": "Minto's amenity site plan. Only the Town Center point itself is a confirmed coordinate, so these are listed against it rather than pinned individually. The kayak launch and Barkaritaville dog park used to be listed here too; both now have confirmed coordinates from Karen and are pinned on the map, and the dog park is about 500 m north-east of the Town Center anyway, so listing it as 'at the Town Center' was wrong.",
+    "amenities_source": "Minto's amenity site plan. Only the Town Center point itself is a confirmed coordinate, so these are listed against it rather than pinned individually. The kayak launch and Barkaritaville dog park used to be listed here too; both now have confirmed coordinates from Karen and are pinned on the map, and the dog park is about 500 m north-east of the Town Center anyway, so listing it as 'at the Town Center' was wrong. One name differs from Minto's plan on purpose: the plan calls the building between the tennis and pickleball banks the 'Community Services Building', but Karen -- who lives here -- says 'people know it as HOA Office', so that is what the map says. A map is for the people reading it, not for the plan it was checked against. The plan's wording is kept in town_center_buildings.json and town_center_courts.json, where it is a citation rather than a label.",
     "copyright": {
       "holder": "Karen Lawell, Counts Real Estate Group",
       "year": 2026,

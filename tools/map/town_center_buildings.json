@@ -133,7 +133,10 @@
 
   "_known_missing": [
     "Minto's amenity plan names a 'Community Services Building' between the tennis bank",
-    "and the pickleball banks. There is a ~38 m gap between court 1 and court 2 in",
+    "and the pickleball banks -- the building Karen says 'people know it as HOA Office',",
+    "and which the map's amenity list therefore calls the HOA Office. Minto's wording is",
+    "kept here because this is a citation, not a label.",
+    "There is a ~38 m gap between court 1 and court 2 in",
     "town_center_courts.json which is where it sits, and it is NOT in this file -- it was",
     "never measured. Listed here so it is a known gap rather than a silent one."
   ],
