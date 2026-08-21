@@ -936,30 +936,48 @@ What changed as a result:
   than a hand-tuned number per output, it keeps her direction and fans either
   side of it until nothing is underneath.
 
-### Where the amenity block goes, and the one thing that had to give
-
-Karen asked for two things: put it **directly down from the Town Center**, and
-have it cover **no lines or points**. Measured, at a size that is readable on a
-1080p video frame, those cannot both hold:
-
-| Option | Result |
-| --- | --- |
-| Directly below, 11 pt | covers **25** features |
-| Directly below, clear | needs **6 pt** — 8 px tall, unreadable on video |
-| 11 pt, clear | needs a **45% sideways drift** |
-
-So the block keeps full size, covers nothing, and takes the **least sideways
-drift that achieves that** — searched over drift and height against the map's
-own line and point geometry, not against a picture of it. Covering nothing wins
-because hiding a pin is the exact fault Karen has been pointing at all along.
-If she would rather have it dead-below and accept the shoreline running under
-it, that is a one-line change.
-
 One bug found while building this is worth keeping: a freshly created matplotlib
 text has **no laid-out bbox patch until something draws it**, so measuring it
-straight away returns a 2 m box. The first version of the search "found" clear
-ground instantly and then drew a full-size panel across the map. Any measurement
-of a new artist needs a `draw()` first.
+straight away returns a 2 m box. An early version of the placement search
+"found" clear ground instantly and then drew a full-size panel across the map.
+Any measurement of a new artist needs a `draw()` first.
+
+### Where the amenity block goes
+
+**Directly under the Town Center, just below the southern edge of the tract, in
+the open bay.** Karen marked the spot on the map herself and wrote *HERE!!* on
+it. No drift, no search for somewhere "better". The only thing that moves it is
+a pin or another label, because those carry information — an opaque block over a
+stretch of shoreline hides nothing anyone reads.
+
+On the zoomed Town Center frame the tract fills the picture, so "below the
+tract" falls off the bottom edge. It is clamped back inside the axes there, and
+resolves a pin collision sideways since there is nowhere lower to go.
+
+### When an instruction and a rule disagree, the instruction wins
+
+This is written down because it went wrong twice in a row.
+
+Karen asked for the block "directly down from the Town Center". A rule invented
+here — *cover no lines or points* — was allowed to outrank that: the block was
+drifted 45% sideways to satisfy the rule, and on the print sheet the search
+parked it up by the Sales Center, which is clear and useless. She had to draw a
+red box on the map to get what she had already asked for. The same habit had
+shown up a round earlier, over-interpreting "down" instead of taking it
+literally.
+
+So:
+
+- **An explicit instruction about placement wins.** An inferred rule gives way.
+- **Where they genuinely conflict, ask.** Do not pick one and then justify it
+  in a table of trade-offs; that is deciding for her with extra steps.
+- **Take the words literally.** "Down" means down the sheet. "Up 10 px and right
+  5 px" means exactly that. When Karen is specific, the specificity is the
+  content, not an approximation of some intent to be recovered.
+
+`--check-labels` follows the same precedence: a pin or label under the panel is
+a failure, and lines under it are reported as a **note**, because that placement
+is hers and she has made the call.
 
 ## Disclaimer carried on every export
 
