@@ -6,18 +6,27 @@ The flagship [`latitude-phases-explained`](../latitude-phases-explained/) covers
 
 | Episode | Video | Recorded plats | Homesites | Acres |
 | --- | --- | --- | --- | --- |
-| 1 | [Phase 1](phase-1.md) | PB 27/73 | 59 | 34 |
-| 2 | [Phase 2](phase-2.md) | PB 28/8 | 213 | 103 |
-| 3 | [Phase 3](phase-3.md) | PB 28/34, PB 28/63, PB 30/8 | 394 | 212 |
-| 4 | [Phase 4](phase-4.md) | PB 29/23, PB 29/76 | 537 | 226 |
-| 5 | [Phase 5](phase-5.md) | PB 30/14, PB 30/27 | 345 | 218 |
-| 6 | [Phase 6](phase-6.md) | PB 30/39, PB 30/80 | 484 | 284 |
-| 7 | [Phase 7](phase-7.md) | PB 31/14 | 234 | 363 |
-| 8 | [Phase 8 ★](phase-8.md) | PB 31/71 | 204 | 180 |
-| 9 | [Phase 9](phase-9.md) | PB 33/57 | 306 | 203 |
-| 10 | [Phase 10](phase-10.md) | PB 33/98 | 355 | 237 |
+| 1 | [Phase 1](phase-1.md) | PB 27/73 | 59 | 34.3 |
+| 2 | [Phase 2](phase-2.md) | PB 28/8 | 213 | 103.3 |
+| 3 | [Phase 3](phase-3.md) | PB 28/34, PB 28/63, PB 30/8 | 394 | 212.0 |
+| 4 | [Phase 4](phase-4.md) | PB 29/23, PB 29/76 | 537 | 225.8 |
+| 5 | [Phase 5](phase-5.md) | PB 30/14, PB 30/27 | 345 | 218.5 |
+| 6 | [Phase 6](phase-6.md) | PB 30/39, PB 30/80 | 484 | 283.7 |
+| 7 | [Phase 7](phase-7.md) | PB 31/14 | 234 | 363.3 |
+| 8 | [Phase 8 ★](phase-8.md) | PB 31/71 | 204 | 180.2 |
+| 9 | [Phase 9](phase-9.md) | PB 33/57 | 306 | 203.4 |
+| 10 | [Phase 10](phase-10.md) | PB 33/98 | 355 | 236.8 |
 
 ★ Karen lives here. That episode is the anchor of the series.
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `phase-1.md` … `phase-10.md` | One shot-by-shot script per episode |
+| [`metadata.md`](metadata.md) | Titles, chapters, descriptions, tags and pinned comments for all ten |
+| [`thumbnail-brief.md`](thumbnail-brief.md) | One template, ten thumbnails, with the per-episode hook |
+| [`drive-sheet.md`](drive-sheet.md) | **The blocker.** Cart times and resident quotes — the only source for the two things here that are not public record |
 
 ## Why grouped this way
 

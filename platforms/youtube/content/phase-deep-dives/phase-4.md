@@ -13,8 +13,8 @@ Phase 4 is **2 separately recorded plats**, not one:
 
 | Plat | Recorded | Homesites | Acres | Map frame |
 | --- | --- | --- | --- | --- |
-| Phase 4A | PB 29/23 | 332 | 142.2 | `phase-4a` |
-| Phase 4B | PB 29/76 | 205 | 83.6 | `phase-4b` |
+| Phase 4A | PB 29/23 | 332 | 142.2 | `06_phase-4a` |
+| Phase 4B | PB 29/76 | 205 | 83.6 | `07_phase-4b` |
 
 **Together: 537 homesites across 225.8 acres.**
 
@@ -71,7 +71,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-4a]`
+`[FRAME 06_phase-4a]`
 
 > This is Phase 4. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
@@ -79,11 +79,11 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-4a]` · `PB 29/23 · 332 homesites · 142 acres`
+`[FRAME 06_phase-4a]` · `PB 29/23 · 332 homesites · 142 acres`
 
 > Phase 4A — plat book 29, page 23. Three hundred and thirty-two homesites on 142 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
-`[FRAME phase-4b]` · `PB 29/76 · 205 homesites · 84 acres`
+`[FRAME 07_phase-4b]` · `PB 29/76 · 205 homesites · 84 acres`
 
 > Phase 4B — plat book 29, page 76. Two hundred and five homesites on 84 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

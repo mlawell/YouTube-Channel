@@ -361,14 +361,14 @@ statement is `[KAREN]`-gated.
 
 ### Phase 5B — 8:30
 
-`[FRAME 09_phase-5b]` · `PB 30/14 · 97 homesites · 35 acres`
+`[FRAME 08_phase-5b]` · `PB 30/14 · 97 homesites · 35 acres`
 
 > 5B — Paradise Drive and Dreams Float Court. Small, ninety-seven homesites,
 > tucked in. `[INVENTORY]`
 
 ### Phase 5C — 8:50
 
-`[FRAME 10_phase-5c]` · `PB 30/27 · 248 homesites · 184 acres`
+`[FRAME 09_phase-5c]` · `PB 30/27 · 248 homesites · 184 acres`
 
 > 5C is much bigger — Caribbean Soul Way, Compass Rose Court, Paradise Drive.
 > A hundred and eighty-four acres, so there's real space between things here.
@@ -376,7 +376,7 @@ statement is `[KAREN]`-gated.
 
 ### Phase 6A — 9:15
 
-`[FRAME 11_phase-6a]` · `PB 30/39 · 138 homesites · 190 acres`
+`[FRAME 10_phase-6a]` · `PB 30/39 · 138 homesites · 190 acres`
 
 > 6A. Cool Breeze Drive and Hammock Lane. Look at that ratio — a hundred and
 > thirty-eight homesites across a hundred and ninety acres. That is the lowest
@@ -385,7 +385,7 @@ statement is `[KAREN]`-gated.
 
 ### Phase 6B & 6C — 9:45
 
-`[FRAME 12_phase-6b-6c]` · `PB 30/80 · 346 homesites · 94 acres`
+`[FRAME 11_phase-6b-6c]` · `PB 30/80 · 346 homesites · 94 acres`
 
 > And then 6B and 6C, recorded together, are the exact opposite — three hundred
 > and forty-six homesites on ninety-four acres. Attitude Avenue, Pencil Thin
@@ -395,7 +395,7 @@ statement is `[KAREN]`-gated.
 
 ### Phase 7 — 10:15
 
-`[FRAME 13_phase-7]` · `PB 31/14 · 234 homesites · 363 acres`
+`[FRAME 12_phase-7]` · `PB 31/14 · 234 homesites · 363 acres`
 
 > Phase 7 is the largest footprint in the community — three hundred and
 > sixty-three acres — and only two hundred and thirty-four homesites on it.
@@ -405,7 +405,7 @@ statement is `[KAREN]`-gated.
 
 ### Phase 8 — 10:50 · **the longest beat in the video**
 
-`[FRAME 14_phase-8]` · `PB 31/71 · 204 homesites · 180 acres`
+`[FRAME 13_phase-8]` · `PB 31/71 · 204 homesites · 180 acres`
 
 > And this one is mine.
 
@@ -431,7 +431,7 @@ statement is `[KAREN]`-gated.
 
 ### Phase 9 — 11:45
 
-`[FRAME 15_phase-9]` · `PB 33/57 · 306 homesites · 203 acres`
+`[FRAME 14_phase-9]` · `PB 33/57 · 306 homesites · 203 acres`
 
 > Phase 9 — plat book 33, so this is genuinely new. Three hundred and six
 > homesites. Siren Way, Swimsuit Circle, Puffer Fish Place, Daydream Drive,
@@ -440,7 +440,7 @@ statement is `[KAREN]`-gated.
 
 ### Phase 10 — 12:05
 
-`[FRAME 16_phase-10]` · `PB 33/98 · 355 homesites · 237 acres`
+`[FRAME 15_phase-10]` · `PB 33/98 · 355 homesites · 237 acres`
 
 > And Phase 10 is the newest recorded plat and the biggest by homesite count —
 > three hundred and fifty-five. Beach Bum Boulevard, Daiquiri Drive, Carnival
@@ -455,7 +455,7 @@ statement is `[KAREN]`-gated.
 **Direction:** this is the segment nobody else has. It is practical, it is
 verifiable, and it is the reason someone shares the video. Do not rush it.
 
-`[FRAME 13_phase-7]` → `[FRAME 14_phase-8]`, cut back and forth
+`[FRAME 12_phase-7]` → `[FRAME 13_phase-8]`, cut back and forth
 
 > Now I want to show you something that trips people up constantly, because
 > once you see it you can't unsee it.
@@ -536,7 +536,7 @@ say.]`
 
 **"Is there going to be a second Town Square?"**
 
-`[FRAME 16_phase-10]` · `PB 33/98`
+`[FRAME 15_phase-10]` · `PB 33/98`
 
 > Before I answer that, here's something worth knowing that I don't think
 > anybody has said clearly.

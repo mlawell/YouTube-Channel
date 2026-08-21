@@ -200,6 +200,16 @@ class Community:
         for p in self.phases:
             self.groups.setdefault(phase_number(p["label"]), []).append(p)
 
+        # The reveal frames are numbered by their position in features.json --
+        # render_sequence does `for i, p in enumerate(s.phases, 1)` -- so the
+        # filename is derived here the same way rather than guessed. Guessing is
+        # how the flagship script ended up citing 14_phase-8 for a file that is
+        # actually 13_phase-8.
+        self.frame_name = {
+            p["label"]: f"{i:02d}_{frame_slug(p['label'])}"
+            for i, p in enumerate(d["phases"], 1)
+        }
+
         tsa = self.landmarks.get("Town Square Amenity")
         self.tc_xy = merc(tsa["lon"], tsa["lat"]) if tsa else None
         # The Bandshell is that same confirmed pin -- it is labelled "Bandshell"
@@ -315,7 +325,7 @@ def draft(c: Community, num: str) -> str:
         add("| --- | --- | --- | --- | --- |")
         for p in plats:
             add(f"| {p['label']} | {p['plat']} | {p['lot_count']:,} | "
-                f"{p['acres']:,.1f} | `{frame_slug(p['label'])}` |")
+                f"{p['acres']:,.1f} | `{c.frame_name[p['label']]}` |")
         add("")
         # One decimal place, because at zero the parts stop adding up to the
         # total on screen -- 91.5 + 95.7 + 24.8 rounds to 92 + 96 + 25 = 213
@@ -329,7 +339,7 @@ def draft(c: Community, num: str) -> str:
         add(f"| Recorded plat | **{p['plat']}** |")
         add(f"| Homesites | {p['lot_count']:,} |")
         add(f"| Acres | {p['acres']:,.1f} |")
-        add(f"| Map frame | `{frame_slug(p['label'])}` |")
+        add(f"| Map frame | `{c.frame_name[p['label']]}` |")
     add("")
 
     # distance + the cart question
@@ -447,7 +457,7 @@ def _body(c: Community, num: str, g: dict) -> str:
         add("> This is Phase 8. I'm not going to show you a site plan and guess \u2014 "
             "I live here. This is my street.")
     else:
-        add(f"`[FRAME {frame_slug(plats[0]['label'])}]`")
+        add(f"`[FRAME {c.frame_name[plats[0]['label']]}]`")
         add("")
         add(f"> This is Phase {num}. And by the end of this video you'll know "
             f"exactly where it is, what's in it, how long it takes to get to the "
@@ -463,7 +473,7 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("## WHERE IT IS \u2014 0:15\u20132:00")
     add("")
     for p in plats:
-        add(f"`[FRAME {frame_slug(p['label'])}]` \u00b7 `{p['plat']} \u00b7 "
+        add(f"`[FRAME {c.frame_name[p['label']]}]` \u00b7 `{p['plat']} \u00b7 "
             f"{p['lot_count']:,} homesites \u00b7 {p['acres']:,.0f} acres`")
         add("")
         add(f"> {p['label']} \u2014 plat book {p['plat_book']}, page {p['plat_page']}. "
@@ -677,6 +687,334 @@ def drive_sheet(c: Community) -> str:
     return "\n".join(L)
 
 
+def episode_title(c: Community, num: str) -> tuple[str, list[str]]:
+    """Primary title plus A/B alternates.
+
+    Same rule as the flagship: lead with the search term, not a clever question.
+    Somebody typing "latitude margaritaville watersound phase 8" has to see their
+    exact words at the front. Per-phase videos are a long-tail play -- far fewer
+    searches than the flagship, but far higher intent, because nobody types a
+    specific phase number unless they are seriously considering it.
+    """
+    g = c.group_stats(num)
+    base = "Latitude Margaritaville Watersound Phase " + num
+    if g["karen_lives_here"]:
+        primary = f"{base} | I Live Here \u2014 Honest Tour, Cart Times & What It's Really Like"
+        alts = [
+            f"{base} Review (2026) | From Someone Who Actually Lives In It",
+            f"{base} \u2014 Worth It? A Resident Realtor's Honest Take",
+        ]
+    else:
+        primary = f"{base} Explained (2026) | Streets, Distances & What Living There Is Like"
+        alts = [
+            f"{base} Tour | How Far To The Town Center, And Who Lives There",
+            f"{base} \u2014 Everything You Need To Know Before You Buy",
+        ]
+    if len(g["plats"]) > 1:
+        alts.append(f"{base} Is Actually {spoken(len(g['plats'])).capitalize()} "
+                    f"Separate Plats \u2014 Here's What That Means")
+    return primary, alts
+
+
+def episode_description(c: Community, num: str) -> str:
+    """The description, built only from what is checkable.
+
+    No cart time and no resident quote appears here -- both are gated in the
+    script and neither exists until Karen drives and asks. The description is
+    written the day of upload, so the gates are marked in-line rather than left
+    to memory.
+    """
+    g = c.group_stats(num)
+    plats = g["plats"]
+    L: list[str] = []
+    add = L.append
+
+    # The first two lines are all that shows above the fold, so they carry the
+    # search term and the authority claim and nothing else. Everything below is
+    # for the people who clicked "more".
+    if g["karen_lives_here"]:
+        add(f"Latitude Margaritaville Watersound Phase {num} \u2014 and this is the one "
+            f"I actually live in.")
+        add("I'm Karen Lawell. My husband and I bought here, so this is not a tour, "
+            "it's home.")
+    else:
+        add(f"Latitude Margaritaville Watersound Phase {num}, walked street by "
+            f"street from the recorded plats.")
+        add("I'm Karen Lawell \u2014 I'm a realtor here and I live in Phase 8, so I can "
+            "tell you how this one actually compares.")
+    add("")
+    if len(plats) > 1:
+        add(f"First thing: Phase {num} is not one neighborhood. It's "
+            f"{spoken(len(plats))} separately recorded plats \u2014 "
+            + ", ".join(f"{p['label'].replace('Phase ', '')} ({p['plat']})" for p in plats)
+            + ". You can look every one of them up at the Bay County Clerk.")
+    else:
+        p = plats[0]
+        add(f"Recorded as {p['plat']} \u2014 {p['lot_count']:,} homesites on "
+            f"{p['acres']:,.1f} acres. Checkable at the Bay County Clerk.")
+    add("")
+    add("\u23f1\ufe0f ABOUT THE INVENTORY NUMBERS: whatever resale and homesite counts I")
+    add("give in this video were true the day I recorded it and will be different")
+    add("by the time you watch. Everything else here \u2014 the plats, the streets, the")
+    add("addresses, the distances \u2014 doesn't change. For today's actual numbers,")
+    add("message me.")
+    add("")
+    add("What's in this video:")
+    add(f"\u2022 Exactly where Phase {num} sits, drawn from the recorded plats")
+    add(f"\u2022 How long it really takes to get to the Town Center on a golf cart at "
+        f"30 \u2014 I drove it and timed it  [CART: confirm before publishing]")
+    add(f"\u2022 Straight line it's about {fmt_miles(g['nearest_mi'])} to the Town Center"
+        + (f" and about {fmt_miles(g['hwy79_mi'])} to Highway 79"
+           if g["hwy79_mi"] is not None else ""))
+    add("\u2022 Every street in the phase and the county house numbers on each")
+    add("\u2022 Why Minto's lot numbers are NOT addresses")
+    add("\u2022 What the people who actually live here say  [RESIDENT: cut this line if")
+    add("  nobody was interviewed]")
+    if g["karen_lives_here"]:
+        add("\u2022 Why my husband and I picked this phase \u2014 and one honest trade-off")
+    add("\u2022 Whether you can hear Highway 79 or the Bandshell from here")
+    add("")
+    add("\U0001F4CD WANT THE FULL PHASE MAP? Comment \"MAP\" and I'll send you the")
+    add("full-size map \u2014 all 16 recorded plats with book and page, free.")
+    add("")
+    add("\U0001F4EC GOT AN ADDRESS? Drop it in the comments and I'll tell you which phase")
+    add("it's in and which plat it was recorded under.")
+    add("")
+    add("\u26a0\ufe0f REGISTER BEFORE YOUR FIRST VISIT. Minto pays the buyer's agent")
+    add("commission, so having me with you costs you nothing \u2014 but only if you")
+    add("register with me BEFORE you walk into the Sales Center.")
+    add("")
+    add("\U0001F4DE Call/Text: 850-517-8528")
+    add("\U0001F4E7 Email: Karen@nwflbeachhomes.com")
+    add("\U0001F4C5 Schedule a call: https://karenlawell.countspcb.com/contact.php")
+    add("")
+    add("Karen Lawell, Realtor | License #3397366 | Brokered by Counts Real Estate Group")
+    add("")
+    add("Map data: Bay County, Florida recorded plats (public record), plat book and")
+    add("page shown. Illustrative only \u2014 not a survey. For what is actually for sale")
+    add("today, contact me. This channel is not affiliated with or endorsed by Minto")
+    add("Communities.")
+    add("")
+    add(f"#LatitudeMargaritaville #Watersound #PanamaCityBeach #Phase{num} "
+        f"#55PlusCommunity")
+    return "\n".join(L)
+
+
+def episode_tags(c: Community, num: str) -> list[str]:
+    g = c.group_stats(num)
+    tags = [
+        f"Latitude Margaritaville Watersound Phase {num}",
+        f"Latitude Margaritaville Phase {num}",
+        f"Latitude Margaritaville Watersound Phase {num} homes for sale",
+        "Latitude Margaritaville Watersound",
+        "Latitude Margaritaville Watersound phases",
+        "Latitude Margaritaville phase map",
+        "Latitude Margaritaville Panama City Beach",
+        "Latitude Margaritaville Watersound review",
+        "living in Latitude Margaritaville",
+        "Minto Latitude Margaritaville",
+        "55 plus communities Florida",
+        "active adult community Florida",
+        "retiring to Panama City Beach",
+        "Watersound Florida",
+    ]
+    # The street names are long-tail gold: somebody who has been sent a listing
+    # searches the street, not the phase number.
+    top = sorted(g["streets"].items(), key=lambda kv: -sum(n for _, _, n in kv[1]))
+    for name, _ in top[:4]:
+        tags.append(f"{name} Latitude Margaritaville")
+    if g["karen_lives_here"]:
+        tags.append("Latitude Margaritaville realtor who lives there")
+    return tags
+
+
+def episode_chapters(c: Community, num: str) -> list[str]:
+    """Provisional chapters, matching the script's section times.
+
+    Timestamps must be corrected to the final cut before publishing; the first
+    one must be 0:00 or YouTube ignores the whole list.
+    """
+    g = c.group_stats(num)
+    ch = [
+        ("0:00", f"Phase {num} \u2014 what you actually want to know"),
+        ("0:15", "Where it is, and how it was recorded"),
+        ("2:00", "The cart run to the Town Center, at 30"),
+        ("4:00", "Highway 79 and the Bandshell \u2014 what you can hear"),
+        ("5:30", "What people who live here say"),
+    ]
+    if g["karen_lives_here"]:
+        ch.append(("7:30", "Why I live in this phase \u2014 and the honest trade-off"))
+    ch += [
+        ("9:00", "What's actually for sale right now"),
+        ("10:00", "Get the full phase map"),
+    ]
+    return [f"{t} {label}" for t, label in ch]
+
+
+def metadata_doc(c: Community) -> str:
+    L: list[str] = []
+    add = L.append
+    add("# Metadata \u2014 Phase Deep Dives")
+    add("")
+    add("Generated by `tools/scripts/build_phase_scripts.py`. One block per "
+        "episode, ready to paste at upload.")
+    add("")
+    add("**Two things must be resolved before any of these are published:**")
+    add("")
+    add("- `[CART: ...]` \u2014 the description promises a timed cart run. If the run "
+        "has not been driven, that line comes out of the description as well as "
+        "the script.")
+    add("- `[RESIDENT: ...]` \u2014 same for the resident line. Promising it in the "
+        "description and not delivering it in the video is worse than not "
+        "mentioning it.")
+    add("")
+    add("Titles lead with the search term, per the flagship's rule. A per-phase "
+        "video is a long-tail play: far fewer searches than \"phases explained\", "
+        "far higher intent \u2014 nobody types a specific phase number unless they are "
+        "seriously considering it.")
+    add("")
+    for num in PHASE_ORDER:
+        g = c.group_stats(num)
+        primary, alts = episode_title(c, num)
+        add("---")
+        add("")
+        add(f"## Phase {num}"
+            + ("  \u2605 Karen lives here" if g["karen_lives_here"] else ""))
+        add("")
+        add(f"`{len(g['plats'])} plat(s)` \u00b7 `{g['lots']:,} homesites` \u00b7 "
+            f"`{g['acres']:,.1f} acres` \u00b7 "
+            f"`{fmt_miles(g['nearest_mi'])} to the Town Center`")
+        add("")
+        add("### Title")
+        add("")
+        add("```")
+        add(primary)
+        add("```")
+        add("")
+        add("Alternates for A/B:")
+        add("")
+        add("```")
+        for a in alts:
+            add(a)
+        add("```")
+        add("")
+        add("### Chapters")
+        add("")
+        add("```")
+        for line in episode_chapters(c, num):
+            add(line)
+        add("```")
+        add("")
+        add("### Description")
+        add("")
+        add("```")
+        add(episode_description(c, num))
+        add("```")
+        add("")
+        add("### Tags")
+        add("")
+        add("```")
+        for t in episode_tags(c, num):
+            add(t)
+        add("```")
+        add("")
+        add("### Pinned comment")
+        add("")
+        add("```")
+        if len(g["plats"]) > 1:
+            add(f"Phase {num} is actually {spoken(len(g['plats']))} separately "
+                f"recorded plats, not one:")
+            add("")
+            for p in g["plats"]:
+                add(f"\u2022 {p['label']} \u2014 {p['plat']}, {p['lot_count']:,} homesites")
+            add("")
+        else:
+            p = g["plats"][0]
+            add(f"Phase {num} is recorded as {p['plat']} \u2014 {p['lot_count']:,} "
+                f"homesites on {p['acres']:,.1f} acres. You can look it up at the "
+                f"Bay County Clerk.")
+            add("")
+        add("Want the full-size map of all 16 recorded plats? Reply \"MAP\".")
+        add("")
+        add("And if you're coming to see it, text me at 850-517-8528 BEFORE your")
+        add("first Sales Center visit \u2014 Minto pays my commission so I cost you")
+        add("nothing, but only if you register with me first. \u2014 Karen (Phase 8)")
+        add("```")
+        add("")
+    add("---")
+    add("")
+    add("## Shared publishing settings")
+    add("")
+    add("| Setting | Value |")
+    add("| --- | --- |")
+    add("| Category | People & Blogs |")
+    add("| Licence | Standard YouTube Licence |")
+    add("| Audience | Not made for kids |")
+    add("| Subtitles | Upload a corrected SRT \u2014 auto-captions mangle the street names |")
+    add("| Playlist | \"Latitude Margaritaville Watersound \u2014 Every Phase\", in phase order |")
+    add("| End screen | Subscribe (left) \u00b7 next phase in the series \u00b7 the flagship map video |")
+    add("")
+    add("**Publish in phase order**, one a week. The playlist is the product: "
+        "somebody deciding between two phases watches both, and the series only "
+        "does its job once several are up.")
+    return "\n".join(L)
+
+
+def thumbnail_doc(c: Community) -> str:
+    L: list[str] = []
+    add = L.append
+    add("# Thumbnail brief \u2014 Phase Deep Dives")
+    add("")
+    add("Generated by `tools/scripts/build_phase_scripts.py`.")
+    add("")
+    add("## One system, ten thumbnails")
+    add("")
+    add("These are a **series**, so they have to read as a set in the sidebar and "
+        "still be told apart at a glance on a phone. One template, one variable: "
+        "the phase number, set huge.")
+    add("")
+    add("| Zone | Content |")
+    add("| --- | --- |")
+    add("| Left third | Karen, cut out, shoulders up \u2014 same crop every episode |")
+    add("| Centre | **PHASE N** in the heaviest weight available, filling the height |")
+    add("| Behind | That phase's reveal frame from `tools/map/output/frames/`, "
+        "desaturated so the number stays legible |")
+    add("| Lower right | One short hook, 3\u20134 words max |")
+    add("")
+    add("The phase number is the whole thumbnail. Somebody scrolling is looking "
+        "for *their* phase; make that findable from across the room.")
+    add("")
+    add("## Per-episode hook")
+    add("")
+    add("| Episode | Frame to use | Hook | Note |")
+    add("| --- | --- | --- | --- |")
+    for num in PHASE_ORDER:
+        g = c.group_stats(num)
+        frame = c.frame_name[g["plats"][0]["label"]]
+        if g["karen_lives_here"]:
+            hook, note = "I LIVE HERE", "The strongest hook on the channel. Use it."
+        elif len(g["plats"]) > 1:
+            hook = f"{len(g['plats'])} PLATS, NOT 1"
+            note = "The correction is the hook."
+        elif quarter_mi(g["nearest_mi"]) <= 0.5:
+            hook, note = "WALK TO TOWN CENTER", "Closest phases \u2014 lead with proximity."
+        elif quarter_mi(g["nearest_mi"]) >= 2.5:
+            hook, note = "THE FAR END", "Be honest about it; it is also the quietest."
+        else:
+            hook, note = "WORTH IT?", "Generic \u2014 replace once Karen has driven it."
+        add(f"| Phase {num} | `{frame}.png` | **{hook}** | {note} |")
+    add("")
+    add("## Rules")
+    add("")
+    add("- **No price, ever.** Phases are not priced differently and a thumbnail "
+        "implying a tier is the fastest way to lose the channel's credibility.")
+    add("- **No inventory count.** It is stale within days and the thumbnail is "
+        "not re-uploadable.")
+    add("- Test the number at 210 px wide. If the phase number is not readable "
+        "there, it is not readable in the sidebar.")
+    return "\n".join(L)
+
+
 def series_readme(c: Community) -> str:
     L: list[str] = []
     add = L.append
@@ -697,9 +1035,22 @@ def series_readme(c: Community) -> str:
         plats = ", ".join(p["plat"] for p in g["plats"])
         star = " \u2605" if g["karen_lives_here"] else ""
         add(f"| {i} | [Phase {num}{star}](phase-{num}.md) | {plats} | "
-            f"{g['lots']:,} | {g['acres']:,.0f} |")
+            f"{g['lots']:,} | {g['acres']:,.1f} |")
     add("")
     add("\u2605 Karen lives here. That episode is the anchor of the series.")
+    add("")
+    add("## Files")
+    add("")
+    add("| File | What it is |")
+    add("| --- | --- |")
+    add("| `phase-1.md` \u2026 `phase-10.md` | One shot-by-shot script per episode |")
+    add("| [`metadata.md`](metadata.md) | Titles, chapters, descriptions, tags and "
+        "pinned comments for all ten |")
+    add("| [`thumbnail-brief.md`](thumbnail-brief.md) | One template, ten "
+        "thumbnails, with the per-episode hook |")
+    add("| [`drive-sheet.md`](drive-sheet.md) | **The blocker.** Cart times and "
+        "resident quotes \u2014 the only source for the two things here that are not "
+        "public record |")
     add("")
     add("## Why grouped this way")
     add("")
@@ -738,6 +1089,32 @@ def series_readme(c: Community) -> str:
     return "\n".join(L)
 
 
+def check_frame_refs() -> list[str]:
+    """Every `[FRAME x]` in every script must name a file that exists.
+
+    Worth automating because it went wrong silently and badly. The flagship
+    script cited 14_phase-8 for a file that is really 13_phase-8 -- eight cues
+    from Phase 5B onward were all off by one, because the frames are numbered by
+    position in features.json and the Town Center sits at position 8, not last.
+    A wrong frame cue is invisible on the page and obvious on camera: Karen says
+    "Phase 8" while Phase 9 is on screen.
+    """
+    frames = ROOT / "tools" / "map" / "output" / "frames"
+    content = ROOT / "platforms" / "youtube" / "content"
+    if not frames.exists():
+        return ["tools/map/output/frames does not exist -- run render_map.py "
+                "--only sequence before trusting this check"]
+    bad = []
+    for md in sorted(content.rglob("*.md")):
+        for m in re.finditer(r"\[FRAME ([0-9A-Za-z_-]+)\]", md.read_text(encoding="utf-8")):
+            ref = m.group(1)
+            if ref == "nn_name":          # the legend placeholder, not a cue
+                continue
+            if not (frames / f"{ref}.png").exists():
+                bad.append(f"{md.relative_to(ROOT)}: [FRAME {ref}] has no such file")
+    return bad
+
+
 def main() -> None:
     c = Community(load())
     OUT.mkdir(parents=True, exist_ok=True)
@@ -757,11 +1134,21 @@ def main() -> None:
               f"{g['lots']:>4,} homesites, {g['nearest_mi']:.2f} mi to Town Center")
 
     for name, text in (("drive-sheet.md", drive_sheet(c)),
+                       ("metadata.md", metadata_doc(c)),
+                       ("thumbnail-brief.md", thumbnail_doc(c)),
                        ("README.md", series_readme(c))):
         (OUT / name).write_text(text + "\n", encoding="utf-8", newline="\n")
         written.append(OUT / name)
 
     print(f"\n{len(written)} files -> {OUT.relative_to(ROOT)}")
+
+    bad = check_frame_refs()
+    if bad:
+        print("\nBROKEN FRAME REFERENCES:")
+        for b in bad:
+            print(f"  {b}")
+        raise SystemExit(1)
+    print("every [FRAME] reference in every script resolves to a real file.")
     print("Nothing here is recordable until the drive sheet is filled in.")
 
 

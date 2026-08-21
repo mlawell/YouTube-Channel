@@ -33,3 +33,10 @@ Managed under the Gmail account `kalawell@gmail.com` (channel switcher):
 | Package | Channel | Status |
 | --- | --- | --- |
 | [Latitude Margaritaville Watersound — Every Phase Explained](content/latitude-phases-explained/README.md) | Living in Latitude Margaritaville Watersound | Script ready, awaiting Karen's confirmations |
+| [Phase Deep Dives — one video per phase](content/phase-deep-dives/README.md) | Living in Latitude Margaritaville Watersound | Ten drafts + metadata + thumbnails generated. **Blocked on the [drive sheet](content/phase-deep-dives/drive-sheet.md)** — cart times need driving, residents need asking |
+
+The two are a hub and its spokes: the flagship answers "how do the phases work",
+each deep dive answers "should I buy in *this* one". The deep dives are
+generated from the same public record the map is, by
+[`tools/scripts/build_phase_scripts.py`](../../tools/scripts/build_phase_scripts.py),
+so they cannot drift from the map.

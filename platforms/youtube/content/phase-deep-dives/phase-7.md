@@ -14,7 +14,7 @@
 | Recorded plat | **PB 31/14** |
 | Homesites | 234 |
 | Acres | 363.3 |
-| Map frame | `phase-7` |
+| Map frame | `12_phase-7` |
 
 ### How far it is
 
@@ -64,13 +64,13 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-7]`
+`[FRAME 12_phase-7]`
 
 > This is Phase 7. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-7]` · `PB 31/14 · 234 homesites · 363 acres`
+`[FRAME 12_phase-7]` · `PB 31/14 · 234 homesites · 363 acres`
 
 > Phase 7 — plat book 31, page 14. Two hundred and thirty-four homesites on 363 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
