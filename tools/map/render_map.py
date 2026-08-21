@@ -58,6 +58,11 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 OUT = HERE / "output"
 
+# --check-labels turns this on; every render path then measures what it drew and
+# appends anything that overlaps. Off during normal renders so they stay fast.
+CHECK_LABELS = False
+LABEL_PROBLEMS: list[str] = []
+
 R = 6378137.0
 MI_PER_M = 1 / 1609.344
 
@@ -948,16 +953,33 @@ def label_nudge(p: dict, active: bool, lw_scale: float) -> tuple[float, float]:
 
 def phase_label_boxes(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0,
                       show_plat: bool = False) -> list[tuple[float, float, float, float]]:
-    """Approximate axes-fraction boxes for the phase plaques.
+    """Axes-fraction boxes for the phase plaques, measured where possible.
 
-    Landmark labels are placed by collision search, but the search only knew
+    Landmark labels are placed by collision search, and the search only knew
     about other landmark labels -- so 'Pickleball & Tennis' happily landed under
     the 'Town Center PB 32/81' plaque, which is exactly the kind of unreadable
     overlap this map exists to avoid. Feeding these boxes in as obstacles fixes
-    that. The sizes are estimated from the text the same way draw_landmarks
-    estimates its own, rather than measured, because a real text extent needs a
-    renderer pass and an estimate is enough to push a label clear.
+    that.
+
+    The plaques are now drawn before this is called, so their real extents can
+    be read back off the renderer instead of estimated from character counts.
+    That matters since a plaque can be pushed further than its nominal nudge to
+    clear a pin: an estimate would describe where it was, not where it is. The
+    estimate is kept as a fallback for callers that have not drawn yet.
     """
+    fig = ax.figure
+    ext = ax.get_window_extent()
+    drawn = [a for a in ax.get_children() if (a.get_gid() or "").startswith("qa:plaque:")]
+    if drawn:
+        fig.canvas.draw()
+        rend = fig.canvas.get_renderer()
+        out = []
+        for a in drawn:
+            bb = a.get_bbox_patch().get_window_extent(rend)
+            out.append(((bb.x0 - ext.x0) / ext.width, (bb.y0 - ext.y0) / ext.height,
+                        (bb.x1 - ext.x0) / ext.width, (bb.y1 - ext.y0) / ext.height))
+        return out
+
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
     span_x, span_y = x1 - x0, y1 - y0
@@ -1063,9 +1085,23 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
     h = fs * 1.7 / ax_h_pt
 
     placed: list[tuple[float, float, float, float]] = list(avoid or [])
+    # Pins are fixed geographic facts, so no label may sit on one -- not even a
+    # couple of pixels of one. They go in as obstacles, which the earlier
+    # version never did: it only avoided other labels. A label may of course
+    # touch its OWN pin, so that one is left out while it is being placed.
+    pin_boxes: dict[str, tuple[float, float, float, float]] = {}
+    for l in s.landmarks:
+        px, py = s.anchor_xy[l["name"]]
+        rfx = (9 * lw_scale * 0.62) / ax_w_pt
+        rfy = (9 * lw_scale * 0.62) / ax_h_pt
+        cfx, cfy = (px - x0) / span_x, (py - y0) / span_y
+        pin_boxes[l["name"]] = (cfx - rfx, cfy - rfy, cfx + rfx, cfy + rfy)
+
     for fy, fx, x, y, l in visible:
-        ax.plot([x], [y], marker="o", ms=9 * lw_scale, mfc=CORAL, mec="white",
-                mew=2.0 * lw_scale, zorder=7)
+        others = placed + [b for n, b in pin_boxes.items() if n != l["name"]]
+        pin, = ax.plot([x], [y], marker="o", ms=9 * lw_scale, mfc=CORAL, mec="white",
+                       mew=2.0 * lw_scale, zorder=7)
+        pin.set_gid(f"qa:pin:{l['name']}")
         label = l["short"] + ("" if l.get("confirmed") else " ?")
         w = len(label) * fs * 0.56 / ax_w_pt
 
@@ -1092,7 +1128,7 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
                     if box[0] < 0.004 or box[2] > 0.996 or box[1] < 0.004 or box[3] > 0.996:
                         continue
                     if any(box[0] < q[2] and q[0] < box[2]
-                           and box[1] < q[3] and q[1] < box[3] for q in placed):
+                           and box[1] < q[3] and q[1] < box[3] for q in others):
                         continue
                     chosen = (lx, ly, side, box)
                     break
@@ -1125,6 +1161,7 @@ def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float 
             ha="right" if side < 0 else "left", va="center",
             path_effects=[pe.withStroke(linewidth=3.5 * lw_scale, foreground="white")],
         )
+        t.set_gid(f"qa:landmark:{l['name']}")
         t.set_clip_on(True)
         t.set_clip_box(ax.bbox)
 
@@ -1153,6 +1190,152 @@ def draw_street_labels(ax, s: Scene, *, fontsize: float = 5.0,
         t.set_clip_box(ax.bbox)
 
 
+def map_ink(s: Scene):
+    """Every line and point drawn on the map, in data coordinates.
+
+    Karen, on the amenity block: "not covering any lines or points." Rather
+    than rasterise the sheet and look at it, test candidate positions against
+    the geometry the map is drawn from. It is exact, and cheap enough to search
+    over. Area fills are deliberately excluded -- a panel sitting on open water
+    or open land is fine; what it must not do is hide a road, a boundary, a
+    shoreline or a pin.
+    """
+    segs: list[tuple[tuple[float, float], tuple[float, float]]] = []
+
+    def add_rings(rings) -> None:
+        for r in rings or []:
+            for i in range(len(r) - 1):
+                segs.append((r[i], r[i + 1]))
+
+    for rings in s.phase_rings.values():
+        add_rings(rings)
+    for rings in s.lot_rings.values():
+        add_rings(rings)
+    add_rings(s.water)
+    add_rings(s.creeks)
+    add_rings(s.ponds)
+    add_rings([r[-1] for r in s.roads])
+    add_rings([h[-1] for h in s.highways])
+    add_rings(s.hwy79)
+    add_rings(s.tc_tract)
+    add_rings(s.tc_pool)
+    add_rings(s.cottage_lots)
+    add_rings([b[-1] for b in s.tc_buildings])
+    add_rings([c[-1] for c in s.tc_courts])
+    if s.wbc:
+        add_rings(s.wbc.get("rings"))
+    if s.dog_park:
+        add_rings(s.dog_park.get("rings"))
+        add_rings(s.dog_park.get("road"))
+
+    pts = list(s.anchor_xy.values())
+    return segs, pts
+
+
+def _seg_hits_box(p, q, box) -> bool:
+    """Does segment pq touch the axis-aligned rect box=(x0,y0,x1,y1)?"""
+    bx0, by0, bx1, by1 = box
+    (px, py), (qx, qy) = p, q
+    if max(px, qx) < bx0 or min(px, qx) > bx1:
+        return False
+    if max(py, qy) < by0 or min(py, qy) > by1:
+        return False
+    if bx0 <= px <= bx1 and by0 <= py <= by1:
+        return True
+    if bx0 <= qx <= bx1 and by0 <= qy <= by1:
+        return True
+    # Endpoints both outside: check against each edge.
+    dx, dy = qx - px, qy - py
+    t0, t1 = 0.0, 1.0
+    for num, den in ((bx0 - px, dx), (px - bx1, -dx), (by0 - py, dy), (py - by1, -dy)):
+        if den == 0:
+            if num > 0:
+                return False
+            continue
+        t = num / den
+        if den > 0:
+            t0 = max(t0, t)
+        else:
+            t1 = min(t1, t)
+        if t0 > t1:
+            return False
+    return True
+
+
+def box_is_clear(box, segs, pts, *, pad: float = 0.0) -> int:
+    """How many lines and points a rect would cover. Zero means clear."""
+    x0, y0, x1, y1 = box
+    b = (x0 - pad, y0 - pad, x1 + pad, y1 + pad)
+    n = sum(1 for (px, py) in pts if b[0] <= px <= b[2] and b[1] <= py <= b[3])
+    n += sum(1 for p, q in segs if _seg_hits_box(p, q, b))
+    return n
+
+
+def check_labels(fig, ax, s: Scene, where: str) -> list[str]:
+    """Find anything on this figure that covers anything else.
+
+    This exists because Karen kept finding these by eye and I kept fixing them
+    one at a time -- each fix quietly creating the next. Moving the Town Center
+    plaque off a pin pushed the marina under the amenity block. A map whose
+    whole selling point is legibility needs to test its own legibility.
+
+    Every label, pin and panel is tagged with a `qa:` gid when it is drawn, so
+    this measures what was actually rendered -- real text extents from the real
+    renderer, not the estimates the placer works with. It also checks the
+    amenity block against the map's own line and point geometry, because Karen's
+    rule is that it must not cover any of those either.
+
+    A label is allowed to touch its own pin. Nothing else may overlap.
+    """
+    fig.canvas.draw()
+    rend = fig.canvas.get_renderer()
+
+    items: list[tuple[str, str, tuple[float, float, float, float]]] = []
+    for a in ax.get_children():
+        gid = a.get_gid() or ""
+        if not gid.startswith("qa:"):
+            continue
+        _, kind, name = gid.split(":", 2)
+        if kind == "pin":
+            (px,), (py,) = a.get_xdata(), a.get_ydata()
+            dx, dy = ax.transData.transform((px, py))
+            r = a.get_markersize() / 2 * fig.dpi / 72
+            items.append((kind, name, (dx - r, dy - r, dx + r, dy + r)))
+            continue
+        patch = a.get_bbox_patch() if hasattr(a, "get_bbox_patch") else None
+        bb = (patch or a).get_window_extent(rend)
+        items.append((kind, name, (bb.x0, bb.y0, bb.x1, bb.y1)))
+
+    problems = []
+    for i in range(len(items)):
+        ki, ni, bi = items[i]
+        for j in range(i + 1, len(items)):
+            kj, nj, bj = items[j]
+            if ni == nj:                      # a label may touch its own pin
+                continue
+            if ki == "pin" and kj == "pin":   # pins are fixed facts, not layout
+                continue
+            ox = min(bi[2], bj[2]) - max(bi[0], bj[0])
+            oy = min(bi[3], bj[3]) - max(bi[1], bj[1])
+            if ox > 1.0 and oy > 1.0:
+                problems.append(
+                    f"{where}: {ki} '{ni}' overlaps {kj} '{nj}' "
+                    f"by {ox:.0f}x{oy:.0f} px")
+
+    # Karen's extra rule for the amenity block: no lines or points under it.
+    for kind, name, b in items:
+        if kind != "panel":
+            continue
+        inv = ax.transData.inverted()
+        (dx0, dy0), (dx1, dy1) = inv.transform([(b[0], b[1]), (b[2], b[3])])
+        segs, pts = map_ink(s)
+        n = box_is_clear((min(dx0, dx1), min(dy0, dy1),
+                          max(dx0, dx1), max(dy0, dy1)), segs, pts)
+        if n:
+            problems.append(f"{where}: panel '{name}' covers {n} line/point features")
+    return problems
+
+
 def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
                         corner: str = "auto") -> None:
     """Name the amenity core on a detailed map.
@@ -1163,12 +1346,19 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
     Guessing which measured block is the theatre would look authoritative and
     be a guess.
 
-    The block is parked in a corner rather than hung off the pin. Hanging it
+    The block is parked away from the pin rather than hung off it. Hanging it
     off the pin put it straight over the Town Center on the zoomed frame,
     hiding the very thing being named, and the list is tall enough that no
-    fixed offset stays clear at every zoom. `corner` is explicit where the
-    layout already owns some corners -- the video frames carry a locator inset
-    top-left and an info panel down the right, which "auto" cannot know about.
+    fixed offset stays clear at every zoom.
+
+    `corner` is explicit where the layout already owns some corners -- the video
+    frames carry a locator inset top-left and an info panel down the right,
+    which "auto" cannot know about. `"below"` is Karen's placement for the Town
+    Center frame: directly down from the Town Center, horizontally centred on
+    it, so the leader runs straight and the block sits over the empty water
+    instead of in a corner where a landmark pin lives. The bottom-left corner it
+    used to take is where the marina pin now sits, and the block covered it
+    outright.
     """
     c = s.landmark("Town Square Amenity")
     if not c or not s.meta.get("amenities"):
@@ -1177,7 +1367,65 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
 
-    if corner == "auto":
+    if corner == "below":
+        # Karen: put it directly down from the Town Center, and not covering any
+        # lines or points. Those two can fight, so the x stays locked under the
+        # Town Center and only the height is searched -- the block slides down
+        # the column below the tract until it finds ground with no road, no
+        # boundary, no shoreline and no pin in it. Measured against the geometry
+        # rather than eyeballed, and if nothing is completely clear it takes the
+        # least-bad slot and --check-labels says so out loud.
+        ax.figure.canvas.draw()
+        rend = ax.figure.canvas.get_renderer()
+        probe = ax.text(c[0], y0, "AT THE TOWN CENTER\n"
+                        + "\n".join("\u00b7 " + a for a in names),
+                        fontproperties=F_REG, fontsize=fontsize, ha="center",
+                        va="bottom", linespacing=1.55,
+                        bbox=dict(boxstyle="round,pad=0.5"))
+        # A freshly created text has no laid-out bbox patch until something
+        # draws it. Measuring before this second draw returns a 2 m box, which
+        # made an earlier version of this search "find" clear ground instantly
+        # and then draw a full-size panel straight over the map.
+        ax.figure.canvas.draw()
+        bb = probe.get_bbox_patch().get_window_extent(rend)
+        inv = ax.transData.inverted()
+        (bx0, by0_), (bx1, by1_) = inv.transform([(bb.x0, bb.y0), (bb.x1, bb.y1)])
+        probe.remove()
+        w, h = bx1 - bx0, by1_ - by0_
+
+        # Karen wants it directly down from the Town Center AND covering no
+        # lines or points. At a size that is readable on a 1080p frame those two
+        # cannot both hold: dead-below covers 25 features, and shrinking the
+        # type until dead-below is clear needs 6 pt, which is unreadable.
+        # Covering nothing wins -- hiding a pin is the fault she has been
+        # pointing at all along -- so the block takes the LEAST sideways drift
+        # that still covers nothing at all.
+        segs, pts = map_ink(s)
+        pad = (x1 - x0) * 0.004
+        best = None
+        drifts = [0.0]
+        for d in [x / 200 for x in range(5, 111, 5)]:
+            drifts += [-d, d]
+        for di, dxf in enumerate(drifts):
+            cx_ = c[0] + dxf * (x1 - x0)
+            if cx_ - w / 2 < x0 or cx_ + w / 2 > x1:
+                continue
+            for i in range(110):
+                ty_ = y0 + (0.020 + i * 0.008) * (y1 - y0)
+                if ty_ + h > y0 + 0.97 * (y1 - y0):
+                    break
+                box = (cx_ - w / 2, ty_, cx_ + w / 2, ty_ + h)
+                n = box_is_clear(box, segs, pts, pad=pad)
+                score = (n, di)
+                if best is None or score < best[0]:
+                    best = (score, cx_, ty_)
+                if n == 0:
+                    break
+            if best and best[0][0] == 0:
+                break
+        tx, ty = best[1], best[2]
+        ha, va = "center", "bottom"
+    elif corner == "auto":
         # Just below-left of the pin, clamped inside the axes. On a big sheet
         # this is the tidy option: the block sits beside what it names on a
         # short leader. It only fails when the map is zoomed right into the
@@ -1214,8 +1462,14 @@ def draw_amenity_labels(ax, s: Scene, *, fontsize: float = 6.0,
         color=INK, ha=ha, va=va, zorder=7.6, linespacing=1.55,
         bbox=dict(boxstyle="round,pad=0.5", fc="white", ec=DIM_EDGE, lw=0.8, alpha=0.93),
     )
+    t.set_gid("qa:panel:amenities")
     t.set_clip_on(True)
     t.set_clip_box(ax.bbox)
+    ax.figure.canvas.draw()
+    bb = t.get_bbox_patch().get_window_extent(ax.figure.canvas.get_renderer())
+    ext = ax.get_window_extent()
+    return ((bb.x0 - ext.x0) / ext.width, (bb.y0 - ext.y0) / ext.height,
+            (bb.x1 - ext.x0) / ext.width, (bb.y1 - ext.y0) / ext.height)
 
 
 def phase_label_xy(s: Scene, lab: str, active: bool):
@@ -1287,7 +1541,7 @@ def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
         if nx or ny:
             trans = offset_copy(ax.transData, fig=ax.figure,
                                 x=nx / 72.0, y=ny / 72.0, units="inches")
-        ax.text(
+        t = ax.text(
             x, y, text, fontproperties=F_BLACK if on else F_BOLD,
             fontsize=(12.5 if on else 9.5) * lw_scale, color=tc,
             ha="center", va="center", zorder=8, linespacing=1.35,
@@ -1296,6 +1550,53 @@ def draw_phase_labels(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
                       ec="white" if on else shade(colour, light_delta=-0.22),
                       lw=1.8 if on else 1.1, alpha=0.96),
         )
+        t.set_gid(f"qa:plaque:{lab}")
+        if nx or ny:
+            _extend_nudge_until_clear(ax, s, t, nx, ny, lw_scale)
+
+
+def _extend_nudge_until_clear(ax, s: Scene, t, nx: float, ny: float,
+                              lw_scale: float) -> None:
+    """Push a nudged plaque further along its own direction until it clears.
+
+    Karen's offset was measured on the poster, where it is exactly right. The
+    same offset on the 1920x1080 all-phases frame put the Town Center plaque on
+    the Stay & Play pin instead -- different sheet, different aspect, different
+    neighbours. Rather than hand-tune a number per output, keep her direction
+    and walk along it until nothing is underneath.
+    """
+    fig = ax.figure
+    fig.canvas.draw()
+    rend = fig.canvas.get_renderer()
+    pins = []
+    for l in s.landmarks:
+        px, py = s.anchor_xy[l["name"]]
+        dx, dy = ax.transData.transform((px, py))
+        r = 9 * lw_scale / 2 * fig.dpi / 72
+        pins.append((dx - r, dy - r, dx + r, dy + r))
+
+    for k in range(1, 10):
+        bb = t.get_bbox_patch().get_window_extent(rend)
+        box = (bb.x0, bb.y0, bb.x1, bb.y1)
+        if not any(box[0] < q[2] and q[0] < box[2] and box[1] < q[3] and q[1] < box[3]
+                   for q in pins):
+            return
+        # Walk out along her direction, but fan either side of it as well: on
+        # the all-phases frame a straight walk up-and-right left one pin only to
+        # arrive at the next one.
+        ang = math.atan2(ny, nx)
+        mag = math.hypot(nx, ny) * (1 + k * 0.35)
+        for turn in (0.0, 0.45, -0.45, 0.9, -0.9):
+            t.set_transform(offset_copy(
+                ax.transData, fig=fig,
+                x=mag * math.cos(ang + turn) / 72.0,
+                y=mag * math.sin(ang + turn) / 72.0, units="inches"))
+            fig.canvas.draw()
+            bb = t.get_bbox_patch().get_window_extent(rend)
+            box = (bb.x0, bb.y0, bb.x1, bb.y1)
+            if not any(box[0] < q[2] and q[0] < box[2]
+                       and box[1] < q[3] and q[1] < box[3] for q in pins):
+                return
 
 
 def set_view(ax, box, pad_frac: float, aspect: float) -> None:
@@ -1326,7 +1627,15 @@ def phase_box(s: Scene, label: str):
     return min(xs), min(ys), max(xs), max(ys)
 
 
-def scale_bar(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
+def scale_bar(ax, s: Scene, *, lw_scale: float = 1.0,
+              avoid_pts: list | None = None) -> tuple[float, float, float, float]:
+    """Draw the scale bar and report the axes-fraction box it occupies.
+
+    It picks between the bottom-left and bottom-right corners rather than always
+    taking the left: on the Phase 3D frame the marina label sat exactly where the
+    left-hand bar goes. Pins are fixed geographic facts and the furniture is not,
+    so the furniture is what moves.
+    """
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
     lat = math.radians(30.32)
@@ -1336,32 +1645,73 @@ def scale_bar(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
         label = "\u00bc mile"
     else:
         label = "\u00bd mile"
-    bx = x0 + (x1 - x0) * 0.045
+
+    w_frac = half_mi / (x1 - x0)
+    best = None
+    for lx in (0.045, 1 - 0.045 - w_frac):
+        box = (lx - 0.01, 0.030, lx + w_frac + 0.01, 0.105)
+        n = 0
+        for (px, py) in (avoid_pts or []):
+            fx, fy = (px - x0) / (x1 - x0), (py - y0) / (y1 - y0)
+            if box[0] <= fx <= box[2] and box[1] <= fy <= box[3]:
+                n += 1
+        if best is None or n < best[0]:
+            best = (n, lx, box)
+        if n == 0:
+            break
+    _, lx, box = best
+
+    bx = x0 + (x1 - x0) * lx
     by = y0 + (y1 - y0) * 0.055
     ax.plot([bx, bx + half_mi], [by, by], color=INK, lw=3.2 * lw_scale,
             solid_capstyle="butt", zorder=9)
     for x in (bx, bx + half_mi):
         ax.plot([x, x], [by - (y1 - y0) * 0.008, by + (y1 - y0) * 0.008],
                 color=INK, lw=3.2 * lw_scale, zorder=9)
-    ax.text(bx + half_mi / 2, by + (y1 - y0) * 0.014, label, fontproperties=F_BOLD,
-            fontsize=8.5 * lw_scale, color=INK, ha="center", va="bottom", zorder=9,
-            path_effects=[pe.withStroke(linewidth=3, foreground="white")])
+    t = ax.text(bx + half_mi / 2, by + (y1 - y0) * 0.014, label, fontproperties=F_BOLD,
+                fontsize=8.5 * lw_scale, color=INK, ha="center", va="bottom", zorder=9,
+                path_effects=[pe.withStroke(linewidth=3, foreground="white")])
+    t.set_gid("qa:furniture:scale bar")
+    return box
 
 
-def north_arrow(ax, s: Scene, *, lw_scale: float = 1.0) -> None:
-    """North is rotated with the map, so the arrow has to be too."""
+def north_arrow(ax, s: Scene, *, lw_scale: float = 1.0,
+                avoid_pts: list | None = None) -> tuple[float, float, float, float]:
+    """North is rotated with the map, so the arrow has to be too.
+
+    Like the scale bar it chooses a clear corner: the Pickleball and Town Square
+    pins were landing under the fixed right-hand position on two frames.
+    """
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
     span = (y1 - y0)
-    x = x1 - (x1 - x0) * 0.045
-    y = y0 + span * 0.085
+
+    best = None
+    for fx0, fy0 in ((1 - 0.045, 0.085), (0.045, 0.085),
+                     (1 - 0.045, 0.90), (0.045, 0.90)):
+        box = (fx0 - 0.055, fy0 - 0.03, fx0 + 0.055, fy0 + 0.14)
+        n = 0
+        for (px, py) in (avoid_pts or []):
+            fx, fy = (px - x0) / (x1 - x0), (py - y0) / (y1 - y0)
+            if box[0] <= fx <= box[2] and box[1] <= fy <= box[3]:
+                n += 1
+        if best is None or n < best[0]:
+            best = (n, fx0, fy0, box)
+        if n == 0:
+            break
+    _, fx0, fy0, box = best
+
+    x = x0 + (x1 - x0) * fx0
+    y = y0 + span * fy0
     ang = math.radians(90 + s.north_deg)
     dx, dy = math.cos(ang) * span * 0.05, math.sin(ang) * span * 0.05
     ax.annotate("", xy=(x + dx, y + dy), xytext=(x, y),
                 arrowprops=dict(arrowstyle="-|>", color=INK, lw=2.2 * lw_scale), zorder=9)
-    ax.text(x + dx * 1.5, y + dy * 1.5, "N", fontproperties=F_BLACK, fontsize=12 * lw_scale,
-            color=INK, ha="center", va="center", zorder=9,
-            path_effects=[pe.withStroke(linewidth=3.5, foreground="white")])
+    t = ax.text(x + dx * 1.5, y + dy * 1.5, "N", fontproperties=F_BLACK,
+                fontsize=12 * lw_scale, color=INK, ha="center", va="center", zorder=9,
+                path_effects=[pe.withStroke(linewidth=3.5, foreground="white")])
+    t.set_gid("qa:furniture:north arrow")
+    return box
 
 
 def legend(ax, s: Scene, *, lw_scale: float = 1.0, loc="lower left") -> None:
@@ -1585,18 +1935,21 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
     draw_roads(ax, s, lw_scale=lw * 0.7)
     draw_west_bay_center(ax, s, lw_scale=lw * 0.7, fontsize=max(5.0, W * 0.24))
     draw_overlays(ax, s, overlays, lw_scale=lw)
-    draw_phase_labels(ax, s, None, lw_scale=lw * 0.75, show_plat=True)
     set_view(ax, s.extent, 0.04, ax_aspect(fig, map_rect))
+    draw_phase_labels(ax, s, None, lw_scale=lw * 0.75, show_plat=True)
     if watermark:
         draw_watermark(ax, s, fontsize=max(7.5, W * 0.42))
     if preset.detail == "full":
         draw_street_labels(ax, s, fontsize=max(3.6, W * 0.13))
-        draw_amenity_labels(ax, s, fontsize=max(4.5, W * 0.16))
-    draw_landmarks(ax, s, lw_scale=lw * 0.8,
-                   avoid=phase_label_boxes(ax, s, None, lw_scale=lw * 0.75,
-                                           show_plat=True))
-    scale_bar(ax, s, lw_scale=lw * 0.8)
-    north_arrow(ax, s, lw_scale=lw * 0.8)
+    pins = [s.anchor_xy[l["name"]] for l in s.landmarks]
+    boxes = phase_label_boxes(ax, s, None, lw_scale=lw * 0.75, show_plat=True)
+    boxes.append(scale_bar(ax, s, lw_scale=lw * 0.8, avoid_pts=pins))
+    boxes.append(north_arrow(ax, s, lw_scale=lw * 0.8, avoid_pts=pins))
+    if preset.detail == "full":
+        b = draw_amenity_labels(ax, s, fontsize=max(4.5, W * 0.16), corner="below")
+        if b:
+            boxes.append(b)
+    draw_landmarks(ax, s, lw_scale=lw * 0.8, avoid=boxes)
 
     fig.text(inx(safe), iny(H - safe * 0.75), "Latitude Margaritaville Watersound",
              fontproperties=F_BLACK, fontsize=W * 1.05, color=INK, ha="left", va="top")
@@ -1629,6 +1982,8 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
         path = OUT / f"{name}.{fmt}"
         fig.savefig(path, facecolor=SAND, format=fmt)
         written.append(path)
+    if CHECK_LABELS:
+        LABEL_PROBLEMS.extend(check_labels(fig, ax, s, name))
     plt.close(fig)
     return written
 
@@ -1645,13 +2000,15 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False,
     draw_roads(ax, s)
     draw_west_bay_center(ax, s)
     draw_overlays(ax, s, overlays)
-    draw_phase_labels(ax, s, None)
     set_view(ax, s.extent, 0.05, ax_aspect(fig, POSTER_RECT))
+    draw_phase_labels(ax, s, None)
     if watermark:
         draw_watermark(ax, s, fontsize=14.0)
-    draw_landmarks(ax, s, avoid=phase_label_boxes(ax, s, None))
-    scale_bar(ax, s)
-    north_arrow(ax, s)
+    pins = [s.anchor_xy[l["name"]] for l in s.landmarks]
+    boxes = phase_label_boxes(ax, s, None)
+    boxes.append(scale_bar(ax, s, avoid_pts=pins))
+    boxes.append(north_arrow(ax, s, avoid_pts=pins))
+    draw_landmarks(ax, s, avoid=boxes)
     legend(ax, s)
 
     fig.text(0.025, 0.955, "Latitude Margaritaville Watersound", fontproperties=F_BLACK,
@@ -1664,6 +2021,9 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False,
              fontsize=12, color=MUTED, ha="right", va="center")
     fig.text(0.5, 0.032, credit_line(s), fontproperties=F_REG, fontsize=9.5,
              color=MUTED, ha="center", va="center", linespacing=1.55)
+
+    if CHECK_LABELS:
+        LABEL_PROBLEMS.extend(check_labels(fig, ax, s, "poster"))
 
     OUT.mkdir(parents=True, exist_ok=True)
     if pdf:
@@ -1847,11 +2207,13 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
     draw_roads(ax, s)
     draw_west_bay_center(ax, s)
     draw_overlays(ax, s, overlays)
-    draw_phase_labels(ax, s, None)
     set_view(ax, s.extent, 0.04, aspect)
-    draw_landmarks(ax, s, avoid=phase_label_boxes(ax, s, None))
-    scale_bar(ax, s)
-    north_arrow(ax, s)
+    draw_phase_labels(ax, s, None)
+    pins = [s.anchor_xy[l["name"]] for l in s.landmarks]
+    boxes = phase_label_boxes(ax, s, None)
+    boxes.append(scale_bar(ax, s, avoid_pts=pins))
+    boxes.append(north_arrow(ax, s, avoid_pts=pins))
+    draw_landmarks(ax, s, avoid=boxes)
     legend(ax, s, loc="lower left")
     fig.text(0.722, 0.905, "ALL 16 PHASES", fontproperties=F_BLACK, fontsize=30,
              color=INK, ha="left", va="center")
@@ -1866,6 +2228,8 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
                  fontsize=12, color=MUTED, ha="right", va="center")
         yy -= 0.0405
     footer(fig)
+    if CHECK_LABELS:
+        LABEL_PROBLEMS.extend(check_labels(fig, ax, s, "frame all-phases"))
     path = frames_dir / "00_all-phases.png"
     fig.savefig(path, facecolor=SAND)
     plt.close(fig)
@@ -1881,7 +2245,6 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         draw_roads(ax, s, lw_scale=1.4, label_hwy=True)
         draw_west_bay_center(ax, s, lw_scale=1.4, fontsize=9.0, tenants=False)
         draw_overlays(ax, s, overlays, lw_scale=1.4)
-        draw_phase_labels(ax, s, lab, lw_scale=1.4)
 
         box = phase_box(s, lab)
         # Keep the Sales Center and Town Center in shot so viewers stay oriented.
@@ -1895,8 +2258,15 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         xs = [box[0], box[2]] + [a[0] for a in anchors if a]
         ys = [box[1], box[3]] + [a[1] for a in anchors if a]
         set_view(ax, (min(xs), min(ys), max(xs), max(ys)), 0.12, aspect)
-        draw_landmarks(ax, s, only_anchors=False, lw_scale=1.4,
-                       avoid=phase_label_boxes(ax, s, lab, lw_scale=1.4))
+        draw_phase_labels(ax, s, lab, lw_scale=1.4)
+        # Furniture and the amenity block are placed first: they can move, and
+        # the landmark labels are the most flexible thing on the sheet, so they
+        # should be the ones routing around everything else rather than the
+        # other way round.
+        pins = [s.anchor_xy[l["name"]] for l in s.landmarks]
+        boxes = phase_label_boxes(ax, s, lab, lw_scale=1.4)
+        boxes.append(scale_bar(ax, s, lw_scale=1.2, avoid_pts=pins))
+        boxes.append(north_arrow(ax, s, lw_scale=1.2, avoid_pts=pins))
         # On the Town Center frame the viewer is looking straight at the amenity
         # core and will ask what is in it, so name the amenities here. The
         # buildings themselves are drawn as measured massing by
@@ -1904,14 +2274,17 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         # the rest of the names are listed against the tract rather than
         # attached to a particular roof.
         if lab == "Town Center":
-            draw_amenity_labels(ax, s, fontsize=11.0, corner="bottom-left")
-        scale_bar(ax, s, lw_scale=1.2)
-        north_arrow(ax, s, lw_scale=1.2)
+            b = draw_amenity_labels(ax, s, fontsize=11.0, corner="below")
+            if b:
+                boxes.append(b)
+        draw_landmarks(ax, s, only_anchors=False, lw_scale=1.4, avoid=boxes)
         _panel_text(fig, s, p)
         _locator_inset(fig, s, lab)
         footer(fig)
 
         slug = lab.lower().replace("phase ", "phase-").replace(" & ", "-").replace(" ", "")
+        if CHECK_LABELS:
+            LABEL_PROBLEMS.extend(check_labels(fig, ax, s, f"frame {slug}"))
         path = frames_dir / f"{i:02d}_{slug}.png"
         fig.savefig(path, facecolor=SAND)
         plt.close(fig)
@@ -1919,6 +2292,37 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         print(f"  {path.name}")
 
     return written
+
+
+def _run_label_check(s: Scene, overlays: set[str]) -> None:
+    """Render everything to scratch and report anything covering anything else."""
+    global CHECK_LABELS, OUT
+    import shutil
+    import tempfile
+
+    CHECK_LABELS = True
+    LABEL_PROBLEMS.clear()
+    keep = OUT
+    tmp = Path(tempfile.mkdtemp(prefix="labelcheck-"))
+    try:
+        OUT = tmp
+        render_poster(s, overlays)
+        render_sequence(s, overlays)
+        render_sheet(s, PRESETS["print-36x24"], overlays, "check-36x24")
+    finally:
+        OUT = keep
+        CHECK_LABELS = False
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    print()
+    if not LABEL_PROBLEMS:
+        print("no label, pin or panel covers another, on any output.")
+        print("OK")
+        return
+    for p in LABEL_PROBLEMS:
+        print(f"  {p}")
+    print(f"\n{len(LABEL_PROBLEMS)} collisions")
+    raise SystemExit(1)
 
 
 def main() -> None:
@@ -1941,6 +2345,10 @@ def main() -> None:
                     help="optional context layers; off by default to keep the map clean")
     ap.add_argument("--check-palette", action="store_true",
                     help="report perceptual separation between phase colours and exit")
+    ap.add_argument("--check-labels", action="store_true",
+                    help="render every output to a scratch directory and report any "
+                         "label, pin or panel that covers another; exits non-zero on "
+                         "a collision")
     ap.add_argument("--no-watermark", action="store_true",
                     help="render without the tiled ownership watermark")
     args = ap.parse_args()
@@ -1952,6 +2360,8 @@ def main() -> None:
         palette_report({**s.palette, s.cottages_label: COTTAGE_FILL})
         overlay_report()
         return
+    if args.check_labels:
+        return _run_label_check(s, set(args.overlays))
     overlays = set(args.overlays)
     wm = not args.no_watermark
 
