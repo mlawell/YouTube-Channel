@@ -14,7 +14,7 @@
 | Recorded plat | **PB 33/57** |
 | Homesites | 306 |
 | Acres | 203.4 |
-| Map frame | `phase-9` |
+| Map frame | `14_phase-9` |
 
 ### How far it is
 
@@ -68,13 +68,13 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-9]`
+`[FRAME 14_phase-9]`
 
 > This is Phase 9. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-9]` · `PB 33/57 · 306 homesites · 203 acres`
+`[FRAME 14_phase-9]` · `PB 33/57 · 306 homesites · 203 acres`
 
 > Phase 9 — plat book 33, page 57. Three hundred and six homesites on 203 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

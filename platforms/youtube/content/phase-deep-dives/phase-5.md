@@ -13,8 +13,8 @@ Phase 5 is **2 separately recorded plats**, not one:
 
 | Plat | Recorded | Homesites | Acres | Map frame |
 | --- | --- | --- | --- | --- |
-| Phase 5B | PB 30/14 | 97 | 34.5 | `phase-5b` |
-| Phase 5C | PB 30/27 | 248 | 184.0 | `phase-5c` |
+| Phase 5B | PB 30/14 | 97 | 34.5 | `08_phase-5b` |
+| Phase 5C | PB 30/27 | 248 | 184.0 | `09_phase-5c` |
 
 **Together: 345 homesites across 218.5 acres.**
 
@@ -65,7 +65,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-5b]`
+`[FRAME 08_phase-5b]`
 
 > This is Phase 5. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
@@ -73,11 +73,11 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-5b]` · `PB 30/14 · 97 homesites · 34 acres`
+`[FRAME 08_phase-5b]` · `PB 30/14 · 97 homesites · 34 acres`
 
 > Phase 5B — plat book 30, page 14. Ninety-seven homesites on 34 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
-`[FRAME phase-5c]` · `PB 30/27 · 248 homesites · 184 acres`
+`[FRAME 09_phase-5c]` · `PB 30/27 · 248 homesites · 184 acres`
 
 > Phase 5C — plat book 30, page 27. Two hundred and forty-eight homesites on 184 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

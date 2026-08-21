@@ -14,7 +14,7 @@
 | Recorded plat | **PB 28/8** |
 | Homesites | 213 |
 | Acres | 103.3 |
-| Map frame | `phase-2` |
+| Map frame | `02_phase-2` |
 
 ### How far it is
 
@@ -63,13 +63,13 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-2]`
+`[FRAME 02_phase-2]`
 
 > This is Phase 2. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-2]` · `PB 28/8 · 213 homesites · 103 acres`
+`[FRAME 02_phase-2]` · `PB 28/8 · 213 homesites · 103 acres`
 
 > Phase 2 — plat book 28, page 8. Two hundred and thirteen homesites on 103 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

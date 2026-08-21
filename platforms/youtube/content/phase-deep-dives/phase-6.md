@@ -13,8 +13,8 @@ Phase 6 is **2 separately recorded plats**, not one:
 
 | Plat | Recorded | Homesites | Acres | Map frame |
 | --- | --- | --- | --- | --- |
-| Phase 6A | PB 30/39 | 138 | 189.6 | `phase-6a` |
-| Phase 6B & 6C | PB 30/80 | 346 | 94.1 | `phase-6b-6c` |
+| Phase 6A | PB 30/39 | 138 | 189.6 | `10_phase-6a` |
+| Phase 6B & 6C | PB 30/80 | 346 | 94.1 | `11_phase-6b-6c` |
 
 **Together: 484 homesites across 283.7 acres.**
 
@@ -69,7 +69,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-6a]`
+`[FRAME 10_phase-6a]`
 
 > This is Phase 6. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
@@ -77,11 +77,11 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-6a]` · `PB 30/39 · 138 homesites · 190 acres`
+`[FRAME 10_phase-6a]` · `PB 30/39 · 138 homesites · 190 acres`
 
 > Phase 6A — plat book 30, page 39. One hundred and thirty-eight homesites on 190 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
-`[FRAME phase-6b-6c]` · `PB 30/80 · 346 homesites · 94 acres`
+`[FRAME 11_phase-6b-6c]` · `PB 30/80 · 346 homesites · 94 acres`
 
 > Phase 6B & 6C — plat book 30, page 80. Three hundred and forty-six homesites on 94 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

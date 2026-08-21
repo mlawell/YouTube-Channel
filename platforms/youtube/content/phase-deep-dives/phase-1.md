@@ -14,7 +14,7 @@
 | Recorded plat | **PB 27/73** |
 | Homesites | 59 |
 | Acres | 34.3 |
-| Map frame | `phase-1` |
+| Map frame | `01_phase-1` |
 
 ### How far it is
 
@@ -60,13 +60,13 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-1]`
+`[FRAME 01_phase-1]`
 
 > This is Phase 1. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-1]` · `PB 27/73 · 59 homesites · 34 acres`
+`[FRAME 01_phase-1]` · `PB 27/73 · 59 homesites · 34 acres`
 
 > Phase 1 — plat book 27, page 73. Fifty-nine homesites on 34 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

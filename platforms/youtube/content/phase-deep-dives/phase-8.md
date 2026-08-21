@@ -14,7 +14,7 @@
 | Recorded plat | **PB 31/71** |
 | Homesites | 204 |
 | Acres | 180.2 |
-| Map frame | `phase-8` |
+| Map frame | `13_phase-8` |
 
 ### How far it is
 
@@ -68,7 +68,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-8]` · `PB 31/71 · 204 homesites · 180 acres`
+`[FRAME 13_phase-8]` · `PB 31/71 · 204 homesites · 180 acres`
 
 > Phase 8 — plat book 31, page 71. Two hundred and four homesites on 180 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

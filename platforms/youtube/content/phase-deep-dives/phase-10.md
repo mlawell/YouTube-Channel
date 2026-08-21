@@ -14,7 +14,7 @@
 | Recorded plat | **PB 33/98** |
 | Homesites | 355 |
 | Acres | 236.8 |
-| Map frame | `phase-10` |
+| Map frame | `15_phase-10` |
 
 ### How far it is
 
@@ -67,13 +67,13 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-10]`
+`[FRAME 15_phase-10]`
 
 > This is Phase 10. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-10]` · `PB 33/98 · 355 homesites · 237 acres`
+`[FRAME 15_phase-10]` · `PB 33/98 · 355 homesites · 237 acres`
 
 > Phase 10 — plat book 33, page 98. Three hundred and fifty-five homesites on 237 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 

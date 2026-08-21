@@ -13,9 +13,9 @@ Phase 3 is **3 separately recorded plats**, not one:
 
 | Plat | Recorded | Homesites | Acres | Map frame |
 | --- | --- | --- | --- | --- |
-| Phase 3A | PB 28/34 | 172 | 91.5 | `phase-3a` |
-| Phase 3B & 3C | PB 28/63 | 178 | 95.7 | `phase-3b-3c` |
-| Phase 3D | PB 30/8 | 44 | 24.8 | `phase-3d` |
+| Phase 3A | PB 28/34 | 172 | 91.5 | `03_phase-3a` |
+| Phase 3B & 3C | PB 28/63 | 178 | 95.7 | `04_phase-3b-3c` |
+| Phase 3D | PB 30/8 | 44 | 24.8 | `05_phase-3d` |
 
 **Together: 394 homesites across 212.0 acres.**
 
@@ -73,7 +73,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## COLD OPEN — 0:00–0:15
 
-`[FRAME phase-3a]`
+`[FRAME 03_phase-3a]`
 
 > This is Phase 3. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
 
@@ -81,15 +81,15 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHERE IT IS — 0:15–2:00
 
-`[FRAME phase-3a]` · `PB 28/34 · 172 homesites · 92 acres`
+`[FRAME 03_phase-3a]` · `PB 28/34 · 172 homesites · 92 acres`
 
 > Phase 3A — plat book 28, page 34. One hundred and seventy-two homesites on 92 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
-`[FRAME phase-3b-3c]` · `PB 28/63 · 178 homesites · 96 acres`
+`[FRAME 04_phase-3b-3c]` · `PB 28/63 · 178 homesites · 96 acres`
 
 > Phase 3B & 3C — plat book 28, page 63. One hundred and seventy-eight homesites on 96 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
-`[FRAME phase-3d]` · `PB 30/8 · 44 homesites · 25 acres`
+`[FRAME 05_phase-3d]` · `PB 30/8 · 44 homesites · 25 acres`
 
 > Phase 3D — plat book 30, page 8. Forty-four homesites on 25 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
