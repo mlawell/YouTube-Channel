@@ -515,6 +515,37 @@ so the clearing was measured there instead. That landed 6 m from the position
 already derived from the builder's site plan — two independent routes agreeing,
 which is why it is now confirmed rather than merely plausible.
 
+### When a screenshot cannot be fitted at all: the Publix shot
+
+Karen marked the Publix site with a red labelled box on a Google screenshot of
+the community entrance. **That shot could not be georeferenced, after six
+attempts** — shoreline correlation, filled-pond IoU, road matching against a
+pavement mask, and finally a scale-only sweep anchored on the confirmed Sales
+Center marker. Every one failed the overlay check; the best pond IoU reached
+0.28, and drawing the ponds back on showed outlines sitting in open water and
+across rooftops.
+
+The reason is structural and worth knowing before anyone tries again: **this
+frame lies mostly outside the platted community.** The 73 pond outlines were
+deliberately kept only where they touch the platted footprint, so there is
+almost no genuine control inside the frame — the fit was matching noise. A
+screenshot is only as fittable as the geometry it overlaps.
+
+Two smaller lessons from the same episode:
+
+- Two of the six attempts *looked* like the control had failed when in fact they
+  had never tested it: they rasterised the network into an image the size of the
+  **shot**, so only the network's top-left corner was ever drawn. Check that
+  your template covers what you think it covers before concluding your control
+  is bad.
+- The red box measured **301 × 86 m** on the ground. That is a text label, not a
+  site outline, so its centroid was never the store anyway.
+
+So the Publix is placed from the public record instead — Bay County's address
+point `8433 WEST BAY PKWY` — with the note recording that this marks the centre
+rather than the store, and Karen's arrow on the master plan and her drone photo
+recorded as what identifies the building.
+
 **Legal note.** These aerials are licensed imagery. We take *positions* off
 them, exactly as we take positions off the builder's site plan; we never trace,
 reproduce, crop or publish the imagery itself. The published map is drawn from
@@ -748,6 +779,93 @@ thumbnail plate, which gets overlaid. For a clean copy:
 python render_map.py --preset print-36x24 --no-watermark
 ```
 
+## Watersound West Bay Center
+
+`west_bay_center.json`. The commercial centre at the community entrance, with
+its named tenants. Karen asked for it: a Publix within a golf-cart ride is a
+real buyer fact, and it is the biggest thing happening next door.
+
+It is **not** part of the community, is not in any plat we hold, and no county
+layer carries it — the parcel layer has no legal description or subdivision
+mentioning it, and `PlanningProjects` returns nothing here. So it is drawn from
+Karen's own knowledge and labelled as approximate.
+
+### How the extent was obtained
+
+Karen drew the area as a red box **directly on our own rendered poster** and
+sent it back. That is the easiest annotation this project has had to recover,
+because the projection is ours and the whole chain inverts:
+
+```
+her px -> poster px -> figure fraction -> axes fraction
+       -> rotated Mercator -> unrotate -> Mercator -> lon/lat
+```
+
+**The registration is on the landmark pins, not on image correlation.**
+Correlating the whole frame reached only 8.9σ — the sheet is mostly flat sand
+and watermark, so a correlator has little to bite on — and left roughly 200 m of
+slop. The coral pins are small, distinctive, identical in both images, and we
+know exactly where we drew them. All **9 matched, and a least-squares fit closed
+to rms 2.8 px, which is 2.8 m on the ground.**
+
+Her box was then reduced to its minimum-area rectangle, since she drew it tilted
+to follow the map's own 40° rotation.
+
+### Two trims, both against geometry we hold
+
+Her freehand box overruns two real edges. Trimming to them is applying known
+constraints, not inventing a boundary:
+
+| Step | Acres |
+| --- | ---: |
+| as Karen drew it | 192 |
+| west of Hwy 79 (county centreline) | 52 |
+| outside the recorded plats | 51 |
+
+The centre is entirely **west** of Hwy 79 — her own Google aerial and her drone
+photo both show the highway on the right of frame — and it is not inside Phases
+1 and 2. The alternative was publishing a shopping centre sitting on top of a
+state road and lapping over two neighbourhoods.
+
+**The recovery is good to ~3 m. The box is not.** It is a freehand sketch and
+does not claim to be a parcel boundary, which is why no acreage is printed on
+the map and the block is styled to read as approximate.
+
+### Why it is hatched
+
+The first fill, a cool grey `#BFC7CB`, measured **ΔE 15.2 from the pond blue** —
+the same trap the racquet courts fell into, and rejected there at 23.4. A
+commercial block that reads as water is worse than no block.
+
+But there was no spare hue either. Ten saturated phase families, pale water,
+cream paper, pale land, cottage gold and the Town Center slate are all spoken
+for; a sweep of the remaining space returned lavender as the best free hue,
+which would simply read as another phase.
+
+So it is separated by **texture** instead — hatched, with a dashed edge — which
+frees the fill to be a neutral warm taupe `#BDB2A3` measuring **27.5 from water,
+23.0 from paper, 21.6 from land**. Hatch and dashes together say *approximate,
+and not one of the phases*.
+
+### Tenants
+
+Karen's, from being on the site: **Publix** (under construction, and she has
+photographed the shell going up), **Electric Cart**, **Capital City Bank**,
+**Grand Nails**, **West Bay Dental**, **Dermatology Associates**. More are
+moving in — the list is what is known now, not the final roster.
+
+St. Joe's own site gives the centre **~350,000 sq ft** of leasable space at
+build out. Use that figure, not the 500,000 that circulates in trade press.
+
+**Deliberately omitted:** a real-estate agency is going up on the dirt lot beside
+the multi-tenant building. Karen's call to leave it off — it is a competing
+brokerage and this map is her marketing asset. **Standing rule: no competing
+brokerage is drawn or named on Karen's maps.**
+
+The separate *Publix (future)* landmark pin was removed when this block landed.
+Two representations of one thing, at slightly different positions, is worse than
+one — and the pin's coordinate was the weakest thing on the map.
+
 ## Still needs Karen
 
 Nothing blocking — these are map polish.
@@ -764,23 +882,16 @@ Nothing blocking — these are map polish.
       plainly under way — about 14 acres are graded — but do not say "under
       construction" on screen. The marina itself is not being built yet; water
       permits are still pending.
-- [ ] The future-commercial parcel. **The tenant is settled — Karen confirms it
-      is Publix**, so the name can be said on screen, and it is part of
-      **Watersound West Bay Center**, a St. Joe development at the community
-      entrance on Hwy 79 (St. Joe announced commencement in its own investor
-      release). Treat the square footages and opening date circulating in trade
-      press as trade press, not public record.
-
-      What is missing is the *parcel*. Publix owns no land here yet (their only
-      Bay County parcel is 17 km south), no legal description or subdivision
-      mentions West Bay Center, and the county's PlanningProjects layer has
-      nothing near the community. The address layer holds exactly one point in
-      the 8300–8600 West Bay Pkwy range — `8433 WEST BAY PKWY` at
-      30.31621, −85.85695 — but that is the address of a St. Joe *holding*, not
-      of a store, and a 110-acre centre is ~670 m across, about five inches on
-      the 36-inch print. So the landmark still has null coordinates and draws
-      nothing. Karen either ringing the site on an aerial, or simply confirming
-      or rejecting that coordinate, would finish it.
+- [x] The future-commercial parcel. **Karen confirms it is Publix**, and the
+      whole centre is now on the map as a hatched block labelled **West Bay
+      Center**, with her tenant list: Publix, Electric Cart, Capital City Bank,
+      Grand Nails, West Bay Dental, Dermatology Associates. She drew the extent
+      on our own poster and it was recovered to **rms 2.8 m** off the landmark
+      pins, then trimmed to west of Hwy 79 and outside the recorded plats.
+      St. Joe's own site gives the centre ~350,000 sq ft at build out — use that,
+      not the 500,000 in trade press. A competing brokerage going up on the
+      adjacent lot is deliberately left off, at Karen's request.
+      See "Watersound West Bay Center" below.
 - [x] The Town Center buildings. Five indicative masses are on the map now,
       measured off the verified aerial to about ±5 m — see "Town Center
       buildings" below for why nothing more exact was possible. **All five are

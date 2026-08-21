@@ -26,7 +26,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from shapely.geometry import mapping, shape
-from shapely.ops import unary_union
+from shapely.ops import split, unary_union
 
 from fmt import ident_runs
 
@@ -601,6 +601,66 @@ def simplify(geom, tol: float = 0.000012):
     return g.simplify(tol, preserve_topology=True).__geo_interface__
 
 
+def west_bay_center(highways: list[dict], footprint=None) -> dict | None:
+    """The commercial centre at the entrance, as Karen drew it on our own poster.
+
+    Not public record and not part of the community, so it is carried as an
+    approximate block rather than a boundary. Karen's freehand sketch overruns
+    two real edges that we do know: it crosses Highway 79, and it laps over
+    Phases 1 and 2. Both are trimmed off using geometry we hold -- the county's
+    highway centreline and the recorded plats -- which is applying known
+    constraints rather than inventing a boundary. See west_bay_center.json.
+    """
+    path = HERE / "west_bay_center.json"
+    if not path.exists():
+        return None
+    cfg = json.loads(path.read_text(encoding="utf-8"))
+    poly = shape({"type": "Polygon", "coordinates": [cfg["polygon"] + [cfg["polygon"][0]]]})
+    if not poly.is_valid:
+        poly = poly.buffer(0)
+    drawn = acres(poly)
+
+    h79 = [shape(h["geometry"]) for h in highways if h.get("route") == "79"]
+    if h79:
+        line = unary_union(h79)
+        # Split by the highway and keep the piece on the community's side, which
+        # is the western one -- both of Karen's photographs show 79 to the east.
+        pieces = list(getattr(split(poly, line), "geoms", [poly]))
+        if len(pieces) > 1:
+            poly = max(pieces, key=lambda g: g.area
+                       if g.representative_point().x < line.centroid.x else -1)
+    after_hwy = acres(poly)
+
+    if footprint is not None:
+        poly = poly.difference(footprint)
+        if poly.geom_type == "GeometryCollection":
+            poly = unary_union([g for g in poly.geoms if g.geom_type in
+                                ("Polygon", "MultiPolygon")])
+        # A sliver left by the trim is noise, not a shopping centre.
+        if poly.geom_type == "MultiPolygon":
+            poly = unary_union([g for g in poly.geoms if acres(g) > 1.0])
+
+    acres_ = acres(poly)
+    print(f"west bay center: {drawn:.0f} acres as drawn -> {after_hwy:.0f} west of "
+          f"Hwy 79 -> {acres_:.0f} outside the plats, {len(cfg['tenants'])} tenants")
+    # Anchor the label on the largest piece's own centroid, pulled inside if the
+    # piece is concave. A mean of ring vertices drifts toward whichever edge has
+    # the most points and hangs the label off the block.
+    biggest = max(getattr(poly, "geoms", [poly]), key=lambda g: g.area)
+    c = biggest.centroid
+    if not biggest.contains(c):
+        c = biggest.representative_point()
+    return {
+        "name": cfg["name"],
+        "short": cfg["short"],
+        "tenants": cfg["tenants"],
+        "acres": round(acres_, 1),
+        "approximate": True,
+        "label_lonlat": [round(c.x, 6), round(c.y, 6)],
+        "geometry": simplify(poly, 0.000005),
+    }
+
+
 def main() -> None:
     raw_phases = load("phases.geojson")["features"]
     idx = PhaseIndex(raw_phases)
@@ -773,6 +833,7 @@ def main() -> None:
         "waterbodies": water,
         "creeks": creeks,
         "landmarks": load_cfg("landmarks.json")["landmarks"],
+        "west_bay_center": west_bay_center(hwy, footprint),
         "meta": {**meta["map"], "scope": meta.get("scope", {}),
                  "karen_first_hand": meta.get("karen_first_hand", {})},
     }
