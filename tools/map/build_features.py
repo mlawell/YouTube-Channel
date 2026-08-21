@@ -64,15 +64,40 @@ def split_town_center(lots_geoms: list[dict]) -> dict:
         return {}
     tract, tract_geom = max(polys, key=lambda t: t[0].area)
     cottages = [g for p, g in polys if acres(p) * 4046.86 <= COTTAGE_MAX_M2]
-    hull = unary_union([shape(g) for g in cottages]).convex_hull if cottages else None
+    lots_union = unary_union([shape(g) for g in cottages]) if cottages else None
+    hull = lots_union.convex_hull if lots_union is not None else None
+    # Anchor the label on the cottages themselves, not on the hull's centroid.
+    # The cottage blocks wrap around a pond, so the hull is fat where they are
+    # not: its centroid lands in open water and the label pointed at a lake.
+    anchor = None
+    if lots_union is not None and not lots_union.is_empty:
+        biggest = max(getattr(lots_union, "geoms", [lots_union]), key=lambda g: g.area)
+        c = biggest.centroid
+        if not biggest.contains(c):
+            c = biggest.representative_point()
+        anchor = [c.x, c.y]
     return {
         "tract": tract_geom,
         "tract_acres": round(acres(tract), 1),
         "cottage_lots": cottages,
         "cottage_count": len(cottages),
         "cottage_hull": mapping(hull) if hull is not None and not hull.is_empty else None,
-        "cottage_centroid": [hull.centroid.x, hull.centroid.y] if hull is not None else None,
+        "cottage_centroid": anchor,
     }
+
+
+def paradise_pool() -> dict | None:
+    """The Paradise Pool outline, traced off the aerial. See paradise_pool.json."""
+    path = HERE / "paradise_pool.json"
+    if not path.exists():
+        return None
+    cfg = json.loads(path.read_text(encoding="utf-8"))
+    ring = cfg["ring"]
+    if ring[0] != ring[-1]:
+        ring = ring + [ring[0]]
+    print(f"town center: Paradise Pool traced, {cfg['area_m2']:,} m2")
+    return {"name": cfg["name"], "area_m2": cfg["area_m2"],
+            "geometry": {"type": "Polygon", "coordinates": [ring]}}
 
 
 def town_center_buildings() -> list[dict]:
@@ -601,6 +626,56 @@ def simplify(geom, tol: float = 0.000012):
     return g.simplify(tol, preserve_topology=True).__geo_interface__
 
 
+def dog_park(lots=None) -> dict | None:
+    """The dog park grounds and its drive. See dog_park.json.
+
+    Karen: "The green are the woods... not really part of 3... just green space.
+    It makes it easier to see the dog park." Our own data agrees, which is why
+    this is drawn rather than argued about: of 3,229 platted homesites, ZERO
+    fall inside her green area and only 2 clip its edge. It is plat land with no
+    lots on it -- woods -- so it is coloured as green space and the Phase 3A
+    boundary is left exactly where the plat puts it.
+    """
+    path = HERE / "dog_park.json"
+    if not path.exists():
+        return None
+    cfg = json.loads(path.read_text(encoding="utf-8"))
+
+    def close(ring):
+        return ring + [ring[0]] if ring and ring[0] != ring[-1] else ring
+
+    green = shape({"type": "Polygon", "coordinates": [close(cfg["green"])]})
+    if not green.is_valid:
+        green = green.buffer(0)
+    sketched = acres(green)
+
+    # Trim to the HOMESITES, not to the plat or to every parcel. The point is
+    # that this ground carries no houses -- and the county records the woods as
+    # one large common-area tract inside Phase 3A, so subtracting every parcel
+    # would delete the whole thing for being exactly what it is.
+    if lots:
+        near = [g for g in lots if g.intersects(green)]
+        if near:
+            green = green.difference(unary_union(near))
+            if green.geom_type == "GeometryCollection":
+                green = unary_union([g for g in green.geoms if g.geom_type
+                                     in ("Polygon", "MultiPolygon")])
+            if green.geom_type == "MultiPolygon":
+                green = max(green.geoms, key=lambda g: g.area)
+
+    road = cfg.get("road")
+    print(f"dog park: {sketched:.1f} acres sketched -> {acres(green):.1f} after "
+          f"trimming to the platted lots" + (", plus a drive" if road else ""))
+    return {
+        "name": cfg["name"],
+        "acres": round(acres(green), 1),
+        "approximate": True,
+        "geometry": simplify(green, 0.000004),
+        "road": ({"type": "Polygon", "coordinates": [close(road)]}
+                 if road else None),
+    }
+
+
 def west_bay_center(highways: list[dict], footprint=None) -> dict | None:
     """The commercial centre at the entrance, as Karen drew it on our own poster.
 
@@ -794,6 +869,7 @@ def main() -> None:
                 s = s.buffer(0)
             if not s.is_empty and acres(s) * SQ_M_PER_ACRE <= COTTAGE_MAX_M2:
                 homesites.append(s)
+    homesite_polys = list(homesites)
     ponds = load_ponds(footprint, homesites)
 
     # Ten phases, but fifteen residential plats: Phase 3 was recorded as 3A,
@@ -826,6 +902,7 @@ def main() -> None:
             "cottage_centroid": tc.get("cottage_centroid"),
             "buildings": town_center_buildings(),
             "courts": town_center_courts(),
+            "pool": paradise_pool(),
         },
         "ponds": ponds,
         "highways": hwy,
@@ -834,6 +911,7 @@ def main() -> None:
         "creeks": creeks,
         "landmarks": load_cfg("landmarks.json")["landmarks"],
         "west_bay_center": west_bay_center(hwy, footprint),
+        "dog_park": dog_park(homesite_polys),
         "meta": {**meta["map"], "scope": meta.get("scope", {}),
                  "karen_first_hand": meta.get("karen_first_hand", {})},
     }

@@ -1,0 +1,338 @@
+{
+  "_what": "Barkaritaville Dog Park -- the open grounds around the pin, and the drive in.",
+  "_why_this_file_exists": [
+    "Karen asked for the area around the dog park to be shown green with its road,",
+    "rather than as more of the Town Center's dark amenity slate. She is right that",
+    "it reads wrong otherwise: the dog park is open parkland, not built amenity, and",
+    "the map was colouring it the same as the Bandshell and the fitness centre."
+  ],
+  "_how_measured": [
+    "Karen drew the area and the drive directly on our own poster, so the whole",
+    "chain inverts -- the same route the West Bay Center block came in by.",
+    "This time the frame was a CROP, so only two landmark pins were in it. Every",
+    "assignment of the two detected coral blobs to known pins was tried and solved",
+    "for scale and translation; the Dog Park / Stay & Play pairing closed with a",
+    "second-point residual of 0.0 poster px at k = 1.349.",
+    "A second pairing (Paradise Pool / kayak launch) also fitted the two points, at",
+    "k = 0.372. It is wrong on scale: that would make the crop 226 m across, and it",
+    "plainly shows Latitude Blvd, a whole phase of lots and several streets, which",
+    "is 800 m of ground. The chosen fit puts the crop at 825 x 593 m.",
+    "VERIFIED the way this project requires: our own phase outlines were drawn onto",
+    "her crop and land exactly on the colour boundaries she screenshotted -- the",
+    "Phase 3A edge and the Town Center tract edge both track to the pixel."
+  ],
+  "_accuracy": [
+    "The RECOVERY of her line is good to a few metres. The LINE is a freehand",
+    "sketch of where the grounds are, not a surveyed boundary, and at 18.9 acres it",
+    "is the open parcel rather than a fenced run. Drawn with a soft edge and no",
+    "acreage printed, so it reads as the indication it is.",
+    "The drive is about 880 m2 of the same sketch and is drawn as a path, not a",
+    "surveyed centreline."
+  ],
+  "name": "Barkaritaville Dog Park",
+  "acres_sketched": 18.9,
+  "green": [
+    [
+      -85.863374,
+      30.308258
+    ],
+    [
+      -85.863439,
+      30.308313
+    ],
+    [
+      -85.863381,
+      30.30843
+    ],
+    [
+      -85.863159,
+      30.310246
+    ],
+    [
+      -85.863109,
+      30.31025
+    ],
+    [
+      -85.862839,
+      30.310054
+    ],
+    [
+      -85.862775,
+      30.31011
+    ],
+    [
+      -85.862754,
+      30.310207
+    ],
+    [
+      -85.862696,
+      30.31022
+    ],
+    [
+      -85.862659,
+      30.310153
+    ],
+    [
+      -85.862694,
+      30.310108
+    ],
+    [
+      -85.86237,
+      30.309872
+    ],
+    [
+      -85.862401,
+      30.309774
+    ],
+    [
+      -85.862368,
+      30.309647
+    ],
+    [
+      -85.862199,
+      30.309556
+    ],
+    [
+      -85.862022,
+      30.309595
+    ],
+    [
+      -85.861936,
+      30.309739
+    ],
+    [
+      -85.861969,
+      30.309867
+    ],
+    [
+      -85.862108,
+      30.309952
+    ],
+    [
+      -85.862036,
+      30.310035
+    ],
+    [
+      -85.862078,
+      30.310153
+    ],
+    [
+      -85.862351,
+      30.310384
+    ],
+    [
+      -85.862616,
+      30.310425
+    ],
+    [
+      -85.862519,
+      30.310562
+    ],
+    [
+      -85.86245,
+      30.310783
+    ],
+    [
+      -85.862338,
+      30.310861
+    ],
+    [
+      -85.862128,
+      30.310764
+    ],
+    [
+      -85.861831,
+      30.310699
+    ],
+    [
+      -85.86168,
+      30.3111
+    ],
+    [
+      -85.860628,
+      30.3109
+    ],
+    [
+      -85.860559,
+      30.310914
+    ],
+    [
+      -85.860433,
+      30.310854
+    ],
+    [
+      -85.859915,
+      30.309776
+    ],
+    [
+      -85.859243,
+      30.309765
+    ],
+    [
+      -85.859038,
+      30.309823
+    ],
+    [
+      -85.858973,
+      30.309776
+    ],
+    [
+      -85.858983,
+      30.309671
+    ],
+    [
+      -85.858885,
+      30.309393
+    ],
+    [
+      -85.858916,
+      30.3092
+    ],
+    [
+      -85.859016,
+      30.309098
+    ],
+    [
+      -85.859252,
+      30.309046
+    ],
+    [
+      -85.859905,
+      30.308756
+    ],
+    [
+      -85.860051,
+      30.308719
+    ],
+    [
+      -85.860253,
+      30.30873
+    ],
+    [
+      -85.860912,
+      30.308906
+    ],
+    [
+      -85.861213,
+      30.30891
+    ],
+    [
+      -85.862451,
+      30.308455
+    ],
+    [
+      -85.863163,
+      30.308256
+    ],
+    [
+      -85.863374,
+      30.308258
+    ]
+  ],
+  "road": [
+    [
+      -85.862126,
+      30.309933
+    ],
+    [
+      -85.862148,
+      30.309957
+    ],
+    [
+      -85.862076,
+      30.310032
+    ],
+    [
+      -85.862082,
+      30.310092
+    ],
+    [
+      -85.862196,
+      30.310239
+    ],
+    [
+      -85.862347,
+      30.310349
+    ],
+    [
+      -85.862611,
+      30.310382
+    ],
+    [
+      -85.862655,
+      30.310422
+    ],
+    [
+      -85.862542,
+      30.310595
+    ],
+    [
+      -85.86249,
+      30.31078
+    ],
+    [
+      -85.862341,
+      30.310895
+    ],
+    [
+      -85.862131,
+      30.310798
+    ],
+    [
+      -85.861854,
+      30.310732
+    ],
+    [
+      -85.861773,
+      30.311023
+    ],
+    [
+      -85.861692,
+      30.311116
+    ],
+    [
+      -85.861811,
+      30.310701
+    ],
+    [
+      -85.862128,
+      30.310764
+    ],
+    [
+      -85.862338,
+      30.310861
+    ],
+    [
+      -85.862467,
+      30.310747
+    ],
+    [
+      -85.862493,
+      30.310607
+    ],
+    [
+      -85.86259,
+      30.31047
+    ],
+    [
+      -85.862555,
+      30.310421
+    ],
+    [
+      -85.862351,
+      30.310384
+    ],
+    [
+      -85.862101,
+      30.310186
+    ],
+    [
+      -85.862028,
+      30.310061
+    ],
+    [
+      -85.862126,
+      30.309933
+    ]
+  ]
+}

@@ -26,6 +26,24 @@ PREVIEW = HERE / "preview"
 VERBATIM = [OUT / "latitude-phase-map-print-36x24.pdf"]
 
 
+def stale_inputs(pdf: Path) -> list[Path]:
+    """Inputs that changed after the print master was rendered.
+
+    `output/` is git-ignored, so nothing stops a stale PDF sitting there --
+    a render that failed, or one a PDF viewer had open and locked. Copying it
+    across is silent and looks fine: it prints "(verbatim)" and a plausible
+    size, and the repo ends up showing a map that is not the map the code and
+    data produce. This is the check that catches that, and it caught it once.
+    """
+    if not pdf.exists():
+        return []
+    cutoff = pdf.stat().st_mtime + 1  # a second of slack for filesystem rounding
+    watched = [HERE / "render_map.py", HERE / "build_features.py"]
+    watched += sorted(HERE.glob("*.json"))
+    watched += sorted((HERE / "data").glob("*.json"))
+    return [p for p in watched if p.exists() and p.stat().st_mtime > cutoff]
+
+
 def frame(suffix: str) -> Path:
     """Find a reveal frame by name rather than by its sequence number.
 
@@ -62,6 +80,17 @@ def rasterise_sheet() -> None:
 
 
 def main() -> None:
+    stale = stale_inputs(OUT / "latitude-phase-map-print-36x24.pdf")
+    if stale:
+        print("REFUSING: output/ is older than its inputs, so the preview would")
+        print("ship a map that is not the one this repo produces. Changed since:")
+        for p in stale:
+            print(f"  {p.relative_to(HERE)}")
+        print("\nRe-run:  python render_map.py")
+        print("(if the render failed with PermissionError, a PDF viewer has the")
+        print(" print master open -- close it and render again)")
+        raise SystemExit(1)
+
     PREVIEW.mkdir(parents=True, exist_ok=True)
     rasterise_sheet()
     total = 0
