@@ -572,9 +572,15 @@ class Scene:
             for h in f["highways"]
             for l in lines(h["geometry"])
         ]
-        self.hwy79 = clip_to(
-            [pts for _, route, pts in self.highways if route == "79"], self.extent, 0.12
-        )
+        # Two versions of Highway 79, deliberately. `hwy79` is clipped to the
+        # sheet because there is no sense drawing road that runs off the page.
+        # `hwy79_full` is not, because DISTANCE must be measured against the
+        # whole road: clipping can only ever push the nearest point further
+        # away, so measuring the clipped version overstates. It did, on five
+        # phases -- worst on Phase 8, which printed 2.07 mi against a true
+        # 1.79, and Phase 8 is Karen's own.
+        self.hwy79_full = [pts for _, route, pts in self.highways if route == "79"]
+        self.hwy79 = clip_to(self.hwy79_full, self.extent, 0.12)
 
         self.landmarks = [l for l in f["landmarks"] if l.get("lat") is not None]
         self.needs_confirmation = [l for l in f["landmarks"] if not l.get("confirmed")]
@@ -659,13 +665,18 @@ class Scene:
         return math.hypot(cx - t[0], cy - t[1]) * math.cos(lat) * MI_PER_M
 
     def hwy79_distance_mi(self, p: dict) -> float | None:
-        if not self.hwy79:
+        """Nearest approach to Highway 79, measured against the WHOLE road.
+
+        Uses `hwy79_full`, not the clipped drawing copy. See the note where they
+        are built: measuring the clipped road overstated five phases.
+        """
+        if not self.hwy79_full:
             return None
         cx, cy = self.centroids[p["label"]]
         lat = math.radians(p["centroid"][1])
         best = min(
             _point_seg_dist(cx, cy, a, b)
-            for pts in self.hwy79
+            for pts in self.hwy79_full
             for a, b in zip(pts, pts[1:])
         )
         return best * math.cos(lat) * MI_PER_M

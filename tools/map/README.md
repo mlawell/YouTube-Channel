@@ -979,6 +979,34 @@ So:
 a failure, and lines under it are reported as a **note**, because that placement
 is hers and she has made the call.
 
+### Clip for drawing, never for measuring
+
+`Scene.hwy79` is Highway 79 clipped to the sheet, because there is no sense
+drawing road that runs off the page. For a while the **distance** to Highway 79
+was measured against that same clipped copy — and clipping can only ever push
+the nearest point further away, so the number printed on the reveal frames was
+too big.
+
+It was wrong on five phases, and worst on the one that matters most:
+
+| Phase | Printed | True | Error |
+| --- | --- | --- | --- |
+| Phase 8 — Karen's own | 2.07 mi | **1.79 mi** | +0.27 |
+| Phase 10 | 2.64 mi | **2.38 mi** | +0.26 |
+| Phase 9 | 2.40 mi | 2.32 mi | +0.08 |
+| Phase 7 | 1.66 mi | 1.60 mi | +0.06 |
+| Phase 5C | 0.81 mi | 0.78 mi | +0.03 |
+
+`Scene.hwy79_full` now holds the unclipped road and is what
+`hwy79_distance_mi()` measures against. The rule generalises: **geometry
+prepared for drawing is not geometry fit for measuring.** The phases nearest the
+highway were all correct, which is exactly why it went unnoticed — the error
+only appears once the nearest bit of road falls off the drawn sheet.
+
+Found by building the per-phase video scripts, when the script generator and the
+map disagreed about the same claim. Two independent paths to one number is a
+cheap and effective check.
+
 ## Disclaimer carried on every export
 
 > Phase boundaries & lots: Bay County, FL recorded plats (public record), plat
