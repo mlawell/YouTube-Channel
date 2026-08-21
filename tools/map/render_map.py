@@ -1639,6 +1639,41 @@ def ax_aspect(fig, rect) -> float:
     return (fw * rect[2]) / (fh * rect[3])
 
 
+def quarter_mi(miles: float) -> float:
+    """Round to the nearest quarter mile.
+
+    Karen's call, and it is the honest precision. Every distance here is a
+    straight line from a phase CENTROID -- a phase is not a point, so the second
+    decimal was never real. Printing "1.79 mi" claims a survey; "1 3/4 miles" is
+    both true and speakable, which matters when it has to be read on camera.
+
+    It also makes the numbers robust: quarter-mile buckets absorb the kind of
+    small differences that come from measuring against slightly different
+    geometry, so the map and the video scripts cannot drift apart over a
+    rounding choice.
+    """
+    return round(miles * 4) / 4
+
+
+def fmt_miles(miles: float) -> str:
+    """A quarter-rounded distance, written the way it is said.
+
+    Uses the same 1/4, 1/2, 3/4 glyphs as the scale bar. Anything that rounds to
+    zero is reported as "under 1/4 mile" rather than "0 mi", which would read as
+    no distance at all.
+    """
+    q = quarter_mi(miles)
+    if q <= 0:
+        return "under \u00bc mi"
+    whole, frac = int(q), q - int(q)
+    glyph = {0.0: "", 0.25: "\u00bc", 0.5: "\u00bd", 0.75: "\u00be"}[round(frac, 2)]
+    if whole and glyph:
+        return f"{whole}{glyph} mi"
+    if whole:
+        return f"{whole} mi"
+    return f"{glyph} mi"
+
+
 def phase_box(s: Scene, label: str):
     pts = [pt for r in s.phase_rings[label] for pt in r]
     xs = [p[0] for p in pts]
@@ -2116,10 +2151,10 @@ def _panel_text(fig, s: Scene, p: dict) -> None:
         for key, target in (("To Town Center", "Town Square Amenity"),):
             d = s.distance_mi(p, target)
             if d is not None:
-                rows.append((key, f"{d:.1f} mi"))
+                rows.append((key, fmt_miles(d)))
     d79 = s.hwy79_distance_mi(p)
     if d79 is not None:
-        rows.append(("To Hwy 79", f"{d79:.1f} mi"))
+        rows.append(("To Hwy 79", fmt_miles(d79)))
 
     for key, val in rows:
         fig.text(x, y, key.upper(), fontproperties=F_REG, fontsize=9.5, color=TEAL,

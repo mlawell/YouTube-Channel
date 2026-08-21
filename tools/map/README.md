@@ -1007,6 +1007,27 @@ Found by building the per-phase video scripts, when the script generator and the
 map disagreed about the same claim. Two independent paths to one number is a
 cheap and effective check.
 
+### Distances are quarter-mile, on purpose
+
+Karen: *"Round it to the nearest quarter mile."* She is right, and it is a
+precision decision rather than a cosmetic one.
+
+Every distance here is a straight line from a phase **centroid**, and a phase is
+not a point — Phase 10 alone is 237 acres. The second decimal was never real, so
+printing "1.79 mi" claims a survey the number cannot support. `¼`, `½`, `¾` is
+both true and *speakable*, which matters when it has to be read on camera.
+
+It also makes the numbers robust. Quarter-mile buckets absorb the kind of small
+difference that comes from measuring against slightly different geometry, so the
+map and the video scripts cannot drift apart over a rounding choice — which is
+exactly how the Highway 79 clipping bug announced itself.
+
+`quarter_mi()` and `fmt_miles()` in `render_map.py` are mirrored in
+`tools/scripts/build_phase_scripts.py`, so one claim gets one number wherever it
+appears. The cart floor in the scripts is derived **from the rounded distance**,
+not the raw one, so a viewer who divides 2½ miles by 30 mph gets the minutes
+printed beside it.
+
 ## Disclaimer carried on every export
 
 > Phase boundaries & lots: Bay County, FL recorded plats (public record), plat
