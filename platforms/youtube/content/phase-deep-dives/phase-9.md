@@ -20,9 +20,11 @@
 
 | Measure | Value |
 | --- | --- |
-| Straight line to the Town Center | 2.51 mi |
+| Straight line to the Town Center | 2½ miles |
 | Cart floor at 30 mph | 5.0 min |
-| Straight line to Highway 79 | 2.32 mi |
+| Straight line to Highway 79 | 2¼ miles |
+
+Distances are straight lines from the middle of the phase, **rounded to the nearest quarter mile** — a phase is not a point, so a second decimal would be claiming a survey.
 
 **The cart floor is a floor, not a drive time.** It is the straight line, so no cart can beat it. County road centrelines cover only Phases 1, 2, 3A, 3B & 3C and 3D — ten of the sixteen plats have none, and only 12% of the road network connects to the Town Center — so a street-following time cannot be calculated from public record. It has to be driven.
 
@@ -86,15 +88,15 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[CART: measured time, from drive-sheet.md. Do NOT record this beat until it is driven.]`
 
-> `[ON SCREEN: straight line 2.51 mi · floor 5.0 min at 30 mph]`
+> `[ON SCREEN: straight line 2½ miles · floor 5.0 min at 30 mph]`
 
-> Straight line it's 2.51 miles, so it could never be quicker than about 5.0 minutes — and roads aren't straight lines, so the real answer is `[CART]`.
+> Straight line it's about two and half miles, so it could never be quicker than about 5.0 minutes — and roads aren't straight lines, so the real answer is `[CART]`.
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
-> Highway 79 is **2.32 miles** from the middle of this phase in a straight line. `[ON SCREEN: 2.32 mi to Hwy 79]`
+> Highway 79 is about **two and quarter miles** from the middle of this phase in a straight line. `[ON SCREEN: 2¼ miles to Hwy 79]`
 
 `[KAREN — first-hand: this is one of the further ones. Is 79 a non-issue here?]`
 

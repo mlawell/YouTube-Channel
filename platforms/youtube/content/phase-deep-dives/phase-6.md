@@ -22,9 +22,11 @@ Phase 6 is **2 separately recorded plats**, not one:
 
 | Measure | Value |
 | --- | --- |
-| Straight line to the Town Center | 1.23–1.35 mi (varies by plat) |
-| Cart floor at 30 mph | 2.5–2.7 min |
-| Straight line to Highway 79 | 1.07 mi |
+| Straight line to the Town Center | 1¼ miles |
+| Cart floor at 30 mph | 2.5 min |
+| Straight line to Highway 79 | 1 mile |
+
+Distances are straight lines from the middle of the phase, **rounded to the nearest quarter mile** — a phase is not a point, so a second decimal would be claiming a survey.
 
 **The cart floor is a floor, not a drive time.** It is the straight line, so no cart can beat it. County road centrelines cover only Phases 1, 2, 3A, 3B & 3C and 3D — ten of the sixteen plats have none, and only 12% of the road network connects to the Town Center — so a street-following time cannot be calculated from public record. It has to be driven.
 
@@ -95,15 +97,15 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[CART: measured time, from drive-sheet.md. Do NOT record this beat until it is driven.]`
 
-> `[ON SCREEN: straight line 1.23–1.35 mi · floor 2.5–2.7 min at 30 mph]`
+> `[ON SCREEN: straight line 1¼ miles · floor 2.5 min at 30 mph]`
 
-> Straight line it's 1.23 miles, so it could never be quicker than about 2.5 minutes — and roads aren't straight lines, so the real answer is `[CART]`.
+> Straight line it's about one and quarter miles, so it could never be quicker than about 2.5 minutes — and roads aren't straight lines, so the real answer is `[CART]`.
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
-> Highway 79 is **1.07 miles** from the middle of this phase in a straight line. `[ON SCREEN: 1.07 mi to Hwy 79]`
+> Highway 79 is about **one mile** from the middle of this phase in a straight line. `[ON SCREEN: 1 mile to Hwy 79]`
 
 `[KAREN — first-hand: this is one of the further ones. Is 79 a non-issue here?]`
 

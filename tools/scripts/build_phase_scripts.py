@@ -92,6 +92,68 @@ def ground_mi(a, b, lat_deg: float) -> float:
     return math.hypot(a[0] - b[0], a[1] - b[1]) * math.cos(math.radians(lat_deg)) * MI_PER_M
 
 
+def quarter_mi(miles: float) -> float:
+    """Round to the nearest quarter mile. Karen's call, and the honest precision.
+
+    Every distance here is a straight line from a phase CENTROID, and a phase is
+    not a point -- the second decimal was never real. Printing "1.79 mi" claims a
+    survey. Quarter-mile buckets also absorb the small differences that come from
+    measuring against slightly different geometry, so the map and these scripts
+    cannot drift apart over a rounding choice.
+
+    Kept identical to `render_map.fmt_miles` on purpose: one claim, one number,
+    wherever it appears.
+    """
+    return round(miles * 4) / 4
+
+
+def fmt_miles(miles: float) -> str:
+    """A quarter-rounded distance, written the way it is said."""
+    q = quarter_mi(miles)
+    if q <= 0:
+        return "under \u00bc mile"
+    whole, frac = int(q), q - int(q)
+    glyph = {0.0: "", 0.25: "\u00bc", 0.5: "\u00bd", 0.75: "\u00be"}[round(frac, 2)]
+    unit = "mile" if q == 1 else "miles"
+    if whole and glyph:
+        return f"{whole}{glyph} {unit}"
+    if whole:
+        return f"{whole} {unit}"
+    return f"{glyph} mile"
+
+
+def miles_num(miles: float) -> str:
+    """Just the quantity, no unit -- for building ranges."""
+    q = quarter_mi(miles)
+    if q <= 0:
+        return "0"
+    whole, frac = int(q), round(q - int(q), 2)
+    glyph = {0.0: "", 0.25: "\u00bc", 0.5: "\u00bd", 0.75: "\u00be"}[frac]
+    return f"{whole}{glyph}" if whole else glyph
+
+
+def fmt_miles_range(a: float, b: float) -> str:
+    """A quarter-rounded range with the unit said once: '1/4-3/4 mile'."""
+    if quarter_mi(a) == quarter_mi(b):
+        return fmt_miles(a)
+    unit = "miles" if quarter_mi(b) > 1 else "mile"
+    return f"{miles_num(a)}\u2013{miles_num(b)} {unit}"
+
+
+def spoken_miles(miles: float) -> str:
+    """The same distance as words, for reading aloud."""
+    q = quarter_mi(miles)
+    if q <= 0:
+        return "under a quarter of a mile"
+    whole, frac = int(q), round(q - int(q), 2)
+    words = {0.0: "", 0.25: "a quarter", 0.5: "a half", 0.75: "three quarters"}[frac]
+    if whole and frac:
+        return f"{spoken(whole)} and {words.replace('a ', '')} miles"
+    if whole:
+        return f"{spoken(whole)} mile" + ("" if whole == 1 else "s")
+    return f"{words} of a mile"
+
+
 def fmt_range(r) -> str:
     """House numbers, printed the way they appear on a mailbox.
 
@@ -210,11 +272,13 @@ class Community:
 def cart_floor_min(miles: float) -> float:
     """The fastest a 30 mph cart could possibly do it: the straight line.
 
-    Deliberately named a floor. A cart follows streets, so the real trip is
-    always longer -- this number's job is to be impossible to beat, so that when
-    Karen drives it and the stopwatch says more, the two agree.
+    Computed from the QUARTER-ROUNDED distance, not the raw one, so that the two
+    numbers on screen agree with each other. If the card says 1 3/4 miles and a
+    viewer divides by 30, they should get the minutes we printed -- showing
+    1.79 mi worth of minutes beside a 1 3/4 mi caption is the kind of small
+    inconsistency that makes someone doubt the rest.
     """
-    return miles / CART_MPH * 60.0
+    return quarter_mi(miles) / CART_MPH * 60.0
 
 
 def draft(c: Community, num: str) -> str:
@@ -275,16 +339,20 @@ def draft(c: Community, num: str) -> str:
     add("| Measure | Value |")
     add("| --- | --- |")
     if near is not None:
-        if multi and far and abs(far - near) > 0.05:
-            add(f"| Straight line to the Town Center | {near:.2f}\u2013{far:.2f} mi "
+        if multi and far and quarter_mi(far) != quarter_mi(near):
+            add(f"| Straight line to the Town Center | {fmt_miles_range(near, far)} "
                 f"(varies by plat) |")
             add(f"| Cart floor at {CART_MPH:.0f} mph | "
                 f"{cart_floor_min(near):.1f}\u2013{cart_floor_min(far):.1f} min |")
         else:
-            add(f"| Straight line to the Town Center | {near:.2f} mi |")
+            add(f"| Straight line to the Town Center | {fmt_miles(near)} |")
             add(f"| Cart floor at {CART_MPH:.0f} mph | {cart_floor_min(near):.1f} min |")
     if g["hwy79_mi"] is not None:
-        add(f"| Straight line to Highway 79 | {g['hwy79_mi']:.2f} mi |")
+        add(f"| Straight line to Highway 79 | {fmt_miles(g['hwy79_mi'])} |")
+    add("")
+    add("Distances are straight lines from the middle of the phase, **rounded to "
+        "the nearest quarter mile** \u2014 a phase is not a point, so a second decimal "
+        "would be claiming a survey.")
     add("")
     add("**The cart floor is a floor, not a drive time.** It is the straight "
         "line, so no cart can beat it. County road centrelines cover only "
@@ -427,16 +495,16 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("")
     if near is not None:
         floor = cart_floor_min(near)
-        if multi and far and abs(far - near) > 0.05:
-            add(f"> `[ON SCREEN: straight line {near:.2f}\u2013{far:.2f} mi \u00b7 "
+        if multi and far and quarter_mi(far) != quarter_mi(near):
+            add(f"> `[ON SCREEN: straight line {fmt_miles_range(near, far)} \u00b7 "
                 f"floor {floor:.1f}\u2013{cart_floor_min(far):.1f} min at 30 mph]`")
         else:
-            add(f"> `[ON SCREEN: straight line {near:.2f} mi \u00b7 "
+            add(f"> `[ON SCREEN: straight line {fmt_miles(near)} \u00b7 "
                 f"floor {floor:.1f} min at 30 mph]`")
         add("")
-        add(f"> Straight line it's {near:.2f} miles, so it could never be quicker "
-            f"than about {floor:.1f} minutes \u2014 and roads aren't straight lines, "
-            f"so the real answer is `[CART]`.")
+        add(f"> Straight line it's about {spoken_miles(near)}, so it could never "
+            f"be quicker than about {floor:.1f} minutes \u2014 and roads aren't "
+            f"straight lines, so the real answer is `[CART]`.")
         add("")
     add("`[KAREN: and then the honest part \u2014 is that a walk, a cart trip, or do "
         "you take the car? Say which one you actually do.]`")
@@ -447,10 +515,10 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("")
     if g["hwy79_mi"] is not None:
         d = g["hwy79_mi"]
-        add(f"> Highway 79 is **{d:.2f} miles** from the middle of this phase in a "
-            f"straight line. `[ON SCREEN: {d:.2f} mi to Hwy 79]`")
+        add(f"> Highway 79 is about **{spoken_miles(d)}** from the middle of this "
+            f"phase in a straight line. `[ON SCREEN: {fmt_miles(d)} to Hwy 79]`")
         add("")
-        if d < 0.55:
+        if quarter_mi(d) <= 0.5:
             add("`[KAREN \u2014 first-hand: this is one of the close ones. Can you hear "
                 "79 here? Say what it actually sounds like, and when.]`")
         else:
@@ -577,11 +645,11 @@ def drive_sheet(c: Community) -> str:
         near, far = g["nearest_mi"], g["farthest_mi"]
         if near is None:
             continue
-        if far and abs(far - near) > 0.05:
-            dist = f"{near:.2f}\u2013{far:.2f} mi"
+        if far and quarter_mi(far) != quarter_mi(near):
+            dist = fmt_miles_range(near, far)
             fl = f"{cart_floor_min(near):.1f}\u2013{cart_floor_min(far):.1f} min"
         else:
-            dist = f"{near:.2f} mi"
+            dist = fmt_miles(near)
             fl = f"{cart_floor_min(near):.1f} min"
         star = " \u2605" if g["karen_lives_here"] else ""
         add(f"| **Phase {num}**{star} | {dist} | {fl} | &nbsp; | &nbsp; | &nbsp; |")
