@@ -58,16 +58,13 @@ Large formats are opt-in because they're slower and much larger:
 python render_map.py --preset print-36x24                    # the main print master
 python render_map.py --preset print-48x32 giant-raster
 python render_map.py --size 30 20 --dpi 300                  # any one-off size
-python render_map.py --check-palette                         # phase colour separation
 ```
 
-Large formats are opt-in because they're slower and much larger:
+Checks — both fail loudly rather than warn:
 
 ```powershell
-python render_map.py --preset print-36x24                    # the main print master
-python render_map.py --preset print-48x32 giant-raster
-python render_map.py --size 30 20 --dpi 300                  # any one-off size
-python render_map.py --check-palette                         # phase colour separation
+python render_map.py --check-palette                         # colour separation
+python render_map.py --check-labels                          # nothing covers anything
 ```
 
 On record day, additionally:
@@ -845,19 +842,31 @@ beside platted phases and neither is one.
 Current worst adjacent pair is the West Bay Center against the roads at **ΔE
 18.4**, against a floor of 12.
 
-### Straight down is not due south
+### "Down" means down the sheet — take the instruction literally
 
-**This map is rotated 40.12°** onto its long axis, so any instruction given
-about the *sheet* — "move it up", "straight down", "to the right" — is in a
-frame turned 40° from the compass. Acting on one of those as though it were a
-bearing puts the thing 40° wrong, and on a 157 m move that is 100 m of error.
+**This map is rotated 40.12°** onto its long axis, so an instruction about the
+*sheet* — "move it up", "straight down", "to the right" — is in a frame turned
+40° from the compass. Read one of those as a bearing and the thing lands 40°
+wrong; on a 157 m move, about 100 m out.
 
-Karen asked for the marina pin to go "straight down and on the border between
-the land and water". So the pin was dropped by casting a ray straight down
-**in the rotated frame the map is drawn in** — `Scene.rot` space, not lon/lat —
-finding the first water edge below it at 157 m, and setting the centre 6 m
-landward of that line so the dot straddles the border instead of floating in
-the bay.
+Karen said **"just move it straight down"**, and she said *down* rather than
+*south* on purpose — she knows the map is turned. The instruction already
+arrived in the map's own frame. The work was to **honour it literally**, not to
+translate it into geography and not to improve on it.
+
+That distinction is the lesson, and it nearly went the other way: the first
+attempt snapped the pin to the *nearest* shoreline, which lies southwest at
+213° — a reasonable-sounding answer to a question she had not asked. Her wording
+was more precise than the paraphrase of it.
+
+So the pin was dropped by casting a ray straight down **in the rotated frame the
+map is drawn in** — `Scene.rot` space, not lon/lat — finding the first water
+edge below it at 157 m, and setting the centre 6 m landward of that line so the
+dot straddles the border instead of floating in the bay.
+
+**When Karen is specific, the specificity is the content.** "Up 10 px and to the
+right 5 px" and "straight down" are both exact, both in sheet coordinates, and
+both were right as given.
 
 The inverse transform used to turn that back into lon/lat was checked by
 round-tripping the *original* pin through it first and confirming it returned
@@ -882,6 +891,75 @@ type — 10 px on the 1600-wide preview is 9.0 pt, and that same 9.0 pt stays in
 proportion on the poster, the 36×24 and the 48×32. `phase_label_boxes()` applies
 the identical nudge, or the obstacle boxes fed to the landmark placer would
 still describe where the plaque *used* to be.
+
+### The map now tests its own legibility
+
+Karen, after the third round of these: *"you should have the QA to verify that
+doesn't happen."* She was right. Every fix so far had been made by eye, one
+overlap at a time, and each one quietly created the next — moving the Town
+Center plaque off the Pickleball pin pushed the marina under the amenity block.
+A map whose entire selling point is legibility has to be able to check its own.
+
+`python render_map.py --check-labels` renders **every output** — poster, all 17
+video frames, the 36×24 sheet — into a scratch directory and reports anything
+covering anything else. It exits non-zero on a collision, so it fails like a
+test rather than printing a warning nobody reads.
+
+Every label, pin and panel calls `set_gid("qa:…")` when it is drawn, so the
+check measures **what was actually rendered**, using real text extents from the
+real renderer — not the estimates the placer works from. That distinction
+matters: the placer's estimate is what let a label land 1 px onto a pin.
+
+On its first run it found **10 collisions**, most of which nobody had reported:
+
+| Found | Why |
+| --- | --- |
+| marina label under the scale bar (Phase 3D) | furniture was pinned to a fixed corner |
+| pins under the north arrow (5C, 6B & 6C) | same |
+| plaque on the Stay & Play pin (all-phases) | Karen's nudge is right for the poster, wrong for a 16:9 frame |
+| panel over the Paradise Pool pin, covering 44 features | see below |
+| panel over the marina on the 36×24 | the big sheet used a different placement path |
+
+What changed as a result:
+
+- **Furniture moves, pins do not.** The scale bar and north arrow now choose
+  between corners by counting the pins that would fall underneath. A pin is a
+  fixed geographic fact; a scale bar is not, so the scale bar is what yields.
+- **Labels avoid pins, not just other labels.** The placer never had pins as
+  obstacles — only other labels — which is how a label ended up 1 px onto one.
+  A label may still touch its *own* pin.
+- **Obstacle boxes are measured, not estimated.** `phase_label_boxes()` reads
+  the real extents of the already-drawn plaques. Plaques are now drawn after
+  `set_view` so that measurement is valid.
+- **A nudged plaque walks until it is clear.** Karen's offset is exact on the
+  poster; on the all-phases frame the same offset hit a different pin. Rather
+  than a hand-tuned number per output, it keeps her direction and fans either
+  side of it until nothing is underneath.
+
+### Where the amenity block goes, and the one thing that had to give
+
+Karen asked for two things: put it **directly down from the Town Center**, and
+have it cover **no lines or points**. Measured, at a size that is readable on a
+1080p video frame, those cannot both hold:
+
+| Option | Result |
+| --- | --- |
+| Directly below, 11 pt | covers **25** features |
+| Directly below, clear | needs **6 pt** — 8 px tall, unreadable on video |
+| 11 pt, clear | needs a **45% sideways drift** |
+
+So the block keeps full size, covers nothing, and takes the **least sideways
+drift that achieves that** — searched over drift and height against the map's
+own line and point geometry, not against a picture of it. Covering nothing wins
+because hiding a pin is the exact fault Karen has been pointing at all along.
+If she would rather have it dead-below and accept the shoreline running under
+it, that is a one-line change.
+
+One bug found while building this is worth keeping: a freshly created matplotlib
+text has **no laid-out bbox patch until something draws it**, so measuring it
+straight away returns a 2 m box. The first version of the search "found" clear
+ground instantly and then drew a full-size panel across the map. Any measurement
+of a new artist needs a `draw()` first.
 
 ## Disclaimer carried on every export
 
@@ -1031,7 +1109,7 @@ Nothing blocking — these are map polish.
       **The pin sits on the shoreline**, by Karen's direction — "just move it
       straight down and on the border between the land and water". It used to
       mark the centroid of the graded pad, which answered "where are the works"
-      but read as a dot floating in sand. See "Straight down is not due south".
+      but read as a dot floating in sand. See "Down means down the sheet".
 - [x] The future-commercial parcel. **Karen confirms it is Publix**, and the
       whole centre is now on the map as a hatched block labelled **West Bay
       Center**, with her tenant list: Publix, Electric Cart, Capital City Bank,
