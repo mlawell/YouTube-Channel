@@ -132,10 +132,14 @@ All on Minto's amenity site plan, safe to name on screen:
 
 Bandshell · Town Square Amphitheater (with dance floor) · Fins Up! Fitness
 Center · Workin' N' Playin' Center · Latitude Bar and Chill Restaurant ·
-Paradise Pool · Community Services Building · Pickleball · Tennis ·
+Paradise Pool · HOA Office · Pickleball · Tennis ·
 Multi-Purpose Court · Bocce · Lawn Games / Park Area · Port of Indecision
 Kayak Launch · Barkaritaville Dog Park · Intracoastal Waterway on the west
 edge · trail network with two marked overlooks.
+
+**Say "HOA Office" on camera.** Minto's plan calls it the *Community Services
+Building*, but per Karen — who lives in Phase 8 — "people know it as HOA
+Office". Use the name residents use; the plan's wording is only a citation.
 
 ## Second Town Square
 

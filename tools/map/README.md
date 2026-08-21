@@ -650,9 +650,18 @@ plan is licensed for use as-is; a building's *name* is a fact, not the artwork.
 No geometry came from it. Every footprint here is still measured off the aerial.
 
 **Known missing:** Minto's plan names a *Community Services Building* between the
-tennis and pickleball banks. There is a 38 m gap between court 1 and court 2
-where it sits. It has never been measured and is **not** on the map — recorded
-here so it stays a known gap rather than a silent one.
+tennis and pickleball banks — the building Karen says **"people know it as HOA
+Office"**, which is what the map's amenity list calls it. There is a 38 m gap
+between court 1 and court 2 where it sits. It has never been measured and its
+footprint is **not** on the map — recorded here so it stays a known gap rather
+than a silent one.
+
+**Where the map disagrees with the plan on purpose.** The amenity list says *HOA
+Office*; Minto's plan says *Community Services Building*. Karen lives there, and
+a map is for the people reading it, not for the document it was checked against.
+The plan's wording is kept in `town_center_buildings.json` and
+`town_center_courts.json`, where it is a citation — it is the evidence for which
+bank is tennis and which is pickleball — rather than a label.
 
 ### The negative result is narrower than it first looked
 
@@ -996,8 +1005,10 @@ Nothing blocking — these are map polish.
       buildings" below for why nothing more exact was possible. **All five are
       named**: Karen named blocks 1–4 from `town-center-buildings-key.png`, and
       block 5 is the Bandshell on two independent confirmations.
-      Still open: the *Community Services Building* on Minto's plan, between the
-      court banks, has never been measured and is not on the map.
+      Still open: the building Karen calls the **HOA Office** (Minto's plan calls
+      it the *Community Services Building*), between the court banks, has never
+      been measured and its footprint is not on the map. It is named in the
+      amenity list.
 - [x] Pickleball and tennis. Four court areas are machine-fitted onto the map to
       about ±3 m. Karen confirmed the separate one as the Multi-Purpose Court,
       and Minto's amenity plan settles the rest: **western bank tennis, eastern
@@ -1009,6 +1020,10 @@ Nothing blocking — these are map polish.
       The apparent overlap was our own doing: printing min–max only made 4A's
       six-lot tail swallow the whole of 4B. Now fixed everywhere — see
       "Lot numbers are runs, not spans" below.
+- [x] What to call the building between the court banks. Minto's plan says
+      *Community Services Building*; **Karen says "people know it as HOA
+      Office"**, so that is what the amenity list says and what to say on
+      camera. The plan's wording survives only where it is a citation.
 - [ ] Karen says the block the builder's plan still marks "Future Development",
       just west of the Stay & Play cottages, is also Stay & Play. It is not in
       the public record, so no area is drawn for it — confirm the extent.
