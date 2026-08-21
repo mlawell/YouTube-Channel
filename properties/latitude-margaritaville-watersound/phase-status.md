@@ -181,16 +181,27 @@ Nothing is blocking the script. Remaining items are map polish:
       on an aerial and every pin was re-read off a georeferenced shot. Her
       wording for the marina is *"the future location of the marina"*; do not
       say "under construction" on screen.
-- [ ] The future-commercial parcel. **The tenant is settled: Karen confirms it
-      is Publix**, so the name can be said on screen, and it sits in
-      **Watersound West Bay Center** — a St. Joe development at the community
-      entrance on Hwy 79. Square footages and opening dates in trade press are
-      trade press, not public record; don't state them as fact on camera.
-      What is still missing is the parcel — Publix owns no land here yet (their
-      only Bay County parcel is 17 km south) and the county has neither a
-      planning project nor a platted legal for the centre, so the map draws
-      nothing rather than guessing. Karen ringing the site on an aerial, or
-      confirming the one candidate address point, is all that is needed.
+- [x] The future-commercial parcel. **Karen confirms the grocery is Publix**, and
+      it is on the map as *Publix (future)* at the entrance. It anchors
+      **Watersound West Bay Center**, a St. Joe development adjacent to the
+      community — St. Joe's own site gives **~350,000 sq ft** of leasable space
+      at build out (use that, not the 500,000 in trade press).
+
+      Karen, who has been on site: the shell is up, and going in alongside it are
+      **The Electric Cart Company** and **Capital City Bank**, plus a
+      multi-tenant building already holding a **dentist, chiropractor and nail
+      salon**, with more tenants moving in soon.
+
+      **Deliberately not on the map: the real-estate agency** being built on the
+      dirt lot beside that multi-tenant building. Karen's call — it is a
+      competitor and this map is her marketing asset. Standing rule: no
+      competing brokerage gets drawn or named.
+
+      The centre is on the map as a hatched block labelled **West Bay Center**
+      with the tenant list. Karen drew the extent on our own poster; it was
+      recovered off the landmark pins to rms 2.8 m, then trimmed to west of
+      Hwy 79 and outside the recorded plats (192 → 52 → 51 acres). The block is
+      approximate by nature and prints no acreage.
 - [x] Phase 4A and 4B looked like they had overlapping Minto lot numbers. They
       never did: **4A owns 4001–4317 and 4510–4515, 4B owns 4318–4509**, sharing
       no number, and the plats do not overlap on the ground. The appearance was

@@ -1,0 +1,76 @@
+{
+  "_what": "Watersound West Bay Center -- the commercial centre at the community entrance, and its tenants.",
+
+  "_why_this_file_exists": [
+    "Karen asked for the area to be marked as West Bay Center and for its tenants to be",
+    "named. It is not part of the community, is not in any recorded plat we hold, and no",
+    "county layer carries it yet -- the parcel layer has no legal description or",
+    "subdivision mentioning it, and PlanningProjects returns nothing here. So it is drawn",
+    "from Karen's own knowledge of the ground, and labelled as approximate."
+  ],
+
+  "_how_measured": [
+    "Karen drew the area as a red box directly on our own rendered poster and sent it",
+    "back. That is the easiest annotation this project has ever had to recover, because",
+    "the projection is ours: her screenshot registers to the poster, and the poster",
+    "inverts to lon/lat.",
+    "The registration is on the LANDMARK PINS, not on image correlation. Correlating the",
+    "whole frame only reached 8.9 sigma -- the sheet is mostly flat sand and watermark,",
+    "so a correlator has little to bite on -- and left roughly 200 m of slop. The coral",
+    "pins are small, distinctive, identical in both images, and we know exactly where we",
+    "drew them. All 9 matched, and a least-squares fit on the matched pairs closed to",
+    "rms 2.8 poster px, which is 2.8 m on the ground.",
+    "Her box was then reduced to its minimum-area rectangle, since she drew it tilted to",
+    "follow the map's own 40 degree rotation.",
+    "Chain: her px -> poster px -> figure fraction -> axes fraction -> rotated Mercator",
+    "-> unrotate -> Mercator -> lon/lat. See tools/map/README.md."
+  ],
+
+  "_accuracy": [
+    "The RECOVERY is good to about 3 m. The BOX ITSELF is a freehand sketch and is not,",
+    "and does not claim to be, a parcel boundary. As drawn it covers about 191 acres,",
+    "which is larger than the ~110 acres trade press gives the centre, so treat it as",
+    "'the centre is in here' and nothing finer. It is styled to read as approximate:",
+    "dashed edge, no hard corners implied, and no acreage printed on the map."
+  ],
+
+  "_clipped_at_hwy79": [
+    "Karen's box runs across Highway 79. The centre does not: her own Google aerial and",
+    "her drone photo both show it entirely WEST of the highway, with 79 on the right of",
+    "frame in each. So the block is clipped to the west side of Hwy 79 using the county's",
+    "own highway centreline. That is applying a known real constraint rather than",
+    "inventing a boundary -- the alternative was to publish a commercial centre sitting",
+    "on top of a state road."
+  ],
+
+  "_tenants_source": [
+    "Karen, who has been on the site. Publix she confirmed separately and has photographed",
+    "under construction; St. Joe's own site confirms the centre at ~350,000 sq ft of",
+    "leasable space at build out (use that figure, not the 500,000 in trade press).",
+    "Names are hers. Google's listing for the cart dealer reads 'Electric Cart Watersound'.",
+    "DELIBERATELY OMITTED: a real-estate agency is being built on the dirt lot beside the",
+    "multi-tenant building. Karen's call to leave it off -- it is a competing brokerage and",
+    "this map is her marketing asset. Standing rule: no competing brokerage is drawn or",
+    "named on Karen's maps."
+  ],
+
+  "name": "Watersound West Bay Center",
+  "short": "West Bay Center",
+
+  "tenants": [
+    { "name": "Publix", "status": "under construction" },
+    { "name": "Electric Cart", "status": "open" },
+    { "name": "Capital City Bank", "status": "open" },
+    { "name": "Grand Nails", "status": "open" },
+    { "name": "West Bay Dental", "status": "open" },
+    { "name": "Dermatology Associates", "status": "open" }
+  ],
+  "_more_coming": "Karen: more tenants are moving in soon. The list is what is known now, not the final roster.",
+
+  "polygon": [
+    [-85.85759, 30.31161],
+    [-85.85862, 30.31729],
+    [-85.84609, 30.31899],
+    [-85.84505, 30.31331]
+  ]
+}

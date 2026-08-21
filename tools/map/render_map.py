@@ -134,6 +134,24 @@ COTTAGE_FILL = "#F4D06B"
 # about 5 m and should not look sharper than they are.
 BUILDING_FILL = "#EDE7DA"
 BUILDING_EDGE = "#8A8578"
+# Watersound West Bay Center is not part of the community, is not in any plat we
+# hold, and its extent is Karen's freehand sketch rather than a boundary. All
+# three facts point the same way: it must not look like a phase.
+#
+# The first attempt, a cool grey #BFC7CB, measured deltaE 15.2 from the pond
+# blue -- the same trap the racquet courts fell into, and rejected there at 23.4.
+# A commercial block that reads as water is worse than no block. But the map has
+# no spare hue either: ten saturated phase families, pale water, cream paper,
+# pale land, cottage gold and the Town Center slate are all spoken for, and the
+# best free hues came out lavender, which would just read as another phase.
+#
+# So it is separated by TEXTURE rather than hue -- hatched, with a dashed edge --
+# and the fill only has to stay clear of water and paper. This warm taupe
+# measures 27.5 from water, 23.0 from paper and 21.6 from land. The dashes and
+# the hatch together say "approximate, and not one of the phases".
+WBC_FILL = "#BDB2A3"
+WBC_EDGE = "#6F6555"
+WBC_HATCH = "#9A8F7E"
 # The racquet courts sit on the same dark tract but must not read as buildings,
 # and above all must not read as WATER -- they are surrounded by ponds, and blue
 # on this map means water. Real court paint is blue, but a blue-green court fill
@@ -461,6 +479,24 @@ class Scene:
         self.needs_confirmation = [l for l in f["landmarks"] if not l.get("confirmed")]
         self.anchor_xy = {l["name"]: self.rot([(l["lon"], l["lat"])], project=True)[0]
                           for l in self.landmarks}
+
+        wbc = f.get("west_bay_center")
+        self.wbc = None
+        if wbc:
+            rs = [self.rot(project_ring(r)) for r in rings(wbc["geometry"])]
+            ll = wbc.get("label_lonlat")
+            if ll:
+                xy = self.rot([tuple(ll)], project=True)[0]
+            else:
+                pts = [p for r in rs for p in r]
+                xy = (sum(p[0] for p in pts) / len(pts),
+                      sum(p[1] for p in pts) / len(pts))
+            self.wbc = {
+                "short": wbc["short"],
+                "tenants": [t["name"] for t in wbc["tenants"]],
+                "rings": rs,
+                "xy": xy,
+            }
         self.centroids = {
             p["label"]: self.rot([tuple(p["centroid"])], project=True)[0] for p in self.phases
         }
@@ -801,6 +837,44 @@ def phase_label_boxes(ax, s: Scene, active: str | None, *, lw_scale: float = 1.0
         fx, fy = (x - x0) / span_x, (y - y0) / span_y
         boxes.append((fx - w / 2, fy - h / 2, fx + w / 2, fy + h / 2))
     return boxes
+
+
+def draw_west_bay_center(ax, s: Scene, *, lw_scale: float = 1.0,
+                         fontsize: float = 8.0, tenants: bool = True) -> None:
+    """The commercial centre at the entrance, with its named tenants.
+
+    Karen asked for this: it is the single biggest thing happening next door to
+    the community, and a Publix within a golf cart ride is a real buyer fact.
+
+    It is drawn deliberately unlike a phase -- neutral grey, dashed edge, no
+    acreage printed -- because it is outside the community, absent from every
+    plat we hold, and its extent is Karen's own sketch recovered off our poster
+    rather than a surveyed boundary. See west_bay_center.json.
+    """
+    if not s.wbc:
+        return
+    # Two passes so the hatch and the boundary can be styled independently:
+    # a collection's hatch takes the edge colour, and the boundary wants to be
+    # dashed while the hatch does not.
+    ax.add_collection(PolyCollection(
+        s.wbc["rings"], facecolors=WBC_FILL, edgecolors=WBC_HATCH,
+        linewidths=0.0, hatch="///", alpha=0.90, zorder=2.45))
+    ax.add_collection(PolyCollection(
+        s.wbc["rings"], facecolors="none", edgecolors=WBC_EDGE,
+        linewidths=1.3 * lw_scale, linestyles=(0, (5, 3)), zorder=2.46))
+
+    x, y = s.wbc["xy"]
+    ax.annotate(s.wbc["short"].upper(), (x, y), ha="center", va="bottom",
+                fontsize=fontsize, fontproperties=F_BOLD, color="#33454C",
+                zorder=6.1,
+                path_effects=[pe.withStroke(linewidth=fontsize * 0.5,
+                                            foreground="white")])
+    if tenants and s.wbc["tenants"]:
+        ax.annotate("\n".join(s.wbc["tenants"]), (x, y), ha="center", va="top",
+                    fontsize=fontsize * 0.72, fontproperties=F_REG,
+                    color="#3D5057", zorder=6.1, linespacing=1.35,
+                    path_effects=[pe.withStroke(linewidth=fontsize * 0.36,
+                                                foreground="white")])
 
 
 def draw_landmarks(ax, s: Scene, *, only_anchors: bool = False, lw_scale: float = 1.0,
@@ -1286,6 +1360,7 @@ def render_sheet(s: Scene, preset: Preset, overlays: set[str], name: str,
     draw_base(ax, s, lw_scale=lw * 0.7)
     draw_phases(ax, s, None, lw_scale=lw * 0.6, show_lots="all")
     draw_roads(ax, s, lw_scale=lw * 0.7)
+    draw_west_bay_center(ax, s, lw_scale=lw * 0.7, fontsize=max(5.0, W * 0.24))
     draw_overlays(ax, s, overlays, lw_scale=lw)
     draw_phase_labels(ax, s, None, lw_scale=lw * 0.75, show_plat=True)
     set_view(ax, s.extent, 0.04, ax_aspect(fig, map_rect))
@@ -1345,6 +1420,7 @@ def render_poster(s: Scene, overlays: set[str], *, pdf: bool = False,
     draw_base(ax, s)
     draw_phases(ax, s, None, show_lots="all")
     draw_roads(ax, s)
+    draw_west_bay_center(ax, s)
     draw_overlays(ax, s, overlays)
     draw_phase_labels(ax, s, None)
     set_view(ax, s.extent, 0.05, ax_aspect(fig, POSTER_RECT))
@@ -1546,6 +1622,7 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
     draw_base(ax, s)
     draw_phases(ax, s, None, show_lots="all")
     draw_roads(ax, s)
+    draw_west_bay_center(ax, s)
     draw_overlays(ax, s, overlays)
     draw_phase_labels(ax, s, None)
     set_view(ax, s.extent, 0.04, aspect)
@@ -1579,6 +1656,7 @@ def render_sequence(s: Scene, overlays: set[str]) -> list[Path]:
         draw_base(ax, s, lw_scale=1.4)
         draw_phases(ax, s, lab, lw_scale=1.4)
         draw_roads(ax, s, lw_scale=1.4, label_hwy=True)
+        draw_west_bay_center(ax, s, lw_scale=1.4, fontsize=9.0, tenants=False)
         draw_overlays(ax, s, overlays, lw_scale=1.4)
         draw_phase_labels(ax, s, lab, lw_scale=1.4)
 
