@@ -2,10 +2,53 @@
 
 **Channel:** Living in Latitude Margaritaville Watersound (`@LivingMargaritavillewithKaren`)
 **Target runtime:** 19–22 minutes
-**Status:** ready to record — no blocking questions outstanding
+**Status:** ⚠️ **revisions required before recording** — see
+[Script revisions required by the Aug 2026 challenge](#-script-revisions-required-by-the-aug-2026-challenge).
+Research is complete and no questions are outstanding; the changes are structural.
 
 The flagship phase video. Built around one thing no competitor can say:
 **Karen lives in Phase 8.**
+
+## ⚠️ Script revisions required by the Aug 2026 challenge
+
+Days 3–5 of the *Win with YouTube Challenge* were transcribed **after** this script was
+written, and Day 3 finally delivered the **eight characteristics of a high-impact video**
+(full treatment in
+[`knowledge/channel-junkies/playbook/key-points/win-with-youtube-challenge.md`](../../../../knowledge/channel-junkies/playbook/key-points/win-with-youtube-challenge.md#-the-eight-characteristics-of-a-high-impact-video-day-3--the-answer-to-what-makes-a-tour-rank)).
+Four things in the current script conflict with it.
+
+**First, the good news:** the format itself is strongly endorsed. Jesse names **map tours**
+as *"one of the hottest videos you could ever make for your channel… one of the highest
+intent videos as well"* and one of the **four foundational videos every channel should
+have**. And the single-community strategy is validated by a named example — **David
+Jelinek** on Florida's Space Coast does **12–20 transactions a year** focused on **one
+master-planned community**. The 19–22 minute runtime is also unaffected. Keep all of it.
+
+| # | Change | Why | Where |
+| --- | --- | --- | --- |
+| 1 | **Add a viewer call-out as the literal first line**, under 4 seconds, before the "sixteen phases" stat | Characteristic 1. The current 0:00–0:40 opens with a statistic and then Karen's credentials — it never names the viewer. Jesse's rule is that *every* video opens by making the viewer *"look in the mirror and say, that's me."* Use the **driver-city-then-step-down** pattern: *"So you're thinking about moving to the Panama City Beach area — well, today I'm in Latitude Margaritaville Watersound…"* | `COLD OPEN — 0:00–0:12` |
+| 2 | **Split the 1:40 CTA — it currently asks for two things at once** | Characteristic 6: *"if you tell them to do three things… they're gonna do zero."* The block asks the viewer to subscribe **and** to register before visiting the Sales Center. Keep **only the registration ask** spoken (it's the one that matters), and demote *subscribe* to an on-screen card. Jesse's example channel does exactly this — a subtle on-screen subscribe prompt at ~1:39 that is never voiced | `CTA — 1:40–2:05` |
+| 3 | **Add a redirect at the very end** | Characteristic 8. The close currently ends on three asks (comment MAP, comment your address, text me) and an end screen, but never points at a **specific next video or playlist**. Jesse's form: *"…and if you want to see more like it, click this link and I'll see you over there."* | `CLOSE — 17:30–19:00` |
+| 4 | **Fix "in the next fifteen minutes"** | Runtime target is 19–22 minutes. It also under-promises the value | `COLD OPEN`, line ~62 |
+
+**One judgement call, not a defect.** The script's section named `THE REVEAL` (2:05) is not
+Jesse's "reveal" — his is the *price*, held to the very end, with the CTA immediately
+before it. An informational video has no price, so the analogue is the single
+most-wanted answer: *"which phase should you buy in?"* The script front-loads the map at
+2:05 and answers the question progressively. That is a legitimate choice for a
+reference/chaptered video and the per-phase chapters depend on it — but be aware it
+inverts Jesse's hold-the-payoff principle. If retention sags in the back half on the first
+release, this is the thing to change.
+
+**Also worth applying:** run **consistent opening music** under the first 15–30 seconds,
+fading around 60 seconds (`D4-VIP` 00:44:44), and plan **three thumbnail/title variants**
+rather than one — see [`thumbnail-brief.md`](thumbnail-brief.md).
+
+**Nothing in Days 3–5 covers 55+/active-adult communities or phase-explainer videos
+specifically.** The only master-planned-community content in the whole week is Jesse
+mentioning *Avamore*, his own top-selling community, and only in passing. Don't go looking
+for more — it isn't there.
+
 
 ## Files
 
