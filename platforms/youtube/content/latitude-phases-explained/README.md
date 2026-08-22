@@ -1,7 +1,7 @@
 # Latitude Margaritaville Watersound — Every Phase Explained
 
 **Channel:** Living in Latitude Margaritaville Watersound (`@LivingMargaritavillewithKaren`)
-**Target runtime:** 19–22 minutes
+**Target runtime:** 19–22 minutes — ⚠️ [under review](#-1-runtime--1922-minutes-is-below-every-comparable-channel)
 **Status:** ⚠️ **revisions required before recording** — see
 [Script revisions required by the Aug 2026 challenge](#-script-revisions-required-by-the-aug-2026-challenge).
 Research is complete and no questions are outstanding; the changes are structural.
@@ -50,6 +50,97 @@ mentioning *Avamore*, his own top-selling community, and only in passing. Don't 
 for more — it isn't there.
 
 
+## What the reference-video research implies for this video
+
+Added 2026-08 from [`knowledge/reference-videos/`](../../../../knowledge/reference-videos/README.md),
+which measured 18 real relocation videos and 330 videos' worth of channel runtime
+data against the Channel Junkies framework. Three things bear directly on this
+script.
+
+### ⚠️ 1. Runtime — 19–22 minutes is below every comparable channel
+
+The 19–22 target was set to clear the 7-minute average-view-duration limiter,
+and it does. But it was never checked against what this market publishes:
+
+| Channel | Median runtime | ≥ 18 min |
+| --- | --- | --- |
+| Kyler Ferris — Houston | **35:48** | 45 / 45 |
+| **Mr. Beach — Emerald Coast** *(direct competitor)* | 27:38 | 27 / 30 |
+| Wilkey & Dau — Portland *(the original channel)* | 25:41 | 37 / 45 |
+| Craig Cunha — Fort Myers | 23:04 | 34 / 45 |
+| Rachel Dau — Idaho *(the reference channel)* | 21:41 | 41 / 60 |
+| David Jelinek — Melbourne | 18:49 | 32 / 60 |
+
+**19–22 minutes sits below all six.** And on *this exact community*, Mr. Beach
+publishes [42:03](https://youtu.be/i0zIJPyDrUE) (22,825 views) and
+[46:11](https://youtu.be/f6vzko_hJPQ) (10,082 views) — roughly double.
+
+**This is a decision for Karen, not a mandate.** A longer video is only better if
+the content genuinely sustains it; padding a 20-minute script to 35 minutes would
+hurt retention, which is the metric that actually matters. But the phases
+material plausibly does sustain it — 16 recorded plats, street and address
+ranges, the Escape Avenue split, Highway 79 versus Bandshell trade-offs, and
+resale-only versus new-build per phase. If that content is there, the evidence
+says do not cut it to hit 22 minutes.
+
+A reasonable middle path: script it at natural length, chapter it properly, and
+let it land where it lands — rather than treating 22 minutes as a ceiling.
+
+### ⭐ 2. Price is orientation here, not a payoff
+
+The framework's *"never reveal the price until the end"* turns out to be a rule
+about a **specific home's number**, not about price ranges. Measured across the
+catalog:
+
+- **Price bands** (*"the 350s"*, *"400,000 up to 1.5 million"*) — median **14%**
+  through the video, as early as **0.7%**
+- **Specific numbers for one home** — median **86%**, with reveals at 99%
+
+Rachel Dau's *Shockingly Affordable* tour does both in one video: a band at
+**0:12**, the number at **28:24 of 28:41**. She is not being inconsistent — the
+band orients, the number pays off.
+
+**This video has no single property, so it has no reveal to hold.** Withholding
+the price range would not build tension; it would fail to answer the viewer's
+first question. And the orienting fact here is unusually strong: **the phases are
+not priced differently from one another.** That belongs early — it reframes the
+entire decision from "which phase can I afford" to "which phase do I want," which
+is the question the rest of the video answers.
+
+This also **resolves the open judgement call** flagged above about the script's
+`THE REVEAL` section at 2:05. Front-loading the map is not a violation of the
+hold-the-payoff principle, because there is no price payoff in an informational
+video. The thing to hold is the *opinion* — which phase Karen would and wouldn't
+buy in — not the map.
+
+### 3. Two smaller corrections
+
+**Add a re-hook in the first 30 seconds.** The closest structural template to
+this video —
+[Jelinek's *EVERY New Home Area in Viera*](https://youtu.be/8nyk8DNjOyI), which
+opens with a textbook call-out at 0:00 and a price range at 0:17 — plants one at
+0:33: *"wait till the end because I'm going to reveal the biggest mistake new
+home buyers make."* The obvious equivalent here is **which phase Karen would not
+buy in, and why**, teased early and paid off at the close.
+
+**Keep the chapters.** Only 5 of 18 videos measured have them, so they are rare —
+but the two most heavily chaptered are both reference guides (19 and 12
+chapters), which is exactly what this video is. Mr. Beach runs 46 minutes on this
+community with no chapters at all; that is his clearest unforced error and a
+straightforward advantage to take.
+
+**Worth reopening: the co-host question.** Channel Junkies says don't put other
+people on camera. Both of Mr. Beach's Latitude videos are built around Rick, an
+on-camera resident, and they are the best-performing videos on this community
+anywhere. Karen's husband is also a Phase 8 resident — a stronger version of what
+Rick provides, since it is her own household rather than a borrowed one. Against
+the letter of the doctrine, but the local evidence supports testing it.
+
+See [`framework-vs-practice.md`](../../../../knowledge/reference-videos/framework-vs-practice.md)
+for the full argument and [`knowledge/competitors/mrbeach.md`](../../../../knowledge/competitors/mrbeach.md)
+for the competitor picture.
+
+
 ## Files
 
 | File | What it is |
@@ -58,12 +149,18 @@ for more — it isn't there.
 | [`metadata.md`](metadata.md) | Titles, description, tags, chapters, end screen, pinned comment |
 | [`thumbnail-brief.md`](thumbnail-brief.md) | Thumbnail composition and the A/B variant |
 
-## Why 19–22 minutes
+## Why 19–22 minutes — and why that is now under review
 
 The Seven Limiter Framework sets average view duration at **≥ 7 minutes
 absolute**, and ~28% viewed is normal for a good video — which forces a 21–22
 minute runtime to get there. The competitor's 6:55 cannot reach it at any
 retention rate. Per-phase chapters are what make the length survivable.
+
+That reasoning establishes 19–22 as a **floor**. It does not establish it as a
+target, and the reference-video research suggests it is well below what this
+market rewards — including roughly half what Mr. Beach publishes on this exact
+community. See
+[the runtime finding above](#-1-runtime--1922-minutes-is-below-every-comparable-channel).
 
 ## Before you record
 

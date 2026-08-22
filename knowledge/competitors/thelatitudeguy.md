@@ -3,9 +3,17 @@
 **Watersound Real Estate · ~560 subscribers**
 *Analysed 2026-08. Summary only — his transcript is not stored in this repo.*
 
-The only realtor producing dedicated Latitude Margaritaville Watersound
-content on YouTube at any volume. Directly competitive with Karen's
-Margaritaville channel.
+The realtor who **owns the phases keyword** — his map video is the incumbent
+answer to "which phase is which," and it is the video Karen's phases explainer is
+built to replace.
+
+> ⚠️ **Corrected 2026-08.** This note previously described him as *"the only
+> realtor producing dedicated Latitude Margaritaville Watersound content on
+> YouTube at any volume."* That is not true. **[Mr. Beach](mrbeach.md)** has
+> three Latitude videos, the best at **22,825 views** against this one's 884, on
+> a channel ten times the size. On reach he is the far more significant
+> competitor. @TheLatitudeGuy still matters, because he owns this specific
+> search term and answers every comment — but he is not the ceiling.
 
 ## The video we're answering
 
@@ -64,8 +72,10 @@ his already has.
 
 **4. 6:55 cannot hit the watch-time threshold.**
 A sub-7-minute video cannot produce 7 minutes of absolute average view
-duration, whatever the retention percentage. Ours is 14–16 minutes with
+duration, whatever the retention percentage. Ours is far longer, with
 per-phase chapters so viewers can scrub to their phase and still watch long.
+See [`knowledge/reference-videos/framework-vs-practice.md`](../reference-videos/framework-vs-practice.md#-finding-2-1828-minutes-is-the-floor-not-the-target)
+for how far above this the market actually runs.
 
 **5. No chapters.**
 On a phase video that is a real usability failure — the whole audience wants to
@@ -90,7 +100,7 @@ because a question asked in public and left unanswered is a free content brief:
 | | @TheLatitudeGuy | Karen |
 | --- | --- | --- |
 | Map | Minto's PDF + mouse scribble | Original map from Bay County recorded plats, regenerating |
-| Runtime | 6:55 | 14–16 min |
+| Runtime | 6:55 | 19–22 min planned — [under review](../reference-videos/framework-vs-practice.md#-finding-2-1828-minutes-is-the-floor-not-the-target) |
 | Chapters | none | one per phase |
 | Availability | not mentioned | new-build vs resale-only per phase, badged on the map |
 | Price framing | implied by phase | explicit: phases are **not** priced differently |
