@@ -8,10 +8,11 @@ volume covers three programs by Channel Junkies:
 - **14 Day Sprint** — a 14-part video course walking through the practical, day-by-day
   actions to launch and grow a channel, plus the official downloadable resources.
 - **Win with YouTube Challenge** — a live 5-day challenge run 17–21 Aug 2026 by
-  Jesse Dau, built around the **Seven Limiter Framework**. This is the newest material
-  in the volume and it explicitly supersedes parts of the older two.
+  Jesse Dau, built around the **Seven Limiter Framework** and the **eight characteristics
+  of a high-impact video**. This is the newest material in the volume and it explicitly
+  supersedes parts of the older two. **All five days are now captured.**
 
-**Total source material:** 41 media files (~18.4 hours) + 7 course resource files.
+**Total source material:** 46 media files (~24.9 hours) + 7 course resource files.
 
 > The synthesized, action-oriented summary lives in
 > [playbook/realtor-playbook.md](playbook/realtor-playbook.md). Start there if you
@@ -76,9 +77,9 @@ volume covers three programs by Channel Junkies:
 
 ## Win with YouTube Challenge (live 5-day challenge, Aug 2026)
 
-Presented by **Jesse Dau**, 17–21 Aug 2026. Each day ran a general Zoom session, a
-VIP/Platinum room with live channel audits, and an evening Facebook Live Q&A. **We hold
-recordings for Day 1 and Day 2 only** — Days 3–5 were not captured.
+Presented by **Jesse Dau**, 17–21 Aug 2026. Days 1–4 each ran a general Zoom session at
+9am PT and a VIP/Platinum room at 10am PT; Days 1–2 also had an evening Facebook Live Q&A.
+**All five days are captured.**
 
 Key points: [playbook/key-points/win-with-youtube-challenge.md](playbook/key-points/win-with-youtube-challenge.md).
 
@@ -90,6 +91,28 @@ Key points: [playbook/key-points/win-with-youtube-challenge.md](playbook/key-poi
 | 4 | Day 1 — Facebook Live Q&A (4pm PT) | 2026-08-17 | 1:05:11 | [md](transcripts/win-with-youtube-challenge/Day%201%20-%20Facebook%20Live%20QA.md) | [srt](srt/win-with-youtube-challenge/Day%201%20-%20Facebook%20Live%20QA.srt) |
 | 5 | Day 2 — General Session (**Seven Limiter Framework**) | 2026-08-18 | 1:07:23 | [md](transcripts/win-with-youtube-challenge/Day%202%20-%20General%20Session%20-%20Seven%20Limiter%20Framework.md) | [srt](srt/win-with-youtube-challenge/Day%202%20-%20General%20Session%20-%20Seven%20Limiter%20Framework.srt) |
 | 6 | Day 2 — Facebook Live Q&A | 2026-08-18 | 0:29:59 | [md](transcripts/win-with-youtube-challenge/Day%202%20-%20Facebook%20Live%20QA.md) | [srt](srt/win-with-youtube-challenge/Day%202%20-%20Facebook%20Live%20QA.srt) |
+| 7 | Day 3 — General Session (**The Eight Characteristics of a High-Impact Video**) | 2026-08-19 | 0:59:16 | [md](transcripts/win-with-youtube-challenge/Day%203%20-%20General%20Session%20-%20Eight%20Characteristics%20of%20a%20High%20Impact%20Video.md) | [srt](srt/win-with-youtube-challenge/Day%203%20-%20General%20Session%20-%20Eight%20Characteristics%20of%20a%20High%20Impact%20Video.srt) |
+| 8 | Day 3 — VIP Room, open Q&A (funnel, titles, websites, lead handling) | 2026-08-19 | 1:03:29 | [md](transcripts/win-with-youtube-challenge/Day%203%20-%20VIP%20Room%20-%20Open%20QA.md) | [srt](srt/win-with-youtube-challenge/Day%203%20-%20VIP%20Room%20-%20Open%20QA.srt) |
+| 9 | Day 4 — General Session (**Action & Profit / the 90-Day Plan**) | 2026-08-20 | 0:58:56 | [md](transcripts/win-with-youtube-challenge/Day%204%20-%20General%20Session%20-%20Action%20and%20Profit%2090%20Day%20Plan.md) | [srt](srt/win-with-youtube-challenge/Day%204%20-%20General%20Session%20-%20Action%20and%20Profit%2090%20Day%20Plan.srt) |
+| 10 | Day 4 — VIP Room, live channel audits | 2026-08-20 | 1:04:01 | [md](transcripts/win-with-youtube-challenge/Day%204%20-%20VIP%20Room%20-%20Live%20Channel%20Audits.md) | [srt](srt/win-with-youtube-challenge/Day%204%20-%20VIP%20Room%20-%20Live%20Channel%20Audits.srt) |
+| 11 | Day 5 — Finale: raffle → **fireside chat with Rachel Dau** → open Q&A | 2026-08-21 | 2:24:18 | [md](transcripts/win-with-youtube-challenge/Day%205%20-%20Finale%20-%20Fireside%20Chat%20with%20Rachel%20Dau.md) | [srt](srt/win-with-youtube-challenge/Day%205%20-%20Finale%20-%20Fireside%20Chat%20with%20Rachel%20Dau.srt) |
+
+### Day 5 is one recording with three segments
+
+Unlike Days 1–4, Day 5 was **not** a general-session/VIP pair — it is a single continuous
+2h24m recording, which is why it is more than twice the length of every other session.
+Cite its parts separately:
+
+| Key | Segment | Runs |
+| --- | --- | --- |
+| `D5-RAFFLE` | Prize raffle (92 entries; drone among the prizes) + programme pitch | 00:00:25 – 00:04:49 |
+| `D5-FS` | **Fireside chat with Rachel Dau** — the substantive part | 00:04:49 – 01:03:14 |
+| `D5-QA` | Open Q&A, hands-up format | 01:03:14 – end |
+
+### Coverage gaps, stated explicitly
+
+- **Days 3 and 4 have no Facebook Live Q&A recording.** For Day 4 this is explained on air — Jesse says he is skipping that night's Facebook live for his kids' school orientation (`D4-GS` 00:58:06). For Day 3 he says he *will* be live that night (`D3-GS` 00:58:01), so that recording exists somewhere but we don't hold it.
+- **Day 5 has no separate VIP room and no Facebook Live** — the single finale recording absorbed both.
 
 ### Source filename mapping
 
@@ -105,10 +128,15 @@ under the **original** names.
 | `12 Win With YouTube Challenge LIVE QA 817 at 4pm PT Facebook.mp4` | 4 — Day 1 Facebook Q&A |
 | `GMT20260818-160115_Recording_1988x1118.mp4` | 5 — Day 2 General Session |
 | `Channel Junkies Live QA Facebook 20260818.mp4` | 6 — Day 2 Facebook Q&A |
+| `GMT20260819-154144_Recording_1920x1118.mp4` | 7 — Day 3 General Session |
+| `GMT20260819-170035_Recording_1920x1118.mp4` | 8 — Day 3 VIP Room |
+| `GMT20260820-160134_Recording_640x360.mp4` | 9 — Day 4 General Session |
+| `GMT20260820-170043_Recording_1760x864.mp4` | 10 — Day 4 VIP Room |
+| `GMT20260821-154509_Recording_1920x1118.mp4` | 11 — Day 5 Finale |
 
 ### Duplicate check
 
-**No duplicates.** All six recordings are distinct sessions — the Zoom (`GMT*`) files are
+**No duplicates.** All eleven recordings are distinct sessions — the Zoom (`GMT*`) files are
 the daytime general/VIP sessions and the Facebook files are the separate evening Q&As, so
 nothing was captured twice on two platforms.
 
@@ -116,6 +144,12 @@ One caveat: sessions **2 and 3 are a single continuous VIP room** that Zoom spli
 files. Part 1's recording ends at 18:02:48 UTC and part 2 begins at 18:05:34 UTC, and part
 1's transcript cuts off mid-sentence ("…yes delete 100% of the shorts and and videos
 that") while part 2 opens mid-sentence. Treat them as one ~69-minute session.
+
+The session-type mapping for Days 3–4 was **verified from the recordings' own content**,
+not assumed from the timestamps: both 17:00-UTC recordings open with Jesse calling the
+room to order as the VIP/Platinum room (`D3-VIP` 00:01:08 — *"but we are in the VIP room,
+if you're a platinum ticket holder raise your hand"*), and both 15:45/16:00-UTC recordings
+open as the general session.
 
 ### Course resources referenced
 

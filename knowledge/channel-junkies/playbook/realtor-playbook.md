@@ -133,6 +133,34 @@ This playbook distills three Channel Junkies programs — *The Billion Dollar Ch
 > stove, dishwasher and sink individually. That's 90 seconds of content most agents skip.
 > And **never interview the builder** — you are the character in the show.
 
+### ⭐ The eight characteristics of a high-impact video (WWYT Day 3, Aug 2026)
+
+This is the full version of the structure above, and it is the answer to "what are the
+components of a tour that ranks". Jesse enumerates them himself at `D4-GS` 00:44:29 —
+see [the key-points file](key-points/win-with-youtube-challenge.md#-the-eight-characteristics-of-a-high-impact-video-day-3--the-answer-to-what-makes-a-tour-rank)
+for the full treatment and every timestamp.
+
+| # | Characteristic | The rule |
+| --- | --- | --- |
+| 1 | **Call-out** | *"So you're thinking about moving to [Driver City]…"* — **under 3–4 seconds**, in every single video. Call out to the driver city, then step down to the sub-market in the same breath. |
+| 2 | **Hook** | The #1 thing about this property **besides price**, aimed at your avatar. Stack several — Jesse counted ~8 hooks in the first 20 seconds. **Call-out + hook together under 30 seconds.** |
+| 3 | **Transition** | Don't fill the walk up the driveway. **Cut when the hook lands and restart at the front door** — *"come on in, Ken."* Name your camera operator and let them become a character. |
+| 4 | **Pacing** | Call out features without going deep on every one. Move through a room in a **zigzag** so the operator can stand still. Read pacing off the retention graph — you want it **smooth**, not peaks and valleys. |
+| 5 | **Re-hooks** | Tease now, pay off later. **Never dump the specs up front** — square footage, bedroom sizes and garage depth are revealed in the final minute. |
+| 6 | **Call to action** | **One at a time** — *"if you tell them to do three things they'll do zero."* Deposits before withdrawals: first spoken CTA ~4 minutes in, carried earlier by subtle on-screen cards. Then **snap straight back to the house**. |
+| 7 | **The reveal** | The price. **At the very end, and only there.** |
+| 8 | **Redirect** | The instant the price lands, send them to the next video or a playlist. |
+
+> **Ninth beat, taught but not counted:** the **payoff** — immediately after the transition,
+> reward the viewer with something non-polarising (the view, the kitchen, the backyard).
+> **Start the interior with the kitchen.** Buyers won't compromise on kitchen, primary
+> suite, or backyard.
+
+**What "good" looks like**, from the tour Jesse dissects for a full hour: retention **65%
+at 30 seconds** (target 67%+ on first release), **AVD 8:16**, **31.3% viewed**, **722 of
+1,400 viewers watched 100%**, CTR **5.7%**, and a retention graph that **rises at the end**
+instead of collapsing — because the price comes last.
+
 ---
 
 ## Part 4 — Film, Edit, Publish (Days 5–7)
@@ -157,6 +185,88 @@ This playbook distills three Channel Junkies programs — *The Billion Dollar Ch
 >   changing clothes (70% of viewers have never seen you). Release them on schedule.
 > - If you could only make one format forever, make **vlogs** — *"king of the vlog is king
 >   of the city"* — and it's the one format an AI avatar can't fake.
+
+> **⚠️ Shoot-day ceiling (WWYT Day 3, Aug 2026).** The "48 videos in one session" figure is
+> for **talking-head** content filmed in one spot. For **home tours the ceiling is 1–2 a
+> day** — *"after like three videos, in my opinion, it's game over… they all start blending
+> together."* Even Rachel says *"after I film like three videos my brain is starting to turn
+> to mush."* Plan tour days accordingly. When energy drops mid-day, **do jumping jacks** —
+> that is the literal advice.
+
+> **How to film a vlog / community tour (WWYT Day 4, Aug 2026):**
+> 1. **Start at an anchor location** — the nearest big-box landmark, typically Costco.
+> 2. Use it to answer the unspoken question: *"I'm in front of Costco and you're saying
+>    you're in Middleton — I wanted to show you how far it is to drive."*
+> 3. **Announce the itinerary**: three communities, each a different *type* (low-maintenance
+>    retiree, one-acre with horses, affordable).
+> 4. Cover **what it's like to live there and how far things are**.
+> 5. Then the **downtown pocket**, then **where people actually go**.
+> 6. **Be real, not promotional.** Jesse volunteers that his market is short on specialty
+>    doctors as an example of saying the unflattering thing.
+>
+> **⭐ Shoot the intro LAST.** *"We never do the intro until we film the video, because we
+> want to know what we talk about after we filmed our video… whatever the anchor point is
+> is actually where you're going to end, and that's where you're going to do your intro. I
+> know it sounds backwards, but that's just the way you have to do it."* It cuts first in
+> the finished video; you shoot it last.
+
+> **Map tours are the sleeper format** — *"one of the hottest videos you could ever make…
+> one of the highest intent videos as well."* They earn browse **and** search. Set a map
+> tour as your **channel trailer for non-subscribers** (you can set two trailers — one for
+> subscribers, one for non-subscribers).
+
+### ⭐ How Rachel Dau actually shoots (WWYT Day 5 fireside chat, Aug 2026)
+
+The highest-value session in the challenge for a solo agent doing her own filming. Full
+treatment with timestamps in
+[key-points](key-points/win-with-youtube-challenge.md#-day-5--the-fireside-chat-with-rachel-dau-the-production-workflow-session).
+
+**Decide at the curb: lifestyle video, or house video?**
+
+> *"I look at the curb and I look around — is this a lifestyle video or is this the house?…
+> This has a double RV bay, a white picket fence, you can have a cow, a horse and chickens —
+> and I'm going to **tease the front of this house more, engage more outside**, because
+> we're selling this community and lifestyle here. Or is this a house I need to **get into
+> quickly** and really go for selling the safety, the nearby amenities… and **not linger
+> around** as much."*
+
+That is the answer to "front door immediately, or work the exterior first?": **the
+property's distinguishing feature is outside → linger. It's one of many similar homes →
+get inside fast and sell the community.**
+
+**The shoot day.** Up at **4:30am**; filming from early until **1–3pm**; houses **lined up
+in advance**; one video straight after another. She preps **in the hairdresser's chair** —
+calculating property taxes for every house she'll film, and writing bullet points of *the
+same things she says in every video* so she doesn't forget them. The point of the prep is
+warm-up: *"I'm not reshooting content over and over again — I'm just able to do everything
+naturally in **one take**, typically."* **Bullet points, never a script. Nerves are never
+mentioned** — preparation is the whole answer.
+
+**In the house:**
+- **Scout for jokes and sweet spots**, not features, while you turn the lights on — a gun-safe room, the corner where a mother of four could hide with a chocolate bar.
+- **Say your re-hooks out loud and defer them:** *"I know you guys want to see X — we're going to get there."*
+- **Immediate payoff, then downplay it.** Straight to the kitchen or a show-stopping backyard, then *"this isn't even the coolest part."*
+- **Move fast through boring rooms and talk harder.** *"There's not much to see, so this needs to be much to say."*
+- Her mental model: a tour is ***"30 little micro videos."***
+
+**Wardrobe:** the **same outfit for all eight tours**. She A/B'd her own appearance — a
+baseball cap early on to read as approachable *"so that women were comfortable with their
+husbands calling"* — and settled on **jeans and a blouse**, *"what I would show up to have
+brunch in with a 60-plus-year-old woman and her husband."* Dress for who your buyer wants
+to do business with; stay modest, partly for safety.
+
+**Filming other agents' listings** (99.99% of what she shoots):
+- **Credit the brokerage** in the description (check your state's rule).
+- For a listing agent whose inventory you want to keep filming, **name them warmly and set a "we're a team" expectation** so buyers don't try to go around you.
+- For a one-off agent you don't know, **don't mention them** — talk about the builder, the developer, the area instead.
+- **Never imply someone else's listing is yours.** *"The less you talk about yourself and your production, probably the better."*
+
+**Don't put other people on camera.** *"Bringing in other people can make it look like
+you're not the expert — they are."* Same rule as never interviewing the builder.
+
+> **Volume, honestly stated:** Jesse's ceiling is **1–2 home tours a day**. Rachel films
+> about **4 a day** across two shoot days a month — but she's years in, fully pre-planned,
+> and works with a camera operator. Start at 1–2.
 
 **Edit (Day 6):**
 - Use **iMovie** (Mac) or **Filmora** (Windows). **Do not use Adobe Premiere.**
@@ -284,7 +394,63 @@ YouTube leads are pre-sold believers — treat them better than cold leads.
 
 ---
 
-## The 14-Day Quick-Start Checklist
+## Part 8 — Your next 90 days (WWYT Day 4, Aug 2026)
+
+The challenge's closing deliverable. Use this instead of guessing at sequencing.
+
+| Block | Focus | What you do |
+| --- | --- | --- |
+| **Days 1–30** | **Build** | Channel art, name, description. Decide your filming schedule and upload sequence. **Bank videos before you publish anything.** |
+| **Days 31–60** | **Validate** | Read your own retention graphs. Watch playbacks **on a TV** and take edit notes. The Grader needs ~28 days of data to say anything useful. |
+| **Days 61–90** | **Algorithm trust** | Work the limiters in order: consistency → AVD → TV views → browse+suggested → no Shorts/no ads. Then "real-time power" kicks in. |
+
+**Hard rules:**
+
+- **Don't publish until 4 videos are banked — 10 is the recommendation.** Not for polish, for survival: agents film one, upload it, and realise they can't face doing it ten more times. It's also your buffer for when you get sick.
+- **Give an editor a 14-day turnaround.** That was Channel Junkies' own internal SLA.
+- **One video a week is the floor, two is the standard.** Every other week measurably underperforms.
+- **"20 videos in 10 weeks"**, *then* read your analytics — they take ~10 weeks to mean anything.
+- **Never seed your own views.** No friends, no family, no past clients, don't watch it yourself. One client channel had to be scrapped and restarted **a second time** purely because they'd shared the first five videos with their sphere.
+- **No second channel** until the first is maxed.
+
+### ⭐ The 8-week launch (or relaunch) sequence
+
+Two videos a week. This is the concrete publishing order:
+
+| Week | **Wednesday** | **Saturday** |
+| --- | --- | --- |
+| 1 | Cost of Living in [Driver City] | Full vlog tour |
+| 2 | Pros and Cons of Living in [Driver City] | Full vlog tour |
+| 3 | Map tour | Full vlog tour |
+| 4 | Best 5 neighborhoods in [Driver City] | Full vlog tour |
+| 5–8 | **Home tours** | Full vlog tour |
+
+> **The nuance that matters.** *"Pros and cons and cost of living are my top two videos,
+> then vlog tour of your biggest city, then map tour — those are the four most important
+> videos every agent should have on their channel. And then… home tour, that is **not** the
+> most important video to have on your channel as a mandate, because home tours die a fast
+> death."*
+>
+> This does **not** contradict "vlogs and home tours activate browse". Build the **four
+> evergreen assets** first, run a **vlog every single week** (*"dynamite to a channel"*),
+> and rotate **home tours** through continuously as the fuel.
+
+### The lead math
+
+- **~16% of YouTube leads close.** ~**50%** of leads should become a Zoom; ~**32%** of Zooms convert.
+- **100 leads a year → ~16 closings**, and 100 leads a year is **about two a week**. That's the whole target.
+- The 16% is **channel-specific** — Jesse's Boise channel converts at 16%, his Houston channel at 4%. Expect somewhere in that band.
+- He's gone **30 days with no leads** in a year he still did **$1M GCI**. Don't panic-read a quiet fortnight.
+
+### Protecting the channel
+
+- **Don't delete videos before you're monetized** (1,000 subs + 4,000 watch hours) — deleting destroys their watch hours. **Unlist and remove from playlists** instead; delete freely once monetized.
+- **Re-titling only helps in the first ~2 weeks.** Past that it won't move the video. The exception is evergreen search content — pros & cons, cost of living — which is worth **reshooting**.
+- **Block trigger words** in channel settings and hide off-avatar commenters rather than arguing.
+- **Never use footage or photos you don't own.** One agent had to wire a creator **~$14,000** to get his channel turned back on. Three strikes is permanent removal.
+
+---
+
 
 | Day | Do this |
 | --- | --- |
@@ -307,9 +473,9 @@ YouTube leads are pre-sold believers — treat them better than cold leads.
 
 ## Do / Don't Cheat Sheet
 
-**Do:** own your Gmail · name the channel "Living in [Driver City] with [Your Name]" · title to the largest metro · hook + call-out in the first 5 sec · publish Wednesday + Saturday, two in the queue · run 3 thumbnails per video · put the CTA before the price reveal · shoot 1080p/60fps on an Osmo Pocket 3 · weave in value-first CTAs · push every lead to a Zoom · bring a lender · delegate editing early · grade your channel and fix one limiter at a time · give it 6–12 months.
+**Do:** own your Gmail · name the channel "Living in [Driver City] with [Your Name]" · title to the largest metro · **open with the viewer call-out in under 4 seconds** · hook + call-out inside 30 sec · publish Wednesday + Saturday, two in the queue · **bank 4–10 videos before you publish anything** · run 3 thumbnails per video · **CTA → price reveal → redirect, in that order, at the very end** · shoot 1080p/60fps on an Osmo Pocket 3 · **shoot vlog intros last** · **film a vlog every week** · weave in value-first CTAs · push every lead to a Zoom · bring a lender · delegate editing early (give them 14 days) · grade your channel and fix one limiter at a time · give it 6–12 months.
 
-**Don't:** use a brokerage email · use national "real estate" keywords · **run Shorts (delete the ones you have)** · **buy ads pointed at your videos** · put a **price** or **"for sale"** in a title or thumbnail · make local news/hype videos · optimize for search over browse+suggested · shoot 4K · shoot on a green screen · bulk-upload · perfect the branding for days · read a rigid script (or an AI one) · share to social the day you post · obsess over the first video's stats · be the only person who can close · chase too many markets at once.
+**Don't:** use a brokerage email · use national "real estate" keywords · **run Shorts (delete them — but unlist rather than delete until you're monetized)** · **buy ads pointed at your videos** · put a **price** or **"for sale"** in a title or thumbnail · make local news/hype videos · optimize for search over browse+suggested · shoot 4K · shoot on a green screen · bulk-upload · **ask for more than one thing in a single CTA** · **put a guest or the builder on camera** · perfect the branding for days · read a rigid script (or an AI one) · **send new videos to friends, family or past clients — or watch them yourself** · obsess over the first video's stats · **film more than 1–2 home tours in a day when you're starting out** · be the only person who can close · chase too many markets at once.
 
 ---
 
