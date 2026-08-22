@@ -209,6 +209,15 @@ So the canonical eight, as Jesse himself counts them:
 
 ### 7 — The reveal
 - **The reveal is the price, and it belongs at the very end.** *"Everyone wants to know the price of the house. We watched the video for four minutes and you never even heard her say one thing about pricing"* (`D3-GS` 00:42:44–00:42:56).
+
+> ⚠️ **Measured against real videos, this rule needs one qualification.** It is a rule about
+> a **specific home's number**, not about price *ranges*. Across 13 measured videos, price
+> **bands** ("the 350s", "400,000 up to 1.5 million") land at a median of **14%** through
+> the runtime, while specific **numbers** for one home land at a median of **86%**, with
+> reveals at 99%. Rachel's own AVIMOR tour states a band at **0:12** and the number at
+> **28:24 of 28:41**. Community videos have no single home, so they have no reveal to hold —
+> which is why every successful one gives a price range early. See
+> [`knowledge/reference-videos/framework-vs-practice.md`](../../../reference-videos/framework-vs-practice.md#-finding-1-the-price-rule-is-about-numbers-not-bands).
 - Order it **CTA → price → redirect**, never price → CTA: *"we always see the retention just immediately dump as soon as you give the price"* (`D3-GS` 00:44:53–00:45:14).
 - The scripted form: *"All right, you guys want to know the price of this home. Before I tell you — we are the number one relocation team, give us a call, shoot us a text, send us an email. The price of this house is 1.5. And if you want to see more houses just like it, click this link and I'll see you over there."* (`D3-GS` 00:45:09–00:45:33).
 - The claimed effect: *"just doing that fix on your channel alone will change your entire performance of your video"* (`D3-GS` 00:45:33–00:45:38).
@@ -217,6 +226,20 @@ So the canonical eight, as Jesse himself counts them:
 ### 8 — The redirect
 - The instant the price lands, **point them at the next video or a playlist** (`D3-GS` 00:44:45–00:45:33).
 - Verbatim from a second example: *"There's so much more to share about this community, so we are linking a video right here — you're going to want to click this… the price of this home is $969,880. We'll see you in the next video."* Jesse marks this one as **slightly wrong**: she gave the redirect *before* the price, and *"the editor should have clipped that out"* (`D3-GS` 00:54:16–00:55:03).
+
+> ⭐ **That second example has been identified — you can watch it.** It is Rachel Dau's
+> [**"Tour this SHOCKINGLY AFFORDABLE Home in TOP Boise Master-Planned Community [AVIMOR]"**](https://youtu.be/kkCcBR87Hdc)
+> (28:41). Its captions close at **28:24** with almost exactly the words quoted above,
+> including the **$969,880** figure. Anyone learning this beat can now watch the exact
+> video at the exact timestamp and see what "slightly wrong" looks like in practice.
+>
+> ⚠️ **But it is not a one-off.** Rachel's best-performing video —
+> [the RV garage tour](https://youtu.be/ya7nYcW4ioI), 24,810 views — closes the same way:
+> *"…you're going to have to click on this link, and we'll meet you over there right now.
+> $1,750,000 on this house."* Redirect, then price. **Both** measured home tours on the
+> reference channel do the thing the doctrine says not to do. The taught order and the
+> published order differ — see
+> [`knowledge/reference-videos/framework-vs-practice.md`](../../../reference-videos/framework-vs-practice.md#-finding-3-the-taught-closing-order-is-not-the-practised-closing-order).
 
 ### The ninth beat he teaches but doesn't count: the payoff
 - After the transition, **give an immediate reward** for the ~60–90 seconds already invested: *"she's giving them an instant payoff… everyone loves a good view, everyone loves a nice kitchen"* (`D3-GS` 00:33:08–00:33:31).

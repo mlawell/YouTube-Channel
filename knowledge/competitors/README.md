@@ -17,6 +17,13 @@ copying, and the concrete gaps we can exploit in our own content.
 
 ## Notes
 
-| Competitor | Market | Note |
-| --- | --- | --- |
-| Robert McWiggan / @TheLatitudeGuy | Latitude Margaritaville Watersound | [`thelatitudeguy.md`](thelatitudeguy.md) |
+| Competitor | Market | Subs | Note |
+| --- | --- | --- | --- |
+| **Mr. Beach / Living on the Emerald Coast** | Emerald Coast incl. Latitude Margaritaville Watersound | 5,690 | ⭐ [`mrbeach.md`](mrbeach.md) — **the significant one**: 22,825 views on a Latitude tour, and no phases video |
+| Robert McWiggan / @TheLatitudeGuy | Latitude Margaritaville Watersound | 562 | [`thelatitudeguy.md`](thelatitudeguy.md) — owns the phases keyword, 884 views |
+
+## Related
+
+Format-level analysis of these and other channels, measured against the Channel
+Junkies framework, lives in
+[`knowledge/reference-videos/`](../reference-videos/README.md).
