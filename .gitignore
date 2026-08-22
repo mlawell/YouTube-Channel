@@ -23,6 +23,19 @@ knowledge/channel-junkies/transcripts/
 knowledge/channel-junkies/srt/
 knowledge/channel-junkies/resources/
 
+# Reference videos: the catalog is analysis only. Captions/transcripts and any
+# downloaded media for OTHER people's videos must never be committed — same rule
+# as the Channel Junkies transcripts above. Research inputs stay in the session
+# folder; only catalog.json and the markdown are tracked.
+knowledge/reference-videos/caps/
+knowledge/reference-videos/**/*.vtt
+knowledge/reference-videos/**/*.srt
+knowledge/reference-videos/**/*.mp4
+knowledge/reference-videos/**/*.webm
+knowledge/reference-videos/**/*.m4a
+knowledge/reference-videos/exemplars.json
+knowledge/reference-videos/scored.json
+
 # Phase map: regenerable. `data/` is a live pull from Bay County ArcGIS,
 # `output/` is rendered from it and includes very large print masters (the
 # giant raster alone is ~15 MB, the 4K frames more). Everything rebuilds with
