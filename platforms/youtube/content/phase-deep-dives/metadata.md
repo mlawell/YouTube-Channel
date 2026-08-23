@@ -34,8 +34,8 @@ Latitude Margaritaville Watersound Phase 1 — Everything You Need To Know Befor
 0:00 Phase 1 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -145,8 +145,8 @@ Latitude Margaritaville Watersound Phase 2 — Everything You Need To Know Befor
 0:00 Phase 2 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -260,8 +260,8 @@ Latitude Margaritaville Watersound Phase 3 Is Actually Three Separate Plats — 
 0:00 Phase 3 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -379,8 +379,8 @@ Latitude Margaritaville Watersound Phase 4 Is Actually Two Separate Plats — He
 0:00 Phase 4 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -497,8 +497,8 @@ Latitude Margaritaville Watersound Phase 5 Is Actually Two Separate Plats — He
 0:00 Phase 5 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -615,8 +615,8 @@ Latitude Margaritaville Watersound Phase 6 Is Actually Two Separate Plats — He
 0:00 Phase 6 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -732,8 +732,8 @@ Latitude Margaritaville Watersound Phase 7 — Everything You Need To Know Befor
 0:00 Phase 7 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -846,9 +846,9 @@ Latitude Margaritaville Watersound Phase 8 — Worth It? A Resident Realtor's Ho
 0:00 Phase 8 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
-7:30 Why I live in this phase — and the honest trade-off
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
+8:00 Why I live in this phase — and the honest trade-off
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -962,8 +962,8 @@ Latitude Margaritaville Watersound Phase 9 — Everything You Need To Know Befor
 0:00 Phase 9 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```
@@ -1076,8 +1076,8 @@ Latitude Margaritaville Watersound Phase 10 — Everything You Need To Know Befo
 0:00 Phase 10 — what you actually want to know
 0:15 Where it is, and how it was recorded
 2:00 The cart run to the Town Center, at 30
-4:00 Highway 79 and the Bandshell — what you can hear
-5:30 What people who live here say
+4:00 Highway 79, the Bandshell and how far the Gulf is
+6:00 What people who live here say
 9:00 What's actually for sale right now
 10:00 Get the full phase map
 ```

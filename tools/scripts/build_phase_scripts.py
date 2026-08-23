@@ -787,7 +787,7 @@ def _body(c: Community, num: str, g: dict) -> str:
     L.extend(humor("cart", num))
 
     # ---- highway 79 / bandshell --------------------------------------------
-    add("## NOISE AND CONVENIENCE \u2014 4:00\u20135:30")
+    add("## NOISE AND CONVENIENCE \u2014 4:00\u20136:00")
     add("")
     if g["hwy79_mi"] is not None:
         d = g["hwy79_mi"]
@@ -823,10 +823,36 @@ def _body(c: Community, num: str, g: dict) -> str:
         "**setting** \u2014 carts arriving, dusk, the empty stage. See "
         "[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).")
     add("")
+    add("### How far the Gulf is")
+    add("")
+    add("**This community is inland, and \"how far is the beach?\" is the single "
+        "most common objection a Florida 55+ buyer raises.** Every episode "
+        "answers it, because every episode may be someone's first.")
+    add("")
+    add("`[on-screen: Front Beach Rd west end 8.5 mi ~15 min \u00b7 Pier Park "
+        "13.6 mi ~25 min \u00b7 free-flow, add time in summer]`")
+    add("")
+    add("> We are not on the beach. Let me be straight about that, because the "
+        "name does a lot of work. The closest Gulf access is about fifteen "
+        "minutes. Pier Park, where you probably actually want to go, is "
+        "twenty-five. And in July, add to that.")
+    add("")
+    add("\u26d4 **Do not round down, and never drop the summer caveat.** Mike's "
+        "own \"10 to 15 minutes\" is correct but it is the **floor** \u2014 it holds "
+        "for the nearest access only. These are OSRM free-flow routings from the "
+        "Town Center with no traffic model, and summer traffic on Front Beach "
+        "Road will exceed them materially. A buyer told \"ten minutes to the "
+        "beach\" who tours in July and sits on Front Beach Road for forty "
+        "re-evaluates everything else in the video. Table and method: "
+        "[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md).")
+    add("")
+    add("\u26a0\ufe0f **Drive time, not a sight line.** No part of this community "
+        "can see the Gulf.")
+    add("")
     L.extend(humor("noise", num))
 
     # ---- residents ----------------------------------------------------------
-    add("## WHAT PEOPLE WHO LIVE HERE SAY \u2014 5:30\u20137:30")
+    add("## WHAT PEOPLE WHO LIVE HERE SAY \u2014 6:00\u20138:00")
     add("")
     add("**Direction:** this is the second thing no competitor can do, and it is "
         "empty until real people are asked. There is no resident feedback in "
@@ -845,7 +871,7 @@ def _body(c: Community, num: str, g: dict) -> str:
 
     # ---- Karen's own phase --------------------------------------------------
     if mine:
-        add("## WHY I LIVE HERE \u2014 7:30\u20139:00")
+        add("## WHY I LIVE HERE \u2014 8:00\u20139:00")
         add("")
         add("`[CUT TO KAREN, walking her own street]`")
         add("")
@@ -1205,11 +1231,11 @@ def episode_chapters(c: Community, num: str) -> list[str]:
         ("0:00", f"Phase {num} \u2014 what you actually want to know"),
         ("0:15", "Where it is, and how it was recorded"),
         ("2:00", "The cart run to the Town Center, at 30"),
-        ("4:00", "Highway 79 and the Bandshell \u2014 what you can hear"),
-        ("5:30", "What people who live here say"),
+        ("4:00", "Highway 79, the Bandshell and how far the Gulf is"),
+        ("6:00", "What people who live here say"),
     ]
     if g["karen_lives_here"]:
-        ch.append(("7:30", "Why I live in this phase \u2014 and the honest trade-off"))
+        ch.append(("8:00", "Why I live in this phase \u2014 and the honest trade-off"))
     ch += [
         ("9:00", "What's actually for sale right now"),
         ("10:00", "Get the full phase map"),
