@@ -544,6 +544,18 @@ be planned, and the shot has to exist. For beat 9 the cutaway is free — the
 **No Shoes Ct sign** is already on the shot list and the beat is about that sign,
 so the giggle plays over the exact image it refers to.
 
+> ### ⭐ This generalises, and it is bigger than the giggle
+> There is **no real footage of Karen and none is coming**, so every appearance
+> is synthetic. A face that cannot change expression is wrong for comedy and
+> perfectly fine for sincerity, which gives the governing rule:
+>
+> **Spend the synthetic face on sincerity. Spend the cutaways on comedy.**
+>
+> **Any** moment needing visible emotion cuts away, not just the giggle. Each of
+> the nine beats has a designated cutaway image, and the face-time budget, the
+> corner-inset format and the full asset inventory are in
+> [`karen-presenter-treatment.md`](karen-presenter-treatment.md).
+
 ### ⭐ Strong recommendation: a reaction library
 
 **Karen records her own reactions once, and they are dropped in on the edit.**

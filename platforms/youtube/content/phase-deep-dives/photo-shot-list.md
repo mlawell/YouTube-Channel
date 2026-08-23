@@ -186,6 +186,41 @@ No humor beat in this episode by design.
 
 ---
 
+## ⭐ Cutaway shots for the humor beats
+
+**These are not decoration. They are load-bearing.** Karen's avatar animates the
+**mouth region only** and has no expression control, so **any beat needing
+visible emotion has to cut away from her face** or it plays as a punchline on a
+neutral stare. Full reasoning and the per-beat table:
+[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
+
+Most of the nine approved beats are already covered by a sign shot above. These
+are the gaps.
+
+| Beat | Shot needed | Priority |
+| --- | --- | --- |
+| **5. Bingo** | ★ **Bingo at the Town Center** — the activity room, ideally mid-game, or the sign-up board | **Live now.** Scripted into the Phase 8 deep dive, currently falling back to the generic Town Center anchor |
+| **2. The cats** | **Bella, Cinder and Buddy**, and the **Barkaritaville** sign | Waiting. The beat has no script slot until an amenities video exists |
+| **3. The dermatologist** | **West Bay Center** storefronts, West Bay Dental and Dermatology Associates legible; and the **FSU Health** construction site | Waiting, same reason. Karen already has 2m25s of her own FSU Health footage in the M365 library |
+
+> **Beat 4, lawn care, is the deliberate exception.** It is the honesty beat, and
+> honesty is delivered *to* the viewer. **Stay full-frame on Karen.** The lawn
+> shot supports it as B-roll rather than replacing her.
+
+---
+
+## ⭐ Presenter plates, while you are out there
+
+There is **no real footage of Karen and none is coming**, so every appearance is
+composited. The photographs on this list are not just B-roll: they are the
+**backgrounds she gets composited over**, which is why "shoot it clean and hold
+it" matters more than it used to.
+
+- **Shoot a few frames wide and clean**, with empty space on one side, at the Bandshell, the Town Center, the gate and Cool Water Way. Those become the full-frame hook and CTA backgrounds.
+- **Never a generated interior.** A synthetic figure over a real, checkable place is the whole trick.
+
+---
+
 ## Rules
 
 - **Karen's own photographs only.** The whole value is that she took them. A Minto render or a stock beach shot destroys the argument the photo was there to make.

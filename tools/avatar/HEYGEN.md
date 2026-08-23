@@ -247,6 +247,13 @@ This is a scripting constraint, not an editing preference, and it is written int
 [`karen-voice-and-humor.md`](../../platforms/youtube/content/karen-voice-and-humor.md)
 so the cutaway gets planned rather than discovered in the edit.
 
+⚠️ **It is also bigger than one laugh.** There is no real footage of Karen and
+none is coming, so **every** appearance is synthetic. A mouth-only animation is
+fine for sincerity and wrong for comedy, which drives the whole presenter format:
+corner-inset over a full-screen map, full-frame only over real photographs, and a
+face-time budget of about a minute in a twenty-minute video. See
+[`karen-presenter-treatment.md`](../../platforms/youtube/content/karen-presenter-treatment.md).
+
 ### Pauses are supported, properly
 
 `<break time="1s"/>` is documented for HeyGen TTS pacing

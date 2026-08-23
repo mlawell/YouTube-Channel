@@ -943,6 +943,12 @@ def _body(c: Community, num: str, g: dict) -> str:
         "cannot render a laugh, so a real laugh over the avatar is a laughing "
         "voice on a neutral face. See "
         "[`HEYGEN.md`](../../../../tools/avatar/HEYGEN.md).")
+    add("- [ ] Presenter treatment followed: **map full-screen, Karen "
+        "corner-inset or absent** through the body, full-frame only over a "
+        "real photograph and only on a sincere beat. Never at a desk, never in "
+        "a generated interior. There is no real footage of Karen, so every "
+        "appearance is composited. See "
+        "[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).")
     add("- [ ] Nothing on camera names the landscaping contractor or the "
         "management company. Describe the condition, ask the question, never "
         "identify the culprit.")
