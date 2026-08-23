@@ -80,6 +80,36 @@ ROAD_MI = {
     "Phase 8": 4.14,
 }
 
+# Resident Facebook groups, published to LMWS residents. Keyed by the phase
+# number this script groups by. The community organises itself BY PHASE, which
+# is the whole premise of this series: a phase is a real social unit, not just
+# a plat number. That is a structural answer to "what are people like here",
+# and it is better than an anecdote because it is checkable.
+PHASE_GROUPS = {
+    "3": ["Carefree in Phase 3 LMWS"],
+    "5": ["LMWS Fabulous Phase Five"],
+    "6": ["6BC Flip Flops"],
+    "7": ["L.M.W.S. Lucky 7's"],
+    "9": ["LMWS Phase 9 Residents", "The Salty Side | Phase 9BC"],
+    "10": ["LMWS Hang 10 (Phase 10 Residents)"],
+}
+
+# It goes deeper than phases -- individual streets have their own pages.
+STREET_GROUPS = {
+    "6": [("Cool Breeze Drive 6A LMWS-Owners Page", "Cool Breeze Dr, 6A")],
+    "8": [("LMWS Hang Loose Court", "Hang Loose Ct \u2014 one of Karen and Mike's "
+                                    "own three Phase 8 streets")],
+}
+# Not tied to a phase group above, but real and worth naming where the street
+# comes up: FINS UP CT - LMWS (Fins Up Ct, Phase 3) and Sandbar Lane Neighbors
+# LMWS (Sandbar Ln, Phase 4).
+STREET_GROUPS_BY_STREET = {
+    "Fins Up Ct": "FINS UP CT - LMWS",
+    "Sandbar Ln": "Sandbar Lane Neighbors LMWS",
+    "Hang Loose Ct": "LMWS Hang Loose Court",
+    "Cool Breeze Dr": "Cool Breeze Drive 6A LMWS-Owners Page",
+}
+
 PHASE_ORDER = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
 # ---------------------------------------------------------------------------
@@ -900,19 +930,51 @@ def _body(c: Community, num: str, g: dict) -> str:
     # ---- residents ----------------------------------------------------------
     add("## WHAT PEOPLE WHO LIVE HERE SAY \u2014 6:00\u20138:00")
     add("")
-    add("**Direction:** this is the second thing no competitor can do, and it is "
-        "empty until real people are asked. There is no resident feedback in "
-        "this repository \u2014 none \u2014 so nothing is written here for Karen to read.")
-    add("")
-    add("`[RESIDENT 1: name or \"a neighbour on <street>\", with permission. Ask: "
-        "why this phase over the others? What surprised you after you moved in?]`")
-    add("")
-    add("`[RESIDENT 2: ask for one honest trade-off. A phase with no downside is "
-        "a phase nobody believes.]`")
-    add("")
-    add("`[KAREN: if nobody in this phase has been asked yet, CUT this section "
-        "entirely and say so in the description. Do not summarise what you "
-        "imagine they would say.]`")
+    groups = PHASE_GROUPS.get(num, [])
+    streets = STREET_GROUPS.get(num, [])
+    named = [s for s in g["streets"] if s in STREET_GROUPS_BY_STREET]
+    if groups or streets or named:
+        add("**Direction:** the strongest answer here is structural, not "
+            "anecdotal. **This community organises itself by phase** \u2014 which "
+            "is the entire premise of this series. A phase is a real social "
+            "unit, not just a plat number, and that is exactly what a buyer is "
+            "trying to work out when they ask which phase they should be in.")
+        add("")
+        if groups:
+            add("**Resident Facebook group"
+                + ("s" if len(groups) > 1 else "") + " for this phase:**")
+            add("")
+            for gname in groups:
+                add(f"- **{gname}**")
+            add("")
+            lead = groups[0]
+            add(f"> The people here have their own Facebook group. It's called "
+                f"**{lead}**. That's not something Minto set up, that's the "
+                f"residents.")
+            add("")
+        for sname, where in streets:
+            add(f"- **{sname}** \u2014 {where}")
+            add("")
+        extra = [(s, STREET_GROUPS_BY_STREET[s]) for s in named
+                 if STREET_GROUPS_BY_STREET[s] not in [x[0] for x in streets]]
+        for street, gname in extra:
+            add(f"- **{gname}** \u2014 {street} has its own page")
+            add("")
+        add("> And it goes further than the phase. Individual streets out here "
+            "have their own pages.")
+        add("")
+        add("**Why this earns the chapter:** it is checkable, it is not an "
+            "anecdote, and it doubles as a natural CTA \u2014 somebody who buys "
+            "here has somewhere to go on day one. Name the group, do not read "
+            "out its posts, and do not screenshot member names.")
+        add("")
+    else:
+        add("**Direction:** no resident group is recorded for this phase. Say "
+            "nothing rather than implying one exists. If Karen knows of one, "
+            "it goes in the generator.")
+        add("")
+    add("`[KAREN \u2014 optional: anything first-hand you know about the people in "
+        "this phase. Never summarise what you imagine they would say.]`")
     add("")
 
     # ---- Karen's own phase --------------------------------------------------
@@ -1058,33 +1120,36 @@ def _body(c: Community, num: str, g: dict) -> str:
 
 
 def drive_sheet(c: Community) -> str:
-    """The sheet Karen takes in the cart.
+    """CLOSED. Kept as a short record so existing links do not break.
 
-    Cart times used to live here as a blocker. They no longer do -- they are
-    estimated from routed road distance at ~25 mph, calibrated from Mike's
-    measured Phase 8 run. What remains is the one thing that genuinely cannot
-    be derived from any file: what residents of the other nine phases say.
+    Both halves resolved: cart times by calculation, resident colour by the
+    per-phase Facebook groups Mike supplied. Nothing on this sheet is
+    outstanding, so it no longer asks for anything.
     """
     L: list[str] = []
     add = L.append
-    add("# Drive sheet \u2014 resident feedback")
+    add("# Drive sheet \u2014 \u2705 CLOSED")
     add("")
     add("Generated by `tools/scripts/build_phase_scripts.py`.")
     add("")
-    add("> \u2705 **Cart times are no longer a blocker.** They are estimated in the "
-        "drafts from routed road distance at roughly 25 mph, calibrated from "
-        "Mike's measured Phase 8 run, and spoken as \"about N minutes\". "
-        "Driving and timing them is **optional** \u2014 if Karen times a run she "
-        "can use her real number, but no episode waits on it.")
+    add("**This sheet is finished. Nothing here is blocking any episode.** It "
+        "is kept as a record of how each half was resolved.")
     add("")
-    add("**The one thing on this page that cannot be derived from any file is "
-        "resident feedback.** Karen lives in Phase 8 and can speak first-hand "
-        "about it; the other nine need someone asked.")
+    add("| What it asked for | How it closed |")
+    add("| --- | --- |")
+    add("| **Cart times**, to be driven and stopwatched | **By calculation.** "
+        "Routed road distance scaled at roughly 25 mph, calibrated from Mike's "
+        "measured Phase 8 run (4.14 road miles in 10 minutes). Every draft now "
+        "says \"about N minutes\". Driving one is optional |")
+    add("| **Resident quotes**, to be collected with permission | **By the "
+        "per-phase Facebook groups.** The community organises itself by phase, "
+        "which answers \"what are people like here\" structurally rather than "
+        "anecdotally, and is checkable rather than a single voice |")
     add("")
     add("## Cart times, for reference")
     add("")
-    add("Estimates, already in the drafts. Listed here so a driven run has "
-        "something to check against, not because anything is waiting on them.")
+    add("Estimates, already in the drafts. Listed so a driven run has something "
+        "to check against, not because anything waits on them.")
     add("")
     add("| Phase | By road | Estimated cart ride |")
     add("| --- | --- | --- |")
@@ -1102,27 +1167,28 @@ def drive_sheet(c: Community) -> str:
         star = " \u2605" if g["karen_lives_here"] else ""
         add(f"| **Phase {num}**{star} | {dist} | {est} |")
     add("")
-    add("\u2605 = Karen's own phase, and the calibration point: Mike drove its "
-        "4.14 road miles in 10 minutes.")
+    add("\u2605 = Karen's own phase, and the calibration point.")
     add("")
-    add("## \u2b50 Resident feedback \u2014 the real gap")
+    add("## Resident groups, for reference")
     add("")
-    add("There is **no** resident feedback in this repository yet. Every quote a "
-        "video uses has to start life on this page.")
+    add("Published to LMWS residents on Facebook. Named in each phase's episode "
+        "in `WHAT PEOPLE WHO LIVE HERE SAY`.")
     add("")
-    add("Ask the same three, so answers are comparable across phases:")
+    add("| Group | Phase |")
+    add("| --- | --- |")
+    for numk in PHASE_ORDER:
+        for gname in PHASE_GROUPS.get(numk, []):
+            add(f"| {gname} | {numk} |")
+    add("| LMWS Hang Loose Court | street-level, Phase 8 |")
+    add("| FINS UP CT - LMWS | street-level |")
+    add("| Sandbar Lane Neighbors LMWS | street-level |")
+    add("| Cool Breeze Drive 6A LMWS-Owners Page | street-level, Phase 6A |")
     add("")
-    add("1. Why this phase over the others?")
-    add("2. What surprised you after you moved in \u2014 good or bad?")
-    add("3. One honest trade-off.")
+    add("**Name the group. Do not read out its posts and do not screenshot "
+        "member names.**")
     add("")
-    add("| Phase | Who (name or \"neighbour on <street>\") | Permission to use? | Quote |")
-    add("| --- | --- | --- | --- |")
-    for num in PHASE_ORDER:
-        add(f"| Phase {num} | &nbsp; | &nbsp; | &nbsp; |")
-    add("")
-    add("**Permission is not optional.** A quote without a yes in that column "
-        "does not go in a video.")
+    add("If a first-hand resident quote ever does turn up, it is welcome \u2014 it "
+        "is just no longer required for an episode to be recordable.")
     return "\n".join(L)
 
 

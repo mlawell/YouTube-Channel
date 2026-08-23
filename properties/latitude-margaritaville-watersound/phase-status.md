@@ -175,6 +175,53 @@ ten-minute cart ride from Phase 8. Water body confirmed as the **Gulf** by Mike.
 the Gulf. See the drone-footage rule in
 [`karen-presenter-treatment.md`](../../platforms/youtube/content/karen-presenter-treatment.md#-drone-footage-shows-what-a-drone-sees).
 
+## ⏸ Held material — the named version only
+
+### The Wild Ones
+
+A band whose members **all live in Latitude Margaritaville**. They play
+**benefit concerts at residents' houses** for charity, sell raffle tickets and
+give the proceeds away, and sometimes collect food donations. Mike has seen them
+in **Phase 7 and Phase 5**. A show on 19 August was rained out.
+Facebook: `https://www.facebook.com/profile.php?id=61557653581902`
+
+> ⛔ **Do not name the band in the phases series.** Mike: *"Lets hold off of
+> publishing the Wild Ones, because they do it in multiple phases."*
+>
+> **It is not a phase-differentiating fact.** The band plays across the whole
+> community, so naming a phase alongside it implies a difference that is not
+> there — and choosing between phases is the entire job of the flagship and the
+> ten deep dives.
+
+### ✅ What IS published: the unnamed version
+
+Mike's revised steer resolved it — the problem was never the story, it was
+tying a community-wide thing to a phase. Unnamed and unlocated, it becomes
+**community character**, which is what it actually is. So the flagship carries:
+
+> There's even a band here where the members all live in the community, and
+> they play free charity concerts at people's houses. The collection at the
+> door is the price of admission.
+
+**No name, no link, no phase, no schedule.** It sits in the flagship's
+community-character block only, never in a phase chapter. The charity
+construction — *free concert, the collection is the "payment"* — is the detail
+that makes it land and should not be paraphrased away.
+
+### The full version, held
+
+**The band's identity is recorded above so it is not lost, and not re-added to a
+phase chapter by someone who finds it later and assumes the omission was an
+oversight.** The named version is strong material for a future **community or
+lifestyle video**, where community-wide is the point rather than the problem.
+
+If it is ever used in full: credit the band and link them, because they are
+doing charity work; do not state a schedule, because Mike's account is what he
+has seen rather than a published calendar; and do not publish audio of them
+performing without asking them, same as any other live music.
+
+---
+
 ## Confirmed amenities
 
 All on Minto's amenity site plan, safe to name on screen:
