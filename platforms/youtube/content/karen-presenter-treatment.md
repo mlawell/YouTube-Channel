@@ -74,13 +74,17 @@ of content"* (`D1-QA` 00:36:57). The channel now has 1:25 of exactly that.
 There is no longer a phase anywhere in the community that has to be carried by a
 map frame and a synthetic face alone.
 
-| Plat | Cart-tour photos | 8K video |
+**The video column is where a clip *starts*.** Actual coverage is broader and
+unmapped: every long clip crosses into neighbouring plats, and a dash means *"no
+clip begins here,"* **not** *"no footage exists."*
+
+| Plat | Cart-tour photos | Clip **starts** here |
 | --- | ---: | --- |
 | 1 | 5 | **40:54** |
 | 2 | 30 | 5:39 |
-| 3A | 151 | — |
-| 3B & 3C | 59 | — |
-| 3D | 59 | — |
+| 3A | 151 | — `[KAREN — confirm]` |
+| 3B & 3C | 59 | — `[KAREN — confirm]` |
+| 3D | 59 | — `[KAREN — confirm]` |
 | 4A | 25 | — |
 | 4B | 53 | — |
 | **Town Center (5A3)** | 174 | ~4:01 day + 3:21 **evening** |
@@ -93,12 +97,16 @@ map frame and a synthetic face alone.
 | **9** | **0** | **10:50** |
 | **10** | **0** | within the Phase 9 clips (Mike) |
 
+**Phase 3 is marked for confirmation on purpose.** Mike says he drove it, and the
+40:54 clip is demonstrably nowhere near its start point by minute 30, so the
+footage may be in there. Do not record Phase 3 as photographs-only.
+
 **Phases 9 and 10 stopped being the hard case.** They have no photographs at all,
 but they now have the video, and a 33-megapixel frame extract is a better still
 than a phone photo. **They need no shoot.**
 
-**Phase 6A and 4A are now the thinnest** at 25 photos and no video, followed by
-6B & 6C, which has only 11 photos but 11:17 of video to pull frames from.
+**Phase 6A and 4A look thinnest** at 25 photos and no clip starting in them —
+though again, that is a floor rather than a finding.
 
 ---
 
@@ -200,11 +208,11 @@ Checked on disk 2026-08-23, with `ffprobe` where it mattered.
 
 ### ⭐ Tier 1 — the 8K tour footage
 
-**1:25:23 of 8K, across two folders**, all shot on a phone. Every duration and
-every GPS placement below was verified with `ffprobe` and point-in-polygon
-against `tools/map/`'s plat polygons.
+**1:25:23 of 8K, across two folders**, all shot on a phone. Every duration was
+verified with `ffprobe`. **The plat column is where each clip *begins*, not what
+it covers** — see the caveat below, which is load-bearing.
 
-| Folder | Clip | Duration | Plat at start |
+| Folder | Clip | Duration | Plat at **start** |
 | --- | --- | ---: | --- |
 | `Phases\Videos\` | `20260822_105457.mp4` | **40:54** | **Phase 1** |
 | `Phases\Videos\` | `20260822_104302.mp4` | 7:54 | **Phase 8** |
@@ -219,28 +227,61 @@ against `tools/map/`'s plat polygons.
 
 **7680×4320 HEVC, 30 fps, ~96 Mbps, AAC 48 kHz stereo.**
 
-> ⚠️ **Two corrections worth carrying forward.**
->
-> **There is no Phase 3 video.** An earlier draft of this page said the footage
-> covered "Phases 1, 2, 3 and the Town Center." The GPS says otherwise: the
-> covered plats are **1, 2, 6B & 6C, 8, 9 and the Town Center.** Phase 3 is
-> photographs only, and it is the best-photographed phase in the community (269
-> across 3A, 3B & 3C and 3D), so it loses nothing.
->
-> **The second folder is easy to miss.** `video\` at the community root holds
+> ⚠️ **The second folder is easy to miss.** `video\` at the community root holds
 > **24 minutes** including the two longest non-tour clips. Anyone inventorying
 > `Phases\Videos\` alone will undercount by a third.
 
-#### ⚠️ These are start points, not routes
+#### ⛔ Start points are a floor, not an inventory
 
 The GPS comes from each file's single `location` tag. **Samsung phone recordings
 carry one start-point tag and no telemetry track**, so the table says where a
-clip *began*, not where it went. The 40:54 clip starting in Phase 1 almost
-certainly crosses several plats.
+clip *began* and nothing about where it went. The community is contiguous, and
+every long clip necessarily crosses into neighbouring plats.
 
-**Treat the table as a floor.** Mike confirms the **Phase 9 clips continue into
-Phase 10**, which is exactly the kind of coverage the tag cannot show and the
-reason Phase 10 is no longer a gap.
+**This was tested on the 40:54 clip, and the clip travels a long way:**
+
+| Timestamp | What the frame shows |
+| --- | --- |
+| **30:00** | Undeveloped lots, a walking trail, new utility pedestals, **no houses**. That is **not Phase 1** — Phase 1 is the oldest plat (PB 27/73) and is built out |
+| **40:00** | **The Town Center** — the golf-cart parking bays and the amenity building |
+
+So a single clip tagged "Phase 1" demonstrably covers Phase 1, undeveloped land
+somewhere else entirely, and the Town Center.
+
+> ### ⛔ Never read this table as "phase X has no footage."
+> It only supports *"no clip starts in phase X."* Recording the stronger claim
+> would tell an editor not to scrub 41 minutes of 8K looking for a phase, and
+> usable footage would be left on the floor.
+
+**Mike's own account is broader than the metadata:** *"I did a video tour of
+phase 1, 2, 3, and town center yesterday."* He is ground truth for his own drive,
+and throughout this project his recollection has beaten the paperwork. He also
+confirms the **Phase 9 clips continue into Phase 10**, which is exactly the
+coverage a start-point tag cannot show.
+
+**On Phase 3 specifically:** Phase 3 has **269 photographs** and **no clip that
+starts inside it**. The 40:54 clip beginning in Phase 1 travels well beyond its
+start point, so **Phase 3 footage may well exist inside the longer clips.**
+`[KAREN — confirm on review]`
+
+#### 📋 The correct method, when someone has time for it
+
+Start-point guesses can be converted into a real per-minute phase index:
+
+1. **Sample a frame every 30 seconds** from the long clips.
+2. **Read the street-name signs** and look them up in [`streets_by_phase.md`](../../../properties/latitude-margaritaville-watersound/streets_by_phase.md), which already maps every street to its plat.
+3. Write out a per-minute index of which plat each clip is in.
+
+> **Feasibility was checked, and the honest answer is "yes, with a caveat."**
+> A native-resolution crop from the 30:00 frame is **sharp enough to read
+> mounting bolts and an asset-tag sticker on a sign**, so 8K resolution is not
+> the constraint. **Sign orientation is.** The sign in that particular frame was
+> facing away — a stop sign seen from behind. Expect a meaningful fraction of
+> 30-second samples to catch sign backs, and sample more densely, or step
+> forward a few seconds, when one does.
+
+This is real work rather than something to do in passing, but it is the correct
+method and it belongs to whoever builds the edit.
 
 #### ⭐ Extract frames instead of shooting stills
 
@@ -259,6 +300,8 @@ distinct 1080p shots.
 
 - **⛔ Delivery stays 1080p.** The playbook is explicit: shoot 1080p/60, *"the only reason you would ever need 4K is if you were going to start playing these videos at the movie theater"* (`D2-GS` 00:19:43), citing storage burden and slow transfers to offshore editors. A 27.5 GB file is exactly that problem. **The 8K is justified only as reframing headroom, never as a delivery format.**
 - **⭐ 8K is a virtual camera operator.** A 1920-wide window inside a 7680-wide frame can pan, punch in and reframe, so one static drive-by yields several distinct shots with real camera moves at full delivery quality. That is the single biggest reduction in how much the avatar has to carry.
+- **⚠️ The cart's windscreen post is in shot.** It appears as a dark vertical bar at **frame right** in some of the drive footage, though not all — it depends where the phone was mounted. **It has to be cropped out**, and 8K is exactly what makes that free: cropping the right ~8% of a 7680-wide frame still leaves well over 1080p. **Check every selected shot for it**, because it is easy to miss on a proxy and obvious on delivery.
+- **The picture quality is good.** Sharp, well exposed. A native-resolution crop resolves the mounting bolts and asset-tag sticker on a roadside sign. This is genuinely usable B-roll, not just reference.
 - **⛔ Proxies are mandatory, not optional.** 8K HEVC at 96 Mbps **will not scrub in real time** on most machines. Cut against 1080p proxies and conform back only for shots that need reframing. Discovering this on edit day costs a day.
 - **Frame rate mismatch, minor.** This is **30 fps** and the playbook prefers 1080p/**60**. Fine for delivery, but 30 cannot be conformed up, so do not plan slow motion from it.
 
@@ -490,7 +533,7 @@ Checked against
 
 | # | Beat | Face needs to | Cutaway image | Status |
 | ---: | --- | --- | --- | --- |
-| 1 | Bring a cart | Nothing — Mike is third person, deadpan | The cart in Karen's driveway | ✅ Phase 8 shot 5. **Reuse it in the flagship's Q3** |
+| 1 | Bring a cart | Nothing — Mike is third person, deadpan | The cart in Karen's driveway, **or** the Town Center cart bays at ~40:00 in the 40:54 clip | ✅ Phase 8 shot 5. **Reuse it in the flagship's Q3.** The Town Center bays are the stronger image: dozens of carts says everybody does it |
 | 2 | The cats | Warm, smiling | **Bella, Cinder and Buddy**, and the Barkaritaville sign | ⚠️ **Half solved.** The Barkaritaville plate exists: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg`. Only a photo of the three cats is missing, and that is a thirty-second ask of Karen, not a shoot |
 | 3 | The dermatologist | Wry | West Bay Center storefronts, and the hospital site | ✅ **Solved.** `West Bay Center\` has `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` and more. Beat still has no script slot |
 | 4 | Lawn care | Nothing — **stay full-frame** | The lawns, including a poor one | ✅ Phase 8 shot 4. See note below |
@@ -553,6 +596,7 @@ time on most machines, and finding that out with an editor waiting costs a day.
 - [ ] **Conform back to 8K only for shots that need reframing** — the pan, punch-in and reposition moves
 - [ ] Deliver **1080p**. The 8K is headroom, never a delivery format
 - [ ] **Extract stills for Phases 9 and 10** from their clips, at full 7680×4320
+- [ ] **Every selected shot checked for the cart windscreen post** at frame right, and cropped out where present
 - [ ] **No location audio in the final mix.** Bed plus ducked narration, using `LM Island Breeze - Tour Bed.mp3` against the `Mix QA (narration+duck)` reference
 - [ ] **Bandshell performance is stills only.** Muted video is fine for the setting — arrivals, dusk, the empty stage
 - [ ] Check `Phases\Phase 1\Phase 1-1.mp4` — modified 2026-08-23 11:21, so a Phase 1 segment may already be in progress
