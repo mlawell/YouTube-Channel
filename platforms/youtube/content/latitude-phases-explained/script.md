@@ -401,8 +401,9 @@ statement is `[KAREN]`-gated.
 **Direction — this beat needs its delivery marked, or it dies flat.**
 
 1. **The lyric must be spoken.** Mike asked for this specifically. Without "no shoes, no shirt, no problems" the correction isn't a joke, it's a footnote, because most viewers don't hold the Chesney title in their head.
-2. **Comma-separated beats through the lyric**, then a **pause before "In a Margaritaville community."** ElevenLabs will run the whole line flat and the joke evaporates. Check it on playback, not on the page.
-3. **`[slight giggle]` is Karen's own laugh, dropped in on the edit.** Never synthesised. A synthetic laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34). See the reaction library in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md).
+2. **Comma-separated beats through the lyric**, then a **pause before "In a Margaritaville community."** Use `<break time="0.5s" />` rather than trusting the punctuation. ElevenLabs will otherwise run the whole line flat and the joke evaporates. Check it on playback, not on the page.
+3. ⛔ **`[slight giggle]` is an edit cue and must be stripped before the script goes to ElevenLabs.** On a **v2-family voice the model speaks the words aloud** — a silent failure that only surfaces on playback. On **Eleven v3** the tag is simply not in the supported vocabulary (`[laughs]`, `[clears throat]`, `[sighs]`, `[curious]`, `[crying]`, `[mischievously]`, `[whispers]`, `[shouts]`). The giggle is **Karen's own recording, dropped in on the edit.** Never synthesised: a synthetic laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
+4. ⛔ **Cut to the No Shoes Ct sign over the giggle, then back to Karen.** HeyGen exposes **no expression control and cannot render a laugh** — the engine re-animates the mouth only, so a real laugh over the avatar plays as a laughing voice on a neutral face, which is worse than no laugh at all. The cutaway is free here because the beat is about that sign. Detail in [`HEYGEN.md`](../../../../tools/avatar/HEYGEN.md); doctrine in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md).
 
 ### Phase 5B — 8:30
 
@@ -778,9 +779,17 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
       the Town Center chapter is Karen's own recording, dropped in on the edit.
       A synthetic laugh is one of the clearest AI tells there is, and YouTube
       throttles content indexing high on AI detection (`D1-QA` 00:03:34)
-- [ ] **The No Shoes Court lyric is spoken**, comma-separated, with a pause
-      before "In a Margaritaville community." Checked on playback, not on the
-      page
+- [ ] **Every `[...]` cue is stripped before the script goes to ElevenLabs.** On
+      a v2-family voice the model **speaks the cue aloud** and nothing warns
+      you. `<break>` tags are the one exception: they are real input and stay in
+- [ ] **The picture cuts away from the avatar for the full duration of any
+      recorded reaction** — the No Shoes Ct sign over the giggle. HeyGen has no
+      expression control and cannot render a laugh, so a real laugh over the
+      avatar is a laughing voice on a neutral face. See
+      [`HEYGEN.md`](../../../../tools/avatar/HEYGEN.md)
+- [ ] **The No Shoes Court lyric is spoken**, comma-separated, with a
+      `<break time="0.5s" />` before "In a Margaritaville community." Checked on
+      playback, not on the page
 - [ ] **Nothing on camera names the landscaping contractor or the management
       company**, and no fix is stated. Condition and question only
 - [ ] Lawn condition re-checked **within 24 hours of publishing**

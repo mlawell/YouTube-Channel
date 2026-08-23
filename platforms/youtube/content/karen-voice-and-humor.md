@@ -354,10 +354,16 @@ their head and the beat just sounds like a fact.
 
 > ⚠️ **Delivery cue.** *"You know, no shoes, no shirt, no problems"* needs
 > **comma-separated beats**, and there is a **pause before "In a Margaritaville
-> community."** ElevenLabs will run that line flat and the joke evaporates. Mark
-> the pause in the script and check it on playback. The `[slight giggle]` is
-> **Karen's own recorded laugh dropped in on the edit**, never synthesised. See
-> *Reactions Karen records herself* below.
+> community."** ElevenLabs will run that line flat and the joke evaporates. Use
+> `<break time="0.5s" />` for the pause rather than trusting punctuation, and
+> check it on playback.
+>
+> ⛔ **`[slight giggle]` is an edit cue, not TTS input.** Strip it before the
+> script goes to ElevenLabs. On a v2-family voice the model **speaks the words
+> aloud**; on Eleven v3 the tag is unsupported. The giggle is **Karen's own
+> recording, dropped in on the edit**, and **the picture cuts to the No Shoes Ct
+> sign while it plays**, because a HeyGen avatar cannot laugh. Full reasoning
+> and the emergency fallback: *Reactions Karen records herself* below.
 
 ---
 
@@ -460,6 +466,84 @@ YouTube runs built-in AI detection and **throttles content that indexes too
 high** (`D1-QA` 00:03:34). A fake laugh sitting on top of the funniest line in
 the video is the worst possible place to spend that budget.
 
+### ⛔ `[...]` cues are edit instructions. They are never ElevenLabs input.
+
+**This is the load-bearing line in this section.** Every square-bracket cue in
+this repo — `[slight giggle]`, `[KAREN]`, `[CART]`, `[INVENTORY]`, `[FRAME]`,
+`[BEAT]` — is direction for a human. **Strip all of them before the script goes
+to the API**, exactly as the em-dash rule already requires.
+
+`[slight giggle]` **is not a usable fallback**, and it fails two different ways
+depending on which model is behind the voice. Both were checked against the
+ElevenLabs documentation on 2026-08-23:
+
+| Model | What happens to `[slight giggle]` |
+| --- | --- |
+| **v2 family** (Multilingual v2, Flash v2.5, the usual production voices) | ⚠️ **The words are spoken aloud.** ElevenLabs' own best-practices page: the model *"will still speak out the emotional delivery guides."* Karen literally says "slight giggle" mid-sentence |
+| **Eleven v3** | Audio tags work, but the vocabulary is **fixed** and `[slight giggle]` is not in it. An unsupported tag is not a giggle |
+
+The v2 failure is the dangerous one because **it is silent**. Nothing errors,
+nothing warns, and it only surfaces when somebody listens to the whole take.
+ElevenLabs' own mitigation is post-production: *"Remember to remove any emotional
+guidance text in post-production."* Removing it **before** the API call is
+cheaper.
+
+**The supported Eleven v3 vocabulary, in full:**
+
+| Category | Tags |
+| --- | --- |
+| Human reactions | `[laughs]` · `[clears throat]` · `[sighs]` |
+| Emotions | `[curious]` · `[crying]` · `[mischievously]` |
+| Delivery | `[whispers]` · `[shouts]` |
+
+Source:
+[ElevenLabs — how audio tags work with Eleven v3](https://elevenlabs.io/docs/help-center/product/core-capabilities/text-to-speech/how-do-audio-tags-work-with-eleven-v3-alpha).
+
+### The documented fallback, and it is explicitly second-best
+
+If a synthetic reaction is ever genuinely unavoidable, there is exactly one path
+that works, and it is worse than Karen's own voice:
+
+1. **Model must be `eleven_v3`.** Audio tags do nothing on the v2 family except get read out.
+2. **`[laughs]` is the nearest supported tag.** It is a laugh, not a slight giggle, so expect it to be bigger than the beat wants.
+3. **Better for this particular beat: `[mischievously]` placed *before* the lyric.** It colours the delivery of "no shoes, no shirt, no problems" without inserting a laugh at all, which is closer to what the line needs than a full `[laughs]` dropped after it.
+
+**Treat this as the emergency route.** It exists so that record day has an
+answer, not because it is the plan.
+
+### For a scripted pause, use `<break>`
+
+Beat 9 also needs a **pause before "In a Margaritaville community."** Do not rely
+on punctuation for that. `<break time="0.5s" />` is documented ElevenLabs syntax
+and `<break time="1s"/>` is documented for HeyGen's own TTS, so the same
+construction survives whichever engine speaks the line. Unlike `[slight giggle]`,
+this one is real input and is meant to be left in.
+
+### ⚠️ HeyGen cannot make the face agree with the laugh
+
+Checked against the HeyGen developer docs on 2026-08-23, recorded in full in
+[`HEYGEN.md`](../../../tools/avatar/HEYGEN.md).
+
+Handing HeyGen a finished audio track **is** supported — that is exactly what
+`make_presenter_heygen.py` already does. But:
+
+- **There is no API parameter that makes an avatar laugh or smile on cue.** No emotion presets, no expression control. The only expression-adjacent parameter is `expressiveness` (`high`/`medium`/`low`), it exists on **Avatar IV photo avatars only**, and it is an **energy dial**, not an emotion selector.
+- **Non-speech audio is undocumented.** The engine is speech-to-mouth: it re-animates the **mouth region** against the waveform. Cheeks, eyes and brow stay in the avatar's default neutral.
+
+So a real laugh over the avatar gets you a **laughing voice on a neutral face**,
+which is more jarring than no laugh at all. That is worse than the problem the
+reaction library was solving.
+
+> ### ⛔ The scripting rule this forces
+> **Cut away from the avatar over every recorded reaction.** Put the giggle, the
+> sigh or the breath over **B-roll, a map frame, or the street-sign photo**, and
+> come back to the avatar on the next spoken sentence.
+
+This is a **scripting** constraint, not an editing preference: the cutaway has to
+be planned, and the shot has to exist. For beat 9 the cutaway is free — the
+**No Shoes Ct sign** is already on the shot list and the beat is about that sign,
+so the giggle plays over the exact image it refers to.
+
 ### ⭐ Strong recommendation: a reaction library
 
 **Karen records her own reactions once, and they are dropped in on the edit.**
@@ -479,10 +563,11 @@ Why this is worth the half hour:
 
 - It is **the cheapest 20% of the "AI 20" rule** (`D1-QA` 00:04:07) available anywhere in the pipeline. A real human reaction over a synthetic read is the exact human intelligence the rule asks for.
 - **Record once, use forever.** The same five files serve every video on the channel.
-- It fixes the one thing an avatar cannot do: **react.** Karen's HeyGen avatar reads. A real laugh in the audio is the only moment in a twenty minute video where a person is present.
+- It fixes the one thing an avatar cannot do: **react.** Karen's HeyGen avatar reads. **Those five files are the only moments in a twenty minute video where an actual human is present.** That is why they are worth planning a cutaway around rather than dropping on top of a neutral face.
 
 **Rule:** no laugh, sigh or breath in any script is ever synthesised. If Karen
-hasn't recorded it, the cue gets cut, not faked.
+hasn't recorded it, the cue gets cut, not faked. And wherever one is used, **the
+picture cuts away from the avatar for its duration.**
 
 ---
 
@@ -563,8 +648,10 @@ a viewer can check in ten seconds, which is exactly why they are here.
 - [ ] **Beat 8 — the 1936 date.** *Cool Water* was written by **Bob Nolan in 1936** and first recorded by the **Sons of the Pioneers in 1941**. The line as approved says *"a 1936 cowboy song by the Sons of the Pioneers"*, which compresses those two. It is safe. If anyone challenges it, the precise answer is *"written in 1936, and the Sons of the Pioneers recorded it"*. If the date ever falls into doubt, say **"a 1930s cowboy song"**. Never speak a year nobody has checked.
 - [ ] **Beat 4 — the lawn situation.** Re-check **within 24 hours of publishing**, same volatility convention as inventory. Confirm the rumoured second landscaper is still a rumour, and if it has become fact, the beat still stands as written because *look, and ask* survives the fix.
 - [ ] **Beat 2 — the HOA pet policy.** `[KAREN]` A cat joke invites the question, and the next comment is *"can I bring two cats?"*. Know the answer before the joke goes out.
-- [ ] **Beat 9 — delivery.** The lyric is comma-separated, with a pause before *"In a Margaritaville community."* Check it on playback, not on the page.
+- [ ] **Beat 9 — delivery.** The lyric is comma-separated, with a pause before *"In a Margaritaville community."* Use `<break time="0.5s" />` rather than trusting punctuation. Check it on playback, not on the page.
 - [ ] **Beat 9 — the giggle.** Karen's own recording, dropped in on the edit. Never synthesised.
+- [ ] **Every `[...]` cue is stripped before the script goes to ElevenLabs.** On a v2-family voice the model **speaks the cue aloud** and nothing warns you. `<break>` tags are the one exception: they are real input and stay in.
+- [ ] **The picture cuts away from the avatar for the full duration of any recorded reaction.** HeyGen has no expression control and cannot render a laugh, so a real laugh over the avatar is a laughing voice on a neutral face. For beat 9 the cutaway is the **No Shoes Ct sign**.
 - [ ] **Beats 1 and 6 — Mike's wording is verbatim.** These are his lines. Do not paraphrase and do not smooth the repetition.
 
 ---
