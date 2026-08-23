@@ -1,4 +1,4 @@
-# Thumbnail brief — Five Kinds of Life in Panama City Beach
+# Thumbnail brief — Six Kinds of Life in Panama City Beach
 
 **Format:** 1280×720, 16:9, under 2 MB, JPG or PNG
 **Requires:** phone verification on the channel to upload a custom thumbnail
@@ -14,7 +14,7 @@ propositions, not three treatments of one idea, so the test produces information
 **1. No price. No dollar sign. No "for sale". No "SOLD". No "JUST LISTED".**
 
 A named rule (`D1-QA` 00:15:37), and here it is doing double duty. This video is
-framed as five neighborhoods, not five listings
+framed as six neighborhoods, not five listings
 ([the framing rule](README.md#-the-framing-rule--read-this-before-anything-else)),
 and it holds each home's number to the end of its own segment. **A number on the
 thumbnail gives away five reveals before the video starts.**
@@ -34,8 +34,8 @@ what this video is about. And the title has to carry *Florida* because
 — the thumbnail does not have room, so **the title does that job.**
 
 **3. Karen's face, with an actual expression.** Day 7 / Day 12. The channel is
-being built on a person. On a five-neighborhood video the temptation is a
-five-panel collage with no human in it — resist it.
+being built on a person. On a six-neighborhood video the temptation is a
+six-panel collage with no human in it — resist it.
 
 **4. Legible at 210 px wide.** That is the mobile feed. Every concept below is
 specified to survive it. **Four words maximum**, and if you are unsure, open it
@@ -43,7 +43,7 @@ at thumbnail size and look at it on a phone before you commit.
 
 ---
 
-## Concept 1 — "FIVE VERY DIFFERENT LIVES" ⭐ recommended
+## Concept 1 — "SIX VERY DIFFERENT LIVES" ⭐ recommended
 
 **The premise, stated plainly.**
 
@@ -51,7 +51,7 @@ at thumbnail size and look at it on a phone before you commit.
 | --- | --- |
 | **Background** | A Pier Park aerial plate, pulled back far enough to read as *a whole town on a strip of sand*. Warm late-afternoon grade |
 | **Karen** | Right third, cut out, medium shot, arms slightly open. Expression: **"you're going to want to know this"** — engaged, warm, not shouting |
-| **Text** | `5 VERY` / `DIFFERENT` / `LIVES` stacked left, heavy condensed sans, white with a hard dark drop shadow |
+| **Text** | `6 VERY` / `DIFFERENT` / `LIVES` stacked left, heavy condensed sans, white with a hard dark drop shadow |
 | **Accent** | Small `PANAMA CITY BEACH` in a coloured bar under the stack, roughly a third the size |
 | **Colour** | Emerald water and white sand against Karen's coral or teal. No red — it reads as urgency, and this is not an urgent video |
 
@@ -82,8 +82,8 @@ the most legible layout at mobile size because it reads as two blocks of colour
 before any text is processed.
 
 **Why it is second.** Split-frames are close to a comparison-video convention, and
-a viewer may expect a head-to-head rather than a five-part tour. Pair with
-**title B** (*5 Completely Different Ways to Live*), which resolves the ambiguity.
+a viewer may expect a head-to-head rather than a six-part tour. Pair with
+**title B** (*6 Completely Different Ways to Live*), which resolves the ambiguity.
 
 ⚠️ **The trap on this one.** Do not put `$365K` and `$5.3M` on the two halves.
 It is the obvious move, it would work, and it breaks
@@ -101,20 +101,22 @@ for the left; a street-level frame from `785430-*` for the right. Both are
 
 | | |
 | --- | --- |
-| **Background** | A soft 5-panel strip across the top third, one image per neighborhood, deliberately small and slightly desaturated. Suggestion, not a contact sheet |
+| **Background** | A soft **3-panel** strip across the top third, deliberately small and slightly desaturated. Suggestion, not a contact sheet |
 | **Karen** | Left third, larger than the panels, looking **at the panels** rather than at camera. Expression: considering, one eyebrow up |
 | **Text** | `WHICH ONE` / `IS YOU?` large, right of Karen, overlapping the panel strip slightly for depth |
-| **Accent** | Five small numbered dots under the panels. No labels — they will not be legible and they are not meant to be |
+| **Accent** | Three small numbered dots under the panels. No labels — they will not be legible and they are not meant to be |
 
 **Why it might win.** The measured evidence says
 [the call-out has migrated out of the first seconds and into the title and
 thumbnail](../../../../knowledge/reference-videos/framework-vs-practice.md#1--the-call-out-).
 This concept tests that directly: it *is* a call-out, drawn rather than spoken.
 
-**Why it is third.** Five panels at 210 px is genuinely hard, and the failure
-mode is mush. **If the panel strip is not clearly five distinct things at mobile
-size, drop to three panels or abandon the concept.** Do not ship a compromised
-version of this one. Pair with **title C**.
+**Why it is third.** Panels at 210 px are genuinely hard, and the failure mode is
+mush. **Six panels is worse than five was** — which is why this concept is now
+specified at **three**, picking the three most visually distinct neighborhoods
+(Gulf-front, gated/golf, inland street) rather than trying to show all six. If
+even three are not clearly distinct at mobile size, abandon the concept. Do not
+ship a compromised version of this one. Pair with **title C**.
 
 ---
 
@@ -123,8 +125,8 @@ version of this one. Pair with **title C**.
 | Order | Thumbnail | Title | Testing |
 | --- | --- | --- | --- |
 | 1 | Concept 1 | A — *Neighborhoods Explained* | The proven regional format, straight |
-| 2 | Concept 2 | B — *5 Completely Different Ways to Live* | Whether contrast beats reference |
-| 3 | Concept 3 | C — *These 5 Neighborhoods Are Not the Same* | Whether a drawn call-out beats a spoken one |
+| 2 | Concept 2 | B — *6 Completely Different Ways to Live* | Whether contrast beats reference |
+| 3 | Concept 3 | C — *These 6 Neighborhoods Are Not the Same* | Whether a drawn call-out beats a spoken one |
 
 **Change one thing at a time.** Swapping title and thumbnail together tells you
 nothing about which one moved. Give each pairing at least a week; do not touch

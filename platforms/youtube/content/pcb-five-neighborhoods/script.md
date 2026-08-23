@@ -61,8 +61,8 @@ Panama.** Do not put a "hey guys" in front of it.
 `[CUT TO KAREN, medium, Pier Park behind her]`
 
 > Here's the thing nobody tells you. This is not one town. Today I'm going to
-> take you to five neighborhoods, all inside the same city limits, and by the
-> end you'll see that they're five completely different lives. One of them costs
+> take you to six neighborhoods, all inside the same city limits, and by the
+> end you'll see that they're six completely different lives. One of them costs
 > five point three million dollars. One of them costs three hundred and
 > sixty five thousand. And they are eleven miles apart.
 
@@ -103,7 +103,17 @@ credibility deposit. Do not cut it.
 > four, Bay Point, which is behind a gate with a guard. And number five,
 > Treasure Cove, which is the one you can actually afford.
 
+> And then at the very end, if you're over fifty five, there's a sixth option out
+> here that works completely differently from all five of these. Stay for that
+> one. It's where my husband and I actually live.
+
 **Itinerary up front, each a different *type*.** `D4-GS` 00:50:07.
+
+⭐ **That last line is a fourth re-hook, and it is the most valuable one in the
+video** — it self-selects the 55+ viewer and gives them a reason to stay through
+five segments that may not be aimed at them. It also plants Karen's residency
+without spending it early, and it sets up the cross-channel redirect. Do not
+move it, and do not name Latitude here; the withheld name is the hook.
 
 ---
 
@@ -113,9 +123,9 @@ credibility deposit. Do not cut it.
 
 > Three things before we start, and I'm going to make you wait for all three.
 
-> **One.** There's one fact that's true of all five of these neighborhoods, it
-> matters enormously if you have kids, and almost nobody brings it up. That's
-> near the end.
+> **One.** There's one fact that's true of all five of the neighborhoods I just
+> listed, it matters enormously if you have kids, and almost nobody brings it
+> up. That's near the end.
 
 > **Two.** One of these five has been sitting for two hundred and ninety one
 > days without a single price reduction. Not one dollar. I'll tell you which
@@ -149,10 +159,10 @@ strongest because it is falsifiable and slightly unbelievable.
 
 `[ON SCREEN: the five neighborhoods with drive times from Pier Park]`
 
-`[KAREN — DRIVE TIMES]` Read the five figures from the
-[drive-time table](README.md#drive-time-table--karen-all-of-it). Say them as
-ranges. **"About twenty minutes, twenty five in summer"** is honest. "Nineteen
-minutes" is not, and summer traffic here will make you a liar.
+Read the five Pier Park figures from the
+[drive-time table](README.md#drive-times): Palmetto Trace **11**, Bahama Beach
+**7**, El Centro **14**, Bay Point **12**, Treasure Cove **9**. Say them as
+ranges — *"about ten minutes, more in summer"* — not as precise figures.
 
 `[KAREN — MIKE]` *Optional, one line, if it fits her:* "Mike will tell you it's
 twelve minutes. Mike is measuring from the parking lot he likes."
@@ -439,16 +449,15 @@ elevator. See
 > Neighborhood three. El Centro Beach, on Lullwater Drive.
 
 > Everything I've shown you so far has been about the Gulf. This one is about a
-> lake. `[KAREN — verify]` And it is about [N] minutes from the Gulf anyway.
+> lake. And it's still only about fifteen minutes from Pier Park.
 
 **Verified route**, MLS Directions listing 782720: Hwy 79 south, left on Hwy 98,
 right on Lullwater Drive. **Verified fact:** MLS `Waterfront = true`,
-`View = Lake,Water`.
+`View = Lake,Water`. **14 min to Pier Park, 13 to the Hwy 79 corridor** (OSRM).
 
-⚠️ **The distance to the Gulf is not verified.** The listing copy says *"just
-steps from beach access"*, which is marketing language, not a measurement. Drive
-or walk it and use your own number, or say *"a few minutes"* only if that is what
-you actually find.
+⚠️ The listing copy's *"just steps from beach access"* is marketing language, not
+a measurement. If you want to give a beach distance here, eyeball it yourself or
+leave it out.
 
 ## What it's like, and who it suits — 14:55–16:40
 
@@ -705,18 +714,15 @@ confirm it for the actual address before you fall in love with it."*
 onto Navy Blvd / Thomas Drive, right on Sunset Drive, which becomes Oak Street.
 
 > It's a quiet residential street. No gate, no HOA, no amenities, nobody
-> collecting a fee. `[KAREN — verify]` And it is [N] minutes from **Naval Support
-> Activity Panama City**, which if you're military or you work on that base
-> changes this entire conversation.
+> collecting a fee. And it's close to **Naval Support Activity Panama City**,
+> which if you're military or you work on that base changes this entire
+> conversation.
 
-⚠️ **The NSA proximity is listing prose** ("just minutes from… Naval Support
-Activity Panama City"), not an MLS field. The base is real and its location is
-public, so this is easy to check — **drive it and use your own figure.** It is
-worth getting right rather than dropping: NSA Panama City is a significant
-relocation driver in this market and it is the only military hook in the package.
-
-**What *is* MLS-verified here:** `HOA = false` and an empty `Association Fee`
-field, so "no HOA, nobody collecting a fee" is citable.
+**MLS-verified:** `HOA = false` with an empty `Association Fee` field, so "no
+HOA, nobody collecting a fee" is citable. `[KAREN]` the NSA proximity came from
+listing copy — it is the only military hook in the package and worth keeping, so
+say it loosely ("close to", "just up the road") rather than putting a number on
+it. **Treasure Cove is 9 min to Pier Park, 16 to the hospitals** (OSRM).
 
 `[KAREN]` The listing copy also claims roughly a ten minute drive to the public
 beach access on Thomas Drive and to St. Andrews State Park. **That is the same
@@ -805,34 +811,156 @@ argument.
 > As I'm recording this, that one is **three hundred and sixty five thousand
 > dollars.**
 
-> Three bedrooms. A third of an acre. `[KAREN — verify]` [N] minutes from the
-> beach. In Panama City Beach, Florida.
+> Three bedrooms. A third of an acre. Ten minutes from Pier Park. In Panama City
+> Beach, Florida.
 
-🔴 **This line contains the only unverified claim in the video's closing
-sentence, and it is the last thing the viewer hears.** The "ten minutes" figure
-came from the listing agent's marketing copy, not from any measurement. Drive it
-and use your own number.
-
-**If you cannot confirm it before recording, cut the clause entirely:** *"Three
-bedrooms. A third of an acre. In Panama City Beach, Florida."* That still works,
-because the lot size and the price are the payoff — the drive time was never
-carrying the line.
+**"Ten minutes from Pier Park" replaces the listing copy's unverifiable "ten
+minutes from the beach."** Treasure Cove is **9 minutes to Pier Park** by OSRM
+routing, so "ten minutes" is honest, and Pier Park is the anchor the whole video
+has been measuring from.
 
 **The last number in the video is the most reassuring one.** That is the whole
 reason the route runs high to low. The framework's underlying mechanic is *end on
 the answer, not on an ask*, and for a relocation audience the answer is
 affordability.
 
+⭐ **Segment 6 sits after this deliberately.** Latitude is a *community* segment
+with no single home in it, so per the band/number finding it has **no price
+reveal to compete with the $365,000** — that stays the last number a viewer
+hears about a specific house. At 29:35 of 33:30 the final reveal lands at
+**88%**, which is closer to the measured median for single-home numbers (86%)
+than the previous 97.5% was.
+
 ---
 
-# REDIRECT — 29:35–30:00
+# 6 · LATITUDE MARGARITAVILLE WATERSOUND — 29:35–33:05
+
+`[PAYOFF 4 — the 55+ re-hook planted at 1:30]`
+
+**Why this segment is short.** Three and a half minutes against five to six for
+the others. Its job is to tell a relocating buyer that **the option exists and
+who it suits** — not to sell the community. The Latitude channel covers it in
+depth, and this segment ends by pointing there.
+
+🚫 **Do not duplicate the phases material.** No plat books, no phase-by-phase
+breakdown, no address ranges, no homesite counts. That is
+[the other channel's video](../latitude-phases-explained/README.md) and repeating
+it here wastes runtime and cannibalises it.
+
+## The turn — 29:35–30:10
+
+`[AERIAL: leave the beach, move north up the Hwy 79 corridor]`
+
+> Now. Everything I've shown you so far has been down here on the beach side.
+
+> But if you're over fifty five, there is a completely different way to live in
+> Panama City Beach, and it's about fifteen minutes inland. It's called Latitude
+> Margaritaville Watersound, and it's a fifty five plus community up on the
+> Highway 79 corridor.
+
+> This is the one my husband Mike and I actually bought in. We live here.
+
+⭐ **That is the strongest credibility line available anywhere on this channel**,
+and it has been held back for twenty nine minutes to land here. `[KAREN — MIKE]`
+say it the way you'd say it to a neighbour, not the way you'd say it in a
+listing presentation.
+
+## Where it is, and who it suits — 30:10–31:20
+
+`[B-ROLL: community footage — 8K, downscale to 1080p]`
+
+> Being fifteen minutes inland is the trade, and I'm going to be straight about
+> it, because it's the whole decision. **You are not walking to the Gulf from
+> here.** If waking up and being on the sand in five minutes is the point of
+> moving to Florida for you, this is not your community, and one of the other
+> five probably is.
+
+> What you get instead is everything the beach side doesn't have. Space. Newer
+> houses. And a whole town built around people who are done working.
+
+`[B-ROLL: amenity footage]`
+
+> It's fifty five plus, which sounds like a restriction until you realise it's
+> the entire point. Everybody moved here at roughly the same stage of life,
+> most of them from somewhere else, and they all arrived wanting to make
+> friends. `[KAREN]` one line in your own words about what that actually feels
+> like day to day. That is the thing no brochure can say and you can.
+
+**Drive times, from the same OSRM set as the rest of the video:** the Hwy 79
+corridor is **13 minutes from El Centro Beach, 15 from Palmetto Trace, 20 from
+Bahama Beach**, and **30 plus from Bay Point and Treasure Cove.** Those numbers
+also corroborate the roughly fifteen minutes to the Gulf, since three of the
+beach-side neighborhoods sit 13 to 20 minutes away. `[KAREN]` confirm the
+fifteen-minute figure once, loosely, and say it as a range.
+
+## What's actually out there now — 31:20–32:20
+
+> The other thing people ask is whether there's anything up there yet, because
+> it used to be a long drive for a gallon of milk. That's changing.
+
+`[B-ROLL: West Bay Center stills and footage]`
+
+> Right at the entrance there's the Watersound West Bay Center. There's a bank,
+> a dentist, a dermatologist, a nail salon, and a golf cart dealer, which is a
+> very Florida sentence. **And there's a Publix going in**, which is genuinely
+> the thing everybody was waiting on.
+
+**Tenants from [`tools/map/west_bay_center.json`](../../../../tools/map/west_bay_center.json)**,
+sourced from Karen's own knowledge of the ground: Publix (**under construction**),
+Electric Cart, Capital City Bank, Grand Nails, West Bay Dental, Dermatology
+Associates. ⚠️ **Say Publix is under construction, not open.** More tenants are
+coming; that list is what is known now, not the final roster.
+
+`[B-ROLL: FSU Health Panama City Beach 01.MP4]`
+
+> And the other thing going up out this way is the hospital I mentioned earlier,
+> FSU Health Panama City Beach, over on Bay Parkway.
+
+> `[KAREN — FSU HEALTH]` Mike's framing, which is the honest one: they've got a
+> lot done and the walls are up, but there's a lot more to do. **When does it
+> open? We're not sure.** Say exactly that. **Do not give an opening date.**
+
+**This is the second time FSU Health appears** — once at 6:40 for Palmetto Trace,
+once here. That is deliberate: it is the single fact that matters to both a
+young family and a retiree, and the corridor is where it actually is.
+
+## The honest drawback — 32:20–32:45
+
+> So the trade-offs, plainly. You're inland, so the beach is a drive, not a
+> walk. It's still being built, so you will have construction around you for a
+> while. And it's fifty five plus, so if you're not there yet, this isn't
+> available to you at all.
+
+> If none of those bother you, it's a genuinely different life from anything
+> else on this list.
+
+**"Be real, not promotional"** (`D4-GS` 00:50:43). Three drawbacks, no softening,
+in the segment about her own community. That is what makes the rest credible.
+
+## `[REDIRECT — cross-channel]` — 32:45–33:05
+
+> And because I live there, I have a whole separate channel just about
+> Latitude Margaritaville Watersound. Phases, models, what the HOA covers, what
+> it actually costs. If you're over fifty five and this sounded like you, that's
+> where to go next. It's linked below.
+
+⚠️ **This is a second redirect and it points at a different channel.** That is
+allowed here and only here, because it is genuinely the right destination for a
+viewer who has just self-identified as 55+. **The main redirect still follows**
+and points at the next video on *this* channel — see below. Two redirects to two
+different audiences, in that order, is the point of segmenting the 55+ viewer out
+at 1:30.
+
+---
+
+# REDIRECT — 33:05–33:30
 
 `[Cut to Karen. Then the Counts outro card from any one tour file — it carries
 the brokerage name next to the contact details, which is what Florida rule
 61J2-10.025 requires.]`
 
-> So that's five kinds of life here, from three sixty five to five point three
-> million.
+> So that's six kinds of life here, from three sixty five to five point three
+> million, plus the fifty five plus option up the road.
 
 > The question I get right after this one is always the same, and it's what
 > does it actually cost to live here once you've bought. So that's what I made
@@ -883,21 +1011,21 @@ video.** Tier B is performance direction.
 
 | # | Where | What | Source problem |
 | --- | --- | --- | --- |
-| A1 | 3:20 + all five segments | **Every drive time**: the five from Pier Park, plus beach, Publix, FSU Health, ECP, Hwy 79 | Nothing sourced these. Several came from listing copy |
-| A2 | 5:50 | ⚠️ **The Palmetto Trace lot contradiction.** MLS says 0.05 acres; the copy says "expansive" and "resort-style pool" | MLS field vs prose, in direct conflict |
-| A3 | 6:40 | ⚠️ **FSU Health Panama City Beach** — already corrected from the copy's wrong "Tallahassee Memorial." Confirm build status in your own words | Prose was **factually wrong** |
-| A4 | 22:30 | **How Bay Point golf and marina membership works**, and the **Jack Nicklaus attribution** | HOA doc lists only `Playground,Security`; Nicklaus is prose |
-| A5 | 29:20 | 🔴 **The "ten minutes from the beach" claim in the closing line** | Prose. Last thing the viewer hears. Cut the clause if unconfirmed |
-| A6 | 4:55 | Whether the $384 tax figure carries to a new buyer. Almost certainly not | MLS field, but it is the *seller's* assessment |
-| A7 | 27:50 | The **February 2026 appraisal at $449,000** — attribute it, never state it | Prose. Another party's appraisal |
-| A8 | 17:30 | **Impact glass, generator, 2019 gut renovation.** No insurance figures, no flood zone | Prose. Insurance-relevant |
-| A9 | 23:30 | The **2026 roof** on the 1987 Bay Point house | Prose. First thing an insurer asks |
-| A10 | 9:30 | **Seven weeks of pre-bookings**, and "lower-density Oleander" | Prose. Seller's own booking calendar |
-| A11 | 16:00 | **150 feet of lake frontage**, dock, kayak launch, 50-amp RV service | Prose. Only the 0.66-acre lot is MLS |
-| A12 | 17:50 | **Short-term rental not permitted** at El Centro | Prose. `Community Features` is empty for this property |
-| A13 | 6:30 | **"Only" dog-friendly beach section**, and the four park names | Prose. A fallback line without "only" is in the script |
-| A14 | 26:10 | **Distance to Naval Support Activity Panama City** | Prose. The only military hook in the package |
-| A15 | 25:35 | School zoning can be redrawn — confirm per address | Assignments are MLS; *durability* is not |
+| A1 | 5:50 | ⚠️ **The Palmetto Trace lot contradiction.** MLS says 0.05 acres; the copy says "expansive" and "resort-style pool" | MLS field vs prose, in direct conflict |
+| A2 | 6:40 + 32:00 | ⚠️ **FSU Health Panama City Beach** — already corrected from the copy's wrong "Tallahassee Memorial." Confirm build status in your own words. **No opening date** | Prose was **factually wrong** |
+| A3 | 22:30 | **How Bay Point golf and marina membership works**, and the **Jack Nicklaus attribution** | HOA doc lists only `Playground,Security`; Nicklaus is prose |
+| A4 | 4:55 | Whether the $384 tax figure carries to a new buyer. Almost certainly not | MLS field, but it is the *seller's* assessment |
+| A5 | 27:50 | The **February 2026 appraisal at $449,000** — attribute it, never state it | Prose. Another party's appraisal |
+| A6 | 17:30 | **Impact glass, generator, 2019 gut renovation.** No insurance figures, no flood zone | Prose. Insurance-relevant |
+| A7 | 23:30 | The **2026 roof** on the 1987 Bay Point house | Prose. First thing an insurer asks |
+| A8 | 9:30 | **Seven weeks of pre-bookings**, and "lower-density Oleander" | Prose. Seller's own booking calendar |
+| A9 | 16:00 | **150 feet of lake frontage**, dock, kayak launch, 50-amp RV service | Prose. Only the 0.66-acre lot is MLS |
+| A10 | 17:50 | **Short-term rental not permitted** at El Centro | Prose. `Community Features` is empty for this property |
+| A11 | 6:30 | **"Only" dog-friendly beach section**, and the four park names | Prose. A fallback line without "only" is in the script |
+| A12 | 26:10 | **Proximity to Naval Support Activity Panama City** — say it loosely, no number | Prose |
+| A13 | 25:35 | School zoning can be redrawn — confirm per address | Assignments are MLS; *durability* is not |
+| A14 | 30:30 | **"About fifteen minutes to the Gulf"** from Latitude | Not recorded in the repo. Corroborated by the OSRM set, not confirmed |
+| A15 | 31:40 | **Publix is under construction, not open** | From `west_bay_center.json`; more tenants coming |
 
 ### Tier B — performance. Improvise on the day.
 
@@ -905,11 +1033,16 @@ video.** Tier B is performance direction.
 | --- | --- | --- |
 | B1 | 14:00 | The second-floor-pool line, in her own words |
 | B2 | 21:40 | St. Andrews State Park and the Bay Point back gate, her own words |
-| B3 | 2:55, 14:00 | Two optional Mike beats, for approval |
-| B4 | 29:40 | Which subscribe-outro master to use, and whether it needs re-rendering at 16:9 |
+| B3 | 2:55, 14:00, 29:55 | Three optional Mike beats, for approval |
+| B4 | 30:50 | What 55+ living actually feels like day to day, in her own words |
+| B5 | 33:10 | Which subscribe-outro master to use, and whether it needs re-rendering at 16:9 |
 
-**A1, A2, A3, A4 and A5 are the hard blocks.** A5 in particular: it is a
-listing agent's estimate sitting in the final sentence of the video. Every Tier A
-item traces to
+**A1, A2 and A3 are the hard blocks.** Every Tier A item traces to
 [the two-tier sourcing problem](README.md#sourcing-two-tiers-of-data-in-one-file)
 — they are all places where marketing copy was about to become a stated fact.
+
+✅ **Drive times are no longer blocking.** They are computed by OSRM routing and
+recorded in [the table](README.md#drive-times). Mike's rule applies: *"No one
+cares if you're 5 or 10 minutes off of your timing."* Say them as ranges and move
+on. The one exception is A14, which is a Latitude figure nothing in the repo
+computed.
