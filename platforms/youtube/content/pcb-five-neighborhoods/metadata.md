@@ -1,8 +1,8 @@
-# Metadata — Five Kinds of Life in Panama City Beach
+# Metadata — Six Kinds of Life in Panama City Beach
 
 **Channel:** Living in Panama City Beach FL \| The Lawell Team
 (`@LivinginPanamaCityBeachFLtheLT`)
-**Runtime:** ~30:00 · **Category:** People & Blogs · **Language:** English
+**Runtime:** ~33:30 · **Category:** People & Blogs · **Language:** English
 **Made for Kids:** No · **Altered/AI content:** No · **License:** Standard YouTube
 
 ---
@@ -10,7 +10,7 @@
 ## ⚠️ Two rules that govern this whole file
 
 **1. No price, and no "for sale", in the title or the thumbnail.** A named rule
-(`D1-QA` 00:15:37), and the reason this video is framed as five neighborhoods
+(`D1-QA` 00:15:37), and the reason this video is framed as six neighborhoods
 rather than five listings. None of the three title variants below contains a
 number or an availability word.
 
@@ -31,10 +31,10 @@ actually tells you something.
 ### A · The proven-format play *(recommended first)*
 
 ```
-Panama City Beach, Florida Neighborhoods Explained (All 5 Are Completely Different)
+Panama City Beach, Florida Neighborhoods Explained (All 6 Are Completely Different)
 ```
 
-82 characters. **"Areas explained" is proven in this exact region** —
+83 characters. **"Areas explained" is proven in this exact region** —
 *Pensacola Areas Explained* did **78K** on a sister channel to Karen's direct
 competitor. This is the lowest-risk variant because the format already works
 here, and it reads as a reference video, which is what browse and suggested
@@ -43,7 +43,7 @@ reward for relocation intent.
 ### B · The disclosure-framed play
 
 ```
-5 Completely Different Ways to Live in Panama City Beach, Florida
+6 Completely Different Ways to Live in Panama City Beach, Florida
 ```
 
 65 characters. Shortest, cleanest on mobile, and closest to the video's actual
@@ -55,10 +55,10 @@ anti-sales positioning is *"the single most copyable thing about the channel."*
 ### C · The direct-address play
 
 ```
-Moving to Panama City Beach, Florida? These 5 Neighborhoods Are Not the Same
+Moving to Panama City Beach, Florida? These 6 Neighborhoods Are Not the Same
 ```
 
-75 characters. Puts the **call-out in the title**, which matters because the
+76 characters. Puts the **call-out in the title**, which matters because the
 measured evidence says
 [the call-out has largely migrated out of the first four seconds and into the
 title and thumbnail](../../../../knowledge/reference-videos/framework-vs-practice.md#1--the-call-out-).
@@ -90,7 +90,7 @@ the point of contact information in internet advertising.
 ```
 Panama City Beach, Florida is not one town. It is one seventeen-mile strip of land, and the life you get depends enormously on where on it you land.
 
-In this video I take you to five neighborhoods, all inside the same city limits, and show you what living in each one is actually like: how far it is from Pier Park, the beach and the airport, who it suits, what it costs to hold, and one honest drawback each. The homes are there so you can see what your money buys. The neighborhoods are the point.
+In this video I take you to six neighborhoods, all inside the same city limits, and show you what living in each one is actually like: how far it is from Pier Park, the beach and the airport, who it suits, what it costs to hold, and one honest drawback each. The homes are there so you can see what your money buys. The neighborhoods are the point.
 
 What we cover:
 🏖️ Palmetto Trace — across the street from Pier Park, community pool, small HOA
@@ -98,6 +98,7 @@ What we cover:
 🚤 El Centro Beach — two thirds of an acre on a lake, not the Gulf
 ⛳ Bay Point — behind a 24-hour guarded gate, with a Nicklaus course and a marina
 🏡 Treasure Cove — the east end, a double lot, and the affordable answer
+🌴 Latitude Margaritaville Watersound — the 55+ option, 15 minutes inland on the Hwy 79 corridor
 
 Plus the school question almost nobody asks about Panama City Beach: three different elementary schools across these five neighborhoods, and one middle school and one high school for all of them.
 
@@ -110,10 +111,12 @@ Thinking about moving to Panama City Beach, FL? I'm Karen Lawell with The Lawell
 
 Karen Lawell, Realtor | License #3397366 | Brokered by Counts Real Estate Group
 
+Over 55? I have a whole separate channel about Latitude Margaritaville Watersound, the 55+ community on the Hwy 79 corridor where my husband and I actually live: https://www.youtube.com/@LivingMargaritavillewithKaren
+
 Homes shown are courtesy of Counts Real Estate Group. Listing data provided by the Central Panhandle Association of REALTORS® (CPAR) and believed accurate but not guaranteed. Prices, availability and property details were current as of recording and change constantly — message me for today's actual numbers. Nothing in this video is an offer, an appraisal, or tax, insurance or legal advice.
 
 Chapters:
-00:00 Five neighborhoods, one town
+00:00 Six neighborhoods, one town
 00:22 Who I am, and where we're going
 01:40 Three things I'm not telling you yet
 02:15 Pier Park, and how far everything really is
@@ -123,7 +126,8 @@ Chapters:
 19:20 4 — Bay Point: behind the gate
 24:50 The school question nobody asks
 25:40 5 — Treasure Cove: the one you can actually afford
-29:35 What to watch next
+29:35 6 — Latitude Margaritaville Watersound: the 55+ option
+33:05 What to watch next
 
 #PanamaCityBeach #MovingToPanamaCityBeach #LivingInPanamaCityBeach #PanamaCityBeachRealEstate #30A
 ```
@@ -136,7 +140,7 @@ Chapters:
   brokerage block, so nothing separates the brokerage name from the contact
   details.
 - `[KAREN]` The `#30A` tag is inherited from the channel's upload defaults. 30A
-  is Walton County and none of these five neighborhoods are on it. Consider
+  is Walton County and none of these neighborhoods are on it. Consider
   dropping it here — it pulls the wrong traffic for this specific video, even
   though it earns its place on the channel generally.
 
@@ -144,7 +148,7 @@ Chapters:
 
 ## Chapters
 
-Eleven chapters. Only 5 of 18 videos measured in
+Twelve chapters. Only 5 of 18 videos measured in
 [`catalog.md`](../../../../knowledge/reference-videos/catalog.md) have chapters
 at all, and **the two most heavily chaptered are both reference guides**, which
 is exactly what this is. Mr. Beach runs 42 and 46 minutes with none — his
@@ -152,7 +156,7 @@ clearest unforced error and a free advantage to take.
 
 | Time | Chapter |
 | --- | --- |
-| 00:00 | Five neighborhoods, one town |
+| 00:00 | Six neighborhoods, one town |
 | 00:22 | Who I am, and where we're going |
 | 01:40 | Three things I'm not telling you yet |
 | 02:15 | Pier Park, and how far everything really is |
@@ -162,7 +166,8 @@ clearest unforced error and a free advantage to take.
 | 19:20 | 4 — Bay Point: behind the gate |
 | 24:50 | The school question nobody asks |
 | 25:40 | 5 — Treasure Cove: the one you can actually afford |
-| 29:35 | What to watch next |
+| 29:35 | 6 — Latitude Margaritaville Watersound: the 55+ option |
+| 33:05 | What to watch next |
 
 **No chapter contains a price or a dollar figure.** Chapter titles are visible on
 the progress bar and in search results, so a price there would defeat the
@@ -181,7 +186,7 @@ agent" (`Day 3`). These lean toward the neighborhood names, which are low
 competition and exactly what a relocating buyer searches once they get specific.
 
 ```
-living in panama city beach, moving to panama city beach, panama city beach florida, panama city beach neighborhoods, best neighborhoods panama city beach, relocating to panama city beach, panama city beach fl, bay point panama city beach, palmetto trace panama city beach, treasure cove panama city beach, el centro beach, bahama beach panama city beach, pier park panama city beach, panama city beach homes, living in northwest florida, bay county florida, panama city beach lifestyle, panama city beach schools, arnold high school, surfside middle school
+living in panama city beach, moving to panama city beach, panama city beach florida, panama city beach neighborhoods, best neighborhoods panama city beach, relocating to panama city beach, panama city beach fl, bay point panama city beach, palmetto trace panama city beach, treasure cove panama city beach, el centro beach, bahama beach panama city beach, pier park panama city beach, panama city beach homes, latitude margaritaville watersound, 55 plus communities panama city beach, living in northwest florida, bay county florida, panama city beach schools, arnold high school, surfside middle school
 ```
 
 ---
@@ -201,8 +206,21 @@ the spoken redirect at 29:35 is doing the job alone.
 
 | Element | Content | Placement |
 | --- | --- | --- |
-| Video | *Cost of Living in Panama City Beach, Florida* — the video the script names by title | Left, from 29:40 |
-| Subscribe | Channel icon | Right, from 29:40 |
+| Video | *Cost of Living in Panama City Beach, Florida* — the video the script names by title | Left, from 33:10 |
+| Subscribe | Channel icon | Right, from 33:10 |
+
+⚠️ **There are now two spoken redirects, in this order:**
+
+1. **32:45 — cross-channel**, at the end of segment 6, pointing at the **Latitude
+   Margaritaville Watersound** channel for the 55+ viewer who has just
+   self-identified. **Link it in the description and as a card**, not on the end
+   screen — the end screen belongs to this channel's next video.
+2. **33:05 — the main redirect**, pointing at the next video on *this* channel.
+
+That ordering is deliberate. The cross-channel send happens while the 55+ viewer
+is engaged in their own segment; the main redirect still gets the last word.
+Putting the Latitude channel on the end screen instead would send the general
+audience away from this channel, which is the opposite of what a launch needs.
 
 **Last 20 seconds carry no facts** (`D3-GS` 00:54:16). The redirect is spoken
 *after* the final price, never before.
@@ -227,7 +245,7 @@ the correctly-sized 16:9 one is **Latitude-branded**. Specs and options in
 ```
 Three different elementary schools across these five neighborhoods — and every single one of them ends up at Surfside Middle and then Arnold High. 🏫
 
-Which of the five sounded most like you? Comment the neighborhood name and I'll send you what's actually available there this week.
+Which of the six sounded most like you? Comment the neighborhood name and I'll send you what's actually available there this week.
 
 📞 850-517-8528 · Karen Lawell, Realtor · Brokered by Counts Real Estate Group
 ```
