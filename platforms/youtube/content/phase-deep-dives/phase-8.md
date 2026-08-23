@@ -72,9 +72,15 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 > Phase 8 — plat book 31, page 71. Two hundred and four homesites on 180 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
+`[on-screen graphic: ESCAPE AVENUE · 9201–9499 → PHASE 7 · 9502–9667 → PHASE 8]`
+
+> One thing before we move on, because it catches people out. Escape Avenue runs through both phases. Nine four nine nine and below is Phase 7, nine five oh two and up is Phase 8. If you see two houses on the same street listed in different phases, that's not a mistake.
+
+**Direction:** this is an authority beat, not a joke. Say the numbers cleanly and move on. Karen does **not** live on Escape Avenue — she and Mike are on Cool Water Way — so there is no "my end of the street" line here. Source: `streets_by_phase.md`, county parcel site addresses.
+
 `[HUMOR — optional, cut freely]`
 
-> Now I have to be honest about my own street. Cool Water Way, Escape Avenue, Hang Loose Court. Not one of those is a Buffett song. I checked properly. Out of sixteen recorded plats I managed to buy on the only one with no Jimmy Buffett in it at all.
+> Phase 3 has seven Buffett street names. We live in Phase 8, which has zero. We're on Cool Water Way, which sounds like a Buffett song, and isn't. It's a 1936 cowboy song by the Sons of the Pioneers. I try not to take it personally.
 
 ## THE CART RUN — 2:00–4:00
 
@@ -92,9 +98,9 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
-`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
+`[HUMOR — optional, cut freely]`
 
-> Mike takes the cart to the Town Center. It is a nine minute walk. I have stopped bringing it up.
+> I said I'd never play bingo. I'm too young for bingo. It is now one of my favorite things about Tuesdays.
 
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
@@ -102,7 +108,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN — first-hand: this is one of the further ones. Is 79 a non-issue here?]`
 
-`[KAREN — first-hand: the Bandshell. Your own line is that a loud show carries for miles, so it is not how you pick a phase. Say whether you hear it here, and whether that is a plus or a minus for you. No distances, no radius — it varies too much.]`
+`[KAREN — first-hand: the Bandshell. Mike confirms you do NOT hear concerts from Phase 8, and that is worth saying plainly because it is the honest answer, not the flattering one. Your own line is that a loud show carries for miles, so it is not how you pick a phase. No distances, no radius — it varies too much.]`
 
 ## WHAT PEOPLE WHO LIVE HERE SAY — 5:30–7:30
 
@@ -118,15 +124,17 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[CUT TO KAREN, walking her own street]`
 
-`[KAREN: this is the emotional centre of the whole series and the one thing that cannot be copied. Why you and your husband picked Phase 8 over the other nine. What the trip to the Bandshell is really like day to day. Whether you hear the music from your lanai. Speak from experience, not from notes.]`
+`[KAREN: this is the emotional centre of the whole series and the one thing that cannot be copied. Why you and your husband picked Phase 8 over the other nine. What the trip to the Bandshell is really like day to day: it is 4.14 miles by road, roughly a ten minute cart ride, and you cannot hear the concerts from here. Speak from experience, not from notes.]`
 
 `[KAREN: one real trade-off about your own phase.]`
 
+**Direction: the lawn-care question.** Mike's one real complaint is the standard of the HOA-included lawn care, and it is the thing residents talk about most. Say it as buyer instruction and never as an accusation: *"lawn care is included in your HOA dues, and as I'm recording this the quality of it is what residents talk about most. When you come tour, look at the lawns, and ask the HOA what's being done about it."* **Never name the landscaping contractor or the management company.** Describe the condition, not the culprit. There is an unconfirmed rumour that another landscaper is being added: do **not** state a fix on camera, because an unconfirmed rumour becomes a correction. The instruction form stays true whether the situation is bad, improving or fixed.
+
 `[B-ROLL: Karen's geotagged Phase 8 photo set]`
 
-`[HUMOR — optional, cut freely]`
+`[MIKE — approved by Mike 2026-08-23. Third person, deadpan, flat, short sentences. Read it straight: any repetition of his name is deliberate flat escalation with no signalled punchline, so do not smooth it. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
 
-> People will tell you the street names get more Buffett as the phases go on. I counted them. They do not. Phase 3 wins and it is not close.
+> Mike said he'd never own a Hawaiian shirt. Mike owns several. Mike has a favorite.
 
 ## WHAT'S ACTUALLY FOR SALE — 9:00–10:00
 
@@ -164,3 +172,6 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] Plat book/page on screen for every plat named
 - [ ] End screen card set to **one element only** — Phase 9 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
+- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The approved set is nine beats and one held, listed in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not add a new Mike beat without asking Mike.**
+- [ ] No laughter, sigh or breath is synthesised. Any reaction in a spoken line is dropped in from Karen's own recorded reaction library on the edit. A synthesised laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
+- [ ] Nothing on camera names the landscaping contractor or the management company. Describe the condition, ask the question, never identify the culprit.
