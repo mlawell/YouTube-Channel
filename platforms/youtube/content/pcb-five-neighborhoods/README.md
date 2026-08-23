@@ -130,14 +130,13 @@ neighborhoods of Counts listings."*
   the Gulf, still under construction, and 55+ so it is unavailable to anyone
   younger. Same framing as the flagship.
 
-⚠️ **The "about fifteen minutes to the Gulf" figure is not recorded in this
-repository** — it is not in
-[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md),
-which holds plats, acreage and street ranges rather than distances. It is
-**corroborated but not confirmed** by this video's own OSRM set: the Hwy 79
-corridor is 13 minutes from El Centro Beach, 15 from Palmetto Trace and 20 from
-Bahama Beach, so a beach drive in that band is consistent. `[KAREN]` confirm it
-once and say it as a range.
+⚠️ **The Gulf distance is sourced, and it is not a single number.** From
+[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md#-how-far-the-gulf-is):
+**15 minutes to the nearest Gulf access** (Front Beach Rd west end, 8.5 mi) and
+**25 minutes to Pier Park** (13.6 mi). Mike's own *"10 to 15 minutes to the
+Gulf"* is correct **as a floor** and holds only for the nearest access point.
+The script says **both figures plus the summer caveat**, per the do-not-round-down
+rule in that file. Water body confirmed as **the Gulf** by Mike.
 
 ### Why these five and not the five that were proposed
 
@@ -429,10 +428,143 @@ the Latitude *"as of today"* line, so it pays for itself across both channels.
 
 ---
 
+## Neighborhood character, from county parcel records
+
+Bay County `TEST_Parcels/MapServer/1`, every parcel within **~400 m** of each
+subject home. `SubdivName` is empty on that layer, so this is a **spatial**
+query rather than a subdivision lookup. All public record, all citable.
+
+| Neighborhood | Parcels | Built | Median yr | Median assessed | Median heated sqft |
+| --- | ---: | --- | ---: | ---: | ---: |
+| **Palmetto Trace** | 323 | 2002–2017 | **2004** | $330,401 | 1,562 |
+| **Bahama Beach** | 292 | 1937–2025 | 1985 | $300,038 | 1,678 |
+| **El Centro Beach** | 363 | 1958–2024 | **1976** | $285,239 | 1,486 |
+| **Bay Point** | 684 | 1945–2025 | 1986 | **$358,164** | **1,998** |
+| **Treasure Cove** | 479 | 1953–2025 | 1994 | **$248,983** | 1,500 |
+
+> ⚠️ **Medians only. Never speak a min or a max.** The 400 m radius catches
+> commercial parcels and vacant lots — Palmetto Trace's maximum is **$41.7M of
+> Pier Park-area retail** and its largest "home" is a **140,255 sqft commercial
+> building**. The medians are reliable; the extremes are artefacts of the radius.
+>
+> ⚠️ **Say "about", and never imply assessed value is a list price.** These are
+> county assessed values and they run below market. **The relative form is both
+> safer and more useful** — *"Bay Point runs about a hundred thousand higher than
+> Treasure Cove"* is true, memorable, and cannot be mistaken for an asking price.
+>
+> ✅ **Median year built is the safest single fact** and needs no hedging.
+
+This replaces guesswork with public record, and it is the answer to *"what is
+this neighborhood actually like"* that
+[listing prose cannot be trusted for](#sourcing-two-tiers-of-data-in-one-file).
+
+### ⭐ The strongest beat in the video: Bay Point and Treasure Cove are adjacent
+
+The Bay Point spatial query returned **145 Treasure Cove parcels inside its own
+400 m radius.** They are genuinely next door. And yet:
+
+- **Bay Point median assessed: $358,164** — the highest of the five
+- **Treasure Cove median assessed: $248,983** — the lowest of the five
+
+**Roughly $110,000 apart, side by side, same elementary school.** Bay Point is
+gated with a marina and a golf course; Treasure Cove is not. **That gap is the
+gate**, and it is the clearest like-for-like trade-off in the video — the one
+comparison a buyer cannot easily run for themselves.
+
+They were already segments 4 and 5, so the pairing needed no re-ordering. A
+one-segment re-hook plants it at the Bay Point reveal and pays it off at 27:35.
+
+### The age spine
+
+Order the five by median year built and the character sorts itself, which is why
+it is planted once at 3:25 and then referenced per segment:
+
+| | Median built | Character |
+| --- | ---: | --- |
+| El Centro Beach | 1976 | Oldest, established, most varied stock |
+| Bahama Beach | 1985 | Eclectic — single family, condos, vacant lots, **1937 to 2025** |
+| Bay Point | 1986 | Gated, largest homes by median |
+| Treasure Cove | 1994 | The affordable answer, next door to Bay Point |
+| Palmetto Trace | 2004 | Newest, and **the only genuinely planned subdivision** |
+
+**Palmetto Trace and Bahama Beach are exact opposites**, and that contrast does
+real work in segments 1 and 2. Palmetto Trace's legal descriptions read
+`PALMETTO TRACE PH 1 37C`, `PHASE TWO-B`, `PHASE III`, it has recorded common
+areas, **298 of its 323 parcels are single family**, and everything went up
+between 2002 and 2017 — homogeneous by design. Bahama Beach spans **eighty-eight
+years** and holds single family, condominiums and vacant land across several
+subdivisions inside one radius (`BAHAMA BEACH`, `DAUGETTE ADDITION`, `99 PALMS`).
+
+Neither is better. But a buyer should know which one they are before they buy,
+and that is exactly how both segments put it.
+
+---
+
 ## Runtime: why 32–36 minutes
 
+### Does the material actually fill it? Yes, with room.
+
+Mike asked for the arithmetic. Measured from the actual files, against the
+**35:25** this script now lands at:
+
+| | |
+| --- | --- |
+| Tour footage, 5 × 1:53 after the 4.5s / 5.4s trim | **9:26** |
+| Latitude segment 6 | 3:30 |
+| Cold open + hook + itinerary + re-hooks + anchor | ~3:40 |
+| Schools payoff | 0:50 |
+| Close, CTA and end screen | ~1:00 |
+| **Fixed subtotal** | **~18:26** |
+| **Remaining across five segments** | **~17:00 → ~3:24 each** |
+
+**Picture is not the constraint.** 476 photographs across the five homes, ~95
+each, which is roughly **40 minutes of stills at 5 seconds** — about 2.4× more
+than needed. Add 21:23 of Pier Park aerials, 2:24 of FSU Health and 1:33:04 of
+Latitude community footage and the package holds close to **two hours of real
+motion** against a 35-minute video.
+
+**The constraint is having enough to say**, so each segment's ~3:24 of non-tour
+time is built from content that already exists:
+
+| Beat | Length | Source |
+| --- | --- | --- |
+| Where it is, and how far to what matters | 0:45 | The [OSRM drive-time table](#drive-times) |
+| What it is actually like, and who it suits | 1:00 | [County parcel data](#neighborhood-character-from-county-parcel-records) — median year built, character, mix |
+| Things to do nearby | 0:45 | Listing-prose landmarks, **verified**, never repeated raw |
+| One honest drawback | 0:30 | Below — every one derived from held data |
+| The price | 0:15 | MLS |
+
+> ⛔ **Do not pad to hit a number.** *"There's no such thing as a too long video.
+> There is such thing as a too long, unengaging video"* (`D2-QA` 00:05:37). If a
+> segment genuinely only has 2:30 in it, run 2:30 and let the video land shorter.
+> The budget shows the material is **available**; it does not require using all
+> of it.
+
+### The honest-drawback beat — all six are sourced, none invented
+
+`D4-GS` 00:50:43, *"be real, not promotional."* Every segment has one, and every
+one comes from data already in the repo:
+
+| Segment | The drawback | From |
+| --- | --- | --- |
+| Palmetto Trace | 0.05-acre lot; ~23 min to either hospital | MLS field; OSRM |
+| Bahama Beach | No HOA on a beachfront house; $16,201/yr tax; the variety cuts both ways — a 1937 cottage may sit beside a 2025 build | MLS; parcel records |
+| El Centro Beach | No short-term rental; oldest stock, so age-related maintenance | MLS + prose; parcel median 1976 |
+| Bay Point | $1,650/yr HOA covering only playground and security; five price cuts; **~40 min to ECP** | MLS; OSRM |
+| Treasure Cove | Septic; four price cuts rebutting the "instant equity" line; **~39 min to ECP** | MLS; OSRM |
+| Latitude | 15 min to the nearest Gulf access and 25 to Pier Park; still under construction; 55+ excludes anyone younger | `phase-status.md` |
+
+**And one that belongs in every beach-side segment:** the drive times are
+**free-flow**. Summer traffic on Front Beach Road will exceed them materially,
+and the script says so rather than letting a viewer discover it in July.
+
+⛔ **Do not invent a drawback.** If a segment has none available from held data,
+mark it `[KAREN]` rather than manufacturing one.
+
+### Why 32–36 at all
+
 **The case for it.** Average view duration must clear **7 minutes absolute**
-(Limiter #2). At 33 minutes that needs **21%** retention; at 15 minutes it needs
+(Limiter #2). At 35 minutes that needs **20%** retention; at 15 minutes it needs
 **47%**. And 32–36 sits inside what this market actually publishes — every
 real-estate channel measured in
 [`framework-vs-practice.md`](../../../../knowledge/reference-videos/framework-vs-practice.md#-finding-2-1828-minutes-is-the-floor-not-the-target)
@@ -473,15 +605,15 @@ and **be real, not promotional**.
 | Cold open — call-out, hook, price band | 0:00–0:22 | 0:22 |
 | Who Karen is, and the itinerary | 0:22–1:40 | 1:18 |
 | The re-hooks, planted | 1:40–2:15 | 0:35 |
-| **Pier Park** — the anchor, and the drive-time spine | 2:15–3:40 | 1:25 |
-| **1 · Palmetto Trace** | 3:40–8:50 | 5:10 |
-| **2 · Bahama Beach** | 8:50–14:20 | 5:30 |
-| **3 · El Centro Beach** | 14:20–19:20 | 5:00 |
-| **4 · Bay Point** | 19:20–24:50 | 5:30 |
-| The schools answer — re-hook payoff | 24:50–25:40 | 0:50 |
-| **5 · Treasure Cove** | 25:40–29:35 | 3:55 |
-| **6 · Latitude Margaritaville Watersound** | 29:35–33:05 | **3:30** |
-| Redirect, then dead air | 33:05–33:30 | 0:25 |
+| **Pier Park** — the anchor, drive times, and the age spine | 2:15–3:40 | 1:25 |
+| **1 · Palmetto Trace** | 3:40–9:15 | 5:35 |
+| **2 · Bahama Beach** | 9:15–15:10 | 5:55 |
+| **3 · El Centro Beach** | 15:10–20:25 | 5:15 |
+| **4 · Bay Point** | 20:25–26:05 | 5:40 |
+| The schools answer — re-hook payoff | 26:05–26:55 | 0:50 |
+| **5 · Treasure Cove** *(incl. the Bay Point comparison)* | 26:55–31:30 | 4:35 |
+| **6 · Latitude Margaritaville Watersound** | 31:30–35:00 | **3:30** |
+| Redirect, then dead air | 35:00–35:25 | 0:25 |
 
 Segments 1–5 run the same five beats: **where it is and how far · what living
 there is like and who it suits, plus one honest drawback · things to do nearby ·
@@ -511,26 +643,45 @@ the home · the price.** **Segment 6 is deliberately different** — see below.
 
 ## Voice
 
-⚠️ **Dependency: `platforms/youtube/content/karen-voice-and-humor.md` does not
-exist yet.** Branch `mlawell-karen-voice-and-humor` was checked and currently
-sits at the same commit as `main` with no content added, and the file appears on
-no branch in the repository. **It has not merged.**
-
-This script therefore applies the underlying principles directly. **When that
-file lands, re-read the script against it** — the humor beats are the most likely
-thing to need revision.
+✅ **[`karen-voice-and-humor.md`](../karen-voice-and-humor.md) has merged**, and
+this script has been checked against it. So has
+[`karen-presenter-treatment.md`](../karen-presenter-treatment.md), which governs
+the production split. Both were listed as unmerged dependencies in an earlier
+draft; both have landed and the script now complies with them.
 
 - Warm, dry, peer-to-peer — the register you would use *"to eat lunch or have
   brunch with a 60-plus-year-old woman and her husband"* (`D5-FS` 00:47:02).
 - **Humor is written in, never improvised.** HeyGen and ElevenLabs cannot ad-lib.
   Every intended laugh is on the page.
 - **No em-dashes in spoken lines.** A named AI-detection tell (`D1-QA` 00:05:11),
-  and YouTube throttles content indexing high on AI detection (`D1-QA`
-  00:03:34). The script uses commas and full stops in all spoken copy. *Prose in
-  these markdown files is not read aloud and is not subject to the rule.*
-- **Mike** appears twice, lightly, both marked `[KAREN — MIKE]` for approval.
-  He is being developed as a recurring character; this video is not the place to
-  launch him properly.
+  and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
+  ✅ Verified zero across all spoken copy. *Prose in these markdown files is not
+  read aloud and is not subject to the rule.*
+- ⛔ **"The Gulf."** Never "Gulf of Mexico" or "Gulf of America" — on camera and
+  in the title, description, tags, thumbnail and pinned comment. ✅ Verified.
+
+### ⛔ One Mike beat was cut, against his own rule
+
+[Mike's editorial rule](../karen-voice-and-humor.md#-mikes-editorial-rule):
+*"The joke is on the place, on paperwork, or on ourselves. Never on the theme,
+and never on residents"* — and the test that follows it, **"a beat that would
+survive a find-and-replace of the community name is not a beat."**
+
+The anchor block previously carried *"Mike will tell you it's twelve minutes.
+Mike is measuring from the parking lot he likes."* That is a **generic
+sitcom-husband joke**. It would work in any city in America, which is precisely
+why it fails. Cut, and replaced with a beat whose joke is on the place and which
+happens to be load-bearing:
+
+> *"Those are the times with no traffic. In July, on Front Beach Road, I would
+> pack a lunch."*
+
+That one cannot be lifted to another city, it is true, and it flags that every
+drive time in the video is free-flow.
+
+Mike's two remaining appearances are **factual, not comedic** — that he and
+Karen live at Latitude, and his framing of the FSU Health build. Both are marked
+for approval.
 
 ---
 
