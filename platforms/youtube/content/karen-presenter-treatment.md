@@ -46,6 +46,62 @@ belong on the punchlines.
 
 ---
 
+## ⭐ The treatment hierarchy
+
+**The avatar is the fallback, not the default.** Karen's library turned out to
+hold far more real material than the scripts were written against, and that
+inverts the assumption. Work down this list and only reach the bottom when the
+tiers above genuinely have nothing.
+
+> ### This is no longer a map video with narration over it.
+> ### It is a filmed community tour with the map as its navigational spine.
+
+That is not a rebrand, it is a format change with a citation behind it. The
+playbook says voiceover-over-B-roll *"rarely clears 10 min AVD; a live filmed
+walk-through does"* (`D1-QA` 00:48:32), and names the walk-through as the thing
+**AI cannot replicate**: *"AI can't disrupt truth. AI can't disrupt demonstration
+of content"* (`D1-QA` 00:36:57). The channel now has 1:25 of exactly that.
+
+| | Treatment | Available for | Why it ranks here |
+| ---: | --- | --- | --- |
+| **1** | **Live 8K footage**, presenter **absent** | Phases **1, 2, 6B & 6C, 8, 9, 10** and the **Town Center** | The format the playbook says clears AVD and AI cannot replicate |
+| **2** | **Karen's own geotagged photographs**, with motion applied | Every other plat, and 3A–7 especially richly | Proof of presence, 1,182 already indexed by phase |
+| **3** | **Map frames** with the presenter **corner-inset** | Everywhere, as connective tissue | The playbook's prescribed map-video format |
+| **4** | **Full-frame synthetic presenter**, over a real photograph | Hook and candour/CTA only | The weakest visual the channel has |
+
+### ⭐ Every one of the sixteen plats now has ground-level material
+
+There is no longer a phase anywhere in the community that has to be carried by a
+map frame and a synthetic face alone.
+
+| Plat | Cart-tour photos | 8K video |
+| --- | ---: | --- |
+| 1 | 5 | **40:54** |
+| 2 | 30 | 5:39 |
+| 3A | 151 | — |
+| 3B & 3C | 59 | — |
+| 3D | 59 | — |
+| 4A | 25 | — |
+| 4B | 53 | — |
+| **Town Center (5A3)** | 174 | ~4:01 day + 3:21 **evening** |
+| 5B | 53 | — |
+| 5C | 108 | — |
+| 6A | 25 | — |
+| 6B & 6C | 11 | **11:17** |
+| 7 | 244 | — |
+| 8 | 146 | 7:54 |
+| **9** | **0** | **10:50** |
+| **10** | **0** | within the Phase 9 clips (Mike) |
+
+**Phases 9 and 10 stopped being the hard case.** They have no photographs at all,
+but they now have the video, and a 33-megapixel frame extract is a better still
+than a phone photo. **They need no shoot.**
+
+**Phase 6A and 4A are now the thinnest** at 25 photos and no video, followed by
+6B & 6C, which has only 11 photos but 11:17 of video to pull frames from.
+
+---
+
 ## 1. ⛔ Not at a desk
 
 **The desk is the single most recognisable "this is synthetic" composition
@@ -140,10 +196,197 @@ location. We can put her **on** the location.
 
 ## 4. Verified asset inventory
 
-Checked on disk 2026-08-23, with `ffprobe` where it mattered. Paths are relative
-to `C:\Users\mikel\NWFL Beach Homes\NWFL Beach Homes - Documents\Marketing\Karen`.
+Checked on disk 2026-08-23, with `ffprobe` where it mattered.
+
+### ⭐ Tier 1 — the 8K tour footage
+
+**1:25:23 of 8K, across two folders**, all shot on a phone. Every duration and
+every GPS placement below was verified with `ffprobe` and point-in-polygon
+against `tools/map/`'s plat polygons.
+
+| Folder | Clip | Duration | Plat at start |
+| --- | --- | ---: | --- |
+| `Phases\Videos\` | `20260822_105457.mp4` | **40:54** | **Phase 1** |
+| `Phases\Videos\` | `20260822_104302.mp4` | 7:54 | **Phase 8** |
+| `Phases\Videos\` | `20260822_121813.mp4` | 5:54 | **Phase 9** |
+| `Phases\Videos\` | `20260822_122522.mp4` | 4:56 | **Phase 9** |
+| `Phases\Videos\` | `20260822_123852.mp4` | 0:01 | **discard** |
+| `video\` | `20260822_120642.mp4` | **11:17** | **Phase 6B & 6C** |
+| `video\` | `20260822_120031.mp4` | 5:39 | **Phase 2** |
+| `video\` | ×3 daytime clips | 4:01 | **Town Center** |
+| `video\` | ×10 evening clips, 19:01–19:32 | 3:21 | **Town Center**, evening |
+| `Town Center\Bandshell\Music\` | ×7 clips | 1:26 | **Town Center**, live music |
+
+**7680×4320 HEVC, 30 fps, ~96 Mbps, AAC 48 kHz stereo.**
+
+> ⚠️ **Two corrections worth carrying forward.**
+>
+> **There is no Phase 3 video.** An earlier draft of this page said the footage
+> covered "Phases 1, 2, 3 and the Town Center." The GPS says otherwise: the
+> covered plats are **1, 2, 6B & 6C, 8, 9 and the Town Center.** Phase 3 is
+> photographs only, and it is the best-photographed phase in the community (269
+> across 3A, 3B & 3C and 3D), so it loses nothing.
+>
+> **The second folder is easy to miss.** `video\` at the community root holds
+> **24 minutes** including the two longest non-tour clips. Anyone inventorying
+> `Phases\Videos\` alone will undercount by a third.
+
+#### ⚠️ These are start points, not routes
+
+The GPS comes from each file's single `location` tag. **Samsung phone recordings
+carry one start-point tag and no telemetry track**, so the table says where a
+clip *began*, not where it went. The 40:54 clip starting in Phase 1 almost
+certainly crosses several plats.
+
+**Treat the table as a floor.** Mike confirms the **Phase 9 clips continue into
+Phase 10**, which is exactly the kind of coverage the tag cannot show and the
+reason Phase 10 is no longer a gap.
+
+#### ⭐ Extract frames instead of shooting stills
+
+**A 7680×4320 frame is a 33-megapixel still** — larger than most stills cameras
+produce.
+
+> ### Standing method: any phase with video and no photographs gets its stills extracted from the video.
+> That is what closes **Phases 9 and 10**, which have zero cart-tour photographs.
+> **They do not need a photo shoot.**
+
+The folder also holds **16 huge stills** already: seven at **8160×4592** (37 MP)
+and nine at **16320×9180** (150 MP). At that size a single frame crops to several
+distinct 1080p shots.
+
+#### Working rules for the 8K
+
+- **⛔ Delivery stays 1080p.** The playbook is explicit: shoot 1080p/60, *"the only reason you would ever need 4K is if you were going to start playing these videos at the movie theater"* (`D2-GS` 00:19:43), citing storage burden and slow transfers to offshore editors. A 27.5 GB file is exactly that problem. **The 8K is justified only as reframing headroom, never as a delivery format.**
+- **⭐ 8K is a virtual camera operator.** A 1920-wide window inside a 7680-wide frame can pan, punch in and reframe, so one static drive-by yields several distinct shots with real camera moves at full delivery quality. That is the single biggest reduction in how much the avatar has to carry.
+- **⛔ Proxies are mandatory, not optional.** 8K HEVC at 96 Mbps **will not scrub in real time** on most machines. Cut against 1080p proxies and conform back only for shots that need reframing. Discovering this on edit day costs a day.
+- **Frame rate mismatch, minor.** This is **30 fps** and the playbook prefers 1080p/**60**. Fine for delivery, but 30 cannot be conformed up, so do not plan slow motion from it.
+
+### ⛔ Strip the location audio
+
+**Mike's instruction:** *"we need to remove all of the sound from the videos, not
+important when Karen is talking."*
+
+Correct, and there is a **second reason that is stronger than convenience** and
+must be recorded, because otherwise somebody will be tempted to keep "just a
+little" ambience under the Bandshell shots.
+
+> ### The evening Town Center clips are Bandshell footage with live music playing.
+> Publishing recorded live performance of copyrighted songs invites a **YouTube
+> Content ID claim**, and in a **Jimmy Buffett community** the live material is
+> very likely to be Buffett covers.
+
+The playbook is unambiguous about the stakes. *"Never use footage or photos you
+don't own"* — one agent had to **wire a creator ~$14,000** to get a channel
+restored (`D4-GS` 00:54:38–00:55:43) — and the strike policy is **one strike a
+warning, two a 30-day penalty box, three permanent removal** (`D4-GS`
+00:54:13–00:54:33).
+
+So muting is not housekeeping. **It removes a real channel risk.**
+
+It was also measured before being decided: eight samples across the 41-minute
+tour showed levels of **−24 to −31 LUFS** with the 1–4 kHz speech band sitting
+**8 to 15 dB below** the low band on most of them. Wind and cart rumble
+dominant, occasionally something with real mid-band content. **Neither uniformly
+unusable nor reliably usable**, which is another reason not to build on it.
+
+### ⭐ Stills for the performance, muted video for the setting
+
+Mike, refining the above: *"I would just post images instead of music for the
+bandshell music."*
+
+**Keep the distinction rather than applying a blanket rule.** It is the
+*performance* material that becomes stills. The evening clips also hold
+non-performance content — carts arriving, the venue at dusk, people walking in,
+the empty stage before a show — and that stays usable as **muted video**. A slow
+push on an empty Bandshell at sunset is a strong shot carrying no risk at all.
+
+> ## The rule, and it generalises
+> **Where the missing sound would be conspicuous, use a still. Where it would
+> not, muted video is fine.**
+>
+> Muted video of a live band is **dissonant**: the viewer sees people dancing,
+> hears only narration, and *notices the absence.* A photograph creates no such
+> expectation. This is a better rule than "mute everything," and it applies
+> anywhere in the library with performance, crowds, or an obvious sound source.
+
+**There is no shortage of stills for it — 33 for a beat that needs three or four:**
+
+| Source | Count |
+| --- | ---: |
+| `Town Center\Bandshell\Music\` | **26 photographs** (plus the 7 videos) |
+| `Town Center\Bandshell\` | 6 photographs |
+| `Bandshell Music - Golf carts.jpg` (community root) | ⭐ carts lined up outside — the whole thing in one frame |
+
+**This resolves the open `[KAREN]` question** about what a Saturday night is
+actually like. The answer is now: **stills of the crowd and the carts, narrated,
+over the music bed.** No location audio, no Content ID exposure, and the beat
+still lands.
+
+### What replaces the stripped audio
+
+A fully silent picture under narration reads as dead, and the playbook is blunt
+that production value is forgiving but **audio quality is not** (`D1-VIP`
+00:57:28). **Bed plus ducked narration, never bare.**
+
+Already in the library, so nothing needs sourcing:
+
+| Asset | What it is |
+| --- | --- |
+| `LM Island Breeze - Tour Bed.mp3` | ⭐ The intended bed |
+| `LM Island Breeze - Mix QA (narration+duck).m4a` | ⭐ A reference mix **with ducking already applied** |
+| `video\music\shared\Bed 1.mp3` … `Bed 5.mp3` | Five more shared beds |
+| `Clubs\_reel\reel_beat.mp3` | A sixth |
+
+### ⭐ Tier 2 — the geotagged photo library
+
+Karen photographed a **golf-cart tour of the whole community on 2026-08-09**:
+**1,193 photos, 1,182 with GPS EXIF (99%)**, every one assigned to a plat by
+point-in-polygon against `tools/map/`'s polygons.
+
+Index: `…\session-state\…\latitude-phase-map\golfcart_byphase.json`
+(counts verified against the file).
+
+| Phase | Photos | | Phase | Photos |
+| --- | ---: | --- | --- | ---: |
+| 7 | 244 | | 5B | 53 |
+| **5A3 (Town Center)** | 174 | | 4B | 53 |
+| 3A | 151 | | 2 | 30 |
+| 8 | 146 | | 4A | 25 |
+| 5C | 108 | | 6A | 25 |
+| 3D | 59 | | 6B & 6C | 11 |
+| 3B & 3C | 59 | | 1 | 5 |
+| | | | **9 and 10** | **0** |
+
+Plus **39 outside any plat** — approach roads, Highway 79, the entrance. Useful
+for the "getting here" and Highway 79 beats, which currently have no visual at
+all.
+
+This is **in addition to** the 278 geotagged Phase 7 and 8 photographs already
+noted on the shot list.
+
+### Amenity and activity sets, none of them in any script
+
+All under `…\Latitude Margaritaville Watersound\`:
+
+| Set | Contents |
+| --- | --- |
+| `Activities\` | ⭐ **`bingo.jpg`** and **`Hawaiian Bingo.png`** · kayaking |
+| `Town Center\Bandshell\Music` | 26 photos, 7 videos |
+| `Town Center\Workin' N' Playin' Center\` | ⭐ the **Barkaritaville** plate |
+| `West Bay Center\` | ⭐ `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `West-Bay-Map.jpg`/`.avif`, `Publix .JPG`, `Publix West Bay Center 01.MP4` |
+| `Bar & Chill\Sunsets` | 46 |
+| `Pool` 16 · `Kayak Launch` 10 · `Intercoastal` 10 · `Bocce Ball` 7 · `Fins Up! Fitness Center` 6 | plus Putting Green, Cornhole, Tennis and Pickleball, Walking Trails, Trails |
+| `Building Features\` | 21 |
+| `Events\` | `Ladies of Latitude Breast Cancer Run 5k.jpg` |
+| `Clubs\` | `Retirement Community Reel.mp4` + `reel_beat.mp3` |
+
+**Audio beds already exist:** `LM Island Breeze - Tour Bed.mp3`, and a mix-QA
+reference with ducking already applied.
 
 ### Stills
+
+Paths relative to `…\NWFL Beach Homes - Documents\Marketing\Karen`.
 
 | Asset | Notes |
 | --- | --- |
@@ -202,21 +445,30 @@ Given the mouth-only constraint, **minimising sustained full-frame exposure is
 the main lever available.** Budget it deliberately rather than defaulting to
 full-frame.
 
+**Read this as the ceiling, not the target.** The
+[treatment hierarchy](#-the-treatment-hierarchy) comes first: where tier 1 live
+footage or tier 2 photographs exist, the presenter should be **absent**, and the
+numbers below shrink further.
+
 | Segment | Treatment | Why |
 | --- | --- | --- |
 | **Hook, ~30 s** | Full-frame, composited over a **real community photograph** | The one place a face earns full frame. Establishes a person, over a checkable place |
-| **Body** | **Map full-screen**, presenter corner-inset or absent | The playbook's prescribed map-video format, and the map is the product |
+| **Body** | **Map full-screen**, presenter corner-inset or absent — **or live footage with her absent entirely** where it exists | The playbook's prescribed map-video format, and the map is the product |
 | **Candour beat and CTA** | Full-frame again, over a real photograph | Sincerity is exactly where a neutral face is *correct* |
 | **Close** | Subscribe outro | Existing plate, re-rendered |
 
-That is roughly **one minute of full-frame synthetic face in a twenty-minute
-video.** Every other second is map, photographs, or drive footage with her voice
-over it.
+That is **at most one minute of full-frame synthetic face in a twenty-minute
+video.** Every other second is live footage, map, photographs, or drive footage
+with her voice over it.
 
 **Note how this interacts with the sincerity rule.** The two full-frame blocks
 are the hook and the candour/CTA — both sincere registers. Every comedic beat
 falls in the body, where she is corner-inset or absent. The budget and the
 register rule agree, which is a good sign that both are right.
+
+**Phases 1, 2, 3 and the Town Center should now run well under the ceiling**,
+because tier 1 footage covers their bodies outright. **Phases 9 and 10 will sit
+at it**, because they have neither footage nor photographs.
 
 ---
 
@@ -239,19 +491,27 @@ Checked against
 | # | Beat | Face needs to | Cutaway image | Status |
 | ---: | --- | --- | --- | --- |
 | 1 | Bring a cart | Nothing — Mike is third person, deadpan | The cart in Karen's driveway | ✅ Phase 8 shot 5. **Reuse it in the flagship's Q3** |
-| 2 | The cats | Warm, smiling | **Bella, Cinder and Buddy**, and the Barkaritaville sign | ❌ **Needs adding** |
-| 3 | The dermatologist | Wry | West Bay Center storefronts, and the hospital site | ❌ **Needs adding** |
+| 2 | The cats | Warm, smiling | **Bella, Cinder and Buddy**, and the Barkaritaville sign | ⚠️ **Half solved.** The Barkaritaville plate exists: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg`. Only a photo of the three cats is missing, and that is a thirty-second ask of Karen, not a shoot |
+| 3 | The dermatologist | Wry | West Bay Center storefronts, and the hospital site | ✅ **Solved.** `West Bay Center\` has `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` and more. Beat still has no script slot |
 | 4 | Lawn care | Nothing — **stay full-frame** | The lawns, including a poor one | ✅ Phase 8 shot 4. See note below |
-| 5 | Bingo | Self-deprecating smile | Town Center, ideally the activity room | ⚠️ Town Center is an anchor shot, but a **bingo-specific frame is better** |
+| 5 | Bingo | Self-deprecating smile | Bingo at the Town Center | ✅ **Solved.** `Activities\bingo.jpg` **and** `Activities\Hawaiian Bingo.png` |
 | 6 | Hawaiian shirt | Nothing — Mike, deadpan | The shirts on the rail, no face | ✅ Phase 8 shot 6 |
 | 7 | Escape Avenue | Nothing — authority | The address-range graphic, and the Escape Ave sign | ✅ Phase 8 shot 1 + on-screen graphic |
 | 8 | Phase 8 zero Buffett | Wry, self-deprecating | The **Cool Water Way** sign | ✅ Phase 8 shot 2 |
 | 9 | No Shoes Court | **Giggle** | The **No Shoes Ct** sign, clean 4-second hold | ✅ Phase 5 block shot 3 |
 
-**Three gaps: beats 2, 3 and 5.** Beats 2 and 3 have no script slot yet anyway,
-so their images can wait for the amenities video that will carry them. **Beat 5
-is the live one** — it is scripted into the Phase 8 deep dive and its cutaway is
-currently a generic Town Center anchor.
+**Every beat now has an image except a photo of the cats.** That is the whole
+remaining gap, and it is a phone snap rather than a production task.
+
+> ### 🎁 A free callback nobody planned
+> `Activities\` contains **`Hawaiian Bingo.png`**, and beats 5 and 6 are **bingo**
+> and **the Hawaiian shirt**. If both land in the same episode — and they do, both
+> are in the **Phase 8 deep dive** — the bingo cutaway can be the *Hawaiian* bingo
+> frame, which quietly sets up Mike's shirt beat five minutes before it arrives.
+>
+> Use it **only if it stays invisible.** The moment it looks like a constructed
+> callback it becomes a comedy routine, which is the thing Karen is not doing.
+> Play the image straight and let the few who notice enjoy it.
 
 > **Beat 4 is the deliberate exception.** The lawn-care beat is the honesty
 > moment, and honesty is delivered *to* the viewer. **Stay on the face.** Its
@@ -260,7 +520,7 @@ currently a generic Town Center anchor.
 
 ---
 
-## 7. Render batch
+## 7. Render and prep batch
 
 Both existing subscribe outros need new renders for **content** reasons — one is
 vertical and one is Latitude-branded, and this channel is Northwest Florida wide.
@@ -279,15 +539,38 @@ flattened plate can only be used on the background it was rendered against; an
 alpha plate can be composited over any photograph in the library, which is the
 entire treatment on this page.
 
+### ⛔ Before any edit session: build 8K proxies
+
+**Do this first, not on edit day.** 8K HEVC at 96 Mbps will not scrub in real
+time on most machines, and finding that out with an editor waiting costs a day.
+
+> ⭐ **Stripping the audio and building proxies is one operation, not two.**
+> `-an` while transcoding to 1080p ProRes or DNxHR gives muted proxies in a
+> single pass, and the 8K originals stay untouched as reframing source.
+
+- [ ] Transcode **all keeper 8K clips in both folders** — `Phases\Videos\` **and** `video\` — to **muted 1080p ProRes or DNxHR** proxies, `-an` in the same pass
+- [ ] Cut against the proxies
+- [ ] **Conform back to 8K only for shots that need reframing** — the pan, punch-in and reposition moves
+- [ ] Deliver **1080p**. The 8K is headroom, never a delivery format
+- [ ] **Extract stills for Phases 9 and 10** from their clips, at full 7680×4320
+- [ ] **No location audio in the final mix.** Bed plus ducked narration, using `LM Island Breeze - Tour Bed.mp3` against the `Mix QA (narration+duck)` reference
+- [ ] **Bandshell performance is stills only.** Muted video is fine for the setting — arrivals, dusk, the empty stage
+- [ ] Check `Phases\Phase 1\Phase 1-1.mp4` — modified 2026-08-23 11:21, so a Phase 1 segment may already be in progress
+
 ---
 
 ## Checklist
 
+- [ ] **The treatment hierarchy was worked top-down.** Live footage where it exists, then Karen's photographs, then map with corner-inset, and only then a full-frame avatar
 - [ ] No shot in the final cut places Karen at a desk, or in any generated interior
 - [ ] Every full-frame appearance is composited over a **real photograph**
-- [ ] Full-frame face time totals roughly **one minute** in a twenty-minute video
+- [ ] Full-frame face time is **at most one minute** in a twenty-minute video, and less where tier 1 or tier 2 material covers the body
 - [ ] Every full-frame block is a **sincere** register — hook, candour, CTA. No punchline is delivered full-frame
-- [ ] Every beat requiring visible emotion **cuts away**, and the cutaway image exists on the shot list
+- [ ] Every beat requiring visible emotion **cuts away**, and the cutaway image exists
 - [ ] Beat 9's giggle plays over the No Shoes Ct sign, held clean for at least 4 seconds
 - [ ] Wardrobe is consistent across every plate used in one video
 - [ ] All plates rendered with a real alpha channel
+- [ ] **8K proxies built before the edit session**, muted in the same pass, and delivery is 1080p
+- [ ] **No location audio anywhere in the final mix.** Bed plus ducked narration, never bare and never live
+- [ ] **No live-performance video.** Bandshell music is stills; muted video only for arrivals, dusk and the empty stage
+- [ ] Phases 9 and 10 stills are **frame extracts**, not a re-shoot

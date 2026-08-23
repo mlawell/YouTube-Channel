@@ -813,6 +813,16 @@ def _body(c: Community, num: str, g: dict) -> str:
             "whether you hear it here, and whether that is a plus or a minus for "
             "you. No distances, no radius \u2014 it varies too much.]`")
     add("")
+    add("**Picture for the Bandshell beat:** **stills, not video.** There are 26 "
+        "photographs in `Town Center\\Bandshell\\Music`, 6 more in "
+        "`Town Center\\Bandshell`, and `Bandshell Music - Golf carts.jpg` at the "
+        "community root. \u26d4 The 8K clips of the bands playing must **not** be "
+        "published: recorded live performance of copyrighted songs invites a "
+        "Content ID claim, and in a Jimmy Buffett community the set list is "
+        "very likely Buffett covers. Muted video is still fine for the "
+        "**setting** \u2014 carts arriving, dusk, the empty stage. See "
+        "[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).")
+    add("")
     L.extend(humor("noise", num))
 
     # ---- residents ----------------------------------------------------------
@@ -949,6 +959,18 @@ def _body(c: Community, num: str, g: dict) -> str:
         "a generated interior. There is no real footage of Karen, so every "
         "appearance is composited. See "
         "[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).")
+    add("- [ ] **No location audio in the final mix.** All camera sound is "
+        "stripped; the bed is `LM Island Breeze - Tour Bed.mp3` with narration "
+        "ducked over it. Never bare picture, because production value is "
+        "forgiving and audio quality is not (`D1-VIP` 00:57:28).")
+    add("- [ ] **No live-performance video published.** Bandshell music is "
+        "**stills**; muted video only for the setting. Recorded live "
+        "performance of copyrighted songs invites a Content ID claim, and the "
+        "strike policy is one warning, two a 30-day penalty box, three "
+        "permanent removal (`D4-GS` 00:54:13).")
+    add("- [ ] 8K sources cut via **muted 1080p proxies** (`-an` in the same "
+        "transcode), conformed back only for reframing, and **delivered at "
+        "1080p** (`D2-GS` 00:19:43).")
     add("- [ ] Nothing on camera names the landscaping contractor or the "
         "management company. Describe the condition, ask the question, never "
         "identify the culprit.")

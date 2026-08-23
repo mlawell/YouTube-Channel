@@ -123,6 +123,8 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN — first-hand: the Bandshell. Your own line is that a loud show carries for miles, so it is not how you pick a phase. Say whether you hear it here, and whether that is a plus or a minus for you. No distances, no radius — it varies too much.]`
 
+**Picture for the Bandshell beat:** **stills, not video.** There are 26 photographs in `Town Center\Bandshell\Music`, 6 more in `Town Center\Bandshell`, and `Bandshell Music - Golf carts.jpg` at the community root. ⛔ The 8K clips of the bands playing must **not** be published: recorded live performance of copyrighted songs invites a Content ID claim, and in a Jimmy Buffett community the set list is very likely Buffett covers. Muted video is still fine for the **setting** — carts arriving, dusk, the empty stage. See [`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
+
 `[HUMOR — optional, cut freely]`
 
 > Breathe Out Way is from a song he wrote after Hurricane Katrina. Breathe in, breathe out, move on. Out of every street name in this community, that is the one I think about.
@@ -178,4 +180,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] Every `[...]` cue is stripped before the script goes to ElevenLabs. They are edit instructions, not TTS input: on a v2-family voice the model **speaks the cue aloud** and nothing warns you. `<break time="0.5s" />` tags are the one exception, and they stay in.
 - [ ] The picture cuts away from the avatar for the full duration of any recorded reaction. HeyGen exposes no expression control and cannot render a laugh, so a real laugh over the avatar is a laughing voice on a neutral face. See [`HEYGEN.md`](../../../../tools/avatar/HEYGEN.md).
 - [ ] Presenter treatment followed: **map full-screen, Karen corner-inset or absent** through the body, full-frame only over a real photograph and only on a sincere beat. Never at a desk, never in a generated interior. There is no real footage of Karen, so every appearance is composited. See [`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
+- [ ] **No location audio in the final mix.** All camera sound is stripped; the bed is `LM Island Breeze - Tour Bed.mp3` with narration ducked over it. Never bare picture, because production value is forgiving and audio quality is not (`D1-VIP` 00:57:28).
+- [ ] **No live-performance video published.** Bandshell music is **stills**; muted video only for the setting. Recorded live performance of copyrighted songs invites a Content ID claim, and the strike policy is one warning, two a 30-day penalty box, three permanent removal (`D4-GS` 00:54:13).
+- [ ] 8K sources cut via **muted 1080p proxies** (`-an` in the same transcode), conformed back only for reframing, and **delivered at 1080p** (`D2-GS` 00:19:43).
 - [ ] Nothing on camera names the landscaping contractor or the management company. Describe the condition, ask the question, never identify the culprit.

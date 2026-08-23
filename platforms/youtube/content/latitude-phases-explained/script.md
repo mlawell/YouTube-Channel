@@ -264,6 +264,17 @@ Bandshell. Sound varies with event volume, wind, season and tree cover, and
 Karen is speaking approximately. The map deliberately draws it as a soft
 gradient with no edge for exactly this reason.
 
+**Picture for this whole passage: stills, not video.** 26 photographs in
+`Town Center\Bandshell\Music`, 6 more in `Town Center\Bandshell`, and
+`Bandshell Music - Golf carts.jpg` — the carts lined up outside, which says it in
+one frame. ⛔ **The 8K clips of the bands playing must not be published.**
+Recorded live performance of copyrighted songs invites a Content ID claim, and in
+a Jimmy Buffett community the set list is very likely Buffett covers — the
+playbook's strike policy is one warning, two a 30-day penalty box, three
+permanent removal (`D4-GS` 00:54:13). Muted video is still fine for the
+**setting**: carts arriving, dusk, the empty stage. Reasoning in
+[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
+
 > What the Bandshell *does* tell you is convenience. It sits right in the
 > middle of the amenity core — Fins Up! Fitness just north, Latitude Bar and
 > Chill and the Paradise Pool just south, the amphitheater right there. So
@@ -800,6 +811,17 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
       [`karen-presenter-treatment.md`](../karen-presenter-treatment.md)
 - [ ] **No punchline is delivered full-frame.** Spend the synthetic face on
       sincerity and the cutaways on comedy
+- [ ] **No location audio in the final mix.** Camera sound stripped, bed plus
+      ducked narration using `LM Island Breeze - Tour Bed.mp3` against the
+      `Mix QA (narration+duck)` reference. Never bare — production value is
+      forgiving, audio quality is not (`D1-VIP` 00:57:28)
+- [ ] **No live-performance video published.** Bandshell music is **stills**;
+      muted video only for the setting. Content ID risk, and the strike policy
+      is one warning, two a 30-day penalty box, three permanent removal
+      (`D4-GS` 00:54:13)
+- [ ] 8K sources cut via **muted 1080p proxies** (`-an` in the same transcode),
+      conformed back only for reframing, **delivered at 1080p** (`D2-GS`
+      00:19:43)
 - [ ] **The No Shoes Court lyric is spoken**, comma-separated, with a
       `<break time="0.5s" />` before "In a Margaritaville community." Checked on
       playback, not on the page
