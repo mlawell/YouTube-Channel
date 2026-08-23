@@ -285,7 +285,25 @@ permanent removal (`D4-GS` 00:54:13). Muted video is still fine for the
 > social life, and in a 55-plus community that is not a small thing. Further
 > out, it's a drive, and you go less. Neither is wrong. But it's a real
 > difference between two homes at the same price.
->
+
+**Community character — unnamed and unlocated, on purpose.**
+
+> There's even a band here where the members all live in the community, and
+> they play free charity concerts at people's houses. The collection at the
+> door is the price of admission.
+
+**Direction, and the constraints are the whole reason this line works:**
+
+1. ⛔ **Do not name the band, link it, or attribute it to a phase.** It plays across the whole community, so naming a phase would imply a difference that isn't there — and this series exists to help someone choose between phases. Unnamed and unlocated, it is **community character**, which is what it actually is.
+2. ⛔ **No schedule.** *"They play at people's houses"* is true. Anything implying regularity is not.
+3. **Keep the charity construction.** *Free concert, the collection is the "payment"* is the detail that makes it land, and it is Mike's own framing.
+4. **This block belongs here and nowhere else.** Do not let it drift into a phase chapter.
+
+The band's identity and Mike's reasoning are recorded as held material in
+[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md#-held-material--the-named-version-only)
+for a future community or lifestyle video, where community-wide is the point
+rather than the problem.
+
 > So: same price, very different daily life. That's the whole video in one
 > sentence. Let's go phase by phase.
 

@@ -144,13 +144,21 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHAT PEOPLE WHO LIVE HERE SAY — 6:00–8:00
 
-**Direction:** this is the second thing no competitor can do, and it is empty until real people are asked. There is no resident feedback in this repository — none — so nothing is written here for Karen to read.
+**Direction:** the strongest answer here is structural, not anecdotal. **This community organises itself by phase** — which is the entire premise of this series. A phase is a real social unit, not just a plat number, and that is exactly what a buyer is trying to work out when they ask which phase they should be in.
 
-`[RESIDENT 1: name or "a neighbour on <street>", with permission. Ask: why this phase over the others? What surprised you after you moved in?]`
+**Resident Facebook group for this phase:**
 
-`[RESIDENT 2: ask for one honest trade-off. A phase with no downside is a phase nobody believes.]`
+- **Carefree in Phase 3 LMWS**
 
-`[KAREN: if nobody in this phase has been asked yet, CUT this section entirely and say so in the description. Do not summarise what you imagine they would say.]`
+> The people here have their own Facebook group. It's called **Carefree in Phase 3 LMWS**. That's not something Minto set up, that's the residents.
+
+- **FINS UP CT - LMWS** — Fins Up Ct has its own page
+
+> And it goes further than the phase. Individual streets out here have their own pages.
+
+**Why this earns the chapter:** it is checkable, it is not an anecdote, and it doubles as a natural CTA — somebody who buys here has somewhere to go on day one. Name the group, do not read out its posts, and do not screenshot member names.
+
+`[KAREN — optional: anything first-hand you know about the people in this phase. Never summarise what you imagine they would say.]`
 
 ## WHAT'S ACTUALLY FOR SALE — 9:00–10:00
 

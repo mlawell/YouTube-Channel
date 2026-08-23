@@ -122,13 +122,9 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## WHAT PEOPLE WHO LIVE HERE SAY — 6:00–8:00
 
-**Direction:** this is the second thing no competitor can do, and it is empty until real people are asked. There is no resident feedback in this repository — none — so nothing is written here for Karen to read.
+**Direction:** no resident group is recorded for this phase. Say nothing rather than implying one exists. If Karen knows of one, it goes in the generator.
 
-`[RESIDENT 1: name or "a neighbour on <street>", with permission. Ask: why this phase over the others? What surprised you after you moved in?]`
-
-`[RESIDENT 2: ask for one honest trade-off. A phase with no downside is a phase nobody believes.]`
-
-`[KAREN: if nobody in this phase has been asked yet, CUT this section entirely and say so in the description. Do not summarise what you imagine they would say.]`
+`[KAREN — optional: anything first-hand you know about the people in this phase. Never summarise what you imagine they would say.]`
 
 ## WHAT'S ACTUALLY FOR SALE — 9:00–10:00
 
