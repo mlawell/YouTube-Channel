@@ -1,4 +1,4 @@
-# Media map — Five Kinds of Life in Panama City Beach
+# Media map — Six Kinds of Life in Panama City Beach
 
 Every frame this video draws on, by segment, with the exact source path.
 
@@ -307,6 +307,39 @@ Dr. becomes Oak St. and the home will be on the left."*
 
 ---
 
+## Segment 6 — Latitude Margaritaville Watersound (community, no single home)
+
+**`PCB\West Bay & HWY 79 Corridor\Latitude Margaritaville Watersound\`**
+
+The only segment with **no listing, no gallery and no tour file.** It is a
+community segment, so everything comes from Karen's own community media.
+
+| Asset | Path | Notes |
+| --- | --- | --- |
+| Community video | `Phases\Videos\` and `video\` | **27 files, 1:33:04 total** — 8K. Vastly more than the 3:30 segment needs |
+| Geotagged photos | `Phases\` | **1,185 photos**, indexed by phase |
+| West Bay Center | `West Bay Center 001.JPG`, `West Bay Center 002.MP4` | The commercial centre at the entrance |
+| Publix | `Publix .JPG`, `Publix West Bay Center 01.MP4` | ⚠️ **Under construction** — say so |
+| FSU Health | `..\FSU Health Panama City Beach\FSU Health Panama City Beach 01.MP4` | 2:24, 4K60 10-bit. Second use in the video |
+| Tenants | [`tools/map/west_bay_center.json`](../../../../tools/map/west_bay_center.json) | Names sourced from Karen's own knowledge of the ground |
+
+**There is 93 minutes of community footage for a 3:30 segment**, so the
+constraint here is restraint, not supply. Pick establishing shots that read as
+*"this is a different place from the beach"* — the corridor, the amenity centre,
+the streets — and resist the temptation to tour the community. That is
+[the other channel's job](../latitude-phases-explained/README.md).
+
+🚫 **Do not use phase-specific material.** No plat overlays, no phase maps, no
+per-phase B-roll framed as such. The photos are indexed by phase for the
+flagship's benefit; here they are just pictures of the community.
+
+⚠️ **Two grading notes.** The community video is **8K** and the FSU Health plate
+is **4K60 10-bit**, while the Pier Park plates are **4K60 8-bit**. Downscale
+everything to 1080p on ingest and conform to one working space, or the intercuts
+between corridor and beach will shift in colour.
+
+---
+
 ## Not used, and why
 
 The ten listings left on the shelf. Recorded so the next video does not have to
@@ -337,9 +370,18 @@ re-derive it — and so the reasoning is checkable.
 | **Unused by the tour files** | **276** |
 | Slideshow footage after trimming | 5 × 1:53.6 = **9:28** |
 | Pier Park aerial plates | **21:23** |
-| Target runtime | 28–32 min |
+| FSU Health plate | 2:24 |
+| Latitude community footage | **1:33:04** (27 files) |
+| Latitude geotagged photos | **1,185** |
+| Target runtime | 32–36 min |
 
-The arithmetic that matters: **9½ minutes of slideshow against a 30-minute
+The arithmetic that matters: **9½ minutes of slideshow against a 33-minute
 video.** Even used in full, the tour files cover under a third of the runtime.
-The other two thirds is Karen, the Pier Park plates, hand-cut gallery stills, and
-whatever she shoots herself. Plan it that way from the start.
+The rest is Karen, the Pier Park plates, hand-cut gallery stills, the Latitude
+community footage, and whatever she shoots herself. Plan it that way from the
+start.
+
+**Real motion footage now totals close to two hours** across the Pier Park
+plates, the FSU Health drone and the Latitude community library — against a
+33-minute video. Supply was never the problem; the problem was that the *tour
+files* are not motion footage. Everything above is.

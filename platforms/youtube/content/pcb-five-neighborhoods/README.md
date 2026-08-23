@@ -1,9 +1,9 @@
-# Five Kinds of Life in Panama City Beach
+# Six Kinds of Life in Panama City Beach
 
 **Channel:** Living in Panama City Beach FL \| The Lawell Team
 (`@LivinginPanamaCityBeachFLtheLT`)
-**Format:** vlog tour — five neighborhoods, five homes, one drive
-**Target runtime:** **28–32 minutes** — [reasoning](#runtime-why-2832-minutes)
+**Format:** vlog tour — six neighborhoods, five homes, one drive
+**Target runtime:** **32–36 minutes** — [reasoning](#runtime-why-3236-minutes)
 **Status:** ready to record, with [six things Karen must supply](#before-you-record)
 
 This is the channel's **second video** and, functionally, its launch. The PCB
@@ -93,9 +93,51 @@ last number in the video is the most reassuring one.
 | 3 | **El Centro Beach** | 263 Lullwater Dr | Two-thirds of an acre on a *lake*, minutes from the Gulf | $890,000 | 264 |
 | 4 | **Bay Point Unit 1** | 1722 Wahoo Cir | Behind a guarded gate — golf, marina, canals, own restaurant | $474,000 | 218 |
 | 5 | **Treasure Cove** | 2601 Oak St | The one you can actually afford — and it has the second-biggest lot | $365,000 | 185 |
+| 6 | **Latitude Margaritaville Watersound** | *(community — no single home)* | **55+ active adult**, 15 min inland on the Hwy 79 corridor | — | — |
 
-All prices and DOM as of the **2026-08-21** MLS snapshot in each
+Prices and DOM as of the **2026-08-21** MLS snapshot in each
 `listing-details.md`. **Re-verify within 24 hours of publishing.**
+
+### Segment 6 — Latitude, and why it is different
+
+Added at Mike's steer: *"we'll add the other to PCB list."* Latitude **is** a
+Panama City Beach community, so it belongs in a video about the kinds of life
+available here, and it matches his original framing for this channel — *"the 79
+Corridor, Latitude Margaritaville, and some of the Panama City Beach house
+neighborhoods of Counts listings."*
+
+**It runs 3:30, not 5–6 minutes, and it is built differently on purpose:**
+
+- **No home, and no price reveal.** It is a *community* segment, so per the
+  band/number finding there is nothing to hold back. This is why it sits
+  **after** Treasure Cove: the $365,000 stays the last specific number a viewer
+  hears, and moving it there puts that final reveal at **88% of runtime**, closer
+  to the measured median for single-home numbers (86%) than the old 97.5%.
+- **Its job is "this option exists and here is who it suits"** — not to sell the
+  community. The [Latitude channel](../latitude-phases-explained/README.md)
+  covers it in depth and this segment ends by pointing there.
+- 🚫 **No phases material.** No plat books, no phase-by-phase breakdown, no
+  address ranges, no homesite counts. That is the other channel's video and
+  repeating it here wastes runtime and cannibalises it.
+- **It pays off a fourth re-hook**, planted at 1:30 — *"if you're over fifty
+  five, there's a sixth option that works completely differently."* That line
+  self-selects the 55+ viewer and gives them a reason to stay through five
+  segments that may not be aimed at them. It is the most valuable re-hook in the
+  video and the only one that segments the audience rather than teasing a fact.
+- **Karen and Mike live there.** Held back twenty nine minutes so it lands here
+  rather than being spent in the intro.
+- **It carries the honest inland trade-off plainly:** roughly fifteen minutes to
+  the Gulf, still under construction, and 55+ so it is unavailable to anyone
+  younger. Same framing as the flagship.
+
+⚠️ **The "about fifteen minutes to the Gulf" figure is not recorded in this
+repository** — it is not in
+[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md),
+which holds plats, acreage and street ranges rather than distances. It is
+**corroborated but not confirmed** by this video's own OSRM set: the Hwy 79
+corridor is 13 minutes from El Centro Beach, 15 from Palmetto Trace and 20 from
+Bahama Beach, so a beach drive in that band is consistent. `[KAREN]` confirm it
+once and say it as a range.
 
 ### Why these five and not the five that were proposed
 
@@ -288,9 +330,8 @@ The MLS **`Directions`** field is a *structured field containing agent-authored
 free text*. This package treats it as **tier 1 for the route and tier 2 for any
 distance** — so *"across the street from Pier Park"* and the turn-by-turn
 sequences are cited as **verified routes**, while no minute figure is ever taken
-from them. That is why every entry in
-[the drive-time table](#drive-time-table--karen-all-of-it) is `[KAREN]` and every
-route beside it is not.
+from them. Every figure in [the drive-time table](#drive-times) is computed by
+OSRM routing instead; the routes beside them come from the MLS.
 
 ### The rule going forward
 
@@ -373,11 +414,11 @@ the Latitude *"as of today"* line, so it pays for itself across both channels.
 
 ---
 
-## Runtime: why 28–32 minutes
+## Runtime: why 32–36 minutes
 
 **The case for it.** Average view duration must clear **7 minutes absolute**
-(Limiter #2). At 30 minutes that needs **23%** retention; at 15 minutes it needs
-**47%**. And 28–32 sits inside what this market actually publishes — every
+(Limiter #2). At 33 minutes that needs **21%** retention; at 15 minutes it needs
+**47%**. And 32–36 sits inside what this market actually publishes — every
 real-estate channel measured in
 [`framework-vs-practice.md`](../../../../knowledge/reference-videos/framework-vs-practice.md#-finding-2-1828-minutes-is-the-floor-not-the-target)
 has a median at or above 18:49, the founders' own channels sit at 25:41 and
@@ -389,7 +430,7 @@ video. There is such thing as a too long, unengaging video"* — **but Jesse add
 channel has one video and 54 views on it. That caveat is aimed precisely at
 Karen's situation and it should not be waved away.
 
-**Why 28–32 anyway.** Five distinct segments with five different homes, five
+**Why 32–36 anyway.** Six distinct segments with five different homes, five
 price reveals and five neighborhood changes is a fundamentally different
 retention proposition from thirty minutes of one map. The video has five natural
 re-entry points, and chapters let a viewer jump to the neighborhood they care
@@ -424,11 +465,12 @@ and **be real, not promotional**.
 | **4 · Bay Point** | 19:20–24:50 | 5:30 |
 | The schools answer — re-hook payoff | 24:50–25:40 | 0:50 |
 | **5 · Treasure Cove** | 25:40–29:35 | 3:55 |
-| Redirect, then dead air | 29:35–30:00 | 0:25 |
+| **6 · Latitude Margaritaville Watersound** | 29:35–33:05 | **3:30** |
+| Redirect, then dead air | 33:05–33:30 | 0:25 |
 
-Each of the five segments runs the same five beats: **where it is and how far ·
-what living there is like and who it suits, plus one honest drawback · things to
-do nearby · the home · the price.**
+Segments 1–5 run the same five beats: **where it is and how far · what living
+there is like and who it suits, plus one honest drawback · things to do nearby ·
+the home · the price.** **Segment 6 is deliberately different** — see below.
 
 **The eight characteristics**, applied:
 
@@ -479,47 +521,52 @@ thing to need revision.
 
 ## Before you record
 
-Seven things, in priority order. The first four block recording.
+Six things, in priority order. The first three block recording.
 
 | # | What | Why |
 | --- | --- | --- |
-| 1 | **Fill the drive-time table below** | The vlog format is built on "how far is it." Every minute figure in the script is `[KAREN]`, including several that came from listing copy |
-| 2 | **Re-verify all five prices and statuses** | Snapshot is 2026-08-21. Four of the five have been reduced at least once |
-| 3 | **Confirm the Counts video-marketing policy** | [Brokerage disclosure](#brokerage-disclosure--verified) — image use is pre-approved, video is not confirmed |
-| 4 | **Clear every `[KAREN — verify]` in the script** | [Listing-prose claims](#sourcing-two-tiers-of-data-in-one-file). The FSU Health correction is already applied; the rest still need confirming |
-| 5 | Shoot the Bay Point gate and marina yourself | ⚠️ There is **no Bay Point community photography** in the library and it is the most community-dependent segment |
-| 6 | Ask whether neighborhood drone footage exists | `PCB\DJI_001\` is empty. Aerials of segments 2–5 would materially improve the video |
-| 7 | Get the kvCORE **zapKey** | [Above.](#the-zapkey-is-still-the-right-fix) Not blocking, but it fixes this permanently |
+| 1 | **Re-verify all five prices and statuses** | Snapshot is 2026-08-21. Four of the five have been reduced at least once |
+| 2 | **Confirm the Counts video-marketing policy** | [Brokerage disclosure](#brokerage-disclosure--verified) — image use is pre-approved, video is not confirmed |
+| 3 | **Clear the non-drive-time `[KAREN — verify]` items** | [Listing-prose claims](#sourcing-two-tiers-of-data-in-one-file). FSU Health and the drive times are done; the rest still need confirming |
+| 4 | Shoot the Bay Point gate and marina yourself | ⚠️ There is **no Bay Point community photography** in the library and it is the most community-dependent segment |
+| 5 | Ask whether neighborhood drone footage exists | `PCB\DJI_001\` is empty. Aerials of segments 2–5 would materially improve the video |
+| 6 | Get the kvCORE **zapKey** | [Above.](#the-zapkey-is-still-the-right-fix) Not blocking, but it fixes this permanently |
 
-### Drive-time table — `[KAREN]`, all of it
+### Drive times
 
-Routes are **verified** from each listing agent's own MLS Directions field.
-**Minutes are not** and must not be guessed. Fill these in from actual drives,
-then read them off in the segment.
+**OSRM road routing from county parcel centroids, free-flow (no traffic model).**
+Source: `pcb_drive_times.json`.
 
-| From Pier Park to | Verified route (MLS Directions) | Minutes |
-| --- | --- | --- |
-| **Palmetto Trace** | *"across the street From Pier Park"* — Back Beach Rd → Cambridge Blvd → Biltmore Pl | `[KAREN]` |
-| **Bahama Beach** | Hwy 98 & Clara → south on Clara → right on Front Beach Rd → under ¼ mile → Oleander Dr | `[KAREN]` |
-| **El Centro Beach** | Hwy 79 south → left on Hwy 98 (PCB Pkwy) → right on Lullwater Dr | `[KAREN]` |
-| **Bay Point** | Hwy 98 → south on Thomas Dr → Magnolia Beach Rd → Delwood Beach Rd → Bay Point gate | `[KAREN]` |
-| **Treasure Cove** | Hwy 98 (Back Beach Rd) → Navy Blvd/Thomas Dr → Sunset Dr → becomes Oak St | `[KAREN]` |
+| From | Pier Park | ECP airport | Hospitals (both ≈) | Hwy 79 / Latitude |
+| --- | --- | --- | --- | --- |
+| **Palmetto Trace** | 11 min | 23 | 23 | 15 |
+| **Bahama Beach** | 7 min | 28 | 21 | 20 |
+| **El Centro Beach** `[KAREN — address check]` | 14 min | 21 | 25 | 13 |
+| **Bay Point** | 12 min | 40 | 17 | 31 |
+| **Treasure Cove** | 9 min | 39 | 16 | 30 |
 
-And the anchors every relocating buyer actually asks about. **These are not in
-the MLS data and there is no source for them in this repository** — Karen drives
-them or they do not go in the video.
+`[KAREN — address check]` County parcel search for "263 Lullwater" returned
+**16263 LULLWATER DR E**. Possibly the same address written short, possibly the
+wrong parcel. Worth a glance; not worth an investigation.
 
-| Anchor | From each of the five | |
-| --- | --- | --- |
-| The beach / nearest public access | | `[KAREN]` |
-| Publix (nearest to each) | | `[KAREN]` |
-| Ascension Sacred Heart Bay / HCA FL Gulf Coast | | `[KAREN]` |
-| ECP airport | | `[KAREN]` |
-| Hwy 79 / the Latitude corridor | | `[KAREN]` |
+Routes remain **verified** from each listing agent's MLS Directions field:
 
-> **Say them as ranges, not precision.** *"About twenty minutes, twenty-five in
-> summer"* is honest and useful. *"Nineteen minutes"* is neither, and Panama City
-> Beach traffic in July makes a liar out of anyone who tries.
+| To | Route |
+| --- | --- |
+| **Palmetto Trace** | *"across the street From Pier Park"* — Back Beach Rd → Cambridge Blvd → Biltmore Pl |
+| **Bahama Beach** | Hwy 98 & Clara → south on Clara → right on Front Beach Rd → under ¼ mile → Oleander Dr |
+| **El Centro Beach** | Hwy 79 south → left on Hwy 98 (PCB Pkwy) → right on Lullwater Dr |
+| **Bay Point** | Hwy 98 → south on Thomas Dr → Magnolia Beach Rd → Delwood Beach Rd → Bay Point gate |
+| **Treasure Cove** | Hwy 98 (Back Beach Rd) → Navy Blvd/Thomas Dr → Sunset Dr → becomes Oak St |
+
+> **Say them as ranges.** *"About ten minutes, more in summer."* Not *"eleven
+> minutes."* Mike's rule, and it is the right one: *"No one cares if you're 5 or
+> 10 minutes off of your timing. No one will remember you even said it."*
+> Precision matters where a buyer could be misled — price, availability, what is
+> permitted, what you can see from a property. A drive time is not one of those.
+
+**Still `[KAREN]`, because nothing computed them:** the nearest beach access and
+the nearest Publix to each. Say them loosely or leave them out.
 
 ---
 

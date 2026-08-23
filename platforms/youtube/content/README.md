@@ -16,7 +16,7 @@ library and are referenced by path, per
 
 | Package | What it is | Status |
 | --- | --- | --- |
-| [**Five Kinds of Life in Panama City Beach**](pcb-five-neighborhoods/README.md) | ~30 min vlog tour of five neighborhoods, built from Counts-held listing media and 21 min of Pier Park aerials | Ready to record — [3 blocking `[KAREN]` items](pcb-five-neighborhoods/README.md#before-you-record) |
+| [**Five Kinds of Life in Panama City Beach**](pcb-five-neighborhoods/README.md) | ~33 min vlog tour of six neighborhoods — five Counts-held beach-side homes plus Latitude Margaritaville Watersound as the 55+ option | Ready to record — [3 blocking items](pcb-five-neighborhoods/README.md#before-you-record) |
 
 This channel has **one published video**, so this is effectively its launch.
 Against the four permanent assets every relocation channel needs — pros and cons,
