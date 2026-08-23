@@ -334,6 +334,36 @@ it is unfakeable.
 The joke is on **the place and the sequencing**, not on anyone in it, which is
 why it clears Mike's rule.
 
+> ### 📄 Supporting factual copy — not a tenth beat
+> The middle sentence, *"the hospital is still being built,"* is now backed by
+> Mike being on site and by **2:24 of Karen's own drone footage**. Where the
+> hospital comes up at length — most likely the amenities video rather than a
+> phase map — this is the safe form, and it is **stronger than a date** because
+> it rests on footage nobody else has:
+>
+> > There's a full hospital going up on Bay Parkway. FSU Health Panama City Beach. I've been out and shot it myself, so this isn't a rendering, it's five storeys of concrete already standing. I'm not going to give you an opening date, because that's moved more than once.
+>
+> `[KAREN]` — hers to approve or strike like anything else. **This is factual
+> copy, not a humor beat.** The approved set is still nine.
+>
+> **What the footage supports, checked frame by frame:**
+>
+> | Safe to say | Notes |
+> | --- | --- |
+> | **Full hospital, and big** | Mike, first-hand. The elevation is very long |
+> | **Structure topped out**, bare concrete | Confirmed across three sampled frames |
+> | **Five levels** | Ground plus four window rows. Say *"five storeys"* only if Karen is comfortable counting it that way; *"several storeys"* is safer and costs nothing |
+> | Roof mechanical being set, site graded, retention pond in | Visible |
+> | **A neighbouring building is already finished and occupied** | Clad, glazed, landscaped, with a marked car park. This is the medical office building that already opened, and it is a **useful** shot: the campus is partly operational |
+>
+> ⚠️ **Two cautions from the frames.**
+> **Cladding has not visibly started** on the main elevation in the frames
+> sampled, so do not say brick is going on.
+> **Do not call the water "the bay."** The horizon in this footage shows the
+> **Panama City Beach beachfront high-rises** and open water, which reads as the
+> Gulf side. Say *"you can see the beach high-rises from the site"* or say
+> nothing about the water.
+
 **5. Bingo** · `[KAREN]` · **first person, and Mike was explicit that this one is hers**
 
 > I said I'd never play bingo. I'm too young for bingo. It is now one of my favorite things about Tuesdays.
@@ -663,14 +693,43 @@ on the first cut, cut beat 1 there and let the Phase 6 deep dive carry it.
 
 ## Pre-record verification
 
-Nothing in the nine is spoken until these are ticked. Four of them are facts that
-a viewer can check in ten seconds, which is exactly why they are here.
+Nothing in the nine is spoken until these are ticked. Most of them are facts a
+viewer can check in ten seconds, which is exactly why they are here.
 
-- [ ] **Beat 3 — the dentist and dermatologist.** Confirm both are **open** in West Bay Center. `west_bay_center.json` currently lists **West Bay Dental** and **Dermatology Associates** as open, sourced from Karen, so this is checkable against her own file. Confirm nothing has closed.
-- [ ] **Beat 3 — the hospital.** The hospital under construction at Highway 79 and **Bay Parkway** (Philip Griffitts Sr. Parkway) is **FSU Health**. ⚠️ **A listing description in the PCB package wrongly named it Tallahassee Memorial. Mike corrected this.** Tallahassee Memorial HealthCare is a **partner** on the FSU Health–TMH campus, which is how the error happened, but the hospital's name is **FSU Health** and that is what Karen says. Two further traps: a medical office building on the campus **already opened**, so *"the hospital is still being built"* means the hospital specifically, and the opening date has moved more than once — **do not state a year.** Karen has **2m25s of her own FSU Health footage** in the M365 library; use it rather than stock.
-- [ ] **Beat 8 — the 1936 date.** *Cool Water* was written by **Bob Nolan in 1936** and first recorded by the **Sons of the Pioneers in 1941**. The line as approved says *"a 1936 cowboy song by the Sons of the Pioneers"*, which compresses those two. It is safe. If anyone challenges it, the precise answer is *"written in 1936, and the Sons of the Pioneers recorded it"*. If the date ever falls into doubt, say **"a 1930s cowboy song"**. Never speak a year nobody has checked.
-- [ ] **Beat 4 — the lawn situation.** Re-check **within 24 hours of publishing**, same volatility convention as inventory. Confirm the rumoured second landscaper is still a rumour, and if it has become fact, the beat still stands as written because *look, and ask* survives the fix.
-- [ ] **Beat 2 — the HOA pet policy.** `[KAREN]` A cat joke invites the question, and the next comment is *"can I bring two cats?"*. Know the answer before the joke goes out.
+**Status after Mike's confirmations on 2026-08-23: only the lawn check is
+genuinely outstanding, and it cannot be done early by definition.**
+
+| Item | Status |
+| --- | --- |
+| HOA pet policy | ✅ **4 pets maximum** |
+| Hospital type and name | ✅ **A full hospital. FSU Health Panama City Beach** |
+| Hospital opening date | ⛔ **Never speak it** |
+| West Bay Center tenants | ✅ In `tools/map/west_bay_center.json` |
+| *Cool Water* 1936 | ✅ Verified |
+| Lawn re-check | ⏳ **24h before publish** |
+
+- [x] **Beat 2 — the HOA pet policy. CONFIRMED by Mike: no more than 4 pets.** ⭐ Record this as a **buyer fact in its own right**, not merely joke support. Pet limits are a real 55+ purchase question and almost nobody answers them on camera. **Bella, Cinder and Buddy are three of a permitted four**, which Karen can land lightly on the way past.
+- [x] **Beat 3 — the hospital. CONFIRMED by Mike, who has been on site and shot it himself:** *"It is a full hospital. Big."* The name is **FSU Health Panama City Beach**, which is also the name on Karen's own folder. ⚠️ **A listing description in the PCB package wrongly named it Tallahassee Memorial. Mike caught and corrected that.** TMH is a **partner** on the FSU Health–TMH campus, which is how the error happened; the hospital is **FSU Health**.
+- [ ] **Beat 3 — the opening date. Still unconfirmable, and still must not be spoken.** It has moved more than once, and the construction stage in Karen's own footage — structure topped out, envelope barely begun — is consistent with a long way still to run. **No year.**
+- [ ] **Beat 3 — the dentist and dermatologist.** Confirm both are still **open** in West Bay Center on record day. `west_bay_center.json` lists **West Bay Dental** and **Dermatology Associates** as open, sourced from Karen, so it is checkable against her own file.
+- [x] **Beat 8 — the 1936 date.** *Cool Water* was written by **Bob Nolan in 1936** and first recorded by the **Sons of the Pioneers in 1941**. The approved line compresses those two and is safe. If challenged, the precise answer is *"written in 1936, and the Sons of the Pioneers recorded it."* If the date ever falls into doubt, say **"a 1930s cowboy song."** Never speak a year nobody has checked.
+
+### ⏳ Beat 4 — the lawn re-check, as a decision rather than a chore
+
+**Within 24 hours of publishing**, one question to Mike or Karen:
+
+> **Are lawns still visibly in poor shape when you drive the community?**
+
+| Answer | Action |
+| --- | --- |
+| **Yes** | Beat 4 **ships as written** |
+| **No, visibly improved** | **Soften** to *"this is being addressed"* |
+
+Phrased as a two-branch decision on purpose. It makes a two-minute task out of
+what would otherwise read as a vague obligation, and it is the same volatility
+convention as inventory. **Still never name the contractor, and still never
+state the fix.**
+
 - [ ] **Beat 9 — delivery.** The lyric is comma-separated, with a pause before *"In a Margaritaville community."* Use `<break time="0.5s" />` rather than trusting punctuation. Check it on playback, not on the page.
 - [ ] **Beat 9 — the giggle.** Karen's own recording, dropped in on the edit. Never synthesised.
 - [ ] **Every `[...]` cue is stripped before the script goes to ElevenLabs.** On a v2-family voice the model **speaks the cue aloud** and nothing warns you. `<break>` tags are the one exception: they are real input and stay in.
