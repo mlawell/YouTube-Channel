@@ -811,6 +811,10 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
       [`karen-presenter-treatment.md`](../karen-presenter-treatment.md)
 - [ ] **No punchline is delivered full-frame.** Spend the synthetic face on
       sincerity and the cutaways on comedy
+- [ ] **No narrated sight lines.** Nothing says "you can see X from here" unless
+      Karen or Mike has stood there and confirmed it. Aerials show what a drone
+      sees, not what a resident sees. See
+      [`karen-presenter-treatment.md`](../karen-presenter-treatment.md#-drone-footage-shows-what-a-drone-sees)
 - [ ] **No location audio in the final mix.** Camera sound stripped, bed plus
       ducked narration using `LM Island Breeze - Tour Bed.mp3` against the
       `Mix QA (narration+duck)` reference. Never bare — production value is
