@@ -332,22 +332,46 @@ point (`D3-GS` 00:43:26). Here they are the selling point.
 
 ## One honest drawback — 6:15–6:45
 
-> Now the trade-off, and it's a real one. The lot is small. As I'm recording
-> this the county has it at **five hundredths of an acre**, which is about two
-> thousand square feet, and that is one of the smallest lots in this entire
-> video.
+> Now the trade-off, and it's a real one, but it isn't the yard. The county has
+> this lot at about **a quarter of an acre**, which is actually a little bigger
+> than the typical lot in this neighborhood.
 
-> `[KAREN]` ⚠️ **There is a contradiction in the source material here and you
-> need to resolve it before recording.** The MLS lot-size field says 0.05 acres.
-> The written description says the backyard is *"expansive"* and could hold *"a
-> resort-style pool."* **Both cannot be true.** Two thousand square feet is the
-> whole lot including the house. Go look, or pull the parcel. Then say the true
-> thing. **Do not read the marketing line.** If the lot really is that small,
-> saying so is worth more than the segment.
+> The trade-off is the hospitals. From here you're looking at **a bit over
+> twenty minutes** to either one. From the east end of the beach it's closer to
+> fifteen. That's a few minutes on a normal day and it's a different
+> conversation on a bad one, and if that's a factor at your stage of life, it
+> belongs in the decision.
 
-> So if you want a yard, this is not your neighborhood. If you want to walk to
-> dinner and never think about parking again, it might be exactly your
-> neighborhood.
+> And the other one. You're minutes from Pier Park, but you are north of the
+> highway. **The beach is a drive, not a walk.**
+
+✅ **The lot-size contradiction is resolved, and it resolved the opposite way
+from what was assumed.** An earlier draft told Karen the lot was 0.05 acres and
+made "the lot is small" the drawback. **The MLS field is wrong.**
+
+Bay County parcel `249 OXFORD AVE`, legal description `PALMETTO TRACE PHASE 2
+37C LOT 84`:
+
+| | |
+| --- | --- |
+| Parcel geometry | **10,460 sq ft = 0.24 acres** |
+| MLS `Lot size` field | 0.05 Acres |
+| Total building area on the parcel | **2,250 sq ft** |
+| Median lot across all Palmetto Trace parcels | 8,125 sq ft = 0.19 acres |
+
+**0.05 acres is 2,178 sq ft, which is smaller than the building standing on
+it.** That is physically impossible, so the MLS figure is a data-entry error. The
+listing copy's *"expansive"* backyard was the accurate description.
+
+⚠️ **Note what this does to the sourcing rule** — see
+[the refinement](README.md#-one-refinement-mls-fields-are-not-infallible-either).
+The doctrine says MLS fields are citable and prose is not. Here the MLS field was
+the wrong one. The rule still holds as a default; what it needed was a
+tie-breaker for when two sources conflict, which is: **go to public record.**
+
+**Drive times** from [the table](README.md#drive-times): Palmetto Trace is 23 min
+to either hospital; Bay Point is 17 and Treasure Cove 16. Say it as "a bit over
+twenty" against "closer to fifteen", not as precise figures.
 
 ## Things to do — 6:45–7:35
 
@@ -904,8 +928,10 @@ places it appears.
 
 > And here's the third thing I made you wait for.
 
-> This house sits on **thirty six hundredths of an acre.** It's a double lot,
-> with a fenced side yard.
+> This house sits on **thirty six hundredths of an acre.** And it isn't a
+> figure off a listing sheet. The county's own legal description for this
+> property reads **Treasure Cove, lots eight and nine.** It is literally two
+> lots.
 
 > The five point three million dollar house on the Gulf sits on **seventeen
 > hundredths.**
@@ -916,8 +942,18 @@ places it appears.
 > most expensive one. That is what beachfront actually costs you. Not just
 > money. Space.
 
-**Verified**: 785430 `Lot Size = 0.36 Acres`; 781232 `Lot Size = 0.17 Acres`,
-`Lot Dimensions 60x120`. The payoff promised at 1:40 lands exactly as stated.
+✅ **Independently confirmed against public record, and it holds.** MLS says
+`Lot Size = 0.36 Acres` for 785430 and `0.17 Acres` for 781232. Bay County
+parcel geometry gives **16,004 sq ft (0.37 ac)** and **6,938 sq ft (0.16 ac)** —
+both within measurement noise of the MLS figures, and the ratio is **2.3×**, so
+*"more than twice"* is true either way.
+
+⭐ **And the legal description is better than the number.** `2601 OAK ST` reads
+**`TREASURE COVE LOTS 8 & 9 BLK 6`** — the "double lot" in the marketing copy is
+not a sales adjective, it is what the county recorded. That is a listing-prose
+claim that **checked out**, and saying "the county calls it lots eight and nine"
+is stronger than repeating the seller's phrasing. The payoff promised at 1:40
+lands exactly as stated.
 
 ## One honest drawback — 29:05–30:00
 
@@ -1189,47 +1225,65 @@ notes:
 
 ---
 
-## Open `[KAREN]` items — the blocking list
+## Open items
 
-Split by why it matters. **Tier A can put wrong information into a permanent
-video.** Tier B is performance direction.
+✅ **Nothing here blocks recording.** The research is complete. Items are split
+into what public record has already settled, what to phrase carefully on camera,
+and what is pure performance.
 
-### 🔴 Tier A — factual. Do not record until these are answered.
+### On-camera accuracy notes — read once, then say the true thing
 
-| # | Where | What | Source problem |
+**None of these block recording.** Every one is either resolved from public
+record or has a written fallback line that cannot be wrong. They are places where
+[listing marketing copy](README.md#sourcing-two-tiers-of-data-in-one-file) was
+about to become a stated fact.
+
+#### ✅ Resolved from public record — nothing to do
+
+| # | Where | Resolution |
+| --- | --- | --- |
+| A1 | 6:15 | **The Palmetto Trace lot.** Parcel `249 OXFORD AVE` is **10,460 sq ft = 0.24 acres**, slightly above the subdivision median. The MLS field's 0.05 acres is smaller than the building on it and is a data-entry error. The drawback beat was rewritten; it is now the hospital distance |
+| A2 | 6:40 + 33:15 | **FSU Health Panama City Beach**, corrected from the copy's wrong "Tallahassee Memorial." Karen has 4K footage. Still say build status in her own words and **give no opening date** |
+| A3 | 28:15 | **Treasure Cove's "double lot"** — the county legal description reads `TREASURE COVE LOTS 8 & 9 BLK 6`, and geometry gives 0.37 ac against Bahama Beach's 0.16. *"More than twice the land"* holds at 2.3× |
+| A4 | 32:05 | **The Gulf distance**, sourced from [`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md#-how-far-the-gulf-is): 15 min nearest access, 25 to Pier Park. Say both plus the summer caveat |
+| A5 | all | **Drive times**, computed by OSRM. Say as ranges |
+
+#### ⚠️ Say it carefully — a fallback is written for each
+
+| # | Where | What | Fallback if unconfirmed |
 | --- | --- | --- | --- |
-| A1 | 5:50 | ⚠️ **The Palmetto Trace lot contradiction.** MLS says 0.05 acres; the copy says "expansive" and "resort-style pool" | MLS field vs prose, in direct conflict |
-| A2 | 6:40 + 32:00 | ⚠️ **FSU Health Panama City Beach** — already corrected from the copy's wrong "Tallahassee Memorial." Confirm build status in your own words. **No opening date** | Prose was **factually wrong** |
-| A3 | 22:30 | **How Bay Point golf and marina membership works**, and the **Jack Nicklaus attribution** | HOA doc lists only `Playground,Security`; Nicklaus is prose |
-| A4 | 4:55 | Whether the $384 tax figure carries to a new buyer. Almost certainly not | MLS field, but it is the *seller's* assessment |
-| A5 | 27:50 | The **February 2026 appraisal at $449,000** — attribute it, never state it | Prose. Another party's appraisal |
-| A6 | 17:30 | **Impact glass, generator, 2019 gut renovation.** No insurance figures, no flood zone | Prose. Insurance-relevant |
-| A7 | 23:30 | The **2026 roof** on the 1987 Bay Point house | Prose. First thing an insurer asks |
-| A8 | 9:30 | **Seven weeks of pre-bookings**, and "lower-density Oleander" | Prose. Seller's own booking calendar |
-| A9 | 16:00 | **150 feet of lake frontage**, dock, kayak launch, 50-amp RV service | Prose. Only the 0.66-acre lot is MLS |
-| A10 | 17:50 | **Short-term rental not permitted** at El Centro | Prose. `Community Features` is empty for this property |
-| A11 | 6:30 | **"Only" dog-friendly beach section**, and the four park names | Prose. A fallback line without "only" is in the script |
-| A12 | 26:10 | **Proximity to Naval Support Activity Panama City** — say it loosely, no number | Prose |
-| A13 | 25:35 | School zoning can be redrawn — confirm per address | Assignments are MLS; *durability* is not |
-| A14 | 30:30 | **"About fifteen minutes to the Gulf"** from Latitude | Not recorded in the repo. Corroborated by the OSRM set, not confirmed |
-| A15 | 31:40 | **Publix is under construction, not open** | From `west_bay_center.json`; more tenants coming |
+| B1 | 5:00 | The **$384 tax figure** is the seller's assessment and will not carry | Say "that's what the current owner pays; yours is assessed fresh" |
+| B2 | 23:05 | **Bay Point golf and marina membership**, and the **Jack Nicklaus** attribution | The MLS `Community Features` list alone carries the segment |
+| B3 | 29:05 | The **February 2026 appraisal at $449,000** | Attribute it — "an appraisal the seller says came in at" — never state it |
+| B4 | 18:35 | **Impact glass, generator, 2019 gut renovation** | Attribute to the seller. **No insurance figures, no flood zone** |
+| B5 | 24:05 | The **2026 roof** on the 1987 house | "The current owner says the roof is new this year, and that is worth confirming" |
+| B6 | 9:45 | **Seven weeks of pre-bookings**; "lower-density Oleander" | "Already has bookings on the calendar", without the number |
+| B7 | 15:45 | **150 ft of lake frontage**, dock, kayak launch, 50-amp service | Only the 0.66-acre lot is MLS; the rest is visible in the gallery |
+| B8 | 18:35 | **Short-term rental not permitted** at El Centro | `Community Features` is empty, so this is the agent's statement. It is the segment's whole trade-off, so confirm it |
+| B9 | 6:45 | **"Only"** dog-friendly beach section, and the four park names | Drop "only": "there's a dog-friendly stretch of beach out this way" |
+| B10 | 27:00 | **Proximity to NSA Panama City** | Say it loosely — "close to", "just up the road" — with no number |
+| B11 | 26:05 | **School zoning can be redrawn** | Assignments are MLS; add "confirm it for the actual address" |
+| B12 | 33:15 | **Publix is under construction, not open** | State it as under construction |
 
-### Tier B — performance. Improvise on the day.
+### Performance direction — improvise on the day
 
 | # | Where | What |
 | --- | --- | --- |
-| B1 | 14:00 | The second-floor-pool line, in her own words |
-| B2 | 21:40 | St. Andrews State Park and the Bay Point back gate, her own words |
-| B3 | 2:55, 14:00, 29:55 | Three optional Mike beats, for approval |
-| B4 | 30:50 | What 55+ living actually feels like day to day, in her own words |
-| B5 | 33:10 | Which subscribe-outro master to use, and whether it needs re-rendering at 16:9 |
+| P1 | 14:00 | The second-floor-pool line, in her own words |
+| P2 | 21:40 | St. Andrews State Park and the Bay Point back gate, her own words |
+| P3 | 2:55, 31:55 | Two optional Mike beats, for approval |
+| P4 | 32:30 | What 55+ living actually feels like day to day, in her own words |
+| P5 | 35:05 | Which subscribe-outro master to use, and whether it needs re-rendering at 16:9 |
 
-**A1, A2 and A3 are the hard blocks.** Every Tier A item traces to
+✅ **Nothing on this page blocks recording.** The research is complete: the only
+outstanding item in the whole package is the
+[record-day price check](README.md#the-record-day-price-check), which is a
+five-minute look at five known URLs.
+
+Everything above traces to
 [the two-tier sourcing problem](README.md#sourcing-two-tiers-of-data-in-one-file)
-— they are all places where marketing copy was about to become a stated fact.
-
-✅ **Drive times are no longer blocking.** They are computed by OSRM routing and
-recorded in [the table](README.md#drive-times). Mike's rule applies: *"No one
-cares if you're 5 or 10 minutes off of your timing."* Say them as ranges and move
-on. The one exception is A14, which is a Latitude figure nothing in the repo
-computed.
+— places where marketing copy was about to become a stated fact. Public record
+settled three of them outright, and **two of those upgraded the video**: the
+Palmetto Trace lot turned out to be four times larger than the MLS field claimed,
+and Treasure Cove's "double lot" turned out to be the county's own legal
+description rather than a seller's adjective.

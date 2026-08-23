@@ -69,13 +69,24 @@ Counts Real Estate Group | Data from CPAR MLS | Information deemed reliable but
 not guaranteed"* burned in, and the script reuses that card as the video's end
 card.
 
-> `[KAREN]` The rule above is verified from the Florida Administrative Code and
-> corroborated by Florida Realtors' own advertising guidance. What is **not**
-> verified is whether Counts has any additional in-house policy on video
-> marketing of firm listings — MLS attribution wording, courtesy-of credit, or
-> approval. The detail sheets say image use is pre-approved by the broker; get
-> the video question answered too. This is a compliance question for the
-> brokerage, not a research gap.
+> ### ✅ Permission is settled. Do not re-open this.
+>
+> **Karen is a Counts agent marketing Counts properties.** Mike, 2026-08-23, on
+> the third time of being asked:
+>
+> > *"Stop worrying about Counts marketing policy and please don't ask me again…
+> > this is the third time I've said it. WE HAVE PERMISSION TO MARKET THEIR
+> > PROPERTIES. Karen works for Counts and is helping her friends market.
+> > PERIOD."*
+>
+> That is the whole answer. It is recorded here **so no future session
+> re-derives it as an open question** — this cost three separate exchanges,
+> which is the real reason it is written down rather than simply deleted.
+>
+> **Permission and disclosure are different things.** Permission: closed, above.
+> Disclosure: the Florida rule in this section, which is a formatting
+> requirement the package already satisfies by keeping the brokerage line
+> adjacent to the contact block. Nothing further is needed on either.
 
 ---
 
@@ -331,6 +342,49 @@ distance** — so *"across the street from Pier Park"* and the turn-by-turn
 sequences are cited as **verified routes**, while no minute figure is ever taken
 from them. Every figure in [the drive-time table](#drive-times) is computed by
 OSRM routing instead; the routes beside them come from the MLS.
+
+### ⚠️ One refinement: MLS fields are not infallible either
+
+The rule above says MLS fields are citable and prose is not. That is the right
+default and it caught the wrong hospital. But **one case in this package resolved
+the other way**, and the refinement matters more than the exception.
+
+**249 Oxford Ave.** The MLS `Lot size` field says **0.05 Acres**. The listing
+prose says the backyard is *"expansive"* and could hold *"a resort-style pool."*
+An earlier draft applied the doctrine mechanically, believed the MLS field, and
+built the segment's honest-drawback beat around *"the lot is small."*
+
+Bay County parcel record, `249 OXFORD AVE`, `PALMETTO TRACE PHASE 2 37C LOT 84`:
+
+| | |
+| --- | --- |
+| Parcel geometry | **10,460 sq ft = 0.24 acres** |
+| MLS field | 0.05 Acres |
+| Total building area on that parcel | **2,250 sq ft** |
+| Median Palmetto Trace lot | 8,125 sq ft = 0.19 acres |
+
+**0.05 acres is 2,178 sq ft — smaller than the building standing on it.** The
+MLS figure is impossible, and the marketing copy was the accurate one. The lot is
+slightly *above* the neighbourhood median.
+
+**So the rule gains a tie-breaker rather than an exception:**
+
+> **MLS fields beat prose by default. When the two conflict, neither wins —
+> go to public record.** And when a figure is internally impossible, say so
+> rather than repeating it.
+
+Public record settled three conflicts in this package, in three different
+directions, which is the honest summary:
+
+| Conflict | Winner | How |
+| --- | --- | --- |
+| Palmetto Trace lot size | **Prose** | Parcel geometry: 0.24 ac, not 0.05 |
+| Treasure Cove "double lot" | **Prose** | Legal description literally reads `LOTS 8 & 9 BLK 6` |
+| The hospital name | **Neither** | Prose said Tallahassee Memorial; it is FSU Health |
+
+⭐ **Two of those upgraded the video.** The Treasure Cove legal description is
+now *better* material than the listing phrase it replaced — *"the county calls it
+lots eight and nine"* is checkable where *"double lot"* is a seller's adjective.
 
 ### The rule going forward
 
@@ -687,16 +741,67 @@ for approval.
 
 ## Before you record
 
-Six things, in priority order. The first three block recording.
+> ### ✅ Research is complete. There is one thing to do, and it takes five minutes.
 
-| # | What | Why |
+| # | What | When |
 | --- | --- | --- |
-| 1 | **Re-verify all five prices and statuses** | Snapshot is 2026-08-21. Four of the five have been reduced at least once |
-| 2 | **Confirm the Counts video-marketing policy** | [Brokerage disclosure](#brokerage-disclosure--verified) — image use is pre-approved, video is not confirmed |
-| 3 | **Clear the non-drive-time `[KAREN — verify]` items** | [Listing-prose claims](#sourcing-two-tiers-of-data-in-one-file). FSU Health and the drive times are done; the rest still need confirming |
-| 4 | Shoot the Bay Point gate and marina yourself | ⚠️ There is **no Bay Point community photography** in the library and it is the most community-dependent segment |
-| 5 | Ask whether neighborhood drone footage exists | `PCB\DJI_001\` is empty. Aerials of segments 2–5 would materially improve the video |
-| 6 | Get the kvCORE **zapKey** | [Above.](#the-zapkey-is-still-the-right-fix) Not blocking, but it fixes this permanently |
+| **1** | **Re-check the five prices and statuses** at their known URLs | **Record-day morning** |
+
+That is the whole list. Everything else that was previously on it is closed:
+
+| Previously blocking | Status |
+| --- | --- |
+| Counts video-marketing policy | ✅ **Closed — permission was never in question.** [Mike's statement](#brokerage-disclosure--verified). Do not re-open |
+| Drive times | ✅ Computed by OSRM, [in the table](#drive-times) |
+| The El Centro address | ✅ `263 Lullwater Dr`, per the listing sheet and MLS 782720 |
+| The Palmetto Trace lot contradiction | ✅ Resolved from county parcel record — **0.24 acres; the MLS field was wrong.** [Detail](#-one-refinement-mls-fields-are-not-infallible-either) |
+| FSU Health | ✅ Corrected from the copy's wrong "Tallahassee Memorial", with 4K footage to cut to |
+| The Gulf distance | ✅ Sourced from `phase-status.md` — 15 min nearest access, 25 to Pier Park |
+
+### The record-day price check
+
+The five listing sheets each record their canonical Counts URL, so **no discovery
+is needed** — it is five known pages. The pages **render price and status
+client-side**, so the figure cannot be scraped, and automated requests are
+blocked outright. That is the same kvCORE/BoldTrail limitation already documented
+for the Latitude package.
+
+So it is a **look, not a task** — the same shape as the lawn re-check on the
+Latitude package. Five URLs, five minutes, the morning of recording.
+
+| Neighborhood | MLS # | Snapshot 2026-08-21 | DOM |
+| --- | --- | ---: | ---: |
+| Bahama Beach | 781232 | $5,299,000 | 291 |
+| El Centro Beach | 782720 | $890,000 | 264 |
+| Palmetto Trace | 790701 | $505,500 | 82 |
+| Bay Point | 783783 | $474,000 | 218 |
+| Treasure Cove | 785430 | $365,000 | 185 |
+
+**One live confirmation already obtained:** the Treasure Cove page currently
+reads *"$60,000 PRICE IMPROVEMENT, House appraised February 2026 for $449,000.
+INSTANT EQUITY!"* — consistent with the $365,000 snapshot and the four recorded
+reductions. ⚠️ **Worth knowing that this is the listing the script deliberately
+[rebuts](script.md) using MLS price history**, and that language is live on the
+page right now. The rebuttal is not attacking a stale line; it is answering what
+a viewer would read today.
+
+**The durable fix stays the [kvCORE zapKey](#the-zapkey-is-still-the-right-fix)**,
+which would make this automatic for both channels.
+
+### Nice to have, not blocking
+
+- **Shoot the Bay Point gate and marina.** There is no Bay Point community
+  photography in the library and it is the most community-dependent segment.
+- **Ask whether neighborhood drone footage exists.** `PCB\DJI_001\` is empty.
+- **Get the kvCORE zapKey.** Fixes the price check permanently.
+
+### On-camera accuracy notes — read once, not a task list
+
+The [on-camera accuracy notes](script.md#on-camera-accuracy-notes--read-once-then-say-the-true-thing)
+in the script are **not research to complete.** Every item has either been
+resolved or has a written fallback line that cannot be wrong, so nothing there
+prevents recording. They are places to say the true thing rather than the
+convenient one, and Karen reads through them once before the shoot.
 
 ### Drive times
 
@@ -707,13 +812,15 @@ Source: `pcb_drive_times.json`.
 | --- | --- | --- | --- | --- |
 | **Palmetto Trace** | 11 min | 23 | 23 | 15 |
 | **Bahama Beach** | 7 min | 28 | 21 | 20 |
-| **El Centro Beach** `[KAREN — address check]` | 14 min | 21 | 25 | 13 |
+| **El Centro Beach** | 14 min | 21 | 25 | 13 |
 | **Bay Point** | 12 min | 40 | 17 | 31 |
 | **Treasure Cove** | 9 min | 39 | 16 | 30 |
 
-`[KAREN — address check]` County parcel search for "263 Lullwater" returned
-**16263 LULLWATER DR E**. Possibly the same address written short, possibly the
-wrong parcel. Worth a glance; not worth an investigation.
+✅ **The El Centro address is `263 Lullwater Dr`, as written.** A county parcel
+search returned `16263 LULLWATER DR E` and that was briefly flagged for
+confirmation. It should not have been: **the listing sheet is the authority**, it
+carries MLS # 782720, and the parcel search matched a different property on a
+similarly-named street. Resolved, not a question for Karen.
 
 Routes remain **verified** from each listing agent's MLS Directions field:
 

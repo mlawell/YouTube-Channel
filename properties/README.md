@@ -13,6 +13,27 @@ M365 roots (under `C:\Users\mikel\NWFL Beach Homes\NWFL Beach Homes - Documents`
 
 Both trees use the **same geographic prefix**: `County \ City \ [Area] \ Community \ …`.
 
+## ✅ Permission to market this media is settled
+
+**Karen is a Counts agent marketing Counts properties.** There is no outstanding
+permission question on any listing media in this library, and no video, script or
+plan should carry one. Mike, 2026-08-23:
+
+> *"Stop worrying about Counts marketing policy and please don't ask me again…
+> this is the third time I've said it. WE HAVE PERMISSION TO MARKET THEIR
+> PROPERTIES. Karen works for Counts and is helping her friends market. PERIOD."*
+
+It is recorded here, at the index for the media itself, **so no future session
+re-derives it as an open question.** It had already cost three separate
+exchanges before it was written down.
+
+**Do not confuse this with disclosure**, which is a different thing and does
+still apply: Florida Administrative Code **61J2-10.025** requires the licensed
+brokerage name adjacent to the point of contact information in advertising. That
+is a formatting requirement on the published piece, not a permission question,
+and the video packages already satisfy it by keeping
+`Brokered by Counts Real Estate Group` directly under the phone/email block.
+
 ## Organization standard
 
 Everything is filed under one geographic prefix, then branches by what it is:
