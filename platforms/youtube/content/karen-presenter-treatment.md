@@ -427,6 +427,32 @@ All under `…\Latitude Margaritaville Watersound\`:
 **Audio beds already exist:** `LM Island Breeze - Tour Bed.mp3`, and a mix-QA
 reference with ducking already applied.
 
+### 🏥 FSU Health Panama City Beach — drone footage
+
+`…\West Bay & HWY 79 Corridor\FSU Health Panama City Beach\FSU Health Panama City Beach 01.MP4`
+
+**2:24 · 3840×2160 · HEVC Main 10 · 59.94 fps · ~67 Mbps · 1.4 GB · aerial drone.**
+
+Karen's own footage of the hospital going up, and it is good: sharp, well
+exposed, showing a topped-out five-level concrete structure with a finished,
+occupied building beside it. **It is the proof that beat 3's "the hospital is
+still being built" is first-hand rather than repeated.** What it does and does
+not support on camera is set out in
+[`karen-voice-and-humor.md`](karen-voice-and-humor.md).
+
+> ⚠️ **This clip matches nothing else in the library and must be conformed
+> before intercutting.** Two separate mismatches:
+>
+> | | This clip | Everything else |
+> | --- | --- | --- |
+> | **Bit depth** | **10-bit** (`yuv420p10le`, Main 10) | The Pier Park plates are **8-bit** |
+> | **Frame rate** | **59.94 fps** | The 8K community footage is **30 fps** |
+>
+> Dropped into a 30 fps 8-bit timeline untouched, the grade will not match and
+> the motion will judder. **Pick one working space and one frame rate and
+> conform everything into it before the edit starts**, in the same pass as the
+> proxies below.
+
 ### 🐈 The cats — the one asset that lives outside the library
 
 **48 photographs**, foldered per cat, supplied by Mike:
@@ -646,6 +672,7 @@ time on most machines, and finding that out with an editor waiting costs a day.
 - [ ] Cut against the proxies
 - [ ] **Conform back to 8K only for shots that need reframing** — the pan, punch-in and reposition moves
 - [ ] Deliver **1080p**. The 8K is headroom, never a delivery format
+- [ ] **Conform the FSU Health clip** — it is **10-bit at 59.94 fps** against 8-bit 30 fps everywhere else. One working space, one frame rate, decided before the edit starts
 - [ ] **Extract stills for Phases 9 and 10** from their clips, at full 7680×4320
 - [ ] **Every selected shot checked for the cart windscreen post** at frame right, and cropped out where present
 - [ ] **No location audio in the final mix.** Bed plus ducked narration, using `LM Island Breeze - Tour Bed.mp3` against the `Mix QA (narration+duck)` reference
