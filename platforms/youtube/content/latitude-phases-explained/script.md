@@ -29,6 +29,13 @@ scrub to their phase, and scrubbing forward still accumulates watch time.
   new lots — by the time you watch this that will be different, message me and
   I'll send you today's actual list."** Never state it as a permanent fact.
 - `[B-ROLL]` — cutaway
+- `[HUMOR]` — an optional beat. **Karen's to cut, freely and without
+  consequence.** Nothing structural depends on one. Doctrine and the full line
+  bank: [`karen-voice-and-humor.md`](../karen-voice-and-humor.md)
+- `[MIKE]` — a beat referencing Karen's husband. Needs **Mike's** approval as
+  well as Karen's. He is a recurring character, never a source: the moment he
+  answers a question about plats or pricing, the authority has transferred and
+  it stops working
 - Spoken copy is the plain text. Everything in brackets is direction.
 
 ## Rules this script follows
@@ -239,6 +246,12 @@ twelve seconds. Do not add a "hey guys" in front of it.
 > pro or a con for you personally? Keep the "and maybe more" honesty — that's
 > what makes people believe the rest.]`
 
+`[HUMOR — optional, cut freely]`
+
+> It is a Margaritaville community. If a band on a Saturday night is a
+> dealbreaker for you, I'd gently suggest the problem is bigger than which
+> phase you pick.
+
 **Direction:** do not put a number, a radius or a hard ring on screen for the
 Bandshell. Sound varies with event volume, wind, season and tree cover, and
 Karen is speaking approximately. The map deliberately draws it as a soft
@@ -278,6 +291,11 @@ statement is `[KAREN]`-gated.
 > the model park are. Right off Highway 79, off Margaritaville Boulevard. If
 > you've been here, you've been here. `[INVENTORY]`
 
+`[HUMOR — optional, cut freely]`
+
+> One street. And they named it Margaritaville Boulevard. When the very first
+> road on the books is the song, you know exactly what you're buying.
+
 ### Phase 2 — 5:15
 
 `[FRAME 02_phase-2]` · `PB 28/8 · 213 homesites · 103 acres`
@@ -295,6 +313,12 @@ statement is `[KAREN]`-gated.
 
 > 3A. Landshark Boulevard, Lost Shaker Way, Island Breeze Avenue, Good Life
 > Way. Original phase, well established. `[INVENTORY]`
+
+`[HUMOR — optional, cut freely]`
+
+> Lost Shaker Way. That is a line out of Margaritaville, searching for my lost
+> shaker of salt. Somebody sat down with the lyrics and started handing out
+> street names, and honestly, Phase 3 is where they were trying hardest.
 
 ### Phase 3B & 3C — 6:10
 
@@ -322,6 +346,12 @@ statement is `[KAREN]`-gated.
 > Seaplane Drive, Tropics Avenue, Sandbar Lane, Castaway Court, Lime Drive,
 > Weekend Drive, Treasure Past Way. Central location, good walk to the Town
 > Center. `[INVENTORY]`
+
+`[HUMOR — optional, cut freely]`
+
+> Seaplane Drive is named after his actual seaplane. He owned a Grumman
+> Albatross called the Hemisphere Dancer. And Cheeseburger Drive runs into
+> Coral Reef Way, so if you can't find the house, follow the food.
 
 ### Phase 4B — 7:30
 
@@ -393,6 +423,14 @@ statement is `[KAREN]`-gated.
 > more neighbors, more of a street-life feel. Genuinely a preference thing.
 > `[INVENTORY]`
 
+`[HUMOR — optional, cut freely]`
+
+> Attitude Avenue is out here, and Latitude Boulevard is back in Phase 2.
+> Changes in latitudes, changes in attitudes. Two different phases, and I
+> refuse to believe that's an accident. Pencil Thin Avenue, by the way, is a
+> 1974 song about a moustache. Somebody proposed that and the county wrote it
+> down.
+
 ### Phase 7 — 10:15
 
 `[FRAME 12_phase-7]` · `PB 31/14 · 234 homesites · 363 acres`
@@ -402,6 +440,12 @@ statement is `[KAREN]`-gated.
 > Escape Avenue, Gypsy Palace Court, Strange Bird Court, Macadamia Lane,
 > Caribbean Soul Way. This is the western side, and it is quiet out here.
 > `[B-ROLL: Karen's own Phase 7 photos]` `[INVENTORY]`
+
+`[HUMOR — optional, cut freely]`
+
+> Gypsy Palace Court comes from a song Jimmy Buffett wrote with Glenn Frey
+> from the Eagles. That's the kind of thing you find out living here and then
+> cannot stop telling people.
 
 ### Phase 8 — 10:50 · **the longest beat in the video**
 
@@ -429,6 +473,19 @@ statement is `[KAREN]`-gated.
 
 `[B-ROLL: Karen's geotagged Phase 8 photo set]`
 
+`[HUMOR — optional, cut freely]`
+
+> And I have to be honest about the street names too. Cool Water Way, Escape
+> Avenue, Hang Loose Court. Not one of those is a Buffett song. I checked
+> properly. Out of sixteen recorded plats, I managed to buy on the only one
+> with no Jimmy Buffett in it at all.
+
+`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character,
+never a source: if he answers a question about plats or pricing, cut it.]`
+
+> Mike takes the cart to the Town Center. It is a nine minute walk. I have
+> stopped bringing it up.
+
 ### Phase 9 — 11:45
 
 `[FRAME 14_phase-9]` · `PB 33/57 · 306 homesites · 203 acres`
@@ -447,6 +504,14 @@ statement is `[KAREN]`-gated.
 > Lane, Lone Palm Lane, Parakeet Place, Concoction Court, Chill Street, Salty
 > Boulevard. And this is the end of the line for Area 1 — I'll come back to
 > that in a minute. `[INVENTORY]`
+
+`[HUMOR — optional, cut freely]`
+
+> Phase 10 has a Concoction Court and a Daiquiri Drive on the same plat.
+> Somebody at that naming meeting was having a very good afternoon.
+>
+> And before anybody tells me the street names get more Buffett as the phases
+> go on, I counted them. They don't. Phase 3 wins, and it isn't close.
 
 ---
 
@@ -483,6 +548,11 @@ verifiable, and it is the reason someone shares the video. Do not rush it.
 > is Phase 8.** It's a clean break — the even side goes 9498, then 9502. The
 > odd side goes 9499, then 9503. Nothing interleaves. Write that down if you're
 > shopping Escape Avenue.
+
+`[HUMOR — optional, cut freely. Goes AFTER the numbers, never on top of them.]`
+
+> I live on the Phase 8 end of it, which means I have had this exact
+> conversation in my own driveway.
 
 `[BEAT]`
 
@@ -608,7 +678,34 @@ same way as every other phase.
 >
 > I'm Karen Lawell, I live in Phase 8, and I'll see you around the community.
 
-`[END SCREEN — see metadata.md]`
+---
+
+## END SCREEN REDIRECT — 19:00–19:20
+
+**This block did not exist before and it is the one confirmed gap in this
+script.** Characteristic 8 is *"the instant the price lands, point them at the
+next video or a playlist"* (`D3-GS` 00:44:45), and
+[`channel-setup-config.md`](../../../../knowledge/channel-junkies/playbook/channel-setup-config.md)
+still has **`Add end screens to videos` unticked**. Every top performer analysed
+says it out loud while it is on screen.
+
+Three rules, all of them easy to break:
+
+1. **It goes after the close, never before.** Jesse marks the reverse order *"slightly wrong"* on air (`D3-GS` 00:54:16). The close above ends on the answer. This is the only thing allowed after it.
+2. **One element: the Phase 8 deep dive.** Not the playlist as well, not subscribe as well, not the channel icon as well — *"if you tell them to do three things they'll do zero"* (`D3-GS` 00:36:16). The MAP offer and the text-me ask already live in the close; do not repeat either here.
+3. **No facts in these twenty seconds.** Nothing checkable, no plat number, no inventory. The viewer is already reaching for the next thing.
+
+**Why Phase 8 and not Phase 1:** this is the hub, so it carries the best traffic
+on the channel, and it should spend that traffic on the residency proof rather
+than on the Sales Center. Phase 1 is mostly the model park. See the loop in
+[`phase-deep-dives/README.md`](../phase-deep-dives/README.md).
+
+> One last thing. Everything I just gave you about my own phase was thirty
+> seconds long, and there is a lot more to it. I made a whole video about
+> Phase 8, what it's actually like to live on that street, and it's on the
+> screen right now. Go and watch that one next.
+
+`[END SCREEN: Phase 8 deep dive. One element only. Last 15 to 20 seconds.]`
 
 ---
 
@@ -627,3 +724,15 @@ same way as every other phase.
 - [ ] **Runtime lands at 19:00 or longer** — the framework needs ≥7 min
       absolute AVD, and ~28% viewed is normal, so shorter cannot get there
 - [ ] Nothing in the final cut speaks a Minto lot number as an address
+- [ ] **End screen is one element only** — the Phase 8 deep dive — and the
+      redirect is **spoken** while the card is on screen, after the close
+- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. `[MIKE]` beats
+      need **Mike's** agreement as well as Karen's — see
+      [`karen-voice-and-humor.md`](../karen-voice-and-humor.md)
+- [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence and the
+      em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a
+      full stop, or "and". **Spoken lines only** — direction and tables are fine
+- [ ] No street is attributed to a Buffett song unless it is in the **confirmed**
+      table in
+      [`street-names-buffett.md`](../../../../properties/latitude-margaritaville-watersound/street-names-buffett.md).
+      In particular: **No Shoes Court is Kenny Chesney, not Buffett**

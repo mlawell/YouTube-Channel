@@ -95,6 +95,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 > Put together, that's **394 homesites across 212 acres** — all of it Phase 3, all of it on separate plats you can look up.
 
+`[HUMOR — optional, cut freely]`
+
+> Phase 3 has more Jimmy Buffett in it than any other phase out here. Seven streets I can trace to a real song. It is also the phase nobody can agree is one phase. Make of that what you will.
+
 ## THE CART RUN — 2:00–4:00
 
 **Direction:** this is the segment nobody else has, and it only works if it is real. Film it in one take from the driveway to the Town Center, clock visible or timer overlaid. Say the speed out loud.
@@ -111,6 +115,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
+`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
+
+> If a golf cart goes past you slightly too fast on Landshark Boulevard, that is Mike, and I would like to apologise on his behalf now.
+
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
 > Highway 79 is about **a quarter of a mile** from the middle of this phase in a straight line. `[ON SCREEN: ¼ mile to Hwy 79]`
@@ -118,6 +126,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 `[KAREN — first-hand: this is one of the close ones. Can you hear 79 here? Say what it actually sounds like, and when.]`
 
 `[KAREN — first-hand: the Bandshell. Your own line is that a loud show carries for miles, so it is not how you pick a phase. Say whether you hear it here, and whether that is a plus or a minus for you. No distances, no radius — it varies too much.]`
+
+`[HUMOR — optional, cut freely]`
+
+> Breathe Out Way is from a song he wrote after Hurricane Katrina. Breathe in, breathe out, move on. Out of every street name in this community, that is the one I think about.
 
 ## WHAT PEOPLE WHO LIVE HERE SAY — 5:30–7:30
 
@@ -137,13 +149,21 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 **Never** imply this phase is priced differently from another. Price follows the model, the collection and the homesite premium.
 
-## CLOSE — 10:00–10:45
-
-> If you want to see how this phase fits against the other nine, the full phase map video is linked below — every one of the sixteen recorded plats, with the book and page.
+## CLOSE — 10:00–10:30
 
 > And if you want today's actual list for Phase 3, message me. I live here.
 
-`[END SCREEN: flagship phase-map video + next phase in the series]`
+## END SCREEN REDIRECT — 10:30–10:45
+
+**One element: Phase 4.** Nothing else on the card. No playlist, no subscribe button competing with it, no channel icon — *"if you tell them to do three things they'll do zero"* (`D3-GS` 00:36:16). Say it out loud while it is on screen; every top performer does.
+
+**Why Phase 4:** Same trap, next instance: 4A and 4B interlock and get mixed up the same way 3A, 3B & 3C and 3D do.
+
+> And if three separate plats pretending to be one phase bothered you, wait until you meet Phase 4. That one is on the screen right now.
+
+`[END SCREEN: Phase 4. One element only. Last 15 seconds.]`
+
+**Put no facts in this block.** It is the last fifteen seconds, the viewer is already reaching for the next thing, and anything checkable said here is said to nobody.
 
 ---
 
@@ -155,3 +175,5 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] End screen card set to **one element only** — Phase 4 — and the redirect line spoken over it
+- [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".

@@ -32,6 +32,7 @@ Managed under the Gmail account `kalawell@gmail.com` (channel switcher):
 
 | Package | Channel | Status |
 | --- | --- | --- |
+| [Karen's voice and humor](content/karen-voice-and-humor.md) | Both | **Read first.** Voice, banned phrases, the em-dash rule, signature details and the line bank. These videos are avatar-narrated, so humor has to be written in advance or it does not exist |
 | [Latitude Margaritaville Watersound — Every Phase Explained](content/latitude-phases-explained/README.md) | Living in Latitude Margaritaville Watersound | Script ready, awaiting Karen's confirmations |
 | [Phase Deep Dives — one video per phase](content/phase-deep-dives/README.md) | Living in Latitude Margaritaville Watersound | Ten drafts + metadata + thumbnails generated. **Blocked on the [drive sheet](content/phase-deep-dives/drive-sheet.md)** — cart times need driving, residents need asking |
 

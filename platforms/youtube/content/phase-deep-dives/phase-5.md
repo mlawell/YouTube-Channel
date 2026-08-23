@@ -125,13 +125,21 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 **Never** imply this phase is priced differently from another. Price follows the model, the collection and the homesite premium.
 
-## CLOSE — 10:00–10:45
-
-> If you want to see how this phase fits against the other nine, the full phase map video is linked below — every one of the sixteen recorded plats, with the book and page.
+## CLOSE — 10:00–10:30
 
 > And if you want today's actual list for Phase 5, message me. I live here.
 
-`[END SCREEN: flagship phase-map video + next phase in the series]`
+## END SCREEN REDIRECT — 10:30–10:45
+
+**One element: Phase 6.** Nothing else on the card. No playlist, no subscribe button competing with it, no channel icon — *"if you tell them to do three things they'll do zero"* (`D3-GS` 00:36:16). Say it out loud while it is on screen; every top performer does.
+
+**Why Phase 6:** 6A and 6B & 6C are the two density extremes, a direct contrast with the amenity core this chapter just covered.
+
+> Phase 6 is next, and it holds both the emptiest and the busiest streets out here. That one is on the screen right now.
+
+`[END SCREEN: Phase 6. One element only. Last 15 seconds.]`
+
+**Put no facts in this block.** It is the last fifteen seconds, the viewer is already reaching for the next thing, and anything checkable said here is said to nobody.
 
 ---
 
@@ -143,3 +151,5 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] End screen card set to **one element only** — Phase 6 — and the redirect line spoken over it
+- [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".

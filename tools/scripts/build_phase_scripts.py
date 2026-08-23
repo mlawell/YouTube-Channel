@@ -62,6 +62,218 @@ CART_MPH = 30.0          # Karen's number, taken literally
 
 PHASE_ORDER = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
+# ---------------------------------------------------------------------------
+# The end-screen redirect loop
+# ---------------------------------------------------------------------------
+# Characteristic 8 is "the instant the price lands, point them at the next video
+# or a playlist" (`D3-GS` 00:44:45), and channel-setup-config.md still has
+# "Add end screens to videos" unticked. The drafts previously broke three rules
+# of it at once, so all three are fixed here rather than in the markdown, which
+# this tool overwrites:
+#
+#   1. ORDER. The redirect goes AFTER the close, never before it. Jesse marks
+#      the reverse "slightly wrong" on air (`D3-GS` 00:54:16). The last thing
+#      the viewer hears should be the answer they came for, not an ask. The old
+#      draft opened its close with "the full phase map video is linked below"
+#      and then asked for the message, which is exactly backwards.
+#   2. ONE ELEMENT. "If you tell them to do three things they'll do zero"
+#      (`D3-GS` 00:36:16). One video. Not video + playlist + subscribe + icon,
+#      which is what the old `[END SCREEN]` line and the metadata table asked
+#      for.
+#   3. SAY IT ALOUD while it is on screen. Every top performer analysed does.
+#      So it is spoken copy here, not a bracketed direction.
+#
+# Shape. Not a straight line and not ten spokes into the hub -- a tail feeding
+# a cycle, so every video has exactly one next and nothing dead-ends:
+#
+#     1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> flagship -> 8
+#                                          ^                          |
+#                                          +--------------------------+
+#
+# Each edge is chosen because the video that is ending just raised the question
+# the next one answers, which is the only reason a redirect ever gets taken.
+# The flagship points at Phase 8 rather than Phase 1 because Phase 1 is mostly
+# the Sales Center and the model park -- sending the hub's audience to the
+# weakest episode in the series would waste the best traffic on the channel.
+#
+# No facts live in this block. It is the last 15 seconds and nothing checkable
+# belongs there. No em-dashes either: this copy is read by ElevenLabs, and the
+# em-dash is a named AI tell (`D1-QA` 00:05:11).
+REDIRECT: dict[str, tuple[str, str, str]] = {
+    "1": ("Phase 2", "Phase 1 is where you park to look at the models. Phase 2 "
+          "is where people actually started living, and that one is on the "
+          "screen right now. Go and watch that next.",
+          "P1 is the Sales Center and the model park, so the obvious next "
+          "question is where anybody actually lives."),
+    "2": ("Phase 3", "Phase 2 is one of only three phases that can hear "
+          "Highway 79. Phase 3 is another one of them, and that video is on "
+          "the screen right now.",
+          "Continues the Highway 79 thread the chapter just opened."),
+    "3": ("Phase 4", "And if three separate plats pretending to be one phase "
+          "bothered you, wait until you meet Phase 4. That one is on the "
+          "screen right now.",
+          "Same trap, next instance: 4A and 4B interlock and get mixed up the "
+          "same way 3A, 3B & 3C and 3D do."),
+    "4": ("Phase 5", "Phase 5 is where the numbering gets genuinely strange, "
+          "because there is no Phase 5A. That video is on the screen right "
+          "now.",
+          "Ends the which-plat-am-I-in thread on the community's single "
+          "biggest myth."),
+    "5": ("Phase 6", "Phase 6 is next, and it holds both the emptiest and the "
+          "busiest streets out here. That one is on the screen right now.",
+          "6A and 6B & 6C are the two density extremes, a direct contrast "
+          "with the amenity core this chapter just covered."),
+    "6": ("Phase 7", "If it is space you are after, Phase 7 is the biggest "
+          "footprint in the community. That video is on the screen right now.",
+          "6A's low-density story runs straight into the largest phase."),
+    "7": ("Phase 8", "And here is the one I would watch next. Escape Avenue "
+          "runs out of Phase 7 and straight into Phase 8, which is where I "
+          "live. That video is on the screen right now.",
+          "The strongest handoff in the series: one street, two phases, and "
+          "the destination is the residency proof."),
+    "8": ("Phase 9", "Phase 8 is settled and built. If you want something "
+          "newer, Phase 9 is on the screen right now.",
+          "Established phase to the genuinely new one, which is the real "
+          "resale-versus-new-build decision."),
+    "9": ("Phase 10", "Phase 10 is the newest plat on the books and the "
+          "biggest one by homesite count. It is on the screen right now.",
+          "Newest to newest-and-largest."),
+    "10": ("the flagship phase map video",
+           "And that is the end of Area 1. If you want all ten phases laid "
+           "out on one map, with every plat book and page, that video is on "
+           "the screen right now.",
+           "P10 is the end of Area 1, so the only place left to go is the "
+           "whole map. Closes the loop back to the hub."),
+}
+
+
+# ---------------------------------------------------------------------------
+# Humor beats
+# ---------------------------------------------------------------------------
+# These videos are produced with HeyGen and ElevenLabs, so nothing can be
+# ad-libbed. An avatar reads what it is given, which makes humor a SCRIPTING
+# deliverable rather than a performance note -- if it is not written here it
+# will not exist. And it matters: YouTube throttles content that indexes high on
+# AI detection (`D1-QA` 00:03:34), and the "AI 20" rule says human intelligence
+# has to do 20% of the work (`D1-QA` 00:04:07). On a machine-narrated channel,
+# specific local humor IS that 20%.
+#
+# Doctrine and the full line bank:
+#   platforms/youtube/content/karen-voice-and-humor.md
+#
+# Rules enforced here:
+#   * At most 3 beats per deep dive, one every 90-120 seconds, never two in a
+#     row, and never in the last 20 seconds, which belongs to the redirect.
+#     The three slots are ~2:00 (where), ~4:00 (cart) and ~5:30 (noise), plus
+#     ~9:00 in Phase 8 only.
+#   * A beat is the EXIT from a chapter, never the entrance, so it never stands
+#     between a viewer and the thing they scrubbed to find.
+#   * NEVER on top of a hard fact -- not a plat book and page, not an address
+#     range, not an acreage, not an inventory number. The map's authority is the
+#     product and a joke sharing a breath with a plat citation devalues it.
+#   * If a phase has no good joke it gets none. Phases 4, 5 and 9 are empty on
+#     purpose; a forced bit is worse than silence.
+#   * No em-dashes: ElevenLabs reads the cadence and the em-dash is a named tell
+#     (`D1-QA` 00:05:11).
+#
+# Every street fact below is a CONFIRMED row in
+# properties/latitude-margaritaville-watersound/street-names-buffett.md.
+# Nothing here attributes a song that was not verified. In particular nothing
+# here touches No Shoes Ct (Kenny Chesney, not Buffett), Cool Water Way or
+# Escape Ave, and nothing claims Buffett density climbs by phase -- it does not,
+# r = +0.064.
+HUMOR: dict[str, list[tuple[str, str]]] = {
+    "1": [("where", "Phase 1 is one street long, and that street is "
+                    "Margaritaville Boulevard. When you name the very first "
+                    "road in the community after the song, you are telling "
+                    "people exactly what they are buying.")],
+    "2": [("where", "Flip Flop Court is a line out of Margaritaville. I blew "
+                    "out my flip flop, stepped on a pop top. Somebody read the "
+                    "lyrics and started handing out street names."),
+          ("noise", "And Coral Reef Way is named for the Coral Reefer Band, "
+                    "except a syllable went missing somewhere between the band "
+                    "and the street sign.")],
+    "3": [("where", "Phase 3 has more Jimmy Buffett in it than any other phase "
+                    "out here. Seven streets I can trace to a real song. It is "
+                    "also the phase nobody can agree is one phase. Make of "
+                    "that what you will."),
+          ("noise", "Breathe Out Way is from a song he wrote after Hurricane "
+                    "Katrina. Breathe in, breathe out, move on. Out of every "
+                    "street name in this community, that is the one I think "
+                    "about.")],
+    "4": [("where", "Seaplane Drive is named after his actual seaplane. He "
+                    "owned a Grumman Albatross called the Hemisphere Dancer. "
+                    "And Cheeseburger Drive runs into Coral Reef Way, so if "
+                    "you cannot find the house, follow the food.")],
+    "5": [],           # 5B is two streets and there is nothing to say. Say nothing.
+    "6": [("where", "Attitude Avenue is out here in Phase 6 and Latitude "
+                    "Boulevard is back in Phase 2. Changes in latitudes, "
+                    "changes in attitudes. Different phases entirely, and I "
+                    "refuse to believe that is an accident."),
+          ("noise", "Also on this plat, Pencil Thin Avenue. That is a 1974 "
+                    "song about a moustache. Somebody proposed it as a street "
+                    "name and the county wrote it down.")],
+    "7": [("where", "Gypsy Palace Court comes from a song Jimmy Buffett wrote "
+                    "with Glenn Frey from the Eagles. That is the sort of "
+                    "thing you find out living here and then cannot stop "
+                    "telling people.")],
+    "8": [("where", "Now I have to be honest about my own street. Cool Water "
+                    "Way, Escape Avenue, Hang Loose Court. Not one of those is "
+                    "a Buffett song. I checked properly. Out of sixteen "
+                    "recorded plats I managed to buy on the only one with no "
+                    "Jimmy Buffett in it at all."),
+          ("mine", "People will tell you the street names get more Buffett as "
+                   "the phases go on. I counted them. They do not. Phase 3 "
+                   "wins and it is not close.")],
+    "9": [],           # Nine streets, and no beat good enough to earn the slot.
+    "10": [("where", "Phase 10 has a Concoction Court and a Daiquiri Drive on "
+                     "the same plat. Somebody at that naming meeting was "
+                     "having a very good afternoon."),
+           ("noise", "Lone Palm is a real song, off Fruitcakes in 1994. "
+                     "Chill Street is License to Chill. They were still going "
+                     "strong by the last plat.")],
+}
+
+# Referenced but never interviewed. The Ken pattern (`D3-GS` 00:25:27): a
+# recurring character who never shows his face. Mike is a neighbour, not an
+# authority -- the moment he answers a question about plats or pricing the
+# credibility has transferred and it stops working. Every one of these needs
+# MIKE's agreement as well as Karen's; it is their marriage, not a bit.
+MIKE: dict[str, str] = {
+    "1": "My husband Mike said he would use the fitness center every morning. "
+         "Mike uses the pool.",
+    "3": "If a golf cart goes past you slightly too fast on Landshark "
+         "Boulevard, that is Mike, and I would like to apologise on his behalf "
+         "now.",
+    "6": "I asked Mike what he would tell somebody thinking about moving here. "
+         "He said, bring a cart. That was the entire answer.",
+    "8": "Mike takes the cart to the Town Center. It is a nine minute walk. I "
+         "have stopped bringing it up.",
+    "10": "Mike's position on the street names is that they are ridiculous. "
+          "Mike has also learned four of the songs.",
+}
+
+
+def humor(kind: str, num: str) -> list[str]:
+    """The optional beats for one slot, formatted so Karen can strike them.
+
+    MIKE beats live in the "cart" slot, which no HUMOR beat uses, so a phase can
+    never emit two beats back to back. The cart run ends on "is that a walk, a
+    cart trip, or do you take the car?", which is the natural place for a spouse
+    to turn up.
+    """
+    out: list[str] = []
+    for slot, line in HUMOR.get(num, []):
+        if slot != kind:
+            continue
+        out += ["`[HUMOR \u2014 optional, cut freely]`", "", f"> {line}", ""]
+    if kind == "cart" and num in MIKE:
+        out += ["`[MIKE \u2014 optional. Needs Mike's approval as well as "
+                "Karen's. He is a character, never a source: if he answers a "
+                "question about plats or pricing, cut it.]`", "",
+                f"> {MIKE[num]}", ""]
+    return out
+
 
 def load() -> dict:
     return json.loads(FEATURES.read_text(encoding="utf-8"))
@@ -486,6 +698,7 @@ def _body(c: Community, num: str, g: dict) -> str:
             f"{g['acres']:,.0f} acres** \u2014 all of it Phase {num}, all of it on "
             f"separate plats you can look up.")
         add("")
+    L.extend(humor("where", num))
 
     # ---- the cart run -------------------------------------------------------
     add("## THE CART RUN \u2014 2:00\u20134:00")
@@ -519,6 +732,7 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("`[KAREN: and then the honest part \u2014 is that a walk, a cart trip, or do "
         "you take the car? Say which one you actually do.]`")
     add("")
+    L.extend(humor("cart", num))
 
     # ---- highway 79 / bandshell --------------------------------------------
     add("## NOISE AND CONVENIENCE \u2014 4:00\u20135:30")
@@ -540,6 +754,7 @@ def _body(c: Community, num: str, g: dict) -> str:
         "hear it here, and whether that is a plus or a minus for you. No "
         "distances, no radius \u2014 it varies too much.]`")
     add("")
+    L.extend(humor("noise", num))
 
     # ---- residents ----------------------------------------------------------
     add("## WHAT PEOPLE WHO LIVE HERE SAY \u2014 5:30\u20137:30")
@@ -575,6 +790,7 @@ def _body(c: Community, num: str, g: dict) -> str:
         add("")
         add("`[B-ROLL: Karen's geotagged Phase 8 photo set]`")
         add("")
+        L.extend(humor("mine", num))
 
     # ---- availability -------------------------------------------------------
     add("## WHAT'S ACTUALLY FOR SALE \u2014 9:00\u201310:00")
@@ -591,16 +807,33 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("")
 
     # ---- close --------------------------------------------------------------
-    add("## CLOSE \u2014 10:00\u201310:45")
+    # The close ends on the answer. The redirect is a separate block AFTER it,
+    # because the old order put "the map video is linked below" first and the
+    # ask second, which is the thing Jesse marks wrong at `D3-GS` 00:54:16.
+    add("## CLOSE \u2014 10:00\u201310:30")
     add("")
-    add("> If you want to see how this phase fits against the other nine, the "
-        "full phase map video is linked below \u2014 every one of the sixteen "
-        "recorded plats, with the book and page.")
+    add("> And if you want today's actual list for Phase " + num + ", message "
+        "me. I live here.")
     add("")
-    add("> And if you want today's actual list for Phase " + num + ", message me. "
-        "I live here.")
+
+    # ---- the redirect -------------------------------------------------------
+    nxt, line, why = REDIRECT[num]
+    add("## END SCREEN REDIRECT \u2014 10:30\u201310:45")
     add("")
-    add("`[END SCREEN: flagship phase-map video + next phase in the series]`")
+    add(f"**One element: {nxt}.** Nothing else on the card. No playlist, no "
+        f"subscribe button competing with it, no channel icon \u2014 *\"if you tell "
+        f"them to do three things they'll do zero\"* (`D3-GS` 00:36:16). Say it "
+        f"out loud while it is on screen; every top performer does.")
+    add("")
+    add(f"**Why {nxt}:** {why}")
+    add("")
+    add(f"> {line}")
+    add("")
+    add(f"`[END SCREEN: {nxt}. One element only. Last 15 seconds.]`")
+    add("")
+    add("**Put no facts in this block.** It is the last fifteen seconds, the "
+        "viewer is already reaching for the next thing, and anything checkable "
+        "said here is said to nobody.")
     add("")
     add("---")
     add("")
@@ -613,6 +846,11 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("- [ ] `python tools/map/render_map.py --only sequence` run for fresh frames")
     add("- [ ] `python tools/map/inventory_report.py --csv <export>` run on record day")
     add("- [ ] Plat book/page on screen for every plat named")
+    add("- [ ] End screen card set to **one element only** \u2014 "
+        f"{REDIRECT[num][0]} \u2014 and the redirect line spoken over it")
+    add("- [ ] No em-dashes left in any spoken line. ElevenLabs reads the "
+        "cadence, and the em-dash is a named AI detection tell "
+        "(`D1-QA` 00:05:11). Use a comma, a full stop, or \"and\".")
     return "\n".join(L)
 
 
@@ -952,7 +1190,22 @@ def metadata_doc(c: Community) -> str:
     add("| Audience | Not made for kids |")
     add("| Subtitles | Upload a corrected SRT \u2014 auto-captions mangle the street names |")
     add("| Playlist | \"Latitude Margaritaville Watersound \u2014 Every Phase\", in phase order |")
-    add("| End screen | Subscribe (left) \u00b7 next phase in the series \u00b7 the flagship map video |")
+    add("| End screen | **One element per video**, per the redirect loop below. Not subscribe *and* next *and* the map |")
+    add("")
+    add("### The redirect loop")
+    add("")
+    add("One video per end screen, spoken aloud while the card is up, placed "
+        "**after** the close and never before it. The chain is a tail feeding a "
+        "cycle, so nothing dead-ends:")
+    add("")
+    add("| This video ends | Points at | Because |")
+    add("| --- | --- | --- |")
+    for n in PHASE_ORDER:
+        nxt, _, why = REDIRECT[n]
+        add(f"| Phase {n} | **{nxt}** | {why} |")
+    add("| The flagship map video | **Phase 8** | Karen's own phase. The hub's "
+        "traffic is the best on the channel, so it goes to the residency proof "
+        "rather than to Phase 1, which is mostly the Sales Center. |")
     add("")
     add("**Publish in phase order**, one a week. The playlist is the product: "
         "somebody deciding between two phases watches both, and the series only "
@@ -1039,6 +1292,18 @@ def series_readme(c: Community) -> str:
     add("")
     add("\u2605 Karen lives here. That episode is the anchor of the series.")
     add("")
+    add("## Humor")
+    add("")
+    add("These are produced with HeyGen and ElevenLabs, so **nothing can be "
+        "ad-libbed** \u2014 an avatar reads what it is given. Every beat is "
+        "therefore written into the generator and marked `[HUMOR]` or `[MIKE]` "
+        "so Karen can strike it. Doctrine, the banned-phrase list and the full "
+        "line bank are in "
+        "[`karen-voice-and-humor.md`](../karen-voice-and-humor.md).")
+    add("")
+    add("Phases 5 and 9 carry **no beat on purpose**. A forced bit is worse "
+        "than none.")
+    add("")
     add("## Files")
     add("")
     add("| File | What it is |")
@@ -1048,6 +1313,8 @@ def series_readme(c: Community) -> str:
         "pinned comments for all ten |")
     add("| [`thumbnail-brief.md`](thumbnail-brief.md) | One template, ten "
         "thumbnails, with the per-episode hook |")
+    add("| [`photo-shot-list.md`](photo-shot-list.md) | What Karen photographs "
+        "in each phase, and which beat each shot covers |")
     add("| [`drive-sheet.md`](drive-sheet.md) | **The blocker.** Cart times and "
         "resident quotes \u2014 the only source for the two things here that are not "
         "public record |")
@@ -1076,6 +1343,39 @@ def series_readme(c: Community) -> str:
         "prompt and a gate, never a sentence. If a phase has nobody interviewed "
         "yet, that section gets cut \u2014 it does not get filled in from "
         "imagination.")
+    add("")
+    add("## The redirect loop")
+    add("")
+    add("Every episode ends with **one** spoken redirect naming **one** next "
+        "video, placed after the close and never before it. Characteristic 8 "
+        "says point them at the next video the instant the payoff lands "
+        "(`D3-GS` 00:44:45); Jesse marks the reverse order *\"slightly wrong\"* "
+        "on air (`D3-GS` 00:54:16); and *\"if you tell them to do three things "
+        "they'll do zero\"* (`D3-GS` 00:36:16) is why it is one card and not "
+        "four.")
+    add("")
+    add("It is a tail feeding a cycle, so no episode dead-ends:")
+    add("")
+    add("```mermaid")
+    add("flowchart LR")
+    for i, n in enumerate(PHASE_ORDER[:-1]):
+        add(f"    P{n} --> P{PHASE_ORDER[i + 1]}")
+    add("    P10 --> MAP[flagship map video]")
+    add("    MAP --> P8")
+    add("```")
+    add("")
+    add("| This video ends | Points at | Because |")
+    add("| --- | --- | --- |")
+    for n in PHASE_ORDER:
+        nxt, _, why = REDIRECT[n]
+        add(f"| Phase {n} | **{nxt}** | {why} |")
+    add("| The flagship map video | **Phase 8** | The hub's traffic is the best "
+        "on the channel, so it goes to the residency proof rather than to Phase "
+        "1, which is mostly the Sales Center and the model park. |")
+    add("")
+    add("The last 15 to 20 seconds are reserved for it and **carry no facts**. "
+        "Anything checkable said there is said to a viewer already reaching for "
+        "the next video.")
     add("")
     add("## Regenerating")
     add("")
