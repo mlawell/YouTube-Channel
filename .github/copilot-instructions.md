@@ -20,6 +20,11 @@ property media live in the OneDrive library at
 duplicated into the repo. Tools anchor to it via the `NWFL`/`DOCS` constants. See
 `brand/README.md` and `properties/README.md`.
 
+For Latitude Margaritaville Watersound phase maps, keep repo source/tooling and
+committed previews in the repo. Copy/save all final/generated user-facing map exports
+and deliverables to the canonical Microsoft 365 folder:
+`C:\Users\mikel\NWFL Beach Homes\NWFL Beach Homes - Documents\Properties\Bay County\Panama City Beach\West Bay & HWY 79 Corridor\Latitude Margaritaville Watersound\Phases`.
+
 This project uses the ATV (Agentic Tool & Workflow) Starter Kit.
 
 ## Available Workflows
