@@ -123,6 +123,11 @@ Latitude Bar and Chill plus Paradise Pool immediately south, amphitheater and
 Bandshell west of the main parking. Every "distance to Town Center" on the map
 is measured from here.
 
+**Cart times in the scripts are estimates**, from routed road distance to this
+anchor scaled at roughly **25 mph** — calibrated from Mike's measured Phase 8
+run, 4.14 road miles in 10 minutes. They are spoken as *"about N minutes"*, and
+they are times to the Town Center from the middle of a phase, not phase-to-phase.
+
 **Retired:** 8520 Latitude Blvd (30.312154, −85.863968). It is 554 m / 0.34 mi
 NNE and is a mailing-address reference only, not the point a buyer walks to.
 

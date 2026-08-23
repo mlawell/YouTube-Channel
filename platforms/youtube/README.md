@@ -38,7 +38,7 @@ Full index: [`content/README.md`](content/README.md).
 | [Karen's presenter treatment](content/karen-presenter-treatment.md) | Both | **Read second.** How she appears: the treatment hierarchy, the face-time budget, the cutaway rule, and the verified asset inventory. There is no real footage of Karen, so every appearance is composited |
 | [Five Kinds of Life in Panama City Beach](content/pcb-five-neighborhoods/README.md) | Living in Panama City Beach FL | ~30 min vlog tour of five neighborhoods. Ready to record — **[3 blocking `[KAREN]` items](content/pcb-five-neighborhoods/README.md#before-you-record)** |
 | [Latitude Margaritaville Watersound — Every Phase Explained](content/latitude-phases-explained/README.md) | Living in Latitude Margaritaville Watersound | Script ready, awaiting Karen's confirmations |
-| [Phase Deep Dives — one video per phase](content/phase-deep-dives/README.md) | Living in Latitude Margaritaville Watersound | Ten drafts + metadata + thumbnails generated. **Blocked on the [drive sheet](content/phase-deep-dives/drive-sheet.md)** — cart times need driving, residents need asking |
+| [Phase Deep Dives — one video per phase](content/phase-deep-dives/README.md) | Living in Latitude Margaritaville Watersound | Ten drafts + metadata + thumbnails generated. Cart times are estimated, so the remaining gap is **[resident quotes](content/phase-deep-dives/drive-sheet.md)** — the nine phases Karen doesn't live in need someone asked |
 
 The two Latitude packages are a hub and its spokes: the flagship answers "how do
 the phases work", each deep dive answers "should I buy in *this* one". The deep

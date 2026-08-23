@@ -20,23 +20,21 @@ that shows all three makes the argument rather than asserting it.
 
 WHAT THIS TOOL WILL NOT DO
 --------------------------
-Two of the things Karen asked for cannot be derived from public record, and this
-tool writes neither:
-
-* THE GOLF CART TIME. It cannot be computed. County road centrelines cover only
-  Phases 1, 2, 3A, 3B & 3C and 3D; ten of the sixteen plats have no interior
-  centreline at all, and only 12% of the road network connects to the Town
-  Center -- most phases sit 1-5 km from any routable road, Phase 10 nearly 5 km.
-  So there is no street-following distance to be had. What goes in the draft is
-  the straight-line FLOOR at 30 mph, clearly labelled as a floor, plus a gate
-  for the time Karen measures by driving it. She lives there; the drive sheet
-  this tool also writes is how that gets captured.
+One of the things Karen asked for cannot be derived from public record, and this
+tool does not write it:
 
 * RESIDENT FEEDBACK. There is no resident feedback in this repository. Not a
   little, none. So the draft carries a gate and a prompt, never a sentence.
   Inventing a neighbour's opinion would be the worst thing this channel could
   do, and it is exactly the sort of thing that happens by accident when a
   template wants filling.
+
+THE GOLF CART TIME used to be on that list. It is not any more: the drafts carry
+an ESTIMATE from routed road distance scaled at CART_MPH, calibrated against the
+one real measurement available -- Mike drove Phase 8's 4.14 road miles in 10
+minutes. Estimates are always spoken as "about N minutes", never as a stopwatch
+reading, and driving a run is now optional rather than blocking. Cart times are
+an orientation detail, not the substance of any video.
 
 Everything else in the draft is public record, printed with its plat book and
 page so a viewer can check it.
@@ -58,7 +56,29 @@ FEATURES = ROOT / "tools" / "map" / "data" / "features.json"
 OUT = ROOT / "platforms" / "youtube" / "content" / "phase-deep-dives"
 
 MI_PER_M = 1 / 1609.344
-CART_MPH = 30.0          # Karen's number, taken literally
+CART_MPH = 24.8          # calibrated: Mike drove Phase 8's 4.14 road mi in 10 min
+
+# Road miles from each plat's centroid to the Bandshell anchor, routed on the
+# road network (OSRM), keyed by plat label. Cart minutes are miles / CART_MPH,
+# rounded, and always spoken as "about N minutes" -- they are estimates.
+ROAD_MI = {
+    "Town Center": 0.33,
+    "Phase 2": 0.71,
+    "Phase 3A": 1.00,
+    "Phase 1": 1.21,
+    "Phase 3B & 3C": 1.27,
+    "Phase 4A": 1.39,
+    "Phase 4B": 1.56,
+    "Phase 3D": 1.59,
+    "Phase 5B": 1.60,
+    "Phase 5C": 2.07,
+    "Phase 6B & 6C": 2.23,
+    "Phase 6A": 2.32,
+    "Phase 7": 2.90,
+    "Phase 9": 3.80,
+    "Phase 10": 4.04,
+    "Phase 8": 4.14,
+}
 
 PHASE_ORDER = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
@@ -527,16 +547,22 @@ class Community:
         }
 
 
-def cart_floor_min(miles: float) -> float:
-    """The fastest a 30 mph cart could possibly do it: the straight line.
+def cart_min(miles: float) -> int:
+    """Estimated cart minutes for a road distance, rounded, spoken as "about N".
 
-    Computed from the QUARTER-ROUNDED distance, not the raw one, so that the two
-    numbers on screen agree with each other. If the card says 1 3/4 miles and a
-    viewer divides by 30, they should get the minutes we printed -- showing
-    1.79 mi worth of minutes beside a 1 3/4 mi caption is the kind of small
-    inconsistency that makes someone doubt the rest.
+    24.8 mph is calibrated from the one real measurement available: Mike drove
+    Phase 8's 4.14 road miles in 10 minutes. That is the cart's average WITH
+    stop signs, turns and slowing for other carts, not its speed on a clear
+    straight. Erring slow is also the safer way round for a buyer -- told seven
+    minutes and experiencing six is a pleasant surprise; the reverse is not.
     """
-    return quarter_mi(miles) / CART_MPH * 60.0
+    return max(1, round(miles / CART_MPH * 60.0))
+
+
+def group_road_mi(c: "Community", num: str) -> tuple[float | None, float | None]:
+    """(nearest, farthest) road miles across the plats in one phase group."""
+    vals = [ROAD_MI[p["label"]] for p in c.groups[num] if p["label"] in ROAD_MI]
+    return (min(vals), max(vals)) if vals else (None, None)
 
 
 def draft(c: Community, num: str) -> str:
@@ -592,6 +618,7 @@ def draft(c: Community, num: str) -> str:
 
     # distance + the cart question
     near, far = g["nearest_mi"], g["farthest_mi"]
+    rd_near, rd_far = group_road_mi(c, num)
     add("### How far it is")
     add("")
     add("| Measure | Value |")
@@ -600,24 +627,28 @@ def draft(c: Community, num: str) -> str:
         if multi and far and quarter_mi(far) != quarter_mi(near):
             add(f"| Straight line to the Town Center | {fmt_miles_range(near, far)} "
                 f"(varies by plat) |")
-            add(f"| Cart floor at {CART_MPH:.0f} mph | "
-                f"{cart_floor_min(near):.1f}\u2013{cart_floor_min(far):.1f} min |")
         else:
             add(f"| Straight line to the Town Center | {fmt_miles(near)} |")
-            add(f"| Cart floor at {CART_MPH:.0f} mph | {cart_floor_min(near):.1f} min |")
+    if rd_near is not None:
+        if rd_far and cart_min(rd_far) != cart_min(rd_near):
+            add(f"| By road to the Town Center | {rd_near:.1f}\u2013{rd_far:.1f} mi |")
+            add(f"| Cart ride, estimated | about {cart_min(rd_near)}\u2013"
+                f"{cart_min(rd_far)} min |")
+        else:
+            add(f"| By road to the Town Center | {rd_near:.1f} mi |")
+            add(f"| Cart ride, estimated | about {cart_min(rd_near)} min |")
     if g["hwy79_mi"] is not None:
         add(f"| Straight line to Highway 79 | {fmt_miles(g['hwy79_mi'])} |")
     add("")
-    add("Distances are straight lines from the middle of the phase, **rounded to "
+    add("Straight-line distances are from the middle of the phase, **rounded to "
         "the nearest quarter mile** \u2014 a phase is not a point, so a second decimal "
         "would be claiming a survey.")
     add("")
-    add("**The cart floor is a floor, not a drive time.** It is the straight "
-        "line, so no cart can beat it. County road centrelines cover only "
-        "Phases 1, 2, 3A, 3B & 3C and 3D \u2014 ten of the sixteen plats have none, "
-        "and only 12% of the road network connects to the Town Center \u2014 so a "
-        "street-following time cannot be calculated from public record. It has "
-        "to be driven.")
+    add("**Cart times are estimates, so say \"about.\"** Road distance routed to "
+        "the Bandshell, scaled at roughly 25 mph \u2014 calibrated from Mike's "
+        "measured Phase 8 run. They are times **to the Town Center from the "
+        "middle of the phase**, not phase-to-phase, and someone at the far edge "
+        "of a big phase will see something different.")
     add("")
 
     # streets
@@ -673,8 +704,8 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("")
     add("- `[FRAME nn_name]` \u2014 cut to that PNG from `tools/map/output/frames/`")
     add("- `[KAREN]` \u2014 Karen must supply or confirm this. Do not read it as-is.")
-    add("- `[CART]` \u2014 the measured cart time from `drive-sheet.md`. Until that is "
-        "filled in, this beat cannot be recorded.")
+    add("- `[CART]` \u2014 an **estimated** cart time: road distance scaled at "
+        "roughly 25 mph. Say \"about N minutes\", never a precise figure.")
     add("- `[RESIDENT]` \u2014 a real quote from a real neighbour, captured on the "
         "drive sheet, used with permission. Never paraphrase one into existence.")
     add("- `[INVENTORY]` \u2014 today's snapshot, spoken and dated, from "
@@ -687,9 +718,8 @@ def _body(c: Community, num: str, g: dict) -> str:
         "dated, plat book and page on screen, no invented amenities, lot numbers "
         "are never addresses \u2014 plus two this series adds:")
     add("")
-    add("6. **No cart time that was not driven.** The straight-line floor may be "
-        "shown on screen as a floor. A spoken \"it takes about N minutes\" must "
-        "come from the stopwatch.")
+    add("6. **Cart times are estimates and are spoken as \"about N minutes.\"** "
+        "Never a precise figure, and never presented as a stopwatch reading.")
     add("7. **No resident feedback that did not come from a resident.** If nobody "
         "has been asked yet, the section is cut, not filled.")
     add("")
@@ -755,31 +785,38 @@ def _body(c: Community, num: str, g: dict) -> str:
     # ---- the cart run -------------------------------------------------------
     add("## THE CART RUN \u2014 2:00\u20134:00")
     add("")
-    add("**Direction:** this is the segment nobody else has, and it only works "
-        "if it is real. Film it in one take from the driveway to the Town "
-        "Center, clock visible or timer overlaid. Say the speed out loud.")
+    add("**Direction:** this is the segment nobody else has. Film it in one take "
+        "from the driveway to the Town Center. If Karen times the run, use her "
+        "real number and say so; otherwise the estimate below is fine.")
     add("")
     add("`[B-ROLL: cart POV, start of run]`")
     add("")
-    add(f"> So here's the question everybody actually asks: how far is it to the "
-        f"Town Center? Let's just go. Thirty miles an hour, which is what these "
-        f"carts do here.")
-    add("")
-    add("`[CART: measured time, from drive-sheet.md. Do NOT record this beat "
-        "until it is driven.]`")
-    add("")
-    if near is not None:
-        floor = cart_floor_min(near)
-        if multi and far and quarter_mi(far) != quarter_mi(near):
-            add(f"> `[ON SCREEN: straight line {fmt_miles_range(near, far)} \u00b7 "
-                f"floor {floor:.1f}\u2013{cart_floor_min(far):.1f} min at 30 mph]`")
+    rd_near, rd_far = group_road_mi(c, num)
+    if rd_near is not None:
+        mins = cart_min(rd_near)
+        spread = rd_far and cart_min(rd_far) != mins
+        if spread:
+            add(f"> `[ON SCREEN: {rd_near:.1f}\u2013{rd_far:.1f} mi by road \u00b7 about "
+                f"{mins}\u2013{cart_min(rd_far)} min on a cart]`")
         else:
-            add(f"> `[ON SCREEN: straight line {fmt_miles(near)} \u00b7 "
-                f"floor {floor:.1f} min at 30 mph]`")
+            add(f"> `[ON SCREEN: {rd_near:.1f} mi by road \u00b7 about {mins} min "
+                f"on a cart]`")
         add("")
-        add(f"> Straight line it's about {spoken_miles(near)}, so it could never "
-            f"be quicker than about {floor:.1f} minutes \u2014 and roads aren't "
-            f"straight lines, so the real answer is `[CART]`.")
+        if spread:
+            add(f"> So here's the question everybody actually asks: how far is "
+                f"it to the Town Center? By road it's about {rd_near:.1f} to "
+                f"{rd_far:.1f} miles depending which plat you're on, so call it "
+                f"{spoken(mins)} to {spoken(cart_min(rd_far))} minutes on a cart.")
+        else:
+            add(f"> So here's the question everybody actually asks: how far is "
+                f"it to the Town Center? By road it's about {rd_near:.1f} miles, "
+                f"which is about a {spoken(mins)} minute cart ride.")
+        add("")
+        add("**Say \"about.\"** This is road distance scaled at roughly 25 mph, "
+            "calibrated from Mike's measured Phase 8 run, not a stopwatch "
+            "reading. It is also a time **to the Town Center from the middle of "
+            "the phase**, not phase-to-phase, and the far edge of a big phase "
+            "will differ.")
         add("")
     add("`[KAREN: and then the honest part \u2014 is that a walk, a cart trip, or do "
         "you take the car? Say which one you actually do.]`")
@@ -1023,54 +1060,52 @@ def _body(c: Community, num: str, g: dict) -> str:
 def drive_sheet(c: Community) -> str:
     """The sheet Karen takes in the cart.
 
-    Both of the things she asked for that cannot be derived -- the cart time and
-    the resident feedback -- get captured here, in one pass, on one page. The
-    floor is printed beside each blank so a mistyped stopwatch is obvious: a
-    measured time BELOW the floor is impossible and means something went wrong.
+    Cart times used to live here as a blocker. They no longer do -- they are
+    estimated from routed road distance at ~25 mph, calibrated from Mike's
+    measured Phase 8 run. What remains is the one thing that genuinely cannot
+    be derived from any file: what residents of the other nine phases say.
     """
     L: list[str] = []
     add = L.append
-    add("# Drive sheet \u2014 cart times and resident feedback")
+    add("# Drive sheet \u2014 resident feedback")
     add("")
-    add("Generated by `tools/scripts/build_phase_scripts.py`. **This is the only "
-        "source for the two things in the phase videos that are not public "
-        "record.** Fill it in, then re-read the drafts.")
+    add("Generated by `tools/scripts/build_phase_scripts.py`.")
     add("")
-    add("## How to run it")
+    add("> \u2705 **Cart times are no longer a blocker.** They are estimated in the "
+        "drafts from routed road distance at roughly 25 mph, calibrated from "
+        "Mike's measured Phase 8 run, and spoken as \"about N minutes\". "
+        "Driving and timing them is **optional** \u2014 if Karen times a run she "
+        "can use her real number, but no episode waits on it.")
     add("")
-    add("1. Start at the phase, end at the Town Center. Same end point every "
-        "time, or the numbers are not comparable.")
-    add("2. Hold 30 mph where it is safe and legal \u2014 that is the number quoted "
-        "on screen. If a phase cannot be driven at 30, write down what it can be "
-        "driven at; that is itself worth saying.")
-    add("3. Film it. A cart-POV run with a visible timer is the proof, and it is "
-        "the B-roll.")
-    add("4. **A measured time below the floor is impossible.** The floor is the "
-        "straight line. If the stopwatch beats it, something is wrong \u2014 wrong "
-        "start point, wrong end point, or a mistyped number.")
+    add("**The one thing on this page that cannot be derived from any file is "
+        "resident feedback.** Karen lives in Phase 8 and can speak first-hand "
+        "about it; the other nine need someone asked.")
     add("")
-    add("## Cart times")
+    add("## Cart times, for reference")
     add("")
-    add(f"| Phase | Straight line | Floor at {CART_MPH:.0f} mph | **Measured** | "
-        f"Route actually taken | Notes |")
-    add("| --- | --- | --- | --- | --- | --- |")
+    add("Estimates, already in the drafts. Listed here so a driven run has "
+        "something to check against, not because anything is waiting on them.")
+    add("")
+    add("| Phase | By road | Estimated cart ride |")
+    add("| --- | --- | --- |")
     for num in PHASE_ORDER:
         g = c.group_stats(num)
-        near, far = g["nearest_mi"], g["farthest_mi"]
-        if near is None:
+        rd_near, rd_far = group_road_mi(c, num)
+        if rd_near is None:
             continue
-        if far and quarter_mi(far) != quarter_mi(near):
-            dist = fmt_miles_range(near, far)
-            fl = f"{cart_floor_min(near):.1f}\u2013{cart_floor_min(far):.1f} min"
+        if rd_far and cart_min(rd_far) != cart_min(rd_near):
+            dist = f"{rd_near:.1f}\u2013{rd_far:.1f} mi"
+            est = f"about {cart_min(rd_near)}\u2013{cart_min(rd_far)} min"
         else:
-            dist = fmt_miles(near)
-            fl = f"{cart_floor_min(near):.1f} min"
+            dist = f"{rd_near:.1f} mi"
+            est = f"about {cart_min(rd_near)} min"
         star = " \u2605" if g["karen_lives_here"] else ""
-        add(f"| **Phase {num}**{star} | {dist} | {fl} | &nbsp; | &nbsp; | &nbsp; |")
+        add(f"| **Phase {num}**{star} | {dist} | {est} |")
     add("")
-    add("\u2605 = Karen's own phase.")
+    add("\u2605 = Karen's own phase, and the calibration point: Mike drove its "
+        "4.14 road miles in 10 minutes.")
     add("")
-    add("## Resident feedback")
+    add("## \u2b50 Resident feedback \u2014 the real gap")
     add("")
     add("There is **no** resident feedback in this repository yet. Every quote a "
         "video uses has to start life on this page.")
@@ -1165,8 +1200,10 @@ def episode_description(c: Community, num: str) -> str:
     add("")
     add("What's in this video:")
     add(f"\u2022 Exactly where Phase {num} sits, drawn from the recorded plats")
-    add(f"\u2022 How long it really takes to get to the Town Center on a golf cart at "
-        f"30 \u2014 I drove it and timed it  [CART: confirm before publishing]")
+    _rd_near, _rd_far = group_road_mi(c, num)
+    if _rd_near is not None:
+        add(f"\u2022 How far it is to the Town Center by road, and roughly how long "
+            f"that is on a golf cart")
     add(f"\u2022 Straight line it's about {fmt_miles(g['nearest_mi'])} to the Town Center"
         + (f" and about {fmt_miles(g['hwy79_mi'])} to Highway 79"
            if g["hwy79_mi"] is not None else ""))
@@ -1490,9 +1527,8 @@ def series_readme(c: Community) -> str:
         "thumbnails, with the per-episode hook |")
     add("| [`photo-shot-list.md`](photo-shot-list.md) | What Karen photographs "
         "in each phase, and which beat each shot covers |")
-    add("| [`drive-sheet.md`](drive-sheet.md) | **The blocker.** Cart times and "
-        "resident quotes \u2014 the only source for the two things here that are not "
-        "public record |")
+    add("| [`drive-sheet.md`](drive-sheet.md) | Resident quotes \u2014 the one thing "
+        "in these videos that cannot be derived from a file |")
     add("")
     add("## Why grouped this way")
     add("")
@@ -1501,23 +1537,18 @@ def series_readme(c: Community) -> str:
         "correction visible instead of asserted: a viewer who came looking for "
         "\"Phase 3\" gets all three plats, each with its own book and page.")
     add("")
-    add("## The two things that are not public record")
-    add("")
-    add("Everything in these drafts comes from Bay County recorded plats except "
-        "two, and neither can be derived:")
-    add("")
-    add("**The cart time cannot be computed.** County road centrelines cover only "
-        "Phases 1, 2, 3A, 3B & 3C and 3D. Ten of the sixteen plats have no "
-        "interior centreline, and only 12% of the road network connects to the "
-        "Town Center \u2014 most phases sit 1\u20135 km from any routable road, Phase 10 "
-        "nearly 5 km. So the drafts carry a **straight-line floor at 30 mph**, "
-        "labelled as a floor, and a `[CART]` gate for the driven time. See "
-        "[`drive-sheet.md`](drive-sheet.md).")
+    add("## The one thing that is not public record")
     add("")
     add("**There is no resident feedback here at all.** So the drafts carry a "
         "prompt and a gate, never a sentence. If a phase has nobody interviewed "
         "yet, that section gets cut \u2014 it does not get filled in from "
         "imagination.")
+    add("")
+    add("Cart times used to sit beside it as a blocker. They no longer do: the "
+        "drafts carry an **estimate** from routed road distance at roughly "
+        "25 mph, calibrated from Mike's measured Phase 8 run, always spoken as "
+        "\"about N minutes\". Driving one is optional. They are an orientation "
+        "detail, not the substance of any video.")
     add("")
     add("## The redirect loop")
     add("")

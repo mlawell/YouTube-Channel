@@ -23,12 +23,13 @@ Phase 4 is **2 separately recorded plats**, not one:
 | Measure | Value |
 | --- | --- |
 | Straight line to the Town Center | ¾–1 mile (varies by plat) |
-| Cart floor at 30 mph | 1.5–2.0 min |
+| By road to the Town Center | 1.4–1.6 mi |
+| Cart ride, estimated | about 3–4 min |
 | Straight line to Highway 79 | ¾ mile |
 
-Distances are straight lines from the middle of the phase, **rounded to the nearest quarter mile** — a phase is not a point, so a second decimal would be claiming a survey.
+Straight-line distances are from the middle of the phase, **rounded to the nearest quarter mile** — a phase is not a point, so a second decimal would be claiming a survey.
 
-**The cart floor is a floor, not a drive time.** It is the straight line, so no cart can beat it. County road centrelines cover only Phases 1, 2, 3A, 3B & 3C and 3D — ten of the sixteen plats have none, and only 12% of the road network connects to the Town Center — so a street-following time cannot be calculated from public record. It has to be driven.
+**Cart times are estimates, so say "about."** Road distance routed to the Bandshell, scaled at roughly 25 mph — calibrated from Mike's measured Phase 8 run. They are times **to the Town Center from the middle of the phase**, not phase-to-phase, and someone at the far edge of a big phase will see something different.
 
 ### Streets and county address ranges
 
@@ -55,7 +56,7 @@ Minto lot numbers — **Phase 4A: 4001–4317; Phase 4A: 4510–4515; Phase 4B: 
 
 - `[FRAME nn_name]` — cut to that PNG from `tools/map/output/frames/`
 - `[KAREN]` — Karen must supply or confirm this. Do not read it as-is.
-- `[CART]` — the measured cart time from `drive-sheet.md`. Until that is filled in, this beat cannot be recorded.
+- `[CART]` — an **estimated** cart time: road distance scaled at roughly 25 mph. Say "about N minutes", never a precise figure.
 - `[RESIDENT]` — a real quote from a real neighbour, captured on the drive sheet, used with permission. Never paraphrase one into existence.
 - `[INVENTORY]` — today's snapshot, spoken and dated, from `inventory_report.py`.
 - Spoken copy is the plain text. Brackets are direction.
@@ -64,7 +65,7 @@ Minto lot numbers — **Phase 4A: 4001–4317; Phase 4A: 4510–4515; Phase 4B: 
 
 Same five as the flagship — no price-by-phase, inventory spoken and dated, plat book and page on screen, no invented amenities, lot numbers are never addresses — plus two this series adds:
 
-6. **No cart time that was not driven.** The straight-line floor may be shown on screen as a floor. A spoken "it takes about N minutes" must come from the stopwatch.
+6. **Cart times are estimates and are spoken as "about N minutes."** Never a precise figure, and never presented as a stopwatch reading.
 7. **No resident feedback that did not come from a resident.** If nobody has been asked yet, the section is cut, not filled.
 
 ---
@@ -95,17 +96,15 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ## THE CART RUN — 2:00–4:00
 
-**Direction:** this is the segment nobody else has, and it only works if it is real. Film it in one take from the driveway to the Town Center, clock visible or timer overlaid. Say the speed out loud.
+**Direction:** this is the segment nobody else has. Film it in one take from the driveway to the Town Center. If Karen times the run, use her real number and say so; otherwise the estimate below is fine.
 
 `[B-ROLL: cart POV, start of run]`
 
-> So here's the question everybody actually asks: how far is it to the Town Center? Let's just go. Thirty miles an hour, which is what these carts do here.
+> `[ON SCREEN: 1.4–1.6 mi by road · about 3–4 min on a cart]`
 
-`[CART: measured time, from drive-sheet.md. Do NOT record this beat until it is driven.]`
+> So here's the question everybody actually asks: how far is it to the Town Center? By road it's about 1.4 to 1.6 miles depending which plat you're on, so call it three to four minutes on a cart.
 
-> `[ON SCREEN: straight line ¾–1 mile · floor 1.5–2.0 min at 30 mph]`
-
-> Straight line it's about three quarters of a mile, so it could never be quicker than about 1.5 minutes — and roads aren't straight lines, so the real answer is `[CART]`.
+**Say "about."** This is road distance scaled at roughly 25 mph, calibrated from Mike's measured Phase 8 run, not a stopwatch reading. It is also a time **to the Town Center from the middle of the phase**, not phase-to-phase, and the far edge of a big phase will differ.
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 

@@ -56,7 +56,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 1 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 1 mile to the Town Center and about ¼ mile to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -167,7 +167,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 2 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about ½ mile to the Town Center and about ½ mile to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -282,7 +282,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 3 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about ¼ mile to the Town Center and about ¼ mile to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -401,7 +401,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 4 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about ¾ mile to the Town Center and about ¾ mile to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -519,7 +519,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 5 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 1 mile to the Town Center and about ½ mile to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -637,7 +637,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 6 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 1¼ miles to the Town Center and about 1 mile to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -754,7 +754,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 7 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 2 miles to the Town Center and about 1½ miles to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -869,7 +869,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 8 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 2½ miles to the Town Center and about 1¾ miles to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -984,7 +984,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 9 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 2½ miles to the Town Center and about 2¼ miles to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
@@ -1098,7 +1098,7 @@ message me.
 
 What's in this video:
 • Exactly where Phase 10 sits, drawn from the recorded plats
-• How long it really takes to get to the Town Center on a golf cart at 30 — I drove it and timed it  [CART: confirm before publishing]
+• How far it is to the Town Center by road, and roughly how long that is on a golf cart
 • Straight line it's about 3 miles to the Town Center and about 2½ miles to Highway 79
 • Every street in the phase and the county house numbers on each
 • Why Minto's lot numbers are NOT addresses
