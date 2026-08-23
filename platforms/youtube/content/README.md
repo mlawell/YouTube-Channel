@@ -56,13 +56,25 @@ so they cannot drift from it.
 - **`[KAREN]` marks anything unverified.** It is never a guess dressed as a fact.
   Drive times, HOA rules, school-quality claims, flood-zone claims and insurance
   figures are marked by default.
-- **Every number traces to a source** — a recorded plat, an MLS detail sheet with
-  a snapshot date, or a measurement someone actually took.
+- 🔴 **MLS structured fields are citable. Listing prose is not.** A
+  `listing-details.md` holds two tiers of data: the `| Field | Value |` tables
+  are MLS data, and the `## Property description` block is the listing agent's
+  **marketing copy**. The prose is where the errors live — one PCB listing names
+  the wrong hospital — and also where drive times, superlatives and
+  investment-value claims live. Prose claims get confirmed independently or
+  marked `[KAREN — verify]`; they never enter a script as stated fact. Full
+  treatment:
+  [pcb-five-neighborhoods sourcing](pcb-five-neighborhoods/README.md#sourcing-two-tiers-of-data-in-one-file).
+- **Every number traces to a source** — a recorded plat, an **MLS field** on a
+  snapshot-dated sheet, or a measurement someone actually took.
 - **Volatile facts are spoken as volatile**: *"as I'm recording this, in
   [Month Year]…"*. Prices and inventory change and the video does not.
 - **No em-dashes in spoken copy** — a named AI-detection tell (`D1-QA` 00:05:11).
   Prose in these markdown files is not read aloud and is not subject to the rule.
 - **No price and no "for sale" in a title or thumbnail** (`D1-QA` 00:15:37).
+- **Check the library before commissioning any graphic.** Subscribe outros,
+  banners and B-roll frequently already exist in M365 under
+  `Marketing\Karen\AI Avatars\` or beside the property media.
 
 ## The media rule
 

@@ -22,6 +22,9 @@ virtual-tour slideshows. Full inventory in [`media-map.md`](media-map.md).
   inside a blockquote. Where it appears mid-sentence in spoken copy, it marks the
   exact spot Karen supplies her own line.
 - `[KAREN — MIKE]` — an optional Mike beat, for approval.
+- `[KAREN — verify]` — **a claim taken from listing marketing copy, not from an
+  MLS field.** It may well be true; nothing has checked it. Confirm it, replace
+  it with your own figure, or cut it. Never read one as written.
 - `[CTA]` / `[RE-HOOK]` / `[PAYOFF]` / `[REVEAL]` — structural beats. Do not move
   them.
 
@@ -36,8 +39,12 @@ virtual-tour slideshows. Full inventory in [`media-map.md`](media-map.md).
 5. **No em-dashes in spoken copy.** `D1-QA` 00:05:11.
 6. **One CTA at a time.** First spoken at 4:15, hard ask at 29:05.
 7. **Every number traces to a `listing-details.md` sheet dated 2026-08-21.**
-   Nothing is estimated. Drive times are the sole exception and every one is
-   `[KAREN]`.
+   ⚠️ **But only the MLS structured fields count as sourced.** The prose
+   `description` block in those sheets is the listing agent's marketing copy and
+   is treated as **unverified** throughout — see
+   [Sourcing: two tiers](README.md#sourcing-two-tiers-of-data-in-one-file). Every
+   prose-derived claim in this script is marked `[KAREN — verify]` or flagged
+   inline. Drive times are unverified by default.
 
 ---
 
@@ -247,19 +254,40 @@ point (`D3-GS` 00:43:26). Here they are the selling point.
 > big sports complex, Aaron Bessant Park where a lot of the community events
 > happen, and Russell Fields Pier.
 
-> And this one matters more than people expect. **Panama City Beach's only
-> dog-friendly stretch of beach is out this way.** If you're moving here with a
-> dog, that is not a small detail, because most of this coastline you cannot
-> bring them onto at all.
+⚠️ **Listing prose, not MLS data.** All four landmarks come from the marketing
+copy for 790701. They are real places and almost certainly fine, but nothing here
+was checked against a source. `[KAREN]` confirm you are happy to name all four.
 
-**Source:** the listing description for 790701 names all five. `[KAREN]` verify
-the dog-beach section is still designated, since beach rules here change.
+`[KAREN — verify before saying "only"]` The listing copy claims this is
+**Panama City Beach's only dog-friendly section of beach.** If you can confirm
+that with the city, say it, because it is genuinely useful to anyone moving
+with a dog. **If you cannot confirm the word "only," drop it and say "there's a
+dog-friendly stretch of beach out this way"**, which is still worth saying and
+cannot be wrong. Beach rules here change.
 
-> `[KAREN]` The description also says a **Tallahassee Memorial hospital is coming**
-> nearby. If that is confirmed and under construction, say it, because a hospital
-> is one of the top three questions a relocating buyer over sixty asks. If it is
-> still just announced, say **"announced, not built."** Do not let a press release
-> become a fact in your video.
+🔴 **The hospital claim in the listing copy is wrong. Do not repeat it.**
+
+The marketing copy for 790701 says *"Tallahassee Memorial Hospital (coming
+soon)."* **It is not TMH.** The hospital being built on Bay Parkway is
+**FSU Health Panama City Beach**, corrected by Mike Lawell, who lives here. And
+Karen's own library has 2 minutes 25 seconds of 4K footage of it at
+`PCB\West Bay & HWY 79 Corridor\FSU Health Panama City Beach\FSU Health Panama City Beach 01.MP4`.
+
+`[KAREN — FSU HEALTH]` A hospital is one of the first three questions a
+relocating buyer over sixty asks, so this is worth a beat. Say **FSU Health
+Panama City Beach**, on Bay Parkway. Then say where it is in its build, in your
+own words, and **only what you have actually seen**. You have the footage, so
+"announced" versus "going up" versus "opening in [year]" is something you can
+speak to first-hand. Do not give an opening date you have been told rather than
+confirmed.
+
+`[B-ROLL: FSU Health Panama City Beach 01.MP4 — 4K60 HEVC, downscale to 1080p
+like the Pier Park plates]`
+
+**This is a strengthening, not just a correction.** The listing copy names a
+hospital Karen cannot show. The real one she has footage of, and a corrected fact
+delivered on camera over her own B-roll is worth more than the sentence it
+replaces.
 
 ## The home — 7:10–8:35
 
@@ -308,8 +336,11 @@ Clara to Front Beach Road, under a quarter mile, then Oleander.
 
 ## What it's like, and who it suits — 9:20–11:00
 
-> This is the lower-density end of Oleander, which matters, because a lot of
-> this coastline is condo towers and this stretch is not.
+> `[KAREN — verify]` This is the lower-density end of Oleander, which matters,
+> because a lot of this coastline is condo towers and this stretch is not.
+
+⚠️ *"Lower-density section of Oleander"* is the listing agent's phrase. It is
+easy to confirm by eye and by the aerials, but confirm it.
 
 `[GALLERY 781232-1 → 781232-6]`
 
@@ -317,12 +348,16 @@ Clara to Front Beach Road, under a quarter mile, then Oleander.
 > more expensive one. **Short term rental is allowed here.** So this is not only
 > a house. It's a business, if you want it to be.
 
-> And the one I'm going to show you already has **seven weeks booked** before
-> anybody has even bought it.
+> `[KAREN — verify]` And the one I'm going to show you already has **seven weeks
+> booked** before anybody has even bought it.
 
-**Verified**, listing 781232: `Community Features = Short Term Rental Allowed`;
-the description states seven weeks of pre-bookings; `Occupancy Type = Tenant`;
-`Furnished Units = All Units`.
+**Mixed sourcing, and the difference matters.** `Community Features = Short Term
+Rental Allowed`, `Occupancy Type = Tenant` and `Furnished Units = All Units` are
+**MLS fields and citable**. ⚠️ **The seven weeks of pre-bookings is listing
+prose** — it is the seller's claim about their own booking calendar, it is the
+single most persuasive number in the segment, and it is exactly the sort of
+figure a buyer would rely on. `[KAREN]` confirm it or say *"already has bookings
+on the calendar"* without the number.
 
 > That's who this neighborhood suits. Somebody who wants the beach and wants it
 > to carry part of its own cost. That is a genuinely normal way to own property
@@ -404,11 +439,16 @@ elevator. See
 > Neighborhood three. El Centro Beach, on Lullwater Drive.
 
 > Everything I've shown you so far has been about the Gulf. This one is about a
-> lake. And it is a couple of minutes from the Gulf anyway.
+> lake. `[KAREN — verify]` And it is about [N] minutes from the Gulf anyway.
 
 **Verified route**, MLS Directions listing 782720: Hwy 79 south, left on Hwy 98,
 right on Lullwater Drive. **Verified fact:** MLS `Waterfront = true`,
 `View = Lake,Water`.
+
+⚠️ **The distance to the Gulf is not verified.** The listing copy says *"just
+steps from beach access"*, which is marketing language, not a measurement. Drive
+or walk it and use your own number, or say *"a few minutes"* only if that is what
+you actually find.
 
 ## What it's like, and who it suits — 14:55–16:40
 
@@ -426,7 +466,12 @@ right on Lullwater Drive. **Verified fact:** MLS `Waterfront = true`,
 > yard, room for a pool, and a circular driveway that parks eight cars. There's
 > RV and boat parking with fifty amp service.
 
-**All verified** from the description and detail sheet for 782720.
+⚠️ **Listing prose, not MLS fields.** The 150 feet of frontage, the two combined
+lots, the dock, the kayak launch, the eight-car driveway and the 50-amp RV
+service are all from the marketing copy for 782720. **Only the 0.66-acre lot size
+is an MLS field.** `[KAREN]` these are all visible things — confirm them from the
+gallery or in person before stating them as numbers. The frontage figure in
+particular is the segment's headline and it is the agent's claim, not a survey.
 
 > So who is this for? Somebody who wants space and water and quiet, and who
 > figured out that in this town you do not have to buy the Gulf to get water.
@@ -441,7 +486,13 @@ right on Lullwater Drive. **Verified fact:** MLS `Waterfront = true`,
 > plumbing, new electrical, new HVAC, and **impact rated doors, windows and
 > garage door.** There's a whole house generator, and it's on natural gas.
 
-**Verified** from the 782720 description. Every item is listed.
+⚠️ **Listing prose, not MLS fields.** The 2019 gut renovation, the metal roof,
+the impact-rated doors and windows, the Generac and the natural gas connection
+are all from the marketing copy for 782720. They are specific and checkable
+claims rather than vague ones, which is a point in their favour, but they are
+still the seller's account. `[KAREN]` confirm from the gallery or a walk-through
+before saying them. **Impact glass in particular is an insurance-relevant claim
+and should not be stated on a seller's word.**
 
 > That is a house that has been made ready for a bad week. `[KAREN]` Say one
 > true sentence here about what impact windows and a generator actually change
@@ -462,8 +513,11 @@ right on Lullwater Drive. **Verified fact:** MLS `Waterfront = true`,
 > twice, from nine hundred and ninety thousand. So the market has been arguing
 > with this one for a while.
 
-**Verified**: description states STR not permitted; DOM 264; $990,000 → $950,000
-→ $890,000.
+**DOM and price history verified** from MLS: DOM 264; $990,000 → $950,000 →
+$890,000. ⚠️ **The short-term-rental restriction is listing prose**, not an MLS
+field — `Community Features` is empty for this property, so "not permitted" is
+the agent's statement. `[KAREN]` confirm it, because it is the whole trade-off of
+the segment and it is the kind of thing a buyer would rely on.
 
 ## The home — 18:05–19:05
 
@@ -513,18 +567,37 @@ Magnolia Beach Road, Delwood Beach Road, into the Bay Point gate. **Verified**:
 > And the streets are golf cart friendly, which changes how a neighborhood
 > actually feels more than people expect.
 
-**Every item verified** from listing 783783: `Community Features =
-BasketballCourt,Fishing,Golf,Marina,Playground,TennisCourts,Gated`, plus the
-description for the Nicklaus course, the full-service marina, the canals, the
-on-site restaurant and the golf-cart streets.
+**Mixed sourcing — and the split is clean.**
+
+**MLS `Community Features`, citable:** `BasketballCourt, Fishing, Golf, Marina,
+Playground, TennisCourts, Gated`. **MLS `Security Features`, citable:**
+`GatedWithGuard, TwentyFourHourSecurity`.
+
+⚠️ **Listing prose:** that the course is **Jack Nicklaus designed**, that the
+marina is **full service**, the **canals**, the **on-site restaurant**, and the
+**golf-cart-friendly streets**. So the MLS confirms *that there is golf and a
+marina*; the agent's copy is what says *whose course it is and how good the
+marina is.*
+
+`[KAREN]` These are all local-knowledge facts you can settle in an afternoon, and
+several you probably already know first-hand. **The Nicklaus attribution is the
+one to be surest of** — a named designer is a specific, checkable claim and it is
+the most quotable thing in the segment. If any item does not confirm, the MLS
+list alone still carries the segment.
 
 > So this is a resort that people happen to live in year round. If you have a
 > boat, this is probably the answer for you, and it's the only one on this list
 > where I'd say that flatly.
 
-> And there's a back gate that puts you very close to **St. Andrews State Park**,
-> which is `[KAREN]` your line, because it's genuinely one of the best things in
-> Bay County and you've been.
+**That line is Karen's own assessment, not a sourced claim** — which is exactly
+what it should be. Opinions are hers to give; facts have to come from somewhere.
+
+> `[KAREN — verify]` And there's a back gate that puts you very close to
+> **St. Andrews State Park**, which is your line, because it's genuinely one of
+> the best things in Bay County and you've been.
+
+⚠️ The back gate and its proximity to St. Andrews are from the listing copy.
+You have been through that gate; say what you actually know.
 
 ## One honest drawback — 22:00–23:00
 
@@ -571,7 +644,12 @@ Do not push in more than ~1.1×.** See
 > flooring. On a house built in nineteen eighty seven, that list is the part I'd
 > pay attention to.
 
-**Verified** from the 783783 description.
+⚠️ **Listing prose, not MLS fields.** The new roof, gutters, windows and flooring
+are the seller's claims from the marketing copy for 783783. `[KAREN]` a new roof
+on a 1987 house is the most financially significant thing in this segment and the
+first thing an insurer will ask about. **Confirm the roof year before you say
+it**, or say *"the current owner says the roof is new this year, and that is
+worth confirming"*, which is honest and still lands.
 
 ## `[REVEAL 4]` — 24:35–24:50 *(82%)*
 
@@ -627,17 +705,23 @@ confirm it for the actual address before you fall in love with it."*
 onto Navy Blvd / Thomas Drive, right on Sunset Drive, which becomes Oak Street.
 
 > It's a quiet residential street. No gate, no HOA, no amenities, nobody
-> collecting a fee. And it is a few minutes from **Naval Support Activity Panama
-> City**, which if you're military or you work on that base changes this entire
-> conversation.
+> collecting a fee. `[KAREN — verify]` And it is [N] minutes from **Naval Support
+> Activity Panama City**, which if you're military or you work on that base
+> changes this entire conversation.
 
-**Verified** from the 785430 description. ⚠️ **This is the only military-relevant
-fact in the package and it is worth its own beat** — NSA Panama City is a
-significant relocation driver in this market.
+⚠️ **The NSA proximity is listing prose** ("just minutes from… Naval Support
+Activity Panama City"), not an MLS field. The base is real and its location is
+public, so this is easy to check — **drive it and use your own figure.** It is
+worth getting right rather than dropping: NSA Panama City is a significant
+relocation driver in this market and it is the only military hook in the package.
 
-> `[KAREN]` The description says roughly a ten minute drive to the public beach
-> access on Thomas Drive and to St. Andrews State Park. **Confirm that yourself
-> before you say it.** It is the listing agent's figure, not yours.
+**What *is* MLS-verified here:** `HOA = false` and an empty `Association Fee`
+field, so "no HOA, nobody collecting a fee" is citable.
+
+`[KAREN]` The listing copy also claims roughly a ten minute drive to the public
+beach access on Thomas Drive and to St. Andrews State Park. **That is the same
+unverified figure used in the closing line** — confirm it once and it covers both
+places it appears.
 
 ## `[PAYOFF 3]` — the land — 26:50–27:40
 
@@ -678,9 +762,17 @@ significant relocation driver in this market.
 > It might be a very good buy. But I'd want to know why it's still here, and so
 > should you.
 
-**Verified**: description states the February 2026 appraisal at $449,000 and
-"INSTANT EQUITY"; septic with sewer at the street; DOM 185; price history
-$444,900 → $439,000 → $425,000 → $385,000 → $365,000.
+**Mixed sourcing.** ⚠️ The **February 2026 appraisal at $449,000 and the "INSTANT
+EQUITY" claim are listing prose** — the seller's account of their own appraisal,
+which the copy says is available on request. `[KAREN]` if you cannot see the
+appraisal, attribute it: *"there's an appraisal the seller says came in at four
+forty nine."* Never state another party's appraisal as a fact, and never imply a
+value conclusion of your own from it.
+
+**The septic, DOM 185 and the price history are solid** — septic-with-sewer-at-
+the-street is prose but visible and confirmable, and the four cuts from $444,900
+are MLS. **The rebuttal is the part that matters and it rests entirely on MLS
+data**, which is exactly why it works.
 
 ⚠️ **This is the "be real, not promotional" beat of the whole video** (`D4-GS`
 00:50:43). Karen is publicly declining to repeat her own brokerage's marketing
@@ -713,8 +805,18 @@ argument.
 > As I'm recording this, that one is **three hundred and sixty five thousand
 > dollars.**
 
-> Three bedrooms. A third of an acre. Ten minutes from the beach. In Panama City
-> Beach, Florida.
+> Three bedrooms. A third of an acre. `[KAREN — verify]` [N] minutes from the
+> beach. In Panama City Beach, Florida.
+
+🔴 **This line contains the only unverified claim in the video's closing
+sentence, and it is the last thing the viewer hears.** The "ten minutes" figure
+came from the listing agent's marketing copy, not from any measurement. Drive it
+and use your own number.
+
+**If you cannot confirm it before recording, cut the clause entirely:** *"Three
+bedrooms. A third of an acre. In Panama City Beach, Florida."* That still works,
+because the lot size and the price are the payoff — the drive time was never
+carrying the line.
 
 **The last number in the video is the most reassuring one.** That is the whole
 reason the route runs high to low. The framework's underlying mechanic is *end on
@@ -740,6 +842,25 @@ the brokerage name next to the contact details, which is what Florida rule
 
 `[END SCREEN — last 15 seconds. No facts, no numbers, no new information.]`
 
+⭐ **The subscribe outro already exists — do not produce a new one.** Karen's
+library has finished green-screen masters with real alpha channels:
+
+| Asset | Spec | Use |
+| --- | --- | --- |
+| `Karen - Coastal Subscribe Outro - Alpha.mov` | **1080×1920 vertical**, ProRes 4444, `yuva444p12le`, 10.0 s, 24 fps | ⚠️ **Vertical.** Built for Shorts/Reels, not this video |
+| `Karen - LM Subscribe Outro - GreenKey Master.mov` | **1920×1080**, ProRes 4444, `yuva444p12le`, 12.2 s, 25 fps | ✅ Correct aspect, but **Latitude-branded** |
+
+Both live in
+`PCB\West Bay & HWY 79 Corridor\Latitude Margaritaville Watersound\`.
+
+**Neither is a drop-in.** The 16:9 one is branded for the wrong channel; the
+coastal-branded one is vertical. `[KAREN]` decide between: crop/reframe the
+coastal vertical to 16:9 (it is 1080 tall, so a 16:9 centre-crop lands at
+1080×608 and would need upscaling — check the framing before committing), or
+have the coastal version re-rendered at 1920×1080 from the same source. **The
+alpha channel is the valuable part** and both have it, so this composites cleanly
+over the final aerial rather than needing a hard cut.
+
 **Redirect after the price, naming exactly one video** (`D3-GS` 00:54:16). Two
 notes:
 
@@ -755,20 +876,40 @@ notes:
 
 ## Open `[KAREN]` items — the blocking list
 
+Split by why it matters. **Tier A can put wrong information into a permanent
+video.** Tier B is performance direction.
+
+### 🔴 Tier A — factual. Do not record until these are answered.
+
+| # | Where | What | Source problem |
+| --- | --- | --- | --- |
+| A1 | 3:20 + all five segments | **Every drive time**: the five from Pier Park, plus beach, Publix, FSU Health, ECP, Hwy 79 | Nothing sourced these. Several came from listing copy |
+| A2 | 5:50 | ⚠️ **The Palmetto Trace lot contradiction.** MLS says 0.05 acres; the copy says "expansive" and "resort-style pool" | MLS field vs prose, in direct conflict |
+| A3 | 6:40 | ⚠️ **FSU Health Panama City Beach** — already corrected from the copy's wrong "Tallahassee Memorial." Confirm build status in your own words | Prose was **factually wrong** |
+| A4 | 22:30 | **How Bay Point golf and marina membership works**, and the **Jack Nicklaus attribution** | HOA doc lists only `Playground,Security`; Nicklaus is prose |
+| A5 | 29:20 | 🔴 **The "ten minutes from the beach" claim in the closing line** | Prose. Last thing the viewer hears. Cut the clause if unconfirmed |
+| A6 | 4:55 | Whether the $384 tax figure carries to a new buyer. Almost certainly not | MLS field, but it is the *seller's* assessment |
+| A7 | 27:50 | The **February 2026 appraisal at $449,000** — attribute it, never state it | Prose. Another party's appraisal |
+| A8 | 17:30 | **Impact glass, generator, 2019 gut renovation.** No insurance figures, no flood zone | Prose. Insurance-relevant |
+| A9 | 23:30 | The **2026 roof** on the 1987 Bay Point house | Prose. First thing an insurer asks |
+| A10 | 9:30 | **Seven weeks of pre-bookings**, and "lower-density Oleander" | Prose. Seller's own booking calendar |
+| A11 | 16:00 | **150 feet of lake frontage**, dock, kayak launch, 50-amp RV service | Prose. Only the 0.66-acre lot is MLS |
+| A12 | 17:50 | **Short-term rental not permitted** at El Centro | Prose. `Community Features` is empty for this property |
+| A13 | 6:30 | **"Only" dog-friendly beach section**, and the four park names | Prose. A fallback line without "only" is in the script |
+| A14 | 26:10 | **Distance to Naval Support Activity Panama City** | Prose. The only military hook in the package |
+| A15 | 25:35 | School zoning can be redrawn — confirm per address | Assignments are MLS; *durability* is not |
+
+### Tier B — performance. Improvise on the day.
+
 | # | Where | What |
 | --- | --- | --- |
-| 1 | 3:20 | **All five drive times from Pier Park**, plus beach, Publix, hospital, ECP, Hwy 79 |
-| 2 | 5:50 | ⚠️ **The Palmetto Trace lot contradiction.** MLS says 0.05 acres; the copy says "expansive". Resolve it, say the true one |
-| 3 | 4:55 | Whether the $384 tax figure carries to a new buyer. Almost certainly not |
-| 4 | 6:40 | Dog-friendly beach section still designated; Tallahassee Memorial status, announced vs built |
-| 5 | 14:00 | The second-floor-pool line, in her own words |
-| 6 | 17:00 | Impact windows and generator, one true sentence. **No insurance figures, no flood zone** |
-| 7 | 21:40 | St. Andrews State Park, her own words |
-| 8 | 22:30 | **How Bay Point golf and marina membership actually works.** The HOA covers only playground and security |
-| 9 | 25:35 | School zoning can be redrawn, confirm per address |
-| 10 | 26:40 | The ten-minute beach claim for Treasure Cove |
-| 11 | 2:55, 14:00 | Two optional Mike beats, for approval |
+| B1 | 14:00 | The second-floor-pool line, in her own words |
+| B2 | 21:40 | St. Andrews State Park and the Bay Point back gate, her own words |
+| B3 | 2:55, 14:00 | Two optional Mike beats, for approval |
+| B4 | 29:40 | Which subscribe-outro master to use, and whether it needs re-rendering at 16:9 |
 
-**Do not record until 1, 2 and 8 are answered.** The other eight can be
-improvised on the day; those three will put wrong information in a permanent
-video.
+**A1, A2, A3, A4 and A5 are the hard blocks.** A5 in particular: it is a
+listing agent's estimate sitting in the final sentence of the video. Every Tier A
+item traces to
+[the two-tier sourcing problem](README.md#sourcing-two-tiers-of-data-in-one-file)
+— they are all places where marketing copy was about to become a stated fact.

@@ -90,7 +90,7 @@ last number in the video is the most reassuring one.
 | --- | --- | --- | --- | --- | --- |
 | 1 | **Palmetto Trace Phase 2** | 249 Oxford Ave | Walk to Pier Park. Small HOA, community pool, no tourists on your street | $505,500 | 82 |
 | 2 | **Bahama Beach** | 13003 Oleander Dr | You own the sand — and it can pay for itself | $5,299,000 | 291 |
-| 3 | **El Centro Beach** | 263 Lullwater Dr | Two-thirds of an acre on a *lake*, three minutes from the Gulf | $890,000 | 264 |
+| 3 | **El Centro Beach** | 263 Lullwater Dr | Two-thirds of an acre on a *lake*, minutes from the Gulf | $890,000 | 264 |
 | 4 | **Bay Point Unit 1** | 1722 Wahoo Cir | Behind a guarded gate — golf, marina, canals, own restaurant | $474,000 | 218 |
 | 5 | **Treasure Cove** | 2601 Oak St | The one you can actually afford — and it has the second-biggest lot | $365,000 | 185 |
 
@@ -233,6 +233,82 @@ stale permanently, because it is baked into the pixels.
 
 ---
 
+## Sourcing: two tiers of data in one file
+
+⚠️ **Read this before building any future video from these detail sheets. It is
+the trap in this data and it is not obvious.**
+
+Each `listing-details.md` contains **two kinds of information with completely
+different reliability**, and they sit inches apart in the same file.
+
+| Tier | What it is | Where it lives | Treat as |
+| --- | --- | --- | --- |
+| **1 — MLS structured fields** | Price, DOM, price history, beds, baths, sq ft, lot size, year built, assigned schools, HOA status/fee/frequency, annual tax, community features, waterfront and view flags, security features | The `\| Field \| Value \|` tables | ✅ **Citable.** Entered under MLS rules and subject to correction |
+| **2 — The listing prose** | Everything in `## Property description` | One free-text block | 🔴 **Unverified marketing copy**, written to sell a house |
+
+**Tier 2 is where the errors are**, and it is also where the most quotable
+material is, which is exactly what makes it dangerous.
+
+### The correction that proved it
+
+The marketing copy for 249 Oxford Ave states:
+
+> *"Tallahassee Memorial Hospital (coming soon), A major medical facility
+> arriving nearby, bringing long-term value and stability to the surrounding
+> area."*
+
+**It is not Tallahassee Memorial.** The hospital being built on Bay Parkway is
+**FSU Health Panama City Beach** — corrected by Mike Lawell, who lives here. And
+Karen's own library holds **2 minutes 25 seconds of 4K footage of it** at
+`PCB\West Bay & HWY 79 Corridor\FSU Health Panama City Beach\FSU Health Panama City Beach 01.MP4`.
+
+An earlier draft of this package carried the TMH claim into the script on the
+strength of "it's in the detail sheet." **The detail sheet was never the
+authority — the MLS fields in it were.** That single sentence also contains a
+factual error, an unverifiable drive-time implication, and a forward-looking
+value claim a licensee should not state flatly. One sentence, three problems.
+
+### What tier 2 typically contains, and how this script handles each
+
+| Prose claim type | Example from these files | Handling |
+| --- | --- | --- |
+| **Named third parties** | "Tallahassee Memorial Hospital" | 🔴 **Wrong.** Corrected to FSU Health, delivered over Karen's own footage |
+| **Drive times / "minutes away"** | "ECP, Only 15 minutes away"; "approximately a 10-minute drive to the nearest public beach access" | **All marked `[KAREN — verify]`.** Never spoken as fact |
+| **Superlatives** | "one of Panama City Beach's most coveted neighborhoods"; "world-class"; "premier"; "iconic" | **None used.** Sales language, and not Karen's assessment to make |
+| **Scarcity / investment claims** | "homes here don't last long"; "bringing long-term value and stability"; "INSTANT EQUITY" | **None repeated as Karen's own.** Forward-looking value claims a licensee should avoid stating flatly. The Treasure Cove segment **rebuts** its "instant equity" line using MLS price history |
+| **Condition and system claims** | 2019 gut renovation, impact glass, generator, "brand-new roof (2026)" | **Marked.** Insurance-relevant and should not rest on a seller's word |
+| **Seller's own business figures** | "7 weeks of pre-bookings" | **Marked.** Persuasive, unverifiable, and exactly what a buyer would rely on |
+| **Amenity attributions** | "Jack Nicklaus-designed", "full-service marina" | **Marked.** MLS confirms *golf* and *marina*; the prose says *whose* and *how good* |
+| **Landmark names** | Pier Park, Frank Brown Park, Aaron Bessant Park, Russell Fields Pier | **Kept, flagged.** Almost certainly fine and good material |
+| **Exclusivity claims** | "PCB's only dog-friendly beach section" | **Marked.** The script gives a fallback line that drops "only" and cannot be wrong |
+
+### One genuine grey area, stated honestly
+
+The MLS **`Directions`** field is a *structured field containing agent-authored
+free text*. This package treats it as **tier 1 for the route and tier 2 for any
+distance** — so *"across the street from Pier Park"* and the turn-by-turn
+sequences are cited as **verified routes**, while no minute figure is ever taken
+from them. That is why every entry in
+[the drive-time table](#drive-time-table--karen-all-of-it) is `[KAREN]` and every
+route beside it is not.
+
+### The rule going forward
+
+> **MLS structured fields are citable. Listing prose is a lead, not a source.**
+> Anything from the description block gets confirmed independently or gets marked
+> `[KAREN — verify]`. It never enters a script as a stated fact, however good it
+> sounds — and it will often sound very good, because someone was paid to make it
+> sound that way.
+
+**Karen is the correction mechanism here, and she is a better one than the
+data.** Both fixes to this package came from the Lawells' own knowledge of the
+area, not from any file. That is the actual competitive advantage this channel
+has over [Mr. Beach](../../../../knowledge/competitors/mrbeach.md), whose
+authority is personal and anecdotal but unfalsifiable — and it only works if the
+script asks her the right questions instead of assuming the paperwork is right.
+
+---
+
 ## ✅ Days on market — the plan said this was unobtainable. It is not.
 
 The plan stated that DOM *"is not obtainable from here"* — listing PDFs being
@@ -250,8 +326,14 @@ elementary, middle and high school · HOA status, fee and payment frequency ·
 annual tax · community features · waterfront and view flags · and the listing
 agent's own written driving directions.**
 
-**No `[KAREN — DOM]` placeholders are needed.** Not one. Every number in the
-script is cited to a detail sheet.
+**No `[KAREN — DOM]` placeholders are needed.** Not one. Every DOM and price
+figure in the script cites an MLS field on a dated sheet.
+
+⚠️ **This applies to the MLS structured fields only.** The prose description
+block in the same files is marketing copy and is
+[handled separately](#sourcing-two-tiers-of-data-in-one-file). An earlier draft
+of this README claimed *"every number in the script is cited to a detail sheet"*,
+which was true of the numbers and wrong as a general statement about the file.
 
 And DOM turned out to be far more than a narrative garnish — **the price
 histories are some of the best material in the video:**
@@ -397,16 +479,17 @@ thing to need revision.
 
 ## Before you record
 
-Six things, in priority order. The first three block recording.
+Seven things, in priority order. The first four block recording.
 
 | # | What | Why |
 | --- | --- | --- |
-| 1 | **Fill the drive-time table below** | The vlog format is built on "how far is it." Every minute figure in the script is `[KAREN]` |
+| 1 | **Fill the drive-time table below** | The vlog format is built on "how far is it." Every minute figure in the script is `[KAREN]`, including several that came from listing copy |
 | 2 | **Re-verify all five prices and statuses** | Snapshot is 2026-08-21. Four of the five have been reduced at least once |
 | 3 | **Confirm the Counts video-marketing policy** | [Brokerage disclosure](#brokerage-disclosure--verified) — image use is pre-approved, video is not confirmed |
-| 4 | Shoot the Bay Point gate and marina yourself | ⚠️ There is **no Bay Point community photography** in the library and it is the most community-dependent segment |
-| 5 | Ask whether neighborhood drone footage exists | `PCB\DJI_001\` is empty. Aerials of segments 2–5 would materially improve the video |
-| 6 | Get the kvCORE **zapKey** | [Above.](#the-zapkey-is-still-the-right-fix) Not blocking, but it fixes this permanently |
+| 4 | **Clear every `[KAREN — verify]` in the script** | [Listing-prose claims](#sourcing-two-tiers-of-data-in-one-file). The FSU Health correction is already applied; the rest still need confirming |
+| 5 | Shoot the Bay Point gate and marina yourself | ⚠️ There is **no Bay Point community photography** in the library and it is the most community-dependent segment |
+| 6 | Ask whether neighborhood drone footage exists | `PCB\DJI_001\` is empty. Aerials of segments 2–5 would materially improve the video |
+| 7 | Get the kvCORE **zapKey** | [Above.](#the-zapkey-is-still-the-right-fix) Not blocking, but it fixes this permanently |
 
 ### Drive-time table — `[KAREN]`, all of it
 
@@ -518,7 +601,18 @@ most copyable thing about the channel."*
 
 ## Things not to say on camera
 
-- **Any drive time that has not been driven.** See the table above.
+- **Any drive time that has not been driven.** See the table above. Several were
+  lifted from listing copy in an earlier draft and are now all `[KAREN]`.
+- 🔴 **"Tallahassee Memorial."** The hospital on Bay Parkway is **FSU Health
+  Panama City Beach.** The listing copy is wrong and Karen has footage of the
+  real one.
+- **Anything read straight out of a listing description.** See
+  [Sourcing](#sourcing-two-tiers-of-data-in-one-file). It is marketing copy, not
+  data.
+- **"Most coveted", "homes here don't last long", "long-term value and
+  stability", "instant equity."** All are from these listings' copy. They are
+  someone else's sales language, and the value claims are the kind a licensee
+  should not state flatly.
 - **"This home is for sale" / "my listing" / "we have it listed."** See
   [the framing rule](#-the-framing-rule--read-this-before-anything-else).
 - **Any price without "as I'm recording this."** Four of the five have moved.
@@ -533,3 +627,4 @@ most copyable thing about the channel."*
   Ratings, test scores and reputations are not, and they change.
 - **Any claim about what Bay Point's HOA covers** beyond the two things the
   detail sheet lists (`Playground,Security`).
+- **Another party's appraisal as a fact.** Attribute it or drop it.

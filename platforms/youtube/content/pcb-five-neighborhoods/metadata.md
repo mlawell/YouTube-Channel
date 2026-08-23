@@ -207,6 +207,12 @@ the spoken redirect at 29:35 is doing the job alone.
 **Last 20 seconds carry no facts** (`D3-GS` 00:54:16). The redirect is spoken
 *after* the final price, never before.
 
+⭐ **The subscribe outro graphic already exists** — do not commission a new one.
+Two finished ProRes 4444 masters with real alpha channels are in the library, but
+**neither is a drop-in**: the coastal-branded one is **vertical (1080×1920)** and
+the correctly-sized 16:9 one is **Latitude-branded**. Specs and options in
+[`media-map.md`](media-map.md#-subscribe-outro-masters--already-produced-do-not-rebuild).
+
 > **The redirect target has to exist.** The script names *Cost of Living in
 > Panama City Beach, Florida* out loud. If it is not published or scheduled,
 > either make it next or change the spoken line before recording — do not
