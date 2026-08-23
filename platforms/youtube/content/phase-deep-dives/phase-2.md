@@ -73,6 +73,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 > Phase 2 — plat book 28, page 8. Two hundred and thirteen homesites on 103 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
+`[HUMOR — optional, cut freely]`
+
+> Flip Flop Court is a line out of Margaritaville. I blew out my flip flop, stepped on a pop top. Somebody read the lyrics and started handing out street names.
+
 ## THE CART RUN — 2:00–4:00
 
 **Direction:** this is the segment nobody else has, and it only works if it is real. Film it in one take from the driveway to the Town Center, clock visible or timer overlaid. Say the speed out loud.
@@ -97,6 +101,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN — first-hand: the Bandshell. Your own line is that a loud show carries for miles, so it is not how you pick a phase. Say whether you hear it here, and whether that is a plus or a minus for you. No distances, no radius — it varies too much.]`
 
+`[HUMOR — optional, cut freely]`
+
+> And Coral Reef Way is named for the Coral Reefer Band, except a syllable went missing somewhere between the band and the street sign.
+
 ## WHAT PEOPLE WHO LIVE HERE SAY — 5:30–7:30
 
 **Direction:** this is the second thing no competitor can do, and it is empty until real people are asked. There is no resident feedback in this repository — none — so nothing is written here for Karen to read.
@@ -115,13 +123,21 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 **Never** imply this phase is priced differently from another. Price follows the model, the collection and the homesite premium.
 
-## CLOSE — 10:00–10:45
-
-> If you want to see how this phase fits against the other nine, the full phase map video is linked below — every one of the sixteen recorded plats, with the book and page.
+## CLOSE — 10:00–10:30
 
 > And if you want today's actual list for Phase 2, message me. I live here.
 
-`[END SCREEN: flagship phase-map video + next phase in the series]`
+## END SCREEN REDIRECT — 10:30–10:45
+
+**One element: Phase 3.** Nothing else on the card. No playlist, no subscribe button competing with it, no channel icon — *"if you tell them to do three things they'll do zero"* (`D3-GS` 00:36:16). Say it out loud while it is on screen; every top performer does.
+
+**Why Phase 3:** Continues the Highway 79 thread the chapter just opened.
+
+> Phase 2 is one of only three phases that can hear Highway 79. Phase 3 is another one of them, and that video is on the screen right now.
+
+`[END SCREEN: Phase 3. One element only. Last 15 seconds.]`
+
+**Put no facts in this block.** It is the last fifteen seconds, the viewer is already reaching for the next thing, and anything checkable said here is said to nobody.
 
 ---
 
@@ -133,3 +149,5 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] End screen card set to **one element only** — Phase 3 — and the redirect line spoken over it
+- [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".

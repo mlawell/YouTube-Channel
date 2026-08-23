@@ -45,7 +45,7 @@ Use this for **every** new channel. Replace `[CITY]`, `[EMAIL]`, etc.
 | 15 | **Thumbnail** | video → Details | Your face + emotion + bold text | Day 7, Day 12 |
 | 16 | **Video length** | — | 8–15 min long-form (short-form is not the primary strategy) | Day 4, Ch 18 |
 | 17 | **Audience / Altered content** | video → Details | Made for Kids = **No**; Altered/AI = **No** | Day 7 |
-| 18 | **End screen / Cards** | video → Editor | End screen (subscribe + next video) in last 15 sec | Day 7 |
+| 18 | **End screen / Cards** | video → Editor | End screen in last 15 sec. **One element only** — *"if you tell them to do three things they'll do zero"*. Loop: [`phase-deep-dives/README.md`](../../../platforms/youtube/content/phase-deep-dives/README.md#the-redirect-loop) | Day 7 |
 | 19 | **Schedule** | upload | Consistent weekly slot (e.g., Thu eve / Sat morning) | Day 7 |
 
 ---
@@ -188,7 +188,10 @@ This group is independently run and is not affiliated with or endorsed by Minto 
 - [ ] Set Watermark + Standard License + category
 - [ ] Verify phone (unlock custom thumbnails / 15‑min videos)
 - [ ] Add channel trailer + featured sections/playlists
-- [ ] Add end screens to videos
+- [ ] Add end screens to videos — **design done**, one element per video, see
+      the redirect loop in
+      [`phase-deep-dives/README.md`](../../../platforms/youtube/content/phase-deep-dives/README.md#the-redirect-loop).
+      Still unticked because nothing is published yet
 - [ ] Confirm Made for Kids = No on all videos
 
 **Then — the real work (both channels):** publish **8–15 min** videos on a

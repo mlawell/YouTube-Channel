@@ -87,6 +87,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 > Put together, that's **484 homesites across 284 acres** — all of it Phase 6, all of it on separate plats you can look up.
 
+`[HUMOR — optional, cut freely]`
+
+> Attitude Avenue is out here in Phase 6 and Latitude Boulevard is back in Phase 2. Changes in latitudes, changes in attitudes. Different phases entirely, and I refuse to believe that is an accident.
+
 ## THE CART RUN — 2:00–4:00
 
 **Direction:** this is the segment nobody else has, and it only works if it is real. Film it in one take from the driveway to the Town Center, clock visible or timer overlaid. Say the speed out loud.
@@ -103,6 +107,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
+`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
+
+> I asked Mike what he would tell somebody thinking about moving here. He said, bring a cart. That was the entire answer.
+
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
 > Highway 79 is about **one mile** from the middle of this phase in a straight line. `[ON SCREEN: 1 mile to Hwy 79]`
@@ -110,6 +118,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 `[KAREN — first-hand: this is one of the further ones. Is 79 a non-issue here?]`
 
 `[KAREN — first-hand: the Bandshell. Your own line is that a loud show carries for miles, so it is not how you pick a phase. Say whether you hear it here, and whether that is a plus or a minus for you. No distances, no radius — it varies too much.]`
+
+`[HUMOR — optional, cut freely]`
+
+> Also on this plat, Pencil Thin Avenue. That is a 1974 song about a moustache. Somebody proposed it as a street name and the county wrote it down.
 
 ## WHAT PEOPLE WHO LIVE HERE SAY — 5:30–7:30
 
@@ -129,13 +141,21 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 **Never** imply this phase is priced differently from another. Price follows the model, the collection and the homesite premium.
 
-## CLOSE — 10:00–10:45
-
-> If you want to see how this phase fits against the other nine, the full phase map video is linked below — every one of the sixteen recorded plats, with the book and page.
+## CLOSE — 10:00–10:30
 
 > And if you want today's actual list for Phase 6, message me. I live here.
 
-`[END SCREEN: flagship phase-map video + next phase in the series]`
+## END SCREEN REDIRECT — 10:30–10:45
+
+**One element: Phase 7.** Nothing else on the card. No playlist, no subscribe button competing with it, no channel icon — *"if you tell them to do three things they'll do zero"* (`D3-GS` 00:36:16). Say it out loud while it is on screen; every top performer does.
+
+**Why Phase 7:** 6A's low-density story runs straight into the largest phase.
+
+> If it is space you are after, Phase 7 is the biggest footprint in the community. That video is on the screen right now.
+
+`[END SCREEN: Phase 7. One element only. Last 15 seconds.]`
+
+**Put no facts in this block.** It is the last fifteen seconds, the viewer is already reaching for the next thing, and anything checkable said here is said to nobody.
 
 ---
 
@@ -147,3 +167,5 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] End screen card set to **one element only** — Phase 7 — and the redirect line spoken over it
+- [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".

@@ -1176,6 +1176,24 @@ nothing, but only if you register with me first. — Karen (Phase 8)
 | Audience | Not made for kids |
 | Subtitles | Upload a corrected SRT — auto-captions mangle the street names |
 | Playlist | "Latitude Margaritaville Watersound — Every Phase", in phase order |
-| End screen | Subscribe (left) · next phase in the series · the flagship map video |
+| End screen | **One element per video**, per the redirect loop below. Not subscribe *and* next *and* the map |
+
+### The redirect loop
+
+One video per end screen, spoken aloud while the card is up, placed **after** the close and never before it. The chain is a tail feeding a cycle, so nothing dead-ends:
+
+| This video ends | Points at | Because |
+| --- | --- | --- |
+| Phase 1 | **Phase 2** | P1 is the Sales Center and the model park, so the obvious next question is where anybody actually lives. |
+| Phase 2 | **Phase 3** | Continues the Highway 79 thread the chapter just opened. |
+| Phase 3 | **Phase 4** | Same trap, next instance: 4A and 4B interlock and get mixed up the same way 3A, 3B & 3C and 3D do. |
+| Phase 4 | **Phase 5** | Ends the which-plat-am-I-in thread on the community's single biggest myth. |
+| Phase 5 | **Phase 6** | 6A and 6B & 6C are the two density extremes, a direct contrast with the amenity core this chapter just covered. |
+| Phase 6 | **Phase 7** | 6A's low-density story runs straight into the largest phase. |
+| Phase 7 | **Phase 8** | The strongest handoff in the series: one street, two phases, and the destination is the residency proof. |
+| Phase 8 | **Phase 9** | Established phase to the genuinely new one, which is the real resale-versus-new-build decision. |
+| Phase 9 | **Phase 10** | Newest to newest-and-largest. |
+| Phase 10 | **the flagship phase map video** | P10 is the end of Area 1, so the only place left to go is the whole map. Closes the loop back to the hub. |
+| The flagship map video | **Phase 8** | Karen's own phase. The hub's traffic is the best on the channel, so it goes to the residency proof rather than to Phase 1, which is mostly the Sales Center. |
 
 **Publish in phase order**, one a week. The playlist is the product: somebody deciding between two phases watches both, and the series only does its job once several are up.

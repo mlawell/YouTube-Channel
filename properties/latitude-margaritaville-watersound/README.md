@@ -16,6 +16,7 @@ Karen and her husband live in **Phase 8**.
 | --- | --- |
 | [`phase-status.md`](phase-status.md) | Permanent per-phase facts, Karen's first-hand noise calls, and the record-day inventory workflow |
 | [`streets_by_phase.md`](streets_by_phase.md) | Every street in every phase, each name tagged with the public record it came from |
+| [`street-names-buffett.md`](street-names-buffett.md) | Which street names are **verified** Jimmy Buffett references and which only look like it. Read before scripting a joke about one |
 | `streets_by_phase.json` | Same, machine-readable |
 
 Both `streets_by_phase` files are **generated** — run

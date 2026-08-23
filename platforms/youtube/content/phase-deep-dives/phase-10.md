@@ -77,6 +77,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 > Phase 10 — plat book 33, page 98. Three hundred and fifty-five homesites on 237 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
+`[HUMOR — optional, cut freely]`
+
+> Phase 10 has a Concoction Court and a Daiquiri Drive on the same plat. Somebody at that naming meeting was having a very good afternoon.
+
 ## THE CART RUN — 2:00–4:00
 
 **Direction:** this is the segment nobody else has, and it only works if it is real. Film it in one take from the driveway to the Town Center, clock visible or timer overlaid. Say the speed out loud.
@@ -93,6 +97,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
+`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
+
+> Mike's position on the street names is that they are ridiculous. Mike has also learned four of the songs.
+
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
 > Highway 79 is about **two and half miles** from the middle of this phase in a straight line. `[ON SCREEN: 2½ miles to Hwy 79]`
@@ -100,6 +108,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 `[KAREN — first-hand: this is one of the further ones. Is 79 a non-issue here?]`
 
 `[KAREN — first-hand: the Bandshell. Your own line is that a loud show carries for miles, so it is not how you pick a phase. Say whether you hear it here, and whether that is a plus or a minus for you. No distances, no radius — it varies too much.]`
+
+`[HUMOR — optional, cut freely]`
+
+> Lone Palm is a real song, off Fruitcakes in 1994. Chill Street is License to Chill. They were still going strong by the last plat.
 
 ## WHAT PEOPLE WHO LIVE HERE SAY — 5:30–7:30
 
@@ -119,13 +131,21 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 **Never** imply this phase is priced differently from another. Price follows the model, the collection and the homesite premium.
 
-## CLOSE — 10:00–10:45
-
-> If you want to see how this phase fits against the other nine, the full phase map video is linked below — every one of the sixteen recorded plats, with the book and page.
+## CLOSE — 10:00–10:30
 
 > And if you want today's actual list for Phase 10, message me. I live here.
 
-`[END SCREEN: flagship phase-map video + next phase in the series]`
+## END SCREEN REDIRECT — 10:30–10:45
+
+**One element: the flagship phase map video.** Nothing else on the card. No playlist, no subscribe button competing with it, no channel icon — *"if you tell them to do three things they'll do zero"* (`D3-GS` 00:36:16). Say it out loud while it is on screen; every top performer does.
+
+**Why the flagship phase map video:** P10 is the end of Area 1, so the only place left to go is the whole map. Closes the loop back to the hub.
+
+> And that is the end of Area 1. If you want all ten phases laid out on one map, with every plat book and page, that video is on the screen right now.
+
+`[END SCREEN: the flagship phase map video. One element only. Last 15 seconds.]`
+
+**Put no facts in this block.** It is the last fifteen seconds, the viewer is already reaching for the next thing, and anything checkable said here is said to nobody.
 
 ---
 
@@ -137,3 +157,5 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] End screen card set to **one element only** — the flagship phase map video — and the redirect line spoken over it
+- [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
