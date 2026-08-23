@@ -81,6 +81,43 @@ always better than the dash it replaces, because Karen talks in short sentences.
 > every em-dash before the script goes to ElevenLabs. Prose, direction and tables
 > are unaffected. This applies to **spoken lines only**.
 
+### ⛔ The Gulf rule — channel-wide
+
+> ## Karen calls the Gulf "the Gulf."
+
+**Not "Gulf of Mexico." Not "Gulf of America."** On camera and in writing:
+titles, descriptions, tags, thumbnails, pinned comments, everything.
+
+Three reasons, and the third is the one that settles it:
+
+1. **"The Gulf" is what locals say.** The entire premise of this channel is that Karen actually lives here. A formal name reads as someone who does not, which undercuts the one advantage the channel has.
+2. **Both formal names are currently politically loaded, in opposite directions.** The training is explicit about keeping charged terms off a relocation channel: Jesse pre-emptively **blocks trigger words in channel settings** — including *"locally-charged political terms"* — so they never appear (`D4-GS` 00:12:35–00:17:36). He also warns that **"indexing" on a reactive audience is a trap**: a video drawing comments and likes out of proportion to views gets pushed at more of the same audience (`D4-GS` 00:13:10–00:14:47). That distorts who the video is served to, which is the whole ballgame.
+3. **There is no upside.** The audience is split on the question and the video is about house lots. The short form sidesteps it entirely and costs nothing.
+
+**This matters at scale, which is why it is a rule and not a note.** The
+beach-distance beat now runs in the flagship **and all ten deep dives**, so the
+term is spoken **eleven times across the series**. A drift in one generated
+script would be inconsistent, and **inconsistency is more noticeable than either
+choice would have been.**
+
+**Applies channel-wide**, not just to Latitude — it matters more in the PCB
+package, where the Gulf is central to the pitch rather than a distance.
+
+> ✅ **Swept 2026-08-23: zero occurrences** of either formal name anywhere in the
+> repository. Every existing spoken line already says *"the Gulf"* — *"on a
+> lake, not the Gulf"*, *"between the Gulf and West Bay"*, *"you do not have to
+> buy the Gulf to get water."* This rule **codifies existing practice** rather
+> than changing anything, which is the cheapest possible moment to fix it.
+>
+> **Two things the sweep found that are correct and must not be "normalised":**
+>
+> | Keep | Why |
+> | --- | --- |
+> | **Gulf-front** | A compound adjective and a standard real-estate term. *"Gulf-front house"* is not the water's name |
+> | **HCA FL Gulf Coast** | A **proper hospital name**. Never edit an organisation's name to fit a style rule |
+
+---
+
 ### The rest of the register
 
 Never write, in spoken copy:

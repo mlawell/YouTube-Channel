@@ -137,6 +137,8 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ⚠️ **Drive time, not a sight line.** No part of this community can see the Gulf.
 
+⛔ **Say "the Gulf."** Not "Gulf of Mexico," not "Gulf of America." It is what locals say, both formal names are currently politically loaded in opposite directions, and the training is explicit about keeping charged terms off a relocation channel (`D4-GS` 00:12:35). This beat runs in all ten deep dives and the flagship, so the term is spoken eleven times across the series and consistency matters. Channel-wide rule: [`karen-voice-and-humor.md`](../karen-voice-and-humor.md).
+
 `[HUMOR — optional, cut freely]`
 
 > Breathe Out Way is from a song he wrote after Hurricane Katrina. Breathe in, breathe out, move on. Out of every street name in this community, that is the one I think about.
@@ -187,6 +189,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] Plat book/page on screen for every plat named
 - [ ] End screen card set to **one element only** — Phase 4 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
+- [ ] Every mention of the water says **"the Gulf"** — never "Gulf of Mexico" or "Gulf of America", in spoken copy, titles, descriptions or tags.
 - [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The approved set is nine beats and one held, listed in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not add a new Mike beat without asking Mike.**
 - [ ] No laughter, sigh or breath is synthesised. Any reaction in a spoken line is dropped in from Karen's own recorded reaction library on the edit. A synthesised laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
 - [ ] Every `[...]` cue is stripped before the script goes to ElevenLabs. They are edit instructions, not TTS input: on a v2-family voice the model **speaks the cue aloud** and nothing warns you. `<break time="0.5s" />` tags are the one exception, and they stay in.

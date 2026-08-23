@@ -880,6 +880,10 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence and the
       em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a
       full stop, or "and". **Spoken lines only** — direction and tables are fine
+- [ ] **Every mention of the water says "the Gulf"** — never "Gulf of Mexico" or
+      "Gulf of America", in spoken copy, the title, the description or the tags.
+      Channel-wide rule and reasoning in
+      [`karen-voice-and-humor.md`](../karen-voice-and-humor.md)
 - [ ] No street is attributed to a Buffett song unless it is in the **confirmed**
       table in
       [`street-names-buffett.md`](../../../../properties/latitude-margaritaville-watersound/street-names-buffett.md).
