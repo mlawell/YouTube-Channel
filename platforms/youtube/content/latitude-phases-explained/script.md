@@ -4,6 +4,11 @@
 **Talent:** Karen Lawell
 **Visual system:** map frames from `tools/map/output/frames/`, Karen's own
 geotagged Phase 7 & 8 photos, community B-roll.
+**Presenter treatment:** map full-screen with Karen **corner-inset or absent**
+through the body; full-frame only for the hook and the candour/CTA block, and
+only composited over a **real photograph**. There is no real footage of Karen, so
+every appearance is synthetic and the avatar animates the mouth only. Never at a
+desk. See [`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
 
 ## Why 19–22 minutes, not 15
 
@@ -787,6 +792,14 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
       expression control and cannot render a laugh, so a real laugh over the
       avatar is a laughing voice on a neutral face. See
       [`HEYGEN.md`](../../../../tools/avatar/HEYGEN.md)
+- [ ] **Presenter treatment followed.** Map full-screen with Karen corner-inset
+      or absent through the body; full-frame only for the hook and the
+      candour/CTA block, and only over a **real photograph**. Total full-frame
+      face time lands around **one minute**. **Never at a desk**, never in a
+      generated interior. See
+      [`karen-presenter-treatment.md`](../karen-presenter-treatment.md)
+- [ ] **No punchline is delivered full-frame.** Spend the synthetic face on
+      sincerity and the cutaways on comedy
 - [ ] **The No Shoes Court lyric is spoken**, comma-separated, with a
       `<break time="0.5s" />` before "In a Margaritaville community." Checked on
       playback, not on the page

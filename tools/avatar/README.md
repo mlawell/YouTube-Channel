@@ -25,6 +25,16 @@ Quality note: these free models are strongest on **head-and-shoulders**. That's
 why the presenter is composited as a lower-corner "on-camera guide," not a
 full-length standing figure (which needs paid tools like HeyGen).
 
+> ⭐ **That conclusion turned out to be right for two more reasons.** The
+> Channel Junkies playbook independently prescribes the same framing for map
+> videos (*"put yourself in the corner"*), and HeyGen's paid path does **not**
+> escape the limitation the way the note above assumes: it animates the mouth
+> region only and has no expression control, so a full-frame avatar is a neutral
+> face for the whole runtime. Corner-inset is the format on quality, on
+> retention, **and** on expression. See
+> [`karen-presenter-treatment.md`](../../platforms/youtube/content/karen-presenter-treatment.md)
+> and the expression section of [HEYGEN.md](HEYGEN.md).
+
 For the paid, higher-quality HeyGen path — REST API and the remote MCP server —
 see [HEYGEN.md](HEYGEN.md). The `make_presenter_heygen.py` script writes clips to
 the same `presenters/` folder so `build_tour.py` picks them up unchanged.
