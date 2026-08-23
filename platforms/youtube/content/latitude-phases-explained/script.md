@@ -634,12 +634,50 @@ feel different? That's the part only you can say. Do not claim to live on it.]`
 
 ---
 
-## THE QUESTIONS PEOPLE ACTUALLY ASK — 15:00–17:30
+## THE QUESTIONS PEOPLE ACTUALLY ASK — 15:00–18:10
+
+> ⏱ **This block grew by roughly 40 seconds** when the beach question was added
+> as the first of four. **Everything after it shifts by about the same**, taking
+> the runtime to roughly 20:00, which is inside the 19:00–22:00 target and
+> arguably better for AVD. The block headers below are estimates, as they always
+> were: **re-derive the chapter timestamps in `metadata.md` from the final cut**,
+> which the production checklist already requires.
 
 `[FRAME 00_all-phases]`
 
-> Let me answer the three questions I get asked most, because I've seen all
-> three asked under other videos and left unanswered.
+> Let me answer the four questions I get asked most, because I've seen all
+> four asked under other videos and left unanswered.
+
+**"How far is the beach?"**
+
+**Direction:** this goes **first** because it is the single most common objection
+a Florida 55+ buyer raises, and the Margaritaville name invites it. It is a
+headline fact, not a garnish. Same tonal family as the lawn-care beat: the honest
+answer is genuinely good, and saying it plainly is what makes it land.
+
+> We are not on the beach. Let me be straight about that, because the name does
+> a lot of work. The closest Gulf access is about fifteen minutes. Pier Park,
+> where you probably actually want to go, is twenty-five. And in July, add to
+> that.
+
+`[on-screen graphic:]`
+```
+   FROM THE TOWN CENTER
+   Front Beach Rd, west end   8.5 mi   ~15 min
+   Camp Helen State Park     13.3 mi   ~22 min
+   Pier Park                 13.6 mi   ~25 min
+        free-flow · add time in summer
+```
+
+⛔ **Do not round down, and never drop the summer caveat.** A buyer told "ten
+minutes to the beach" who tours in July and spends forty minutes on Front Beach
+Road feels misled, and that is the moment the rest of Karen's credibility gets
+re-evaluated. Mike's own "10 to 15 minutes" is correct but it is the **floor** —
+it holds for the nearest access only. Figures are OSRM free-flow routings with no
+traffic model; full table and method in
+[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md#-how-far-the-gulf-is).
+
+⚠️ **Drive time, not a sight line.** No part of this community can see the Gulf.
 
 **"Is there going to be a second Town Square?"**
 

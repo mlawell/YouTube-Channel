@@ -94,7 +94,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
-## NOISE AND CONVENIENCE — 4:00–5:30
+## NOISE AND CONVENIENCE — 4:00–6:00
 
 > Highway 79 is about **two and quarter miles** from the middle of this phase in a straight line. `[ON SCREEN: 2¼ miles to Hwy 79]`
 
@@ -104,7 +104,19 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 **Picture for the Bandshell beat:** **stills, not video.** There are 26 photographs in `Town Center\Bandshell\Music`, 6 more in `Town Center\Bandshell`, and `Bandshell Music - Golf carts.jpg` at the community root. ⛔ The 8K clips of the bands playing must **not** be published: recorded live performance of copyrighted songs invites a Content ID claim, and in a Jimmy Buffett community the set list is very likely Buffett covers. Muted video is still fine for the **setting** — carts arriving, dusk, the empty stage. See [`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
 
-## WHAT PEOPLE WHO LIVE HERE SAY — 5:30–7:30
+### How far the Gulf is
+
+**This community is inland, and "how far is the beach?" is the single most common objection a Florida 55+ buyer raises.** Every episode answers it, because every episode may be someone's first.
+
+`[on-screen: Front Beach Rd west end 8.5 mi ~15 min · Pier Park 13.6 mi ~25 min · free-flow, add time in summer]`
+
+> We are not on the beach. Let me be straight about that, because the name does a lot of work. The closest Gulf access is about fifteen minutes. Pier Park, where you probably actually want to go, is twenty-five. And in July, add to that.
+
+⛔ **Do not round down, and never drop the summer caveat.** Mike's own "10 to 15 minutes" is correct but it is the **floor** — it holds for the nearest access only. These are OSRM free-flow routings from the Town Center with no traffic model, and summer traffic on Front Beach Road will exceed them materially. A buyer told "ten minutes to the beach" who tours in July and sits on Front Beach Road for forty re-evaluates everything else in the video. Table and method: [`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md).
+
+⚠️ **Drive time, not a sight line.** No part of this community can see the Gulf.
+
+## WHAT PEOPLE WHO LIVE HERE SAY — 6:00–8:00
 
 **Direction:** this is the second thing no competitor can do, and it is empty until real people are asked. There is no resident feedback in this repository — none — so nothing is written here for Karen to read.
 

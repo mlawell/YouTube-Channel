@@ -126,6 +126,50 @@ is measured from here.
 **Retired:** 8520 Latitude Blvd (30.312154, −85.863968). It is 554 m / 0.34 mi
 NNE and is a mailing-address reference only, not the point a buyer walks to.
 
+## ⭐ How far the Gulf is
+
+**This community is inland.** *"How far is the beach?"* is the single most common
+objection a Florida 55+ buyer raises, and the Margaritaville name invites the
+question, so this is a **headline fact rather than a garnish.**
+
+Routed on the road network from the Town Center anchor above:
+
+| Destination | Miles | Minutes |
+| --- | ---: | ---: |
+| **Front Beach Rd, west end** — nearest Gulf access | 8.5 | **15** |
+| Hwy 79 @ Front Beach Rd | 11.3 | 21 |
+| Camp Helen State Park | 13.3 | 22 |
+| **Pier Park** — the main beach strip | 13.6 | **25** |
+
+From the Sales Center every figure is within a minute of these.
+
+**Mike's own answer is "10 to 15 minutes to the Gulf." That is correct, and it is
+the *floor*** — it holds for the nearest access point only. Where most people
+actually go is **20 to 25 minutes.**
+
+> ⚠️ **Free-flow times, no traffic model.** These are OSRM routings on
+> OpenStreetMap data with no congestion applied. **Summer traffic on Front Beach
+> Road will exceed them materially.** Never speak one of these numbers without
+> the "add time in summer" caveat attached.
+
+> ⛔ **Do not round down.** A buyer told *"ten minutes to the beach"* who tours in
+> July and spends forty minutes on Front Beach Road feels misled, and that is the
+> moment the rest of Karen's credibility gets re-evaluated. A buyer told
+> *"fifteen minutes to the closest access, twenty-five to Pier Park, and add time
+> in summer"* trusts everything else in the video.
+>
+> This is the same candour move as the lawn-care beat, and it belongs to the same
+> tonal family: **the honest answer is genuinely good, and saying it plainly is
+> what makes it land.**
+
+**Method:** OSRM on OpenStreetMap, the same routing used for the phase-to-Town-
+Center road distances, which were themselves calibrated against Mike's measured
+ten-minute cart ride from Phase 8. Water body confirmed as the **Gulf** by Mike.
+
+⚠️ **These are drive times, not sight lines.** No part of this community can see
+the Gulf. See the drone-footage rule in
+[`karen-presenter-treatment.md`](../../platforms/youtube/content/karen-presenter-treatment.md#-drone-footage-shows-what-a-drone-sees).
+
 ## Confirmed amenities
 
 All on Minto's amenity site plan, safe to name on screen:
