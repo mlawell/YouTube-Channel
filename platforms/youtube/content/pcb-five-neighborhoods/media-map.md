@@ -140,6 +140,60 @@ neighborhood aerials would materially improve segments 2–5.
 
 ---
 
+## ⭐ FSU Health Panama City Beach — the corrected hospital
+
+**`PCB\West Bay & HWY 79 Corridor\FSU Health Panama City Beach\`**
+
+| File | Duration | Format |
+| --- | --- | --- |
+| `FSU Health Panama City Beach 01.MP4` | **2:24.9** | 3840×2160 @ 59.94, HEVC **10-bit** (`yuv420p10le`), ~1.4 GB |
+
+**This asset is why the hospital beat survives.** The listing copy for 249 Oxford
+Ave names *"Tallahassee Memorial Hospital (coming soon)"* — **which is wrong.**
+The hospital going up on Bay Parkway is **FSU Health Panama City Beach**, and
+Karen has her own footage of it. A corrected fact delivered over her own B-roll
+is worth considerably more than the sentence it replaces. See
+[the sourcing note](README.md#sourcing-two-tiers-of-data-in-one-file).
+
+**Used at 6:40**, in the Palmetto Trace "things to do" block.
+
+**Production notes.** Same treatment as the Pier Park plates — **downscale to
+1080p on ingest.** Note this one is **10-bit** where Pier Park is 8-bit, so it
+will grade differently; conform both to the same working space before cutting
+them together or the intercuts will shift in colour.
+
+---
+
+## ⭐ Subscribe outro masters — already produced, do not rebuild
+
+Both carry a **real alpha channel** (`yuva444p12le`, ProRes 4444), so they
+composite over the closing aerial instead of needing a hard cut.
+
+`PCB\West Bay & HWY 79 Corridor\Latitude Margaritaville Watersound\`
+
+| File | Resolution | fps | Duration | Verdict |
+| --- | --- | --- | --- | --- |
+| `Karen - Coastal Subscribe Outro - Alpha.mov` | **1080×1920 vertical** | 24 | 10.0 s | ✅ Right branding, ⚠️ **wrong aspect** — built for Shorts/Reels |
+| `Karen - LM Subscribe Outro - GreenKey Master.mov` | **1920×1080** | 25 | 12.2 s | ✅ Right aspect, ⚠️ **Latitude-branded** — wrong channel |
+| `Karen - LM Subscribe Outro - Bar.mp4` | 1920×1080 | — | — | Flattened, no alpha. Plus `pre-decontam` / `pre-dehalo` backups |
+
+⚠️ **Neither is a drop-in for this video**, and that is worth knowing before the
+edit rather than during it. `[KAREN]` either re-render the **coastal** version at
+1920×1080 from its source (cleanest), or centre-crop the vertical to 16:9 — but
+note that a 16:9 crop of a 1080-tall frame lands at **1080×608 and needs
+upscaling**, so check the framing survives it first.
+
+⚠️ **Frame rates differ** (24 vs 25) and neither matches a 29.97 or 23.976
+timeline cleanly. Conform deliberately.
+
+**Also in that folder and useful elsewhere:** `Bandshell Music - Golf carts.jpg`
+and `Music in the Bandshell - April.mp4` — both Latitude assets, not for this
+video, but they answer open `[KAREN]` items in the
+[phases script](../latitude-phases-explained/README.md#performance-notes-for-karen)
+about what a Saturday night sounds like.
+
+---
+
 ## Segment 1 — Palmetto Trace · 249 Oxford Ave
 
 **MLS 790701** · `PCB\Palmetto Trace Phase 2\249 Oxford Ave\`
@@ -153,7 +207,7 @@ neighborhood aerials would materially improve segments 2–5.
 **Gallery is 41 photos and the tour uses 40 — so the tour is effectively the
 whole gallery.** There is almost no unused material here. Lean on the Pier Park
 plates for this segment's B-roll instead; it is the one neighborhood where they
-are geographically honest.
+are geographically honest. **The FSU Health plate also cuts in here**, at 6:40.
 
 **Verified route** (MLS Directions, listing 790701): *"the Front entrance of
 Palmetto Trace Neighborhood located across the street From Pier Park. From Back
