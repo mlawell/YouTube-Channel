@@ -300,6 +300,21 @@ route beside it is not.
 > sounds — and it will often sound very good, because someone was paid to make it
 > sound that way.
 
+> ### 🔗 The same failure mode arrives by a second route
+> **The artifact was real; the inference drawn from it was not.** The channel has
+> now hit this twice:
+>
+> | Route | Artifact | Bad inference |
+> | --- | --- | --- |
+> | **Listing prose** | A real MLS detail sheet | *"Tallahassee Memorial Hospital (coming soon)"* |
+> | **Aerial footage** | Real drone video of the same hospital | *"the bay is visible"* — true of a drone at altitude, false from the ground |
+>
+> The companion rule is **"drone footage shows what a drone sees, never narrate
+> it as what a resident sees"** in
+> [`karen-presenter-treatment.md`](../karen-presenter-treatment.md#-drone-footage-shows-what-a-drone-sees).
+> Both were caught by the Lawells rather than by any file. **A source being
+> genuine says nothing about whether a particular claim drawn from it is true.**
+
 **Karen is the correction mechanism here, and she is a better one than the
 data.** Both fixes to this package came from the Lawells' own knowledge of the
 area, not from any file. That is the actual competitive advantage this channel

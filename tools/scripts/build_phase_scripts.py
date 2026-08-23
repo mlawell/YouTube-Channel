@@ -959,6 +959,11 @@ def _body(c: Community, num: str, g: dict) -> str:
         "a generated interior. There is no real footage of Karen, so every "
         "appearance is composited. See "
         "[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).")
+    add("- [ ] **No narrated sight lines.** Nothing says \"you can see X from "
+        "here\" unless Karen or Mike has stood there and confirmed it. Aerials "
+        "and satellite basemaps show what a drone sees, not what a resident "
+        "sees, and a sight line that fails on a tour is a trust failure at the "
+        "worst possible moment.")
     add("- [ ] **No location audio in the final mix.** All camera sound is "
         "stripped; the bed is `LM Island Breeze - Tour Bed.mp3` with narration "
         "ducked over it. Never bare picture, because production value is "

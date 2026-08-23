@@ -110,6 +110,75 @@ though again, that is a floor rather than a finding.
 
 ---
 
+## ⛔ Drone footage shows what a drone sees
+
+> ### Never narrate an aerial as what a resident sees.
+
+Aerial shots reveal water, skylines, neighbouring developments and distances
+that are **invisible from ground level**. A drone a few hundred feet up sees for
+miles. A resident standing in a driveway sees the house opposite. Describing the
+first as *"you can see X from here"* is a **trust failure that surfaces at the
+worst possible moment** — when a viewer tours the property and finds out
+otherwise.
+
+> **If a sight line matters to a buyer, it must be verified from the ground, by
+> Karen or Mike, before it is spoken.**
+
+### The worked example, because it happened twice
+
+The `FSU Health Panama City Beach 01.MP4` drone footage shows water on the
+horizon. That produced two errors in a row:
+
+1. It was written up as *"the bay is visible on the horizon."* **Wrong water** — the horizon carries the Panama City Beach beachfront high-rises, which reads as the Gulf side.
+2. The proposed fix was *"say you can see the beach high-rises from the site."* **Still wrong**, and wrong in the more important way: it was **still a ground-level sight-line claim derived from an aerial**. Correcting the noun did nothing about the altitude.
+
+**Mike settles it:** *"Bay is visible from where? Not anywhere in Latitude
+Margaritaville."* From the ground in this community, **no bay is visible at
+all.**
+
+The deeper mistake was not misnaming a water body. It was **turning "visible in
+aerial footage" into "visible from the place."**
+
+### Sources this applies to
+
+- The **FSU Health** drone footage
+- Any aerial inside the 1:25:23 of community footage
+- `West Bay Center\Aerial Retail Center - Existing.jpg`
+- ⚠️ **The Esri satellite basemap on the map renders**, which has exactly the same property — an overhead image is not a viewpoint
+
+### Same failure mode as the listing-prose problem
+
+This is the **artifact was real, the inference drawn from it was not** family, and
+the channel has now hit it twice by different routes:
+
+| Route | Artifact | Bad inference |
+| --- | --- | --- |
+| **Listing prose** | A real MLS detail sheet | *"Tallahassee Memorial Hospital (coming soon)"* — the sheet was real, the claim in it was wrong |
+| **Aerial footage** | Real drone video | *"the bay is visible"* — the footage was real, the ground-level claim was not |
+
+Both were caught by the Lawells rather than by any file, and the standing rule in
+[`pcb-five-neighborhoods/README.md`](pcb-five-neighborhoods/README.md#the-rule-going-forward)
+is the sibling of this one. **A source being genuine says nothing about whether a
+particular claim drawn from it is true.**
+
+### ✅ Audit result, 2026-08-23
+
+Every script in `platforms/youtube/content/` was searched for narrated sight
+lines. **The scripts are clean.** The matches that came back are all one of:
+
+- *"you can see"* meaning **on screen**, not from a location
+- *"you can look it up at the Bay County Clerk"* — public record, not visibility
+- *"a preserve view, a pond, a corner"* in the flagship — **homesite-premium categories**, a pricing term rather than a narrated sight line
+- MLS `View` / `Waterfront` **structured fields** in the PCB package, which are tier-1 citable by that package's own sourcing rule
+
+**The only narrated sight-line claim in the repository was the one in this
+document's own draft guidance, and it is removed.** Should one ever be wanted,
+mark it `[KAREN — confirm from the ground]`.
+
+---
+
+---
+
 ## 1. ⛔ Not at a desk
 
 **The desk is the single most recognisable "this is synthetic" composition

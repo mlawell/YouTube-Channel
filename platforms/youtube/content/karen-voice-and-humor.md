@@ -338,31 +338,34 @@ why it clears Mike's rule.
 > The middle sentence, *"the hospital is still being built,"* is now backed by
 > Mike being on site and by **2:24 of Karen's own drone footage**. Where the
 > hospital comes up at length — most likely the amenities video rather than a
-> phase map — this is the safe form, and it is **stronger than a date** because
-> it rests on footage nobody else has:
+> phase map — **this is Mike's own phrasing and it is the recorded form:**
 >
-> > There's a full hospital going up on Bay Parkway. FSU Health Panama City Beach. I've been out and shot it myself, so this isn't a rendering, it's five storeys of concrete already standing. I'm not going to give you an opening date, because that's moved more than once.
+> > They've got a lot done, the walls are up. But there's a lot more to do. When does it open? We're not sure.
 >
-> `[KAREN]` — hers to approve or strike like anything else. **This is factual
-> copy, not a humor beat.** The approved set is still nine.
+> Plain and honest, and **"we're not sure" is a more trustworthy thing for an
+> agent to say than a confident date that later proves wrong.** `[KAREN]` — hers
+> to approve or strike. **This is factual copy, not a humor beat.** The approved
+> set is still nine.
 >
 > **What the footage supports, checked frame by frame:**
 >
 > | Safe to say | Notes |
 > | --- | --- |
 > | **Full hospital, and big** | Mike, first-hand. The elevation is very long |
-> | **Structure topped out**, bare concrete | Confirmed across three sampled frames |
-> | **Five levels** | Ground plus four window rows. Say *"five storeys"* only if Karen is comfortable counting it that way; *"several storeys"* is safer and costs nothing |
+> | **FSU Health Panama City Beach** | The name on Karen's own folder, and Mike caught the Tallahassee Memorial error |
+> | **Walls up, structure topped out**, bare concrete | Confirmed across three sampled frames |
+> | **Several storeys** | Ground plus four window rows. *"Several storeys"* is safer than a count and costs nothing |
 > | Roof mechanical being set, site graded, retention pond in | Visible |
-> | **A neighbouring building is already finished and occupied** | Clad, glazed, landscaped, with a marked car park. This is the medical office building that already opened, and it is a **useful** shot: the campus is partly operational |
+> | ⭐ **A neighbouring building already finished and occupied** | Clad, glazed, landscaped, marked car park. **The strongest element**, because it answers *"when does it open"* with visible evidence instead of a date |
+> | **No opening date** | ⛔ Never speak one |
 >
 > ⚠️ **Two cautions from the frames.**
-> **Cladding has not visibly started** on the main elevation in the frames
-> sampled, so do not say brick is going on.
-> **Do not call the water "the bay."** The horizon in this footage shows the
-> **Panama City Beach beachfront high-rises** and open water, which reads as the
-> Gulf side. Say *"you can see the beach high-rises from the site"* or say
-> nothing about the water.
+> **Cladding has not visibly started** on the main elevation, so do not say brick
+> is going on.
+> ⛔ **Strip every water and sight-line reference.** This is drone footage; what
+> it sees from altitude is not what anyone sees from the ground. Mike:
+> *"Bay is visible from where? Not anywhere in Latitude Margaritaville."* Full
+> rule: [`karen-presenter-treatment.md`](karen-presenter-treatment.md).
 
 **5. Bingo** · `[KAREN]` · **first person, and Mike was explicit that this one is hers**
 
