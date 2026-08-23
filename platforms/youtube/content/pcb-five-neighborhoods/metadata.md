@@ -257,11 +257,14 @@ ask. **Deposits before withdrawals** (`D3-GS` 00:36:29).
 
 ## Publishing checklist
 
-- [ ] **Re-verify all five prices and statuses within 24 hours** — snapshot is
-      2026-08-21 and four of the five have already been reduced
-- [ ] Confirm the [Counts video-marketing policy](README.md#brokerage-disclosure--verified)
+- [ ] **Re-check the five prices and statuses on record-day morning** — snapshot
+      is 2026-08-21 and four of the five have already been reduced.
+      [The five URLs and MLS numbers](README.md#the-record-day-price-check)
 - [ ] Chapter timings updated to the finished edit
 - [ ] Brokerage line still directly under the contact block in the description
+      — [FL 61J2-10.025](README.md#brokerage-disclosure--verified), a formatting
+      requirement, already satisfied. **This is disclosure, not permission;
+      [permission is closed](README.md#brokerage-disclosure--verified)**
 - [ ] No price, no "for sale", no dollar sign in title, thumbnail or any chapter
 - [ ] End screen added in desktop Studio; redirect target published or scheduled
 - [ ] Made for Kids = **No**; Altered/AI = **No**
