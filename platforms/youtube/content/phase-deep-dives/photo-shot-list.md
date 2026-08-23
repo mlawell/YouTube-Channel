@@ -27,6 +27,54 @@ there is something to see, and the talking gets easier.
 
 ---
 
+## ⚠️ Most of this already exists. Select before you shoot.
+
+**This list is now a selection brief first and a shooting brief second.**
+
+Karen photographed a **golf-cart tour of the whole community on 2026-08-09**:
+**1,193 photos, 1,182 of them GPS-tagged (99%)**, already assigned to a plat by
+point-in-polygon against `tools/map/`'s polygons. Index:
+`golfcart_byphase.json`.
+
+| Phase | Photos | | Phase | Photos |
+| --- | ---: | --- | --- | ---: |
+| 7 | 244 | | 5B | 53 |
+| **Town Center (5A3)** | 174 | | 4B | 53 |
+| 3A | 151 | | 2 | 30 |
+| 8 | 146 | | 4A | 25 |
+| 5C | 108 | | 6A | 25 |
+| 3D | 59 | | 6B & 6C | 11 |
+| 3B & 3C | 59 | | 1 | 5 |
+| | | | **9 and 10** | **0 — but see below** |
+
+Plus **39 outside any plat** — approach roads, Highway 79, the entrance, which is
+useful for the Highway 79 beat that currently has no visual at all. And this is
+**on top of** the 278 geotagged Phase 7 and 8 photographs below.
+
+There is also **1:25:23 of 8K video** shot 2026-08-22, in **two folders**
+(`Phases\Videos\` and `video\`), covering **Phases 1, 2, 6B & 6C, 8, 9, 10 and
+the Town Center**. Video outranks photography wherever it applies. Full table and
+GPS placement in
+[`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
+
+> ### ⭐ Phases 9 and 10 do not need a photo shoot
+> They have **zero** cart-tour photographs, but they have roughly **11 minutes of
+> 8K video**. A **7680×4320 frame is a 33-megapixel still**, larger than most
+> stills cameras produce.
+>
+> **Standing method: any phase with video and no photographs gets its stills
+> extracted from the video.** That was the last real gap on this list and it is
+> closed.
+
+### So the order of work is
+
+1. **Use the 8K video** where it exists, and extract frames from it for stills.
+2. **Open the photo index and pull what already exists.** Every other plat is covered.
+3. **Shoot only the genuine gaps.** After the above there is essentially one: **a photo of the cats**. Beyond that, only frames needing a specific composition the tour did not catch — chiefly legible street signs.
+4. **Re-shoot nothing** that the index or the footage already covers.
+
+---
+
 ## ⚠️ Check the Phase 7 and 8 sets before re-shooting
 
 Karen already has **278 geotagged photographs of Phases 7 and 8**
@@ -54,6 +102,20 @@ and then reuse.
 **Shoot the Bandshell twice.** Empty on a Tuesday morning and full on a Saturday
 night is the entire "two different communities" argument in two frames, and Karen
 already makes that point in the flagship close.
+
+> ✅ **Both already exist.** `Town Center\Bandshell\Music\` has **26
+> photographs**, `Town Center\Bandshell\` has 6 more, and
+> `Bandshell Music - Golf carts.jpg` at the community root shows the carts lined
+> up outside — the whole thing in one frame. **33 stills for a beat that needs
+> three or four.** Select, don't shoot.
+>
+> ⛔ **The live-music beat is stills only.** There is 8K video of the bands
+> playing, and it must not be published: recorded live performance of
+> copyrighted songs invites a **Content ID claim**, and in a Jimmy Buffett
+> community the set list is very likely Buffett covers. Muted video is still
+> fine for the **setting** — carts arriving, dusk, the empty stage. The rule and
+> the reasoning are in
+> [`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
 
 ---
 
@@ -199,9 +261,14 @@ are the gaps.
 
 | Beat | Shot needed | Priority |
 | --- | --- | --- |
-| **5. Bingo** | ★ **Bingo at the Town Center** — the activity room, ideally mid-game, or the sign-up board | **Live now.** Scripted into the Phase 8 deep dive, currently falling back to the generic Town Center anchor |
-| **2. The cats** | **Bella, Cinder and Buddy**, and the **Barkaritaville** sign | Waiting. The beat has no script slot until an amenities video exists |
-| **3. The dermatologist** | **West Bay Center** storefronts, West Bay Dental and Dermatology Associates legible; and the **FSU Health** construction site | Waiting, same reason. Karen already has 2m25s of her own FSU Health footage in the M365 library |
+| **5. Bingo** | `Activities\bingo.jpg` and `Activities\Hawaiian Bingo.png` | ✅ **Already exists.** Select, don't shoot |
+| **3. The dermatologist** | `West Bay Center\` — `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` | ✅ **Already exists.** Beat still has no script slot |
+| **2. The cats** | Barkaritaville: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg` ✅ · **Bella, Cinder and Buddy** ❌ | ⚠️ **The one genuine gap.** A phone snap of three cats, not a shoot |
+
+> 🎁 **`Hawaiian Bingo.png` is a free callback.** Beats 5 and 6 are bingo and the
+> Hawaiian shirt, and both are in the **Phase 8 deep dive**. Using the *Hawaiian*
+> bingo frame for beat 5 quietly sets up Mike's shirt beat five minutes early.
+> Only worth it if it stays invisible — play it straight.
 
 > **Beat 4, lawn care, is the deliberate exception.** It is the honesty beat, and
 > honesty is delivered *to* the viewer. **Stay full-frame on Karen.** The lawn
@@ -213,10 +280,15 @@ are the gaps.
 
 There is **no real footage of Karen and none is coming**, so every appearance is
 composited. The photographs on this list are not just B-roll: they are the
-**backgrounds she gets composited over**, which is why "shoot it clean and hold
-it" matters more than it used to.
+**backgrounds she gets composited over**.
 
-- **Shoot a few frames wide and clean**, with empty space on one side, at the Bandshell, the Town Center, the gate and Cool Water Way. Those become the full-frame hook and CTA backgrounds.
+**That is a selection criterion as much as a shooting instruction.** When pulling
+from the 1,182-photo index, prefer frames that are **clean, with empty space on
+one side, and steady** — those are the ones a cutout can sit in. Most of what is
+needed is already in the index; the point is to *choose* for it, not necessarily
+to go and shoot it.
+
+- **When shooting the genuine gaps** — Phases 9 and 10 — deliberately grab a few wide, clean frames with empty space on one side at each location, plus the Bandshell, Town Center, gate and Cool Water Way.
 - **Never a generated interior.** A synthetic figure over a real, checkable place is the whole trick.
 
 ---
