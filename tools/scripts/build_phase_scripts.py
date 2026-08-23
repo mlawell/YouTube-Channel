@@ -933,6 +933,16 @@ def _body(c: Community, num: str, g: dict) -> str:
         "on the edit. A synthesised laugh is one of the clearest AI tells "
         "there is, and YouTube throttles content indexing high on AI detection "
         "(`D1-QA` 00:03:34).")
+    add("- [ ] Every `[...]` cue is stripped before the script goes to "
+        "ElevenLabs. They are edit instructions, not TTS input: on a v2-family "
+        "voice the model **speaks the cue aloud** and nothing warns you. "
+        "`<break time=\"0.5s\" />` tags are the one exception, and they stay "
+        "in.")
+    add("- [ ] The picture cuts away from the avatar for the full duration of "
+        "any recorded reaction. HeyGen exposes no expression control and "
+        "cannot render a laugh, so a real laugh over the avatar is a laughing "
+        "voice on a neutral face. See "
+        "[`HEYGEN.md`](../../../../tools/avatar/HEYGEN.md).")
     add("- [ ] Nothing on camera names the landscaping contractor or the "
         "management company. Describe the condition, ask the question, never "
         "identify the culprit.")

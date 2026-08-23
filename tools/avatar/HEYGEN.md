@@ -193,6 +193,74 @@ Recommended defaults for `POST /v3/videos`: `aspect_ratio: "auto"`, `resolution:
 - Lipsync: [Speed](https://developers.heygen.com/lipsync-speed) / [Precision](https://developers.heygen.com/lipsync-precision) — swap audio + re-animate lips.
 - Video Translation: [Speed](https://developers.heygen.com/docs/video-translate) / [Precision](https://developers.heygen.com/docs/video-translation-precision) — 30+ languages, voice clone, lip-sync; Precision adds editable proofread sessions.
 
+---
+
+## ⭐ Expression, laughter and non-speech audio
+
+**Checked against the developer docs on 2026-08-23**, because the YouTube scripts
+plan to drop a **real recorded laugh** into Karen's narration and something has to
+animate her face over it. Short version: **HeyGen cannot render a laugh, and there
+is no API parameter that makes an avatar smile on cue.**
+
+### What the API actually exposes
+
+| Control | Where | What it really does |
+| --- | --- | --- |
+| `expressiveness` | **Avatar IV only**, and only for **photo avatars / images** | `high` · `medium` · `low` (default `low`). An **energy and range-of-movement dial**, not an emotion selector. Nothing documents `high` as "smiling" |
+| `motion_prompt` | Avatar IV and Avatar V | Free-text **body motion and hand gestures**. No documented effect on the face |
+| emotion / mood presets | — | **Do not exist** in the v3 API. No `emotion`, no `voice_emotion`, no expression preset. Third-party wrappers that advertise one are not quoting HeyGen |
+| Video Agent `POST /v3/video-agents` | — | Takes `prompt`, `mode`, `avatar_id`, `voice_id`, `style_id`, `brand_kit_id`, `orientation`, `files`, callbacks. **No expression parameter** |
+
+⚠️ `expressiveness` is **Avatar IV only and will fail validation on Avatar V**
+([Digital Twin guide](https://developers.heygen.com/generate-avatar-video)). It is
+also unavailable on Avatar III. See the
+[models comparison](https://developers.heygen.com/models).
+
+### Audio-driven video is supported
+
+Handing HeyGen a finished audio track is **documented and supported**:
+[Audio to Video](https://developers.heygen.com/audio-to-video), *"you supply the
+audio, pick who says it, and HeyGen handles the lip-sync and render."* On v3 pass
+`audio_url` **or** `audio_asset_id` to `POST /v3/videos`; the two are mutually
+exclusive with `script`. Works for digital twins, studio avatars, photo avatars,
+and even a bare image. This repo's `make_presenter_heygen.py` already does the v2
+form of it, `{"type": "audio", "audio_asset_id": …}` in the `voice` block.
+
+### But non-speech inside that audio is undocumented
+
+**There is no documentation of what the avatar does during laughter, a sigh, a
+breath, silence or music in a supplied track.** No idle behaviour, no blink cycle,
+no expression mapping. The engine is a **speech-to-mouth** system: it re-animates
+the **mouth region** against the waveform. Everything above the mouth — cheeks,
+eyes, brow — stays in the avatar's default neutral.
+
+So a laugh in the audio gets you *some* mouth movement and a **neutral face**,
+which reads worse than no laugh at all.
+
+### ⛔ The production rule this forces
+
+> **Cut away from the avatar over any recorded reaction.** Put the laugh, the
+> sigh or the breath over **B-roll, a map frame or a street-sign photo**, and
+> return to the avatar on the next spoken sentence.
+
+This is a scripting constraint, not an editing preference, and it is written into
+[`karen-voice-and-humor.md`](../../platforms/youtube/content/karen-voice-and-humor.md)
+so the cutaway gets planned rather than discovered in the edit.
+
+### Pauses are supported, properly
+
+`<break time="1s"/>` is documented for HeyGen TTS pacing
+([usage limits](https://developers.heygen.com/docs/usage-limits)) and ElevenLabs
+supports the same `<break time="x.xs" />` syntax. Use it for a scripted pause
+instead of hoping punctuation lands.
+
+### If a clip is already rendered
+
+`POST /v3/lipsyncs` takes an **existing video plus new audio** and redraws the
+mouth to match, in `speed` or `precision` mode. So narration can be re-mixed after
+the fact and re-synced. It **does not add expression** — it is mouth-region
+re-animation only, so it does not solve the laugh problem either.
+
 ### Webhooks
 [Webhooks](https://developers.heygen.com/docs/webhooks) · [Webhook Events](https://developers.heygen.com/docs/webhook-events). Register an HTTPS URL, get a signing secret (shown once), subscribe to event types to skip polling.
 

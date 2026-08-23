@@ -122,7 +122,7 @@ No humor beat in this episode by design. The photographs carry it instead.
 | --- | --- | --- |
 | 1 | ★ **The Town Center amenity core**, wide | The "there is no Phase 5A" correction. This plat *is* the Town Center, and that is the whole argument |
 | 2 | ★ Paradise Pool | Inside PB 32/81, and it proves the point in one frame |
-| 3 | ★ **No Shoes Ct** sign | Beat 9, for the **flagship's** Town Center chapter. No Shoes Ct is in the plat numbered 5A3, which is the Town Center, **not** a residential Phase 5 street, so the beat is not spoken in this episode |
+| 3 | ★ **No Shoes Ct** sign | Beat 9, for the **flagship's** Town Center chapter. No Shoes Ct is in the plat numbered 5A3, which is the Town Center, **not** a residential Phase 5 street, so the beat is not spoken in this episode. **This shot is also the cutaway the giggle plays over** — HeyGen can't render a laugh, so the picture has to leave the avatar. Shoot it clean and hold at least 4 seconds |
 | 4 | **Caribbean Soul Way** sign | The *Migration* lyric |
 | 5 | The open space on 5C's 184 acres | *"there's real space between things here"* |
 
