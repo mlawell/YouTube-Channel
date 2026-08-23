@@ -849,6 +849,15 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("\u26a0\ufe0f **Drive time, not a sight line.** No part of this community "
         "can see the Gulf.")
     add("")
+    add("\u26d4 **Say \"the Gulf.\"** Not \"Gulf of Mexico,\" not \"Gulf of "
+        "America.\" It is what locals say, both formal names are currently "
+        "politically loaded in opposite directions, and the training is "
+        "explicit about keeping charged terms off a relocation channel "
+        "(`D4-GS` 00:12:35). This beat runs in all ten deep dives and the "
+        "flagship, so the term is spoken eleven times across the series and "
+        "consistency matters. Channel-wide rule: "
+        "[`karen-voice-and-humor.md`](../karen-voice-and-humor.md).")
+    add("")
     L.extend(humor("noise", num))
 
     # ---- residents ----------------------------------------------------------
@@ -960,6 +969,9 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("- [ ] No em-dashes left in any spoken line. ElevenLabs reads the "
         "cadence, and the em-dash is a named AI detection tell "
         "(`D1-QA` 00:05:11). Use a comma, a full stop, or \"and\".")
+    add("- [ ] Every mention of the water says **\"the Gulf\"** \u2014 never "
+        "\"Gulf of Mexico\" or \"Gulf of America\", in spoken copy, titles, "
+        "descriptions or tags.")
     add("- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The "
         "approved set is nine beats and one held, listed in "
         "[`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not "

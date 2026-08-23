@@ -642,4 +642,12 @@ most copyable thing about the channel."*
   Ratings, test scores and reputations are not, and they change.
 - **Any claim about what Bay Point's HOA covers** beyond the two things the
   detail sheet lists (`Playground,Security`).
+- 🔴 **"Gulf of Mexico" / "Gulf of America."** ⛔ **Karen says "the Gulf."**
+  It is what locals say, both formal names are currently politically loaded in
+  opposite directions, and the training is explicit about keeping charged terms
+  off a relocation channel (`D4-GS` 00:12:35). This package is where it matters
+  most, since the Gulf is central to the pitch rather than a distance. Channel-wide
+  rule: [`karen-voice-and-humor.md`](../karen-voice-and-humor.md).
+  **"Gulf-front" is fine** — a standard real-estate compound, not the water's
+  name — and **"HCA FL Gulf Coast" is a hospital's proper name**, never edited.
 - **Another party's appraisal as a fact.** Attribute it or drop it.
