@@ -36,6 +36,25 @@ knowledge/reference-videos/**/*.m4a
 knowledge/reference-videos/exemplars.json
 knowledge/reference-videos/scored.json
 
+# Platform media is REFERENCED, never committed. Photos, tour video, drone
+# plates and thumbnails live in the M365/OneDrive library and are addressed by
+# path from each package's media-map.md — see platforms/youtube/content/README.md
+# and properties/README.md. Some single source files are multi-gigabyte, so this
+# fails closed rather than relying on discipline at `git add` time.
+platforms/**/content/**/*.jpg
+platforms/**/content/**/*.jpeg
+platforms/**/content/**/*.png
+platforms/**/content/**/*.gif
+platforms/**/content/**/*.webp
+platforms/**/content/**/*.mp4
+platforms/**/content/**/*.mov
+platforms/**/content/**/*.m4v
+platforms/**/assets/**/*.jpg
+platforms/**/assets/**/*.jpeg
+platforms/**/assets/**/*.mp4
+platforms/**/assets/**/*.mov
+platforms/**/assets/**/*.m4v
+
 # Phase map: regenerable. `data/` is a live pull from Bay County ArcGIS,
 # `output/` is rendered from it and includes very large print masters (the
 # giant raster alone is ~15 MB, the 4K frames more). Everything rebuilds with

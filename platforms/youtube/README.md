@@ -30,15 +30,23 @@ Managed under the Gmail account `kalawell@gmail.com` (channel switcher):
 
 ### Video packages
 
+Full index: [`content/README.md`](content/README.md).
+
 | Package | Channel | Status |
 | --- | --- | --- |
 | [Karen's voice and humor](content/karen-voice-and-humor.md) | Both | **Read first.** Voice, banned phrases, the em-dash rule, signature details and the line bank. These videos are avatar-narrated, so humor has to be written in advance or it does not exist |
 | [Karen's presenter treatment](content/karen-presenter-treatment.md) | Both | **Read second.** How she appears: the treatment hierarchy, the face-time budget, the cutaway rule, and the verified asset inventory. There is no real footage of Karen, so every appearance is composited |
+| [Five Kinds of Life in Panama City Beach](content/pcb-five-neighborhoods/README.md) | Living in Panama City Beach FL | ~30 min vlog tour of five neighborhoods. Ready to record — **[3 blocking `[KAREN]` items](content/pcb-five-neighborhoods/README.md#before-you-record)** |
 | [Latitude Margaritaville Watersound — Every Phase Explained](content/latitude-phases-explained/README.md) | Living in Latitude Margaritaville Watersound | Script ready, awaiting Karen's confirmations |
 | [Phase Deep Dives — one video per phase](content/phase-deep-dives/README.md) | Living in Latitude Margaritaville Watersound | Ten drafts + metadata + thumbnails generated. **Blocked on the [drive sheet](content/phase-deep-dives/drive-sheet.md)** — cart times need driving, residents need asking |
 
-The two are a hub and its spokes: the flagship answers "how do the phases work",
-each deep dive answers "should I buy in *this* one". The deep dives are
-generated from the same public record the map is, by
+The two Latitude packages are a hub and its spokes: the flagship answers "how do
+the phases work", each deep dive answers "should I buy in *this* one". The deep
+dives are generated from the same public record the map is, by
 [`tools/scripts/build_phase_scripts.py`](../../tools/scripts/build_phase_scripts.py),
 so they cannot drift from the map.
+
+The PCB package is the driver-city **vlog tour** — one of the four permanent
+assets every relocation channel needs, and the format Channel Junkies rates
+highest for activating browse and suggested. That channel has one published
+video, so it is effectively a launch.
