@@ -32,7 +32,7 @@ so that one is next.
 | Package | What it is | Status |
 | --- | --- | --- |
 | [Every Phase Explained](latitude-phases-explained/README.md) | The flagship. 19–22 min, all 16 phases from recorded plats | Script ready, awaiting Karen's confirmations · [runtime under review](latitude-phases-explained/README.md#-1-runtime--1922-minutes-is-below-every-comparable-channel) |
-| [Phase Deep Dives](phase-deep-dives/README.md) | Ten spokes, one per phase | Drafts + metadata + thumbnails generated. **Blocked on the [drive sheet](phase-deep-dives/drive-sheet.md)** |
+| [Phase Deep Dives](phase-deep-dives/README.md) | Ten spokes, one per phase | Drafts + metadata + thumbnails generated. Cart times estimated; remaining gap is **[resident quotes](phase-deep-dives/drive-sheet.md)** |
 
 Hub and spokes: the flagship answers *"how do the phases work"*, each deep dive
 answers *"should I buy in this one"*. Both are generated from the same public
@@ -49,7 +49,7 @@ so they cannot drift from it.
 | `metadata.md` | ✅ | Title variants, description, tags, chapters, end screen, pinned comment |
 | `thumbnail-brief.md` | ✅ | Concepts and what to test |
 | `media-map.md` | when the video uses library media | Every source file by segment, with measurements and trim points |
-| `drive-sheet.md` | when the video makes distance claims | Drive times to be filled in from actual drives, never estimated |
+| `drive-sheet.md` | when the video quotes a resident | Resident quotes, with permission. Cart times beside them are estimates, for reference only |
 
 ## Conventions
 

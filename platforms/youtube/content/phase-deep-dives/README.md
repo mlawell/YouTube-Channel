@@ -35,19 +35,17 @@ The `[MIKE]` beats were reviewed line by line with Mike on 2026-08-23 and most o
 | [`metadata.md`](metadata.md) | Titles, chapters, descriptions, tags and pinned comments for all ten |
 | [`thumbnail-brief.md`](thumbnail-brief.md) | One template, ten thumbnails, with the per-episode hook |
 | [`photo-shot-list.md`](photo-shot-list.md) | What Karen photographs in each phase, and which beat each shot covers |
-| [`drive-sheet.md`](drive-sheet.md) | **The blocker.** Cart times and resident quotes — the only source for the two things here that are not public record |
+| [`drive-sheet.md`](drive-sheet.md) | Resident quotes — the one thing in these videos that cannot be derived from a file |
 
 ## Why grouped this way
 
 Phase 3 is **three** separately recorded plats; Phases 4, 5 and 6 are two each. Grouping them per video makes the flagship's central correction visible instead of asserted: a viewer who came looking for "Phase 3" gets all three plats, each with its own book and page.
 
-## The two things that are not public record
-
-Everything in these drafts comes from Bay County recorded plats except two, and neither can be derived:
-
-**The cart time cannot be computed.** County road centrelines cover only Phases 1, 2, 3A, 3B & 3C and 3D. Ten of the sixteen plats have no interior centreline, and only 12% of the road network connects to the Town Center — most phases sit 1–5 km from any routable road, Phase 10 nearly 5 km. So the drafts carry a **straight-line floor at 30 mph**, labelled as a floor, and a `[CART]` gate for the driven time. See [`drive-sheet.md`](drive-sheet.md).
+## The one thing that is not public record
 
 **There is no resident feedback here at all.** So the drafts carry a prompt and a gate, never a sentence. If a phase has nobody interviewed yet, that section gets cut — it does not get filled in from imagination.
+
+Cart times used to sit beside it as a blocker. They no longer do: the drafts carry an **estimate** from routed road distance at roughly 25 mph, calibrated from Mike's measured Phase 8 run, always spoken as "about N minutes". Driving one is optional. They are an orientation detail, not the substance of any video.
 
 ## The redirect loop
 
