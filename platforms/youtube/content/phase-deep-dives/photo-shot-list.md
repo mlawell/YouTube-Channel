@@ -122,8 +122,9 @@ No humor beat in this episode by design. The photographs carry it instead.
 | --- | --- | --- |
 | 1 | ★ **The Town Center amenity core**, wide | The "there is no Phase 5A" correction. This plat *is* the Town Center, and that is the whole argument |
 | 2 | ★ Paradise Pool | Inside PB 32/81, and it proves the point in one frame |
-| 3 | **Caribbean Soul Way** sign | The *Migration* lyric |
-| 4 | The open space on 5C's 184 acres | *"there's real space between things here"* |
+| 3 | ★ **No Shoes Ct** sign | Beat 9, for the **flagship's** Town Center chapter. No Shoes Ct is in the plat numbered 5A3, which is the Town Center, **not** a residential Phase 5 street, so the beat is not spoken in this episode |
+| 4 | **Caribbean Soul Way** sign | The *Migration* lyric |
+| 5 | The open space on 5C's 184 acres | *"there's real space between things here"* |
 
 ### Phase 6 — 2 plats, PB 30/39 · 30/80
 
@@ -150,11 +151,17 @@ The anchor episode. Most of this may already exist in the 278.
 
 | # | Shot | Covers |
 | --- | --- | --- |
-| 1 | ★ **Escape Ave, north end**, house number visible | The other half of the 7/8 split |
-| 2 | ★ **Cool Water Way** and **Hang Loose Ct** signs | The self-deprecating beat: the only phase with no Buffett in it |
+| 1 | ★ **Escape Ave, north end**, house number visible | The other half of the 7/8 split — beat 7, the authority beat |
+| 2 | ★ **Cool Water Way** sign, and **Hang Loose Ct** | Beat 8. Cool Water Way is **Karen and Mike's own street**, so shoot that sign properly and hold on it |
 | 3 | ★ Karen's own street, and her front door | `[CUT TO KAREN, walking her own street]` — the single most valuable image on the channel |
-| 4 | The lanai, ideally on a concert night | The Bandshell beat, first-hand, and the Mike beat |
-| 5 | The cart in her own driveway | The cart run start, and the Mike cart beat |
+| 4 | The lawns, honestly, including a poor one | Beat 4, the lawn-care candour beat. **Frame the condition, never a truck, a logo, a uniform or a crew.** Describe the condition, not the culprit |
+| 5 | The cart in her own driveway | The cart run start |
+| 6 | Mike's Hawaiian shirts, on the rail, no face | Beat 6. He is never on camera; the shirts are the character |
+
+> ⚠️ **Cut: "the lanai on a concert night."** That shot existed to support a beat
+> claiming Mike listens to the Bandshell from the lanai. **Mike confirms you
+> cannot hear concerts from Phase 8**, so the beat is gone and the shot has no
+> job. Do not schedule it.
 
 ### Phase 9 — PB 33/57
 

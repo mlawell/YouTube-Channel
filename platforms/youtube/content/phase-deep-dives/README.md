@@ -25,6 +25,8 @@ These are produced with HeyGen and ElevenLabs, so **nothing can be ad-libbed** â
 
 Phases 5 and 9 carry **no beat on purpose**. A forced bit is worse than none.
 
+The `[MIKE]` beats were reviewed line by line with Mike on 2026-08-23 and most of the earlier set was cut, several of them because they were **factually wrong** rather than unfunny. Two survived: *bring a cart* in Phase 6, and *the Hawaiian shirt* in Phase 8. The rule his choices revealed is the one to script against: **the joke is on the place, on paperwork, or on ourselves, never on the theme and never on residents.** Do not add a third without asking him.
+
 ## Files
 
 | File | What it is |

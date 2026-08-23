@@ -32,10 +32,12 @@ scrub to their phase, and scrubbing forward still accumulates watch time.
 - `[HUMOR]` — an optional beat. **Karen's to cut, freely and without
   consequence.** Nothing structural depends on one. Doctrine and the full line
   bank: [`karen-voice-and-humor.md`](../karen-voice-and-humor.md)
-- `[MIKE]` — a beat referencing Karen's husband. Needs **Mike's** approval as
-  well as Karen's. He is a recurring character, never a source: the moment he
-  answers a question about plats or pricing, the authority has transferred and
-  it stops working
+- `[MIKE]` — a beat in Mike's register: third person, deadpan, short flat
+  sentences. **Every `[MIKE]` beat in this script was approved by Mike on
+  2026-08-23**, so the marker means *read it flat and verbatim*, not *go and ask
+  him*. A **new** one still needs him. He is a recurring character, never a
+  source: the moment he answers a question about plats or pricing, the authority
+  has transferred and it stops working
 - Spoken copy is the plain text. Everything in brackets is direction.
 
 ## Rules this script follows
@@ -389,6 +391,19 @@ statement is `[KAREN]`-gated.
 > 8. Plat order is not phase order, which is the other reason people get
 > confused reading the index. `[INVENTORY — Stay & Play cottages only]`
 
+`[HUMOR — optional, cut freely. Approved 2026-08-23.]`
+
+> There's a street called No Shoes Court. Everybody assumes that's Buffett. It's
+> Kenny Chesney. You know, no shoes, no shirt, no problems. `[slight giggle]` In
+> a Margaritaville community. I don't know who signed off on that, and I think
+> about it more than I should.
+
+**Direction — this beat needs its delivery marked, or it dies flat.**
+
+1. **The lyric must be spoken.** Mike asked for this specifically. Without "no shoes, no shirt, no problems" the correction isn't a joke, it's a footnote, because most viewers don't hold the Chesney title in their head.
+2. **Comma-separated beats through the lyric**, then a **pause before "In a Margaritaville community."** ElevenLabs will run the whole line flat and the joke evaporates. Check it on playback, not on the page.
+3. **`[slight giggle]` is Karen's own laugh, dropped in on the edit.** Never synthesised. A synthetic laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34). See the reaction library in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md).
+
 ### Phase 5B — 8:30
 
 `[FRAME 08_phase-5b]` · `PB 30/14 · 97 homesites · 35 acres`
@@ -458,14 +473,15 @@ statement is `[KAREN]`-gated.
 > Phase 8. Two hundred and four homesites — and the lot numbers on Minto's
 > plan run 8001 to 8200, though remember, those aren't the addresses. Cool
 > Water Way, Escape Avenue, Hang Loose Court. My husband and I bought here and
-> we live here now. `[INVENTORY]`
+> we live here now, on Cool Water Way. `[INVENTORY]`
 >
 > `[KAREN — this is the emotional centre of the video. Speak from your own
 > experience, not from notes. Cover: why you picked Phase 8 over the others,
-> what the trip to the Bandshell is really like day to day — walk, cart or
-> drive — and whether you hear the music from your lanai. This is the single
-> most valuable thing you say in twenty minutes, because nobody else can say
-> it.]`
+> and what the trip to the Bandshell is really like day to day — it's 4.14
+> miles by road, roughly a ten minute cart ride, and you do not hear the
+> concerts from here. Say that last part plainly; it's the honest answer rather
+> than the flattering one, and nobody else can give it. This is the single most
+> valuable thing you say in twenty minutes.]`
 >
 > I'll tell you the honest part, too — `[KAREN: name one real trade-off about
 > Phase 8. A video where your own phase has no downsides is a video nobody
@@ -473,18 +489,18 @@ statement is `[KAREN]`-gated.
 
 `[B-ROLL: Karen's geotagged Phase 8 photo set]`
 
-`[HUMOR — optional, cut freely]`
+`[HUMOR — optional, cut freely. Approved 2026-08-23.]`
 
-> And I have to be honest about the street names too. Cool Water Way, Escape
-> Avenue, Hang Loose Court. Not one of those is a Buffett song. I checked
-> properly. Out of sixteen recorded plats, I managed to buy on the only one
-> with no Jimmy Buffett in it at all.
+> And I have to be honest about the street names too. Phase 3 has seven Buffett
+> street names. We live in Phase 8, which has zero. We're on Cool Water Way,
+> which sounds like a Buffett song, and isn't. It's a 1936 cowboy song by the
+> Sons of the Pioneers. I try not to take it personally.
 
-`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character,
-never a source: if he answers a question about plats or pricing, cut it.]`
-
-> Mike takes the cart to the Town Center. It is a nine minute walk. I have
-> stopped bringing it up.
+**Direction:** every number in that beat is checked —
+[`street-names-buffett.md`](../../../../properties/latitude-margaritaville-watersound/street-names-buffett.md)
+has Phase 3 at seven confirmed and Phase 8 at zero, and *Cool Water* is Bob
+Nolan, 1936, first recorded by the Sons of the Pioneers. If the date ever comes
+into doubt, say **"a 1930s cowboy song"**. Never speak a year nobody has checked.
 
 ### Phase 9 — 11:45
 
@@ -548,11 +564,15 @@ verifiable, and it is the reason someone shares the video. Do not rush it.
 > is Phase 8.** It's a clean break — the even side goes 9498, then 9502. The
 > odd side goes 9499, then 9503. Nothing interleaves. Write that down if you're
 > shopping Escape Avenue.
+>
+> If you see two houses on the same street listed in different phases, that's
+> not a mistake.
 
-`[HUMOR — optional, cut freely. Goes AFTER the numbers, never on top of them.]`
-
-> I live on the Phase 8 end of it, which means I have had this exact
-> conversation in my own driveway.
+**Direction:** this is an **authority beat and it carries no joke**, which is the
+point of it. Say the numbers cleanly and move on. ⛔ **Karen does not live on
+Escape Avenue.** She and Mike are on **Cool Water Way**, so there is no "I live
+on the Phase 8 half" line here and there never was a driveway conversation. That
+closer was cut on 2026-08-23 and must not come back.
 
 `[BEAT]`
 
@@ -580,9 +600,9 @@ verifiable, and it is the reason someone shares the video. Do not rush it.
 > will tell you the phase, the plat it was recorded under, and what's actually
 > around it.
 
-`[KAREN — you live on the Phase 8 side. Anything you'd add about how the two
-ends of Escape Avenue actually feel different? That's the part only you can
-say.]`
+`[KAREN — you live one street over, on Cool Water Way, so you drive both ends of
+Escape Avenue constantly. Anything you'd add about how the two ends actually
+feel different? That's the part only you can say. Do not claim to live on it.]`
 
 **Unverified — do not state as fact on camera:**
 
@@ -652,8 +672,32 @@ same way as every other phase.
 > And come visit before you're ready to buy. Walk it on a Saturday when the
 > band is playing. Walk it on a Tuesday morning when it's quiet. Those are two
 > different communities and you should meet both of them.
->
+
+**The candour beat — approved 2026-08-23. This is Mike's real complaint,
+reframed as buyer instruction. It is not a joke and must not be read as one.**
+
+> Here's the one thing I'd tell you honestly. Lawn care is included in your HOA
+> dues. As I'm recording this, the quality of it is the thing residents talk
+> about most, and you will see some lawns that are not in good shape. So when
+> you come tour, look at the lawns. And ask the HOA what's being done about it.
+> That's a fair question and you should get a real answer.
+
+**Direction — three hard rules on this one:**
+
+1. ⛔ **Never name the landscaping contractor or the management company.** Describe the **condition**, never the culprit. Naming a vendor on camera turns a service note into a public accusation, and Karen has to keep working here.
+2. ⛔ **Do not state a fix.** There is a rumour that another landscaper is being added. It is unconfirmed, and an unconfirmed rumour becomes a correction. The instruction form — *look, and ask* — stays true whether the situation is bad, improving or already fixed, which is exactly why it is written that way.
+3. ⏱ **Re-check within 24 hours of publishing**, same volatility convention as inventory. If the lawns are visibly fine on record day, say that instead and keep the *ask the HOA* half.
+
 > Just — register with me first. Before you walk into the Sales Center.
+
+`[MIKE — approved by Mike 2026-08-23. Third person, deadpan, flat. Read it
+straight and let the last sentence sit. He is a character, never a source.]`
+
+> And I asked Mike what he'd tell somebody thinking about moving here. He said,
+> bring a cart. That was the entire answer.
+
+**Direction:** this is genuinely Mike's advice, confirmed by him, which is why
+the third sentence has to stay. Do not add a tag after it.
 
 ---
 
@@ -726,9 +770,27 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
 - [ ] Nothing in the final cut speaks a Minto lot number as an address
 - [ ] **End screen is one element only** — the Phase 8 deep dive — and the
       redirect is **spoken** while the card is on screen, after the close
-- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. `[MIKE]` beats
-      need **Mike's** agreement as well as Karen's — see
-      [`karen-voice-and-humor.md`](../karen-voice-and-humor.md)
+- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The approved
+      set is **nine beats and one held** — see
+      [`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not add a
+      new Mike beat without asking Mike**
+- [ ] **No laughter, sigh or breath is synthesised.** The `[slight giggle]` in
+      the Town Center chapter is Karen's own recording, dropped in on the edit.
+      A synthetic laugh is one of the clearest AI tells there is, and YouTube
+      throttles content indexing high on AI detection (`D1-QA` 00:03:34)
+- [ ] **The No Shoes Court lyric is spoken**, comma-separated, with a pause
+      before "In a Margaritaville community." Checked on playback, not on the
+      page
+- [ ] **Nothing on camera names the landscaping contractor or the management
+      company**, and no fix is stated. Condition and question only
+- [ ] Lawn condition re-checked **within 24 hours of publishing**
+- [ ] Nothing on camera says Karen lives on Escape Avenue. **She and Mike are on
+      Cool Water Way**
+- [ ] The hospital under construction on Bay Parkway is called **FSU Health**.
+      Not Tallahassee Memorial — TMH is a partner on the campus, not the name.
+      No opening year is spoken
+- [ ] The dentist and dermatologist in West Bay Center are confirmed **open** on
+      record day
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence and the
       em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a
       full stop, or "and". **Spoken lines only** — direction and tables are fine

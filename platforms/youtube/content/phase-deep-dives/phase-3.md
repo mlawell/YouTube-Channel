@@ -115,10 +115,6 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
-`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
-
-> If a golf cart goes past you slightly too fast on Landshark Boulevard, that is Mike, and I would like to apologise on his behalf now.
-
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
 > Highway 79 is about **a quarter of a mile** from the middle of this phase in a straight line. `[ON SCREEN: ¼ mile to Hwy 79]`
@@ -177,3 +173,6 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] Plat book/page on screen for every plat named
 - [ ] End screen card set to **one element only** — Phase 4 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
+- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The approved set is nine beats and one held, listed in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not add a new Mike beat without asking Mike.**
+- [ ] No laughter, sigh or breath is synthesised. Any reaction in a spoken line is dropped in from Karen's own recorded reaction library on the edit. A synthesised laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
+- [ ] Nothing on camera names the landscaping contractor or the management company. Describe the condition, ask the question, never identify the culprit.

@@ -74,6 +74,12 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 > Phase 7 — plat book 31, page 14. Two hundred and thirty-four homesites on 363 acres. `[KAREN: one sentence on where this sits and what it feels like driving in.]`
 
+`[on-screen graphic: ESCAPE AVENUE · 9201–9499 → PHASE 7 · 9502–9667 → PHASE 8]`
+
+> One thing before we move on, because it catches people out. Escape Avenue runs through both phases. Nine four nine nine and below is Phase 7, nine five oh two and up is Phase 8. If you see two houses on the same street listed in different phases, that's not a mistake.
+
+**Direction:** this is an authority beat, not a joke. Say the numbers cleanly and move on. Karen does **not** live on Escape Avenue — she and Mike are on Cool Water Way — so there is no "my end of the street" line here. Source: `streets_by_phase.md`, county parcel site addresses.
+
 `[HUMOR — optional, cut freely]`
 
 > Gypsy Palace Court comes from a song Jimmy Buffett wrote with Glenn Frey from the Eagles. That is the sort of thing you find out living here and then cannot stop telling people.
@@ -148,3 +154,6 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] Plat book/page on screen for every plat named
 - [ ] End screen card set to **one element only** — Phase 8 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
+- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The approved set is nine beats and one held, listed in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not add a new Mike beat without asking Mike.**
+- [ ] No laughter, sigh or breath is synthesised. Any reaction in a spoken line is dropped in from Karen's own recorded reaction library on the edit. A synthesised laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
+- [ ] Nothing on camera names the landscaping contractor or the management company. Describe the condition, ask the question, never identify the culprit.

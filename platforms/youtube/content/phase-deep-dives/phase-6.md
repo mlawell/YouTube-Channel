@@ -107,9 +107,9 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[KAREN: and then the honest part — is that a walk, a cart trip, or do you take the car? Say which one you actually do.]`
 
-`[MIKE — optional. Needs Mike's approval as well as Karen's. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
+`[MIKE — approved by Mike 2026-08-23. Third person, deadpan, flat, short sentences. Read it straight: any repetition of his name is deliberate flat escalation with no signalled punchline, so do not smooth it. He is a character, never a source: if he answers a question about plats or pricing, cut it.]`
 
-> I asked Mike what he would tell somebody thinking about moving here. He said, bring a cart. That was the entire answer.
+> I asked Mike what he'd tell somebody thinking about moving here. He said, bring a cart. That was the entire answer.
 
 ## NOISE AND CONVENIENCE — 4:00–5:30
 
@@ -169,3 +169,6 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] Plat book/page on screen for every plat named
 - [ ] End screen card set to **one element only** — Phase 7 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
+- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The approved set is nine beats and one held, listed in [`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not add a new Mike beat without asking Mike.**
+- [ ] No laughter, sigh or breath is synthesised. Any reaction in a spoken line is dropped in from Karen's own recorded reaction library on the edit. A synthesised laugh is one of the clearest AI tells there is, and YouTube throttles content indexing high on AI detection (`D1-QA` 00:03:34).
+- [ ] Nothing on camera names the landscaping contractor or the management company. Describe the condition, ask the question, never identify the culprit.

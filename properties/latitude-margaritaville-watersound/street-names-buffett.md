@@ -28,7 +28,7 @@ those on camera.
 | Street | The claim you'll hear | What it actually is |
 | --- | --- | --- |
 | **No Shoes Ct** | *"No Shoes, No Shirt, No Problems"* | **Kenny Chesney**, 2002. Not Buffett. He never wrote or recorded it. Saying this on camera in a Margaritaville community is the single most correctable error on this page |
-| **Cool Water Way** | a Buffett song called *"Cool Water"* | No confirmed Buffett recording. *"Cool Water"* is Bob Nolan / Sons of the Pioneers |
+| **Cool Water Way** | a Buffett song called *"Cool Water"* | No confirmed Buffett recording. *"Cool Water"* was written by **Bob Nolan in 1936** and first recorded by the **Sons of the Pioneers** in 1941. **This is Karen and Mike's own street** |
 | **Escape Ave** | a Buffett song called *"Escape"* | There is no such song. *Escape to Margaritaville* is a 2017 jukebox musical, which is a brand reference at best |
 
 Two more worth being careful with:
@@ -147,10 +147,12 @@ at 7, not Phase 10 at 5.**
 
 **1. Phase 8 — Karen's own — is the only phase in the entire community with zero
 confirmed Buffett references.** Cool Water Way, Escape Avenue, Hang Loose Court.
-All three fit the theme, none of the three is traceable to a song. Out of sixteen
-recorded plats, the realtor who lives here and makes the videos about it bought
-on the one street set with no Jimmy Buffett in it. That is verified, it is funny,
-and it is at her own expense, which is the only kind of joke that costs nothing.
+All three fit the theme, none of the three is traceable to a song. **Karen and
+Mike live on Cool Water Way**, which sounds like a Buffett song and is a 1936
+Bob Nolan cowboy song instead. Out of sixteen recorded plats, the realtor who
+lives here and makes the videos about it bought on the one street set with no
+Jimmy Buffett in it. That is verified, it is funny, and it is at her own expense,
+which is the only kind of joke that costs nothing.
 
 **2. Phase 1 is 100% Buffett** — because the one street in it that carries county
 house numbers is Margaritaville Boulevard itself. Highway 79 touches the plat but
@@ -175,6 +177,7 @@ against fan summaries. Principal sources:
 - Discogs, *Volcano* (1979) track listing — for "Stranded on a Sandbar"
 - buffettworld.com — "Migration" lyrics, *A1A* (1974)
 - Wikipedia, *No Shoes, No Shirt, No Problems* — establishing it as **Kenny Chesney**, 2002
+- Wikipedia, *Cool Water (song)*; Canadian Songwriters Hall of Fame — **Bob Nolan, 1936**, first recorded by the Sons of the Pioneers on 27 March 1941
 - Wikipedia, Coral Reefer Band
 - Parrot Head club materials — "Parrothead" origin (1985) and "Keets"
 - margaritaville.com/jimmy-legacy — "a state of mind"

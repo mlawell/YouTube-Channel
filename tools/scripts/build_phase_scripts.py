@@ -171,17 +171,40 @@ REDIRECT: dict[str, tuple[str, str, str]] = {
 #   * NEVER on top of a hard fact -- not a plat book and page, not an address
 #     range, not an acreage, not an inventory number. The map's authority is the
 #     product and a joke sharing a breath with a plat citation devalues it.
-#   * If a phase has no good joke it gets none. Phases 4, 5 and 9 are empty on
+#   * If a phase has no good joke it gets none. Phases 5 and 9 are empty on
 #     purpose; a forced bit is worse than silence.
 #   * No em-dashes: ElevenLabs reads the cadence and the em-dash is a named tell
 #     (`D1-QA` 00:05:11).
 #
 # Every street fact below is a CONFIRMED row in
-# properties/latitude-margaritaville-watersound/street-names-buffett.md.
-# Nothing here attributes a song that was not verified. In particular nothing
-# here touches No Shoes Ct (Kenny Chesney, not Buffett), Cool Water Way or
-# Escape Ave, and nothing claims Buffett density climbs by phase -- it does not,
-# r = +0.064.
+# properties/latitude-margaritaville-watersound/street-names-buffett.md, or is
+# an explicit CORRECTION of one of the three traps on that page. Nothing here
+# attributes a song to Buffett that was not verified, and nothing claims Buffett
+# density climbs by phase -- it does not, r = +0.064.
+#
+# ---------------------------------------------------------------------------
+# MIKE'S EDITORIAL RULE, 2026-08-23
+# ---------------------------------------------------------------------------
+# Mike Lawell reviewed every beat that referenced him, line by line, and cut
+# most of them. What the surviving set has in common is worth more than any
+# style note, because it predicts the next beat:
+#
+#   THE JOKE IS ON THE PLACE, ON PAPERWORK, OR ON OURSELVES.
+#   NEVER ON THE THEME, AND NEVER ON RESIDENTS.
+#
+# Beats where Mike was a generic sitcom husband were rejected as not funny.
+# Beats where a normal person reacts to an absurd PLACE were approved. Mocking
+# the theme mocks the people who chose to live inside it, which is the whole
+# audience.
+#
+# Two registers, and they never compete:
+#   KAREN  first person, warm, she is the one caught out (bingo, Phase 8's
+#          streets, the cats)
+#   MIKE   third person, deadpan, short flat sentences (bring a cart, the
+#          Hawaiian shirt)
+#
+# Doctrine, the nine approved beats, what was cut and why:
+#   platforms/youtube/content/karen-voice-and-humor.md
 HUMOR: dict[str, list[tuple[str, str]]] = {
     "1": [("where", "Phase 1 is one street long, and that street is "
                     "Margaritaville Boulevard. When you name the very first "
@@ -217,61 +240,74 @@ HUMOR: dict[str, list[tuple[str, str]]] = {
                     "with Glenn Frey from the Eagles. That is the sort of "
                     "thing you find out living here and then cannot stop "
                     "telling people.")],
-    "8": [("where", "Now I have to be honest about my own street. Cool Water "
-                    "Way, Escape Avenue, Hang Loose Court. Not one of those is "
-                    "a Buffett song. I checked properly. Out of sixteen "
-                    "recorded plats I managed to buy on the only one with no "
-                    "Jimmy Buffett in it at all."),
-          ("mine", "People will tell you the street names get more Buffett as "
-                   "the phases go on. I counted them. They do not. Phase 3 "
-                   "wins and it is not close.")],
+    "8": [("where", "Phase 3 has seven Buffett street names. We live in Phase "
+                    "8, which has zero. We're on Cool Water Way, which sounds "
+                    "like a Buffett song, and isn't. It's a 1936 cowboy song "
+                    "by the Sons of the Pioneers. I try not to take it "
+                    "personally."),
+          ("cart", "I said I'd never play bingo. I'm too young for bingo. It "
+                   "is now one of my favorite things about Tuesdays.")],
     "9": [],           # Nine streets, and no beat good enough to earn the slot.
     "10": [("where", "Phase 10 has a Concoction Court and a Daiquiri Drive on "
                      "the same plat. Somebody at that naming meeting was "
                      "having a very good afternoon."),
            ("noise", "Lone Palm is a real song, off Fruitcakes in 1994. "
                      "Chill Street is License to Chill. They were still going "
-                     "strong by the last plat.")],
+                     "strong by the last plat. And before anybody tells me the "
+                     "street names get more Buffett as the phases go on, I "
+                     "counted them. They do not. Phase 3 wins and it is not "
+                     "close.")],
 }
 
 # Referenced but never interviewed. The Ken pattern (`D3-GS` 00:25:27): a
 # recurring character who never shows his face. Mike is a neighbour, not an
 # authority -- the moment he answers a question about plats or pricing the
-# credibility has transferred and it stops working. Every one of these needs
-# MIKE's agreement as well as Karen's; it is their marriage, not a bit.
-MIKE: dict[str, str] = {
-    "1": "My husband Mike said he would use the fitness center every morning. "
-         "Mike uses the pool.",
-    "3": "If a golf cart goes past you slightly too fast on Landshark "
-         "Boulevard, that is Mike, and I would like to apologise on his behalf "
-         "now.",
-    "6": "I asked Mike what he would tell somebody thinking about moving here. "
-         "He said, bring a cart. That was the entire answer.",
-    "8": "Mike takes the cart to the Town Center. It is a nine minute walk. I "
-         "have stopped bringing it up.",
-    "10": "Mike's position on the street names is that they are ridiculous. "
-          "Mike has also learned four of the songs.",
+# credibility has transferred and it stops working.
+#
+# These two are the ONLY Mike beats Mike approved. Everything else that used to
+# be here he cut himself: the fitness-center-versus-pool beat as generic, the
+# nine-minute-walk beat as factually wrong (Phase 8 is 4.14 miles by road, not
+# a nine minute walk -- nine minutes is Phase 3A), the concert-night beat as
+# false (you cannot hear the Bandshell from Phase 8), the Escape Avenue
+# speeding beat as the wrong street, and the "street names are ridiculous" beat
+# because he does not think they are. Do not add a third without asking him.
+#
+# (phase -> (slot, line)). Slot-aware so a Mike beat sits where it is actually
+# funny rather than always in the cart run.
+MIKE: dict[str, tuple[str, str]] = {
+    "6": ("cart", "I asked Mike what he'd tell somebody thinking about moving "
+                  "here. He said, bring a cart. That was the entire answer."),
+    "8": ("mine", "Mike said he'd never own a Hawaiian shirt. Mike owns "
+                  "several. Mike has a favorite."),
 }
+
+# The one street that runs through two phases and is worth the airtime in both.
+# Beat 7 of the approved set: an AUTHORITY beat with no joke in it. County
+# parcel site addresses, via streets_by_phase.md -- Phase 7 is 9201-9499 and
+# Phase 8 is 9502-9667, with nothing interleaved.
+ESCAPE_SPLIT = {"7", "8"}
 
 
 def humor(kind: str, num: str) -> list[str]:
     """The optional beats for one slot, formatted so Karen can strike them.
 
-    MIKE beats live in the "cart" slot, which no HUMOR beat uses, so a phase can
-    never emit two beats back to back. The cart run ends on "is that a walk, a
-    cart trip, or do you take the car?", which is the natural place for a spouse
-    to turn up.
+    At most one beat is emitted per slot, and no phase puts a HUMOR beat and a
+    MIKE beat in the same slot, so nothing is ever read back to back.
     """
     out: list[str] = []
     for slot, line in HUMOR.get(num, []):
         if slot != kind:
             continue
         out += ["`[HUMOR \u2014 optional, cut freely]`", "", f"> {line}", ""]
-    if kind == "cart" and num in MIKE:
-        out += ["`[MIKE \u2014 optional. Needs Mike's approval as well as "
-                "Karen's. He is a character, never a source: if he answers a "
-                "question about plats or pricing, cut it.]`", "",
-                f"> {MIKE[num]}", ""]
+    mike = MIKE.get(num)
+    if mike and mike[0] == kind:
+        out += ["`[MIKE \u2014 approved by Mike 2026-08-23. Third person, deadpan, "
+                "flat, short sentences. Read it straight: any repetition of "
+                "his name is deliberate flat escalation with no signalled "
+                "punchline, so do not smooth it. He is a character, never a "
+                "source: if he answers a question about plats or pricing, cut "
+                "it.]`", "",
+                f"> {mike[1]}", ""]
     return out
 
 
@@ -698,6 +734,22 @@ def _body(c: Community, num: str, g: dict) -> str:
             f"{g['acres']:,.0f} acres** \u2014 all of it Phase {num}, all of it on "
             f"separate plats you can look up.")
         add("")
+    if num in ESCAPE_SPLIT:
+        add("`[on-screen graphic: ESCAPE AVENUE \u00b7 9201\u20139499 \u2192 PHASE 7 \u00b7 "
+            "9502\u20139667 \u2192 PHASE 8]`")
+        add("")
+        add("> One thing before we move on, because it catches people out. "
+            "Escape Avenue runs through both phases. Nine four nine nine and "
+            "below is Phase 7, nine five oh two and up is Phase 8. If you see "
+            "two houses on the same street listed in different phases, that's "
+            "not a mistake.")
+        add("")
+        add("**Direction:** this is an authority beat, not a joke. Say the "
+            "numbers cleanly and move on. Karen does **not** live on Escape "
+            "Avenue \u2014 she and Mike are on Cool Water Way \u2014 so there is no "
+            "\"my end of the street\" line here. Source: "
+            "`streets_by_phase.md`, county parcel site addresses.")
+        add("")
     L.extend(humor("where", num))
 
     # ---- the cart run -------------------------------------------------------
@@ -749,10 +801,17 @@ def _body(c: Community, num: str, g: dict) -> str:
             add("`[KAREN \u2014 first-hand: this is one of the further ones. Is 79 a "
                 "non-issue here?]`")
         add("")
-    add("`[KAREN \u2014 first-hand: the Bandshell. Your own line is that a loud show "
-        "carries for miles, so it is not how you pick a phase. Say whether you "
-        "hear it here, and whether that is a plus or a minus for you. No "
-        "distances, no radius \u2014 it varies too much.]`")
+    if num == "8":
+        add("`[KAREN \u2014 first-hand: the Bandshell. Mike confirms you do NOT hear "
+            "concerts from Phase 8, and that is worth saying plainly because it "
+            "is the honest answer, not the flattering one. Your own line is that "
+            "a loud show carries for miles, so it is not how you pick a phase. "
+            "No distances, no radius \u2014 it varies too much.]`")
+    else:
+        add("`[KAREN \u2014 first-hand: the Bandshell. Your own line is that a loud "
+            "show carries for miles, so it is not how you pick a phase. Say "
+            "whether you hear it here, and whether that is a plus or a minus for "
+            "you. No distances, no radius \u2014 it varies too much.]`")
     add("")
     L.extend(humor("noise", num))
 
@@ -783,10 +842,24 @@ def _body(c: Community, num: str, g: dict) -> str:
         add("`[KAREN: this is the emotional centre of the whole series and the one "
             "thing that cannot be copied. Why you and your husband picked Phase 8 "
             "over the other nine. What the trip to the Bandshell is really like "
-            "day to day. Whether you hear the music from your lanai. Speak from "
+            "day to day: it is 4.14 miles by road, roughly a ten minute cart "
+            "ride, and you cannot hear the concerts from here. Speak from "
             "experience, not from notes.]`")
         add("")
         add("`[KAREN: one real trade-off about your own phase.]`")
+        add("")
+        add("**Direction: the lawn-care question.** Mike's one real complaint is "
+            "the standard of the HOA-included lawn care, and it is the thing "
+            "residents talk about most. Say it as buyer instruction and never as "
+            "an accusation: *\"lawn care is included in your HOA dues, and as "
+            "I'm recording this the quality of it is what residents talk about "
+            "most. When you come tour, look at the lawns, and ask the HOA what's "
+            "being done about it.\"* **Never name the landscaping contractor or "
+            "the management company.** Describe the condition, not the culprit. "
+            "There is an unconfirmed rumour that another landscaper is being "
+            "added: do **not** state a fix on camera, because an unconfirmed "
+            "rumour becomes a correction. The instruction form stays true "
+            "whether the situation is bad, improving or fixed.")
         add("")
         add("`[B-ROLL: Karen's geotagged Phase 8 photo set]`")
         add("")
@@ -851,6 +924,18 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("- [ ] No em-dashes left in any spoken line. ElevenLabs reads the "
         "cadence, and the em-dash is a named AI detection tell "
         "(`D1-QA` 00:05:11). Use a comma, a full stop, or \"and\".")
+    add("- [ ] Every `[HUMOR]` and `[MIKE]` beat is either kept or struck. The "
+        "approved set is nine beats and one held, listed in "
+        "[`karen-voice-and-humor.md`](../karen-voice-and-humor.md). **Do not "
+        "add a new Mike beat without asking Mike.**")
+    add("- [ ] No laughter, sigh or breath is synthesised. Any reaction in a "
+        "spoken line is dropped in from Karen's own recorded reaction library "
+        "on the edit. A synthesised laugh is one of the clearest AI tells "
+        "there is, and YouTube throttles content indexing high on AI detection "
+        "(`D1-QA` 00:03:34).")
+    add("- [ ] Nothing on camera names the landscaping contractor or the "
+        "management company. Describe the condition, ask the question, never "
+        "identify the culprit.")
     return "\n".join(L)
 
 
@@ -1303,6 +1388,15 @@ def series_readme(c: Community) -> str:
     add("")
     add("Phases 5 and 9 carry **no beat on purpose**. A forced bit is worse "
         "than none.")
+    add("")
+    add("The `[MIKE]` beats were reviewed line by line with Mike on "
+        "2026-08-23 and most of the earlier set was cut, several of them "
+        "because they were **factually wrong** rather than unfunny. Two "
+        "survived: *bring a cart* in Phase 6, and *the Hawaiian shirt* in "
+        "Phase 8. The rule his choices revealed is the one to script against: "
+        "**the joke is on the place, on paperwork, or on ourselves, never on "
+        "the theme and never on residents.** Do not add a third without "
+        "asking him.")
     add("")
     add("## Files")
     add("")
