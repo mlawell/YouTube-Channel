@@ -427,6 +427,37 @@ All under `…\Latitude Margaritaville Watersound\`:
 **Audio beds already exist:** `LM Island Breeze - Tour Bed.mp3`, and a mix-QA
 reference with ducking already applied.
 
+### 🐈 The cats — the one asset that lives outside the library
+
+**48 photographs**, foldered per cat, supplied by Mike:
+
+| Folder | Photos |
+| --- | ---: |
+| `Bella\` | 17 |
+| `Buddy\` | 17 |
+| `Cinder\` | 10 |
+| root, loose | 4 |
+
+File dates run **2023 through 2026-08-18**, so there is recent material as well
+as older, and sizes are **1.0–8.8 MB** — full-resolution phone photography, ample
+for a cutaway.
+
+> ⚠️ **These are the one exception to "everything is in the M365 library."**
+> They live at **`C:\Users\mikel\Pictures\Cats\`** — Mike's **personal** Pictures
+> folder, not `NWFL Beach Homes - Documents` — and they are **personal
+> photographs rather than brokerage assets**. Anyone looking for them in the
+> shared library will not find them.
+>
+> ⛔ **Do not commit them**, same rule as every other media asset. Reference by
+> path only.
+
+**Editorial note for whoever places the beat: name and show all three.**
+*"Bella, Cinder and Buddy"* is funnier than *"our cats"* because **the
+specificity is the joke**, and three separate faces on screen sell *"we're
+staff"* far better than one does. With 10–17 shots of each, three can be picked
+that **match tonally** rather than taking whatever exists — so choose for
+consistency of light and mood, not just the cutest frame.
+
 ### Stills
 
 Paths relative to `…\NWFL Beach Homes - Documents\Marketing\Karen`.
@@ -534,8 +565,8 @@ Checked against
 | # | Beat | Face needs to | Cutaway image | Status |
 | ---: | --- | --- | --- | --- |
 | 1 | Bring a cart | Nothing — Mike is third person, deadpan | The cart in Karen's driveway, **or** the Town Center cart bays at ~40:00 in the 40:54 clip | ✅ Phase 8 shot 5. **Reuse it in the flagship's Q3.** The Town Center bays are the stronger image: dozens of carts says everybody does it |
-| 2 | The cats | Warm, smiling | **Bella, Cinder and Buddy**, and the Barkaritaville sign | ⚠️ **Half solved.** The Barkaritaville plate exists: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg`. Only a photo of the three cats is missing, and that is a thirty-second ask of Karen, not a shoot |
-| 3 | The dermatologist | Wry | West Bay Center storefronts, and the hospital site | ✅ **Solved.** `West Bay Center\` has `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` and more. Beat still has no script slot |
+| 2 | The cats | Warm, smiling | **Bella, Cinder and Buddy**, and the Barkaritaville plate | ✅ **Fully resourced.** 48 photographs at `C:\Users\mikel\Pictures\Cats\` (Bella 17, Buddy 17, Cinder 10, 4 loose), plus `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg`. **Lacks a script slot, not assets** |
+| 3 | The dermatologist | Wry | West Bay Center storefronts, and the hospital site | ✅ **Fully resourced.** `West Bay Center\` has `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` and more. **Lacks a script slot, not assets** |
 | 4 | Lawn care | Nothing — **stay full-frame** | The lawns, including a poor one | ✅ Phase 8 shot 4. See note below |
 | 5 | Bingo | Self-deprecating smile | Bingo at the Town Center | ✅ **Solved.** `Activities\bingo.jpg` **and** `Activities\Hawaiian Bingo.png` |
 | 6 | Hawaiian shirt | Nothing — Mike, deadpan | The shirts on the rail, no face | ✅ Phase 8 shot 6 |
@@ -543,8 +574,8 @@ Checked against
 | 8 | Phase 8 zero Buffett | Wry, self-deprecating | The **Cool Water Way** sign | ✅ Phase 8 shot 2 |
 | 9 | No Shoes Court | **Giggle** | The **No Shoes Ct** sign, clean 4-second hold | ✅ Phase 5 block shot 3 |
 
-**Every beat now has an image except a photo of the cats.** That is the whole
-remaining gap, and it is a phone snap rather than a production task.
+**Every beat now has its images.** With the cat photographs supplied, **the
+cutaway audit is closed** — nothing on this list is waiting on a shoot.
 
 > ### 🎁 A free callback nobody planned
 > `Activities\` contains **`Hawaiian Bingo.png`**, and beats 5 and 6 are **bingo**
@@ -560,6 +591,26 @@ remaining gap, and it is a phone snap rather than a production task.
 > moment, and honesty is delivered *to* the viewer. **Stay on the face.** Its
 > shot-list entry is support B-roll, not a cutaway. This is the sincerity rule
 > doing its job.
+
+### ➡️ Beats 2 and 3 are waiting on a video, not on assets
+
+Both are **fully resourced and unplaced.** Beat 2 has 48 cat photographs and the
+Barkaritaville plate; beat 3 has the whole West Bay Center set. Neither has a
+script slot, and that is **correct** — they are not phase-map beats:
+
+- **The cats** are a pets-and-HOA beat. Nothing in a plat-by-plat video is about pets.
+- **The dermatologist** is a **West Bay Center** beat, and neither the flagship nor any deep dive covers the commercial centre at all.
+
+> **That points somewhere.** Two approved beats with complete assets and no home
+> is a reasonable signal that **the amenities / day-in-the-life video is the next
+> content package**, rather than something to be wedged into the existing one.
+> The library backs that up: `Pool`, `Kayak Launch`, `Bocce Ball`,
+> `Fins Up! Fitness Center`, `Putting Green`, `Cornhole`,
+> `Tennis and Pickleball`, `Walking Trails`, `Bar & Chill\Sunsets`,
+> `Barkaritaville` and the West Bay Center set are all shot and all unused.
+>
+> Recorded here as a **forward reference** so the two beats are parked against a
+> plan rather than left in limbo.
 
 ---
 

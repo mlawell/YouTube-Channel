@@ -79,7 +79,7 @@ and the derivation in
 
 1. **Use the 8K video** where it exists, and extract frames from it for stills. **Scrub the long clips before concluding a phase has none** — the start-point table understates coverage.
 2. **Open the photo index and pull what already exists.** Every other plat is covered.
-3. **Shoot only the genuine gaps.** After the above there is essentially one: **a photo of the cats**. Beyond that, only frames needing a specific composition the tour did not catch — chiefly legible street signs.
+3. **Shoot only the genuine gaps.** After the above there are **none left for the humor beats** — the cat photographs closed the last one. What remains is only frames needing a specific composition the tour did not catch, chiefly **legible street signs**.
 4. **Re-shoot nothing** that the index or the footage already covers.
 
 ---
@@ -272,7 +272,7 @@ are the gaps.
 | --- | --- | --- |
 | **5. Bingo** | `Activities\bingo.jpg` and `Activities\Hawaiian Bingo.png` | ✅ **Already exists.** Select, don't shoot |
 | **3. The dermatologist** | `West Bay Center\` — `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` | ✅ **Already exists.** Beat still has no script slot |
-| **2. The cats** | Barkaritaville: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg` ✅ · **Bella, Cinder and Buddy** ❌ | ⚠️ **The one genuine gap.** A phone snap of three cats, not a shoot |
+| **2. The cats** | Barkaritaville: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg` ✅ · **Bella, Cinder and Buddy**: 48 photos at `C:\Users\mikel\Pictures\Cats\` ✅ | ✅ **Closed.** ⚠️ The cat photos are **Mike's personal Pictures folder, not the M365 library**. Do not commit them |
 | **1. Bring a cart** | Cart in the driveway ✅ · **also** the cart parking bays at the Town Center, visible around **40:00 in the 40:54 clip** — dozens of carts lined up | ✅ Extra option found while sampling frames. Stronger than a single cart, because it shows everybody does it |
 
 > 🎁 **`Hawaiian Bingo.png` is a free callback.** Beats 5 and 6 are bingo and the

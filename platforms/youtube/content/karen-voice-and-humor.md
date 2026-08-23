@@ -320,6 +320,13 @@ Their three cats are **Bella, Cinder and Buddy**. Say the names. Three specific
 cat names is exactly the kind of detail an avatar script is usually missing, and
 it is unfakeable.
 
+> ⭐ **Name and show all three.** *"Bella, Cinder and Buddy"* is funnier than
+> *"our cats"* because **the specificity is the joke**, and three separate faces
+> on screen sell *"we're staff"* far better than one does. **48 photographs**
+> exist, foldered per cat, so three can be picked that match tonally rather than
+> taking whatever is to hand. Path and the do-not-commit rule:
+> [`karen-presenter-treatment.md`](karen-presenter-treatment.md).
+
 **3. The dermatologist** · `[KAREN]` · verify before recording
 
 > We have a dentist and a dermatologist in West Bay Center. The hospital is still being built. So in a Florida retirement community, we got the dermatologist first. Honestly? Correct call.
@@ -627,13 +634,17 @@ naturally pile up.
 | 1 | Bring a cart | Mike | flagship · deep dive **Phase 6** | Questions people actually ask — 17:20 · THE CART RUN |
 | 5 | Bingo | Karen | deep dive **Phase 8** | THE CART RUN, on arrival at the Town Center |
 | 6 | Hawaiian shirt | Mike | deep dive **Phase 8** | WHY I LIVE HERE |
-| 2 | The cats | Karen | *no slot yet* | First home is an amenities or day-in-the-life video |
-| 3 | The dermatologist | Karen | *no slot yet* | Same. It is a **West Bay Center** beat and neither current script covers West Bay Center |
+| 2 | The cats | Karen | *no slot yet* | **Assets complete.** First home is the amenities / day-in-the-life video |
+| 3 | The dermatologist | Karen | *no slot yet* | **Assets complete.** Same. It is a **West Bay Center** beat and neither current script covers West Bay Center |
 
 **Beats 2 and 3 are not homeless by accident.** Neither the flagship nor the ten
 deep dives has a chapter about pets or about the commercial centre, and the rule
-is that a beat with no chapter waits rather than gets wedged in. They are
-approved and parked.
+is that a beat with no chapter waits rather than gets wedged in. **Both are now
+fully resourced** — 48 cat photographs and the whole West Bay Center set — so
+what they are waiting on is a **video, not a shoot.** Two approved beats with
+complete assets and no home is a reasonable signal that the **amenities video is
+the next content package**; see the forward reference in
+[`karen-presenter-treatment.md`](karen-presenter-treatment.md).
 
 **Phase chapter ownership, for the deep dives:**
 
