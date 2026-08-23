@@ -28,6 +28,37 @@ virtual-tour slideshows. Full inventory in [`media-map.md`](media-map.md).
 - `[CTA]` / `[RE-HOOK]` / `[PAYOFF]` / `[REVEAL]` — structural beats. Do not move
   them.
 
+## Presenter treatment — HeyGen for the intro, ElevenLabs for the rest
+
+Mike's split: *"an intro with HeyGen and then ElevenLabs for the rest of the
+video."* That is exactly the
+[treatment hierarchy](../karen-presenter-treatment.md#-the-treatment-hierarchy),
+and **it works better on this package than on the Latitude flagship**, because
+there is real motion footage running throughout.
+
+| Where | Treatment | Cue |
+| --- | --- | --- |
+| **Hook, 0:04–0:22** | **Full-frame avatar**, composited over a real Pier Park frame | `[CUT TO KAREN, medium, Pier Park behind her]` |
+| **Body, 0:22–35:00** | **Presenter absent.** Voice only, over aerials, tour footage, gallery stills and community footage | no presenter cue anywhere |
+| **Close, 35:00–35:25** | Full-frame again for the candour/CTA register, then the outro plate | `[Cut to Karen …]` |
+
+✅ **Audited: there are exactly two full-frame presenter cues in this script, and
+both are at the ends.** No full-frame avatar is scheduled mid-video, and no
+corner-inset is needed either, because unlike the map video this one has real
+footage under every segment.
+
+**Face-time total: roughly one minute of synthetic face in a 35-minute video** —
+comfortably inside the treatment doc's ceiling. Every other second is aerial,
+tour footage, photographs or community video with Karen's voice over it.
+
+> **Why this matters more than it looks.** The playbook's objection to AI
+> narration is that voiceover-over-B-roll *"rarely clears 10 min AVD"*
+> (`D1-QA` 00:48:32). The mitigation is real motion under the voice, and this
+> package now has close to two hours of it. The avatar carries the one minute
+> where a face genuinely helps and is absent everywhere else.
+
+---
+
 ## Rules this script follows
 
 1. **No price and no "for sale" in the title or thumbnail.** `D1-QA` 00:15:37.
@@ -164,15 +195,56 @@ Read the five Pier Park figures from the
 **7**, El Centro **14**, Bay Point **12**, Treasure Cove **9**. Say them as
 ranges — *"about ten minutes, more in summer"* — not as precise figures.
 
-`[KAREN — MIKE]` *Optional, one line, if it fits her:* "Mike will tell you it's
-twelve minutes. Mike is measuring from the parking lot he likes."
+`[KAREN — MIKE]` ⛔ **The beat that was here has been cut.** It read *"Mike will
+tell you it's twelve minutes. Mike is measuring from the parking lot he likes."*
+That is a **generic sitcom-husband joke** — it would survive a find-and-replace
+of the city name, which is exactly the test
+[Mike's editorial rule](../karen-voice-and-humor.md#-mikes-editorial-rule)
+rejects: *"A beat that would survive a find-and-replace of the community name is
+not a beat."*
+
+**Replacement, if a beat is wanted here — the joke is on the place, which is
+allowed:**
+
+> Those are the times with no traffic. In July, on Front Beach Road, I would
+> pack a lunch.
+
+That one cannot be lifted to another city, it is true, and it does the honest
+work of flagging that every number in this video is free-flow.
 
 **Anchor logic, verbatim from the method** (`D4-GS` 00:49:55): stand at the
 landmark, use it to answer the unspoken "but how far is that really?"
 
+## The age spine — 3:25–3:40
+
+> One more thing that'll help you place these as we go. These neighborhoods were
+> built in completely different decades, and that tells you more about what a
+> street actually feels like than anything else I could say.
+
+`[ON SCREEN: the five, ordered by median year built]`
+
+> El Centro is the oldest, around nineteen seventy six. Then Bahama Beach and
+> Bay Point in the mid eighties. Treasure Cove in the nineties. And Palmetto
+> Trace is the newest, around two thousand and four.
+
+⭐ **Median year built is the safest single fact per neighborhood and needs no
+hedging.** It is a straight count from Bay County parcel records, and it sorts
+the character of the five without a single adjective. Planting it here means
+each segment can just say its number and let the viewer place it.
+
+**Source for this and every parcel figure in the segments below:** Bay County
+`TEST_Parcels/MapServer/1`, every parcel within ~400 m of each subject home.
+`SubdivName` is empty on that layer, so this is a **spatial** query, not a
+subdivision lookup.
+
+⚠️ **Medians only. Never speak a min or a max.** The 400 m radius catches
+commercial parcels and vacant lots — Palmetto Trace's maximum is $41.7M of
+Pier Park-area retail, and its largest "home" is a 140,255 sqft commercial
+building. **The medians are reliable; the extremes are artefacts of the radius.**
+
 ---
 
-# 1 · PALMETTO TRACE — 3:40–8:50
+# 1 · PALMETTO TRACE — 3:40–9:15
 
 `[AERIAL: from Pier Park, pan across Back Beach Road]`
 
@@ -204,7 +276,7 @@ this is on the early side of normal. **Put the on-screen "thinking about moving
 to the area? call or text" card up around 1:50**, well before this
 (`D4-GS` 00:45:37).
 
-## What it's like, and who it suits — 4:15–5:50
+## What it's like, and who it suits — 4:15–6:15
 
 > This is the one that surprises people, because it's the least beachy
 > neighborhood on a list about the beach. It's north of the highway. It's a
@@ -215,6 +287,27 @@ to the area? call or text" card up around 1:50**, well before this
 > for, and none of the tourists are on your street in July.
 
 `[GALLERY 790701-1 → 790701-8]`
+
+> And here's the thing that makes Palmetto Trace genuinely different from the
+> other four. **It's the only one that was actually planned.** Somebody drew it,
+> phased it, and built it out between two thousand and two and twenty seventeen.
+> The county records literally read Phase One, Phase Two-B, Phase Three.
+
+> So the houses look like each other. Almost every lot is a single family home.
+> There's no house from nineteen fifty next to a condo next to an empty lot.
+
+> Whether that's a feature or a drawback is genuinely up to you. If you want a
+> neighborhood that looks like a neighborhood, it's a feature. If you want
+> character, it isn't.
+
+⭐ **Public record, not adjectives.** Of the 323 parcels within ~400 m,
+**298 are single family**, legal descriptions read `PALMETTO TRACE PH 1 37C`,
+`PHASE TWO-B`, `PHASE III`, there are recorded common areas, and everything was
+built **2002–2017**. Median year built **2004** — the newest of the five.
+
+**This is the answer to "what is this neighborhood actually like"** that a
+listing agent's adjectives cannot give, and it sets up the Bahama Beach contrast
+in the next segment. Both halves are checkable.
 
 > There's a homeowners association, and as I'm recording this it's two hundred
 > and forty nine dollars a quarter. So call it a thousand a year, and that
@@ -237,7 +330,7 @@ point (`D3-GS` 00:43:26). Here they are the selling point.
 > fresh, so don't budget on that number, but it tells you what the base is
 > like out here."* That is honest and still useful.
 
-## One honest drawback — 5:50–6:20
+## One honest drawback — 6:15–6:45
 
 > Now the trade-off, and it's a real one. The lot is small. As I'm recording
 > this the county has it at **five hundredths of an acre**, which is about two
@@ -256,7 +349,7 @@ point (`D3-GS` 00:43:26). Here they are the selling point.
 > dinner and never think about parking again, it might be exactly your
 > neighborhood.
 
-## Things to do — 6:20–7:10
+## Things to do — 6:45–7:35
 
 `[AERIAL: Pier Park, then out toward Frank Brown Park]`
 
@@ -299,7 +392,7 @@ hospital Karen cannot show. The real one she has footage of, and a corrected fac
 delivered on camera over her own B-roll is worth more than the sentence it
 replaces.
 
-## The home — 7:10–8:35
+## The home — 7:35–9:00
 
 `[TOUR 249 Oxford Ave — in 0:04.5, out 1:57.5, audio muted]`
 
@@ -315,7 +408,7 @@ replaces.
 **All verified**, listing 790701: DOM 82, listed 6/2/2026 at $590,500, reduced
 7/15/2026 to $505,500.
 
-## `[REVEAL 1]` — 8:35–8:50 *(28.6% of runtime)*
+## `[REVEAL 1]` — 9:00–9:15 *(26% of runtime)*
 
 > As I'm recording this, that one is **five hundred and five thousand, five
 > hundred dollars.**
@@ -329,11 +422,11 @@ boundary, and it is where five-part videos usually leak.
 
 ---
 
-# 2 · BAHAMA BEACH — 8:50–14:20
+# 2 · BAHAMA BEACH — 9:15–15:10
 
 `[AERIAL: out over the Gulf, then along the sand westward]`
 
-## Where it is — 8:50–9:20
+## Where it is — 9:15–9:45
 
 > Neighborhood two. Bahama Beach, on Oleander Drive. Also about a mile from
 > Pier Park, and a completely different planet.
@@ -344,13 +437,33 @@ boundary, and it is where five-part videos usually leak.
 **Verified route**, MLS Directions listing 781232: Hwy 98 and Clara, south on
 Clara to Front Beach Road, under a quarter mile, then Oleander.
 
-## What it's like, and who it suits — 9:20–11:00
+## What it's like, and who it suits — 9:45–11:50
 
 > `[KAREN — verify]` This is the lower-density end of Oleander, which matters,
 > because a lot of this coastline is condo towers and this stretch is not.
 
 ⚠️ *"Lower-density section of Oleander"* is the listing agent's phrase. It is
 easy to confirm by eye and by the aerials, but confirm it.
+
+> And this neighborhood is the exact opposite of the one I just showed you.
+> Palmetto Trace was planned and built in fifteen years. Around here, the oldest
+> house I can find went up in nineteen thirty seven, and the newest one is going
+> up right now. **That's eighty eight years of building on the same few
+> streets.**
+
+> So you get a nineteen fifties cottage, then a brand new seven bedroom place,
+> then a condo, then an empty lot somebody's holding. Nothing matches anything.
+
+> Again, that's a preference, not a problem. Some people find that charming and
+> some people find it chaotic. But you should know which one you are before you
+> buy here.
+
+⭐ **Public record.** 292 parcels within ~400 m, built **1937–2025**, median year
+**1985**. Single family *and* condominiums *and* vacant land, across several
+different subdivisions inside one radius — `BAHAMA BEACH`, `DAUGETTE ADDITION`,
+`99 PALMS`. **The eighty-eight-year span is the fact**; it explains the street in
+a way no adjective does, and it is the direct counterpart to Palmetto Trace's
+fifteen-year build-out.
 
 `[GALLERY 781232-1 → 781232-6]`
 
@@ -374,7 +487,7 @@ on the calendar"* without the number.
 > in this town, and if you're coming from somewhere it isn't, it's the thing
 > most worth understanding about Panama City Beach.
 
-## `[PAYOFF 2]` — the 291 days — 11:00–11:50
+## `[PAYOFF 2]` — the 291 days — 11:50–12:40
 
 > Now, remember the second thing I made you wait for. Two hundred and ninety one
 > days, no price reduction.
@@ -395,7 +508,7 @@ on the calendar"* without the number.
 a loop and letting the viewer go. Verified: listed 11/24/2025 at $5,299,000, one
 price-history row, DOM 291.
 
-## One honest drawback — 11:50–12:30
+## One honest drawback — 12:40–13:20
 
 > The trade-offs here are real and they're not the ones people expect.
 
@@ -412,7 +525,7 @@ price-history row, DOM 291.
 juxtaposition is the single most useful cost-of-living fact in the video, and it
 is the seed of [the next video](README.md#what-the-next-video-should-be).
 
-## The home — 12:30–14:05
+## The home — 13:20–14:55
 
 `[TOUR 13003 Oleander Dr — in 0:04.5, out 1:57.5, audio muted]`
 
@@ -431,7 +544,7 @@ elevator. See
 > single funniest and most memorable thing in this video and it should not be
 > delivered flat.
 
-## `[REVEAL 2]` — 14:05–14:20 *(47%)*
+## `[REVEAL 2]` — 14:55–15:10 *(43%)*
 
 > As I'm recording this, that one is **five point two nine nine million.**
 
@@ -440,11 +553,11 @@ elevator. See
 
 ---
 
-# 3 · EL CENTRO BEACH — 14:20–19:20
+# 3 · EL CENTRO BEACH — 15:10–20:25
 
 `[AERIAL: turn inland, away from the Gulf]`
 
-## Where it is — 14:20–14:55
+## Where it is — 15:10–15:45
 
 > Neighborhood three. El Centro Beach, on Lullwater Drive.
 
@@ -459,7 +572,7 @@ right on Lullwater Drive. **Verified fact:** MLS `Waterfront = true`,
 a measurement. If you want to give a beach distance here, eyeball it yourself or
 leave it out.
 
-## What it's like, and who it suits — 14:55–16:40
+## What it's like, and who it suits — 15:45–17:45
 
 > Here's the number that made me want to include this neighborhood. The home I'm
 > going to show you sits on **two thirds of an acre**, with about **a hundred
@@ -485,7 +598,17 @@ particular is the segment's headline and it is the agent's claim, not a survey.
 > So who is this for? Somebody who wants space and water and quiet, and who
 > figured out that in this town you do not have to buy the Gulf to get water.
 
-## The storm answer — 16:40–17:30
+> It's also the oldest of the five. The typical house around here went up around
+> nineteen seventy six, and the house I'm going to show you is from sixty seven.
+> That matters in a practical way, because out here the question isn't what the
+> house looks like. It's what's been done to it since.
+
+⭐ **Public record.** 363 parcels within ~400 m, built **1958–2024**, median year
+**1976** — the oldest median of the five. That single fact sets up the renovation
+beat that follows, and it is why the 2019 gut renovation is the segment's real
+selling point rather than a bullet on a list.
+
+## The storm answer — 17:45–18:35
 
 > And there's something here I want to point out, because if you're moving to
 > the Florida panhandle you are thinking about it whether you say it out loud
@@ -510,7 +633,7 @@ and should not be stated on a seller's word.**
 > and it is not in this data. If somebody asks, the answer is that you'll pull
 > the actual determination for their address.
 
-## One honest drawback — 17:30–18:05
+## One honest drawback — 18:35–19:10
 
 > The trade-off on this one is specific and it will rule it out for some of you.
 
@@ -528,7 +651,7 @@ field — `Community Features` is empty for this property, so "not permitted" is
 the agent's statement. `[KAREN]` confirm it, because it is the whole trade-off of
 the segment and it is the kind of thing a buyer would rely on.
 
-## The home — 18:05–19:05
+## The home — 19:10–20:10
 
 `[TOUR 263 Lullwater Dr — in 0:04.5, out 1:57.5, audio muted]`
 
@@ -539,7 +662,7 @@ the segment and it is the kind of thing a buyer would rely on.
 > Quartz counters, custom cabinetry, gas fireplace, tankless water heater. And
 > outside, an outdoor shower and the plumbing already run for a summer kitchen.
 
-## `[REVEAL 3]` — 19:05–19:20 *(63.6%)*
+## `[REVEAL 3]` — 20:10–20:25 *(57%)*
 
 > As I'm recording this, **eight hundred and ninety thousand.**
 
@@ -548,11 +671,11 @@ the segment and it is the kind of thing a buyer would rely on.
 
 ---
 
-# 4 · BAY POINT — 19:20–24:50
+# 4 · BAY POINT — 20:25–26:05
 
 `[AERIAL: eastward along the coast]`
 
-## Where it is — 19:20–20:00
+## Where it is — 20:25–21:05
 
 > Neighborhood four is the farthest east we're going, and it is the only one
 > today where somebody is going to stop your car.
@@ -564,7 +687,7 @@ the segment and it is the kind of thing a buyer would rely on.
 Magnolia Beach Road, Delwood Beach Road, into the Bay Point gate. **Verified**:
 `Security Features = GatedWithGuard, TwentyFourHourSecurity`.
 
-## What it's like, and who it suits — 20:00–22:00
+## What it's like, and who it suits — 21:05–23:05
 
 > Here's what's actually inside that gate, and this is the longest list in the
 > video.
@@ -608,7 +731,7 @@ what it should be. Opinions are hers to give; facts have to come from somewhere.
 ⚠️ The back gate and its proximity to St. Andrews are from the listing copy.
 You have been through that gate; say what you actually know.
 
-## One honest drawback — 22:00–23:00
+## One honest drawback — 23:05–24:05
 
 > Two trade-offs, and I'd weigh them differently for different people.
 
@@ -637,7 +760,7 @@ those two words.**
 
 **Verified**, full price history from listing 783783.
 
-## The home — 23:00–24:35
+## The home — 24:05–25:40
 
 `[TOUR 1722 Wahoo Cir — in 0:04.5, out 1:57.5, audio muted]`
 
@@ -660,16 +783,27 @@ first thing an insurer will ask about. **Confirm the roof year before you say
 it**, or say *"the current owner says the roof is new this year, and that is
 worth confirming"*, which is honest and still lands.
 
-## `[REVEAL 4]` — 24:35–24:50 *(82%)*
+## `[REVEAL 4]` — 25:40–26:05 *(74%)*
 
 > As I'm recording this, **four hundred and seventy four thousand.**
 
 > Behind a guarded gate, with a Nicklaus course and a marina. That's the one
 > that surprises people most.
 
+> And hold that number, because the very next neighborhood I'm taking you to is
+> **right next door.** Not near. Next door. And it's a completely different
+> price. That's the last stop.
+
+`[RE-HOOK — one segment long, paid off at 26:00. Cheap, and it carries the
+viewer across the schools block into the final segment.]`
+
+⭐ **Bay Point has the highest median assessed value of the five: about
+$358,000**, and the largest homes by median at **1,998 sqft**. 684 parcels within
+~400 m, built 1945–2025, median year **1986**.
+
 ---
 
-# THE SCHOOLS ANSWER — 24:50–25:40
+# THE SCHOOLS ANSWER — 26:05–26:55
 
 `[PAYOFF 1 — the first thing planted at 1:40]`
 
@@ -698,11 +832,11 @@ confirm it for the actual address before you fall in love with it."*
 
 ---
 
-# 5 · TREASURE COVE — 25:40–29:35
+# 5 · TREASURE COVE — 26:55–31:30
 
 `[AERIAL: east end, over toward Thomas Drive]`
 
-## Where it is, and what it's like — 25:40–26:50
+## Where it is, and what it's like — 26:55–27:35
 
 > Last one. Treasure Cove, on Oak Street, on the east end.
 
@@ -712,6 +846,43 @@ confirm it for the actual address before you fall in love with it."*
 
 **Verified route**, MLS Directions listing 785430: Hwy 98 / Back Beach Road,
 onto Navy Blvd / Thomas Drive, right on Sunset Drive, which becomes Oak Street.
+
+## `[PAYOFF]` — the gate is the whole difference — 27:35–28:15
+
+> Now, I told you this one was right next door to Bay Point. I meant it. When I
+> pulled the county records for Bay Point, a hundred and forty five Treasure
+> Cove parcels came back inside the same search.
+
+`[ON SCREEN: the two side by side — ~$358,000 and ~$249,000]`
+
+> Same corner of town. Same elementary school. And the typical Bay Point
+> property is assessed about a hundred and ten thousand dollars higher than the
+> typical Treasure Cove one.
+
+> **That gap is the gate.** It's the guard, the golf course, the marina, and the
+> sixteen fifty a year to belong to it. That's what it costs, and now you know
+> roughly what the number is.
+
+> If those things matter to you, Bay Point is worth every bit of it. If they
+> don't, you can buy on the other side of that line and put the difference in
+> your pocket. Neither one is the right answer. But that's the actual choice,
+> and almost nobody lays it out for you.
+
+⭐ **This is the strongest beat in the video and it is entirely public record.**
+The Bay Point spatial query returned **145 Treasure Cove parcels inside its own
+400 m radius** — they are genuinely adjacent. Bay Point median assessed
+**$358,164**, Treasure Cove **$248,983**: the highest and the lowest of the five,
+side by side. It is the clearest like-for-like trade-off available and it is
+exactly the comparison a buyer cannot easily run for themselves.
+
+⚠️ **Say "assessed", say "about", and never imply it is a list price.** These
+are Bay County assessed values and they run below market. **The relative
+comparison is the honest form and also the more useful one** — *"Bay Point runs
+about a hundred thousand higher"* is both true and memorable, where two precise
+dollar figures would invite a viewer to treat them as asking prices.
+
+**Treasure Cove parcels:** 479 within ~400 m, built 1953–2025, median year
+**1994**, median heated area **1,500 sqft** against Bay Point's 1,998.
 
 > It's a quiet residential street. No gate, no HOA, no amenities, nobody
 > collecting a fee. And it's close to **Naval Support Activity Panama City**,
@@ -729,7 +900,7 @@ beach access on Thomas Drive and to St. Andrews State Park. **That is the same
 unverified figure used in the closing line** — confirm it once and it covers both
 places it appears.
 
-## `[PAYOFF 3]` — the land — 26:50–27:40
+## `[PAYOFF 3]` — the land — 28:15–29:05
 
 > And here's the third thing I made you wait for.
 
@@ -748,7 +919,7 @@ places it appears.
 **Verified**: 785430 `Lot Size = 0.36 Acres`; 781232 `Lot Size = 0.17 Acres`,
 `Lot Dimensions 60x120`. The payoff promised at 1:40 lands exactly as stated.
 
-## One honest drawback — 27:40–28:35
+## One honest drawback — 29:05–30:00
 
 > Now, I told you at the start I'd be straight with you, so here are two things
 > about this one.
@@ -784,7 +955,7 @@ data**, which is exactly why it works.
 00:50:43). Karen is publicly declining to repeat her own brokerage's marketing
 language. Do not soften it. It is worth more than the segment.
 
-## The home — 28:35–29:05
+## The home — 30:00–30:50
 
 `[TOUR 2601 Oak St — in 0:04.5, out 1:57.5, audio muted]`
 
@@ -796,7 +967,7 @@ argument.
 > in two thousand and five. Vaulted ceilings, open layout, walk-in closet in the
 > primary, luxury vinyl plank throughout, and a storage building out back.
 
-## `[CTA — the hard ask]` — 29:05–29:15
+## `[CTA — the hard ask]` — 30:50–31:05
 
 > Okay. Before I give you the last number.
 
@@ -806,7 +977,7 @@ argument.
 
 **CTA immediately before the reveal, in the taught order** (`D3-GS` 00:45:09).
 
-## `[REVEAL 5]` — 29:15–29:35 *(97.5%)*
+## `[REVEAL 5]` — 31:05–31:30 *(89%)*
 
 > As I'm recording this, that one is **three hundred and sixty five thousand
 > dollars.**
@@ -833,7 +1004,7 @@ than the previous 97.5% was.
 
 ---
 
-# 6 · LATITUDE MARGARITAVILLE WATERSOUND — 29:35–33:05
+# 6 · LATITUDE MARGARITAVILLE WATERSOUND — 31:30–35:00
 
 `[PAYOFF 4 — the 55+ re-hook planted at 1:30]`
 
@@ -847,12 +1018,13 @@ breakdown, no address ranges, no homesite counts. That is
 [the other channel's video](../latitude-phases-explained/README.md) and repeating
 it here wastes runtime and cannibalises it.
 
-## The turn — 29:35–30:10
+## The turn — 31:30–32:05
 
 `[AERIAL: leave the beach, move north up the Hwy 79 corridor]`
 
 > Now. Everything I've shown you so far has been down here on the beach side.
 
+> But if you're over fifty five, there is a completely different way to live in
 > But if you're over fifty five, there is a completely different way to live in
 > Panama City Beach, and it's about fifteen minutes inland. It's called Latitude
 > Margaritaville Watersound, and it's a fifty five plus community up on the
@@ -865,15 +1037,18 @@ and it has been held back for twenty nine minutes to land here. `[KAREN — MIKE
 say it the way you'd say it to a neighbour, not the way you'd say it in a
 listing presentation.
 
-## Where it is, and who it suits — 30:10–31:20
+## Where it is, and who it suits — 32:05–33:15
 
 `[B-ROLL: community footage — 8K, downscale to 1080p]`
 
-> Being fifteen minutes inland is the trade, and I'm going to be straight about
-> it, because it's the whole decision. **You are not walking to the Gulf from
-> here.** If waking up and being on the sand in five minutes is the point of
-> moving to Florida for you, this is not your community, and one of the other
-> five probably is.
+> Being inland is the trade, and I'm going to be straight about it, because it's
+> the whole decision. **You are not walking to the Gulf from here.** It's about
+> fifteen minutes to the nearest Gulf access, and more like twenty five if you're
+> coming back here to Pier Park. Add time in summer, because everybody does.
+
+> If waking up and being on the sand in five minutes is the point of moving to
+> Florida for you, this is not your community, and one of the other five
+> probably is.
 
 > What you get instead is everything the beach side doesn't have. Space. Newer
 > houses. And a whole town built around people who are done working.
@@ -886,14 +1061,26 @@ listing presentation.
 > friends. `[KAREN]` one line in your own words about what that actually feels
 > like day to day. That is the thing no brochure can say and you can.
 
-**Drive times, from the same OSRM set as the rest of the video:** the Hwy 79
-corridor is **13 minutes from El Centro Beach, 15 from Palmetto Trace, 20 from
-Bahama Beach**, and **30 plus from Bay Point and Treasure Cove.** Those numbers
-also corroborate the roughly fifteen minutes to the Gulf, since three of the
-beach-side neighborhoods sit 13 to 20 minutes away. `[KAREN]` confirm the
-fifteen-minute figure once, loosely, and say it as a range.
+✅ **Gulf distances are sourced, not estimated.** From
+[`phase-status.md`](../../../../properties/latitude-margaritaville-watersound/phase-status.md#-how-far-the-gulf-is):
+**Front Beach Rd west end, the nearest Gulf access, 8.5 mi / 15 min. Pier Park
+13.6 mi / 25 min.** OSRM on OpenStreetMap, free-flow. Water body confirmed as
+**the Gulf** by Mike, and his own answer — *"10 to 15 minutes to the Gulf"* — is
+correct **as a floor**, holding only for the nearest access point.
 
-## What's actually out there now — 31:20–32:20
+> ⛔ **Do not round down, and do not give fifteen on its own.** That figure is the
+> best case. A buyer told *"ten minutes to the beach"* who tours in July and
+> spends forty minutes on Front Beach Road feels misled, and that is the moment
+> the rest of the video gets re-evaluated. **Always pair the fifteen with the
+> twenty five and the summer caveat**, exactly as scripted above. This is the same
+> candour move as the honest drawbacks in the other five segments: the true
+> answer is good, and saying it plainly is what makes it land.
+
+**Drive times from the beach-side five**, from this video's own OSRM set: the
+Hwy 79 corridor is **13 minutes from El Centro Beach, 15 from Palmetto Trace, 20
+from Bahama Beach**, and **30 plus from Bay Point and Treasure Cove.**
+
+## What's actually out there now — 33:15–34:15
 
 > The other thing people ask is whether there's anything up there yet, because
 > it used to be a long drive for a gallon of milk. That's changing.
@@ -924,7 +1111,7 @@ coming; that list is what is known now, not the final roster.
 once here. That is deliberate: it is the single fact that matters to both a
 young family and a retiree, and the corridor is where it actually is.
 
-## The honest drawback — 32:20–32:45
+## The honest drawback — 34:15–34:40
 
 > So the trade-offs, plainly. You're inland, so the beach is a drive, not a
 > walk. It's still being built, so you will have construction around you for a
@@ -937,7 +1124,7 @@ young family and a retiree, and the corridor is where it actually is.
 **"Be real, not promotional"** (`D4-GS` 00:50:43). Three drawbacks, no softening,
 in the segment about her own community. That is what makes the rest credible.
 
-## `[REDIRECT — cross-channel]` — 32:45–33:05
+## `[REDIRECT — cross-channel]` — 34:40–35:00
 
 > And because I live there, I have a whole separate channel just about
 > Latitude Margaritaville Watersound. Phases, models, what the HOA covers, what
@@ -953,7 +1140,7 @@ at 1:30.
 
 ---
 
-# REDIRECT — 33:05–33:30
+# REDIRECT — 35:00–35:25
 
 `[Cut to Karen. Then the Counts outro card from any one tour file — it carries
 the brokerage name next to the contact details, which is what Florida rule

@@ -2,7 +2,7 @@
 
 **Channel:** Living in Panama City Beach FL \| The Lawell Team
 (`@LivinginPanamaCityBeachFLtheLT`)
-**Runtime:** ~33:30 · **Category:** People & Blogs · **Language:** English
+**Runtime:** ~35:25 · **Category:** People & Blogs · **Language:** English
 **Made for Kids:** No · **Altered/AI content:** No · **License:** Standard YouTube
 
 ---
@@ -121,13 +121,13 @@ Chapters:
 01:40 Three things I'm not telling you yet
 02:15 Pier Park, and how far everything really is
 03:40 1 — Palmetto Trace: walk to Pier Park
-08:50 2 — Bahama Beach: you own the sand
-14:20 3 — El Centro Beach: the lake nobody mentions
-19:20 4 — Bay Point: behind the gate
-24:50 The school question nobody asks
-25:40 5 — Treasure Cove: the one you can actually afford
-29:35 6 — Latitude Margaritaville Watersound: the 55+ option
-33:05 What to watch next
+09:15 2 — Bahama Beach: you own the sand
+15:10 3 — El Centro Beach: the lake nobody mentions
+20:25 4 — Bay Point: behind the gate
+26:05 The school question nobody asks
+26:55 5 — Treasure Cove: the one you can actually afford
+31:30 6 — Latitude Margaritaville Watersound: the 55+ option
+35:00 What to watch next
 
 #PanamaCityBeach #MovingToPanamaCityBeach #LivingInPanamaCityBeach #PanamaCityBeachRealEstate #30A
 ```
@@ -161,13 +161,13 @@ clearest unforced error and a free advantage to take.
 | 01:40 | Three things I'm not telling you yet |
 | 02:15 | Pier Park, and how far everything really is |
 | 03:40 | 1 — Palmetto Trace: walk to Pier Park |
-| 08:50 | 2 — Bahama Beach: you own the sand |
-| 14:20 | 3 — El Centro Beach: the lake nobody mentions |
-| 19:20 | 4 — Bay Point: behind the gate |
-| 24:50 | The school question nobody asks |
-| 25:40 | 5 — Treasure Cove: the one you can actually afford |
-| 29:35 | 6 — Latitude Margaritaville Watersound: the 55+ option |
-| 33:05 | What to watch next |
+| 09:15 | 2 — Bahama Beach: you own the sand |
+| 15:10 | 3 — El Centro Beach: the lake nobody mentions |
+| 20:25 | 4 — Bay Point: behind the gate |
+| 26:05 | The school question nobody asks |
+| 26:55 | 5 — Treasure Cove: the one you can actually afford |
+| 31:30 | 6 — Latitude Margaritaville Watersound: the 55+ option |
+| 35:00 | What to watch next |
 
 **No chapter contains a price or a dollar figure.** Chapter titles are visible on
 the progress bar and in search results, so a price there would defeat the
@@ -206,16 +206,16 @@ the spoken redirect at 29:35 is doing the job alone.
 
 | Element | Content | Placement |
 | --- | --- | --- |
-| Video | *Cost of Living in Panama City Beach, Florida* — the video the script names by title | Left, from 33:10 |
-| Subscribe | Channel icon | Right, from 33:10 |
+| Video | *Cost of Living in Panama City Beach, Florida* — the video the script names by title | Left, from 35:05 |
+| Subscribe | Channel icon | Right, from 35:05 |
 
 ⚠️ **There are now two spoken redirects, in this order:**
 
-1. **32:45 — cross-channel**, at the end of segment 6, pointing at the **Latitude
+1. **34:40 — cross-channel**, at the end of segment 6, pointing at the **Latitude
    Margaritaville Watersound** channel for the 55+ viewer who has just
    self-identified. **Link it in the description and as a card**, not on the end
    screen — the end screen belongs to this channel's next video.
-2. **33:05 — the main redirect**, pointing at the next video on *this* channel.
+2. **35:00 — the main redirect**, pointing at the next video on *this* channel.
 
 That ordering is deliberate. The cross-channel send happens while the 55+ viewer
 is engaged in their own segment; the main redirect still gets the last word.
