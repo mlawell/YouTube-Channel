@@ -52,15 +52,24 @@ useful for the Highway 79 beat that currently has no visual at all. And this is
 **on top of** the 278 geotagged Phase 7 and 8 photographs below.
 
 There is also **1:25:23 of 8K video** shot 2026-08-22, in **two folders**
-(`Phases\Videos\` and `video\`), covering **Phases 1, 2, 6B & 6C, 8, 9, 10 and
-the Town Center**. Video outranks photography wherever it applies. Full table and
-GPS placement in
+(`Phases\Videos\` and `video\`). Clips **start** in Phases 1, 2, 6B & 6C, 8, 9
+and the Town Center. Video outranks photography wherever it applies. Full table
+and the derivation in
 [`karen-presenter-treatment.md`](../karen-presenter-treatment.md).
 
+> ### ⛔ "No clip starts here" is not "no footage exists"
+> The GPS is a **single start-point tag with no telemetry track**, so it says
+> where a clip began and nothing about where it went. The 40:54 clip tagged
+> Phase 1 is demonstrably far from Phase 1 by minute 30 — undeveloped lots and a
+> walking trail — and is at the **Town Center** by minute 40.
+>
+> **Mike says he drove Phases 1, 2, 3 and the Town Center.** Treat the start
+> points as a **floor**. Before shooting anything, scrub the long clips.
+
 > ### ⭐ Phases 9 and 10 do not need a photo shoot
-> They have **zero** cart-tour photographs, but they have roughly **11 minutes of
-> 8K video**. A **7680×4320 frame is a 33-megapixel still**, larger than most
-> stills cameras produce.
+> They have **zero** cart-tour photographs, but roughly **11 minutes of 8K
+> video**. A **7680×4320 frame is a 33-megapixel still**, larger than most stills
+> cameras produce.
 >
 > **Standing method: any phase with video and no photographs gets its stills
 > extracted from the video.** That was the last real gap on this list and it is
@@ -68,7 +77,7 @@ GPS placement in
 
 ### So the order of work is
 
-1. **Use the 8K video** where it exists, and extract frames from it for stills.
+1. **Use the 8K video** where it exists, and extract frames from it for stills. **Scrub the long clips before concluding a phase has none** — the start-point table understates coverage.
 2. **Open the photo index and pull what already exists.** Every other plat is covered.
 3. **Shoot only the genuine gaps.** After the above there is essentially one: **a photo of the cats**. Beyond that, only frames needing a specific composition the tour did not catch — chiefly legible street signs.
 4. **Re-shoot nothing** that the index or the footage already covers.
@@ -264,6 +273,7 @@ are the gaps.
 | **5. Bingo** | `Activities\bingo.jpg` and `Activities\Hawaiian Bingo.png` | ✅ **Already exists.** Select, don't shoot |
 | **3. The dermatologist** | `West Bay Center\` — `West Bay Center 001.JPG`, `002.MP4`, `Watersound Retail.JPG`, `Aerial Retail Center - Existing.jpg`, `Publix .JPG` | ✅ **Already exists.** Beat still has no script slot |
 | **2. The cats** | Barkaritaville: `Town Center\Workin' N' Playin' Center\high-res-bark-aritaville-…jpg` ✅ · **Bella, Cinder and Buddy** ❌ | ⚠️ **The one genuine gap.** A phone snap of three cats, not a shoot |
+| **1. Bring a cart** | Cart in the driveway ✅ · **also** the cart parking bays at the Town Center, visible around **40:00 in the 40:54 clip** — dozens of carts lined up | ✅ Extra option found while sampling frames. Stronger than a single cart, because it shows everybody does it |
 
 > 🎁 **`Hawaiian Bingo.png` is a free callback.** Beats 5 and 6 are bingo and the
 > Hawaiian shirt, and both are in the **Phase 8 deep dive**. Using the *Hawaiian*
