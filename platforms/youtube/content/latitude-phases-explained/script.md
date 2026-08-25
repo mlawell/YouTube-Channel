@@ -43,6 +43,11 @@ scrub to their phase, and scrubbing forward still accumulates watch time.
   him*. A **new** one still needs him. He is a recurring character, never a
   source: the moment he answers a question about plats or pricing, the authority
   has transferred and it stops working
+- `[RE-HOOK]` — a question planted early and answered late. There is exactly one
+  in this script: planted at 0:30, paid off at 18:10. **If you cut one, cut both**
+- `[TEASER]` — a short forward promise at a section exit, naming what is coming
+  next. Its job is to carry the viewer across the cut. **Every teaser must be
+  paid off by the thing it named**
 - Spoken copy is the plain text. Everything in brackets is direction.
 
 ## Rules this script follows
@@ -92,6 +97,14 @@ twelve seconds. Do not add a "hey guys" in front of it.
 > And that's the difference between this video and every other phase video
 > you'll find. Most of them label geography. This one answers the actual
 > question: **which phase should you buy in?**
+
+`[RE-HOOK — plant it here, pay it off at 18:10. Characteristic 5, and
+`framework-vs-practice.md` names this as the one thing this script was
+missing: *"Karen's phases video has an obvious equivalent available and
+currently unused: which phase would I not buy in, and why."*]`
+
+> And stay with me to the end, because I'm also going to tell you which phase
+> I'd think twice about, and why. It's probably not the one you're expecting.
 
 `[B-ROLL: Karen's street, golf cart, her front door — from her own photo set]`
 
@@ -316,6 +329,18 @@ the one thing that matters about it. Keep the pace up — these are chapter
 markers, viewers will scrub to their phase and that is fine. Every availability
 statement is `[KAREN]`-gated.
 
+**This is the weakest retention stretch in the video** — seven and a half minutes
+of map frames at about thirty seconds each. It needs something pulling the viewer
+across it, so the teaser below reaches past the entire run to the Escape Avenue
+segment at 12:15.
+
+`[TEASER — long-range, carries the viewer across the phase-by-phase run]`
+
+> And keep an eye out when we get to Phase 7, because there's a street in it
+> that runs straight on into Phase 8. Same street, same street sign, two
+> different phases. It causes more confusion than anything else out here, and
+> I'll show you exactly how to tell which is which right after this.
+
 ---
 
 ### Phase 1 — 4:45
@@ -424,6 +449,11 @@ statement is `[KAREN]`-gated.
 > Worth knowing: this plat was recorded in book 32 — *after* Phase 7 and Phase
 > 8. Plat order is not phase order, which is the other reason people get
 > confused reading the index. `[INVENTORY — Stay & Play cottages only]`
+
+`[TEASER — mid-run, pulls toward the Phase 8 chapter]`
+
+> Still to come, the phase my husband and I actually live in, and the one real
+> downside of it that I'm not going to pretend isn't there.
 
 `[HUMOR — optional, cut freely. Approved 2026-08-23.]`
 
@@ -666,6 +696,11 @@ feel different? That's the part only you can say. Do not claim to live on it.]`
 > Let me answer the four questions I get asked most, because I've seen all
 > four asked under other videos and left unanswered.
 
+`[TEASER — short, buys the questions block]`
+
+> And the first one has an answer I don't think anybody is actually giving
+> you straight.
+
 **"How far is the beach?"**
 
 **Direction:** this goes **first** because it is the single most common objection
@@ -774,7 +809,47 @@ the third sentence has to stay. Do not add a tag after it.
 
 ---
 
-## CLOSE — 17:30–19:00
+## THE PHASE I'D THINK TWICE ABOUT — 18:10–18:40
+
+**This pays off the re-hook planted at 0:30.** It is the only promise in this
+script the viewer waits eighteen minutes for, so it cannot be skipped, softened
+into nothing, or left unanswered. An unpaid tease costs more than never having
+made one, because the viewer stayed *for* it.
+
+`[FRAME 00_all-phases]`
+
+> Okay. I promised you at the start that I'd tell you which phase I'd think
+> twice about.
+
+`[KAREN — you have to answer this in your own words. Two honest ways to do it.
+Pick whichever is actually true for you.]`
+
+`[KAREN — option A, the direct answer: name the phase and give the reason. It
+does not have to be a criticism of the phase. "I'd think twice about X if you're
+Y" is a complete answer, and it is the most useful sentence in the video.]`
+
+`[KAREN — option B, if you'd rather not single one out, answer it as a condition
+instead: "the one I'd think twice about is whichever one is closest to 79, and
+only if road noise is the thing that would bother you." That is still a real
+answer, it is consistent with what you already said at 3:15, and it doesn't put
+a phase down in front of the neighbours who live in it.]`
+
+⛔ **What you cannot do is decline.** If this is planted at 0:30 and never
+answered, the video has spent the viewer's attention and given nothing back.
+**If you'd rather not answer it at all, cut the re-hook at 0:30 as well.** Both
+come out together or neither does.
+
+**Direction:** keep it kind. Several thousand neighbours may watch this, and the
+whole channel rests on Karen being the person who actually lives there. It
+should sound like advice to a friend, not a review.
+
+⏱ **This block adds about 30 seconds**, taking the runtime to roughly 20:30 —
+still inside the 19:00–22:00 target. Re-derive the chapter timestamps in
+`metadata.md` from the final cut, as the checklist already requires.
+
+---
+
+## CLOSE — 18:40–20:10
 
 `[FRAME 00_all-phases → slow zoom to Phase 8 → back out]`
 
@@ -797,7 +872,7 @@ the third sentence has to stay. Do not add a tag after it.
 
 ---
 
-## END SCREEN REDIRECT — 19:00–19:20
+## END SCREEN REDIRECT — 20:10–20:30
 
 **This block did not exist before and it is the one confirmed gap in this
 script.** Characteristic 8 is *"the instant the price lands, point them at the
@@ -906,3 +981,8 @@ than on the Sales Center. Phase 1 is mostly the model park. See the loop in
       table in
       [`street-names-buffett.md`](../../../../properties/latitude-margaritaville-watersound/street-names-buffett.md).
       In particular: **No Shoes Court is Kenny Chesney, not Buffett**
+- [ ] **Every promise is paid off.** One re-hook and three teasers. Walk them:
+      0:30 → 18:10 · 4:45 → 12:15 · 8:00 → 10:50 · 15:00 → 15:05. A promise the
+      video does not keep costs more than never having made it
+- [ ] **The 0:30 re-hook is answered at 18:10.** If Karen will not answer it,
+      **cut the plant at 0:30 too** — never leave it hanging

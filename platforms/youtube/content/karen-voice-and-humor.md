@@ -660,6 +660,58 @@ picture cuts away from the avatar for its duration.**
 
 ---
 
+## Teasers and re-hooks
+
+Same constraint as humor, and the same reason: **an avatar cannot decide to
+tease something.** A forward promise is written in advance or it does not exist.
+
+Characteristic 5 is *plant a question early, answer it late*, and it is one of
+the few the evidence marks ✅ **Holds**
+([`framework-vs-practice.md`](../../../knowledge/reference-videos/framework-vs-practice.md)).
+Jelinek does it thirty-three seconds in: *"wait till the end because I'm going
+to reveal the biggest mistake new home buyers make."*
+
+Two kinds, doing different jobs:
+
+| | `[RE-HOOK]` | `[TEASER]` |
+| --- | --- | --- |
+| Range | The whole video | The next section |
+| Count | **One** per video | One per weak stretch |
+| Placed | First 30 seconds | At a section **exit** |
+| Job | A reason to reach the end | Carry the viewer over a cut |
+
+**Put them at exits, never entrances.** A teaser's entire job is to get somebody
+across the cut, so it has to be the last thing before it, not the first thing
+after.
+
+**Densest where the visual is weakest.** The flagship's phase-by-phase run is
+seven and a half minutes of map frames at thirty seconds each. That is where a
+forward promise earns the most, and it is why the teaser there reaches all the
+way to the Escape Avenue segment rather than to the next chapter.
+
+### ⛔ The rule that matters
+
+**Every promise must be paid off by the thing it named.** An unpaid tease costs
+more than never having made one, because the viewer stayed *for* it.
+
+This is the same failure as an unsupported thumbnail badge, and it has been
+caught twice in this repo already:
+
+- **The deep-dive cold opens.** They promised *"what the people who actually live here say about it"*, but the resident chapter is empty for any phase with no recorded group. **Phases 1 and 2 were promising something the script then did not deliver.** The generator now derives the promise from the same data as the chapter, so the two cannot drift apart.
+- **The flagship re-hook.** *"Which phase I'd think twice about"* is planted at 0:30 and `[KAREN]`-gated at 18:10. If she will not answer it, **the plant comes out too.**
+
+So: if a payoff is conditional, its promise is conditional, and **both come out
+together.** Never one without the other. Where the condition is derivable from
+data, derive it — do not leave it to a human to remember at record time.
+
+### Never tease a fact you have not verified
+
+A teaser is a claim made to the widest possible audience, before anyone can
+check it. The test is the same as the banned-phrase test: **if it would need a
+`[VERIFY]`, it cannot be a teaser.**
+
+---
+
 ## Density and placement
 
 The framework's pacing point: humor is a **tool for moving fast through weak
