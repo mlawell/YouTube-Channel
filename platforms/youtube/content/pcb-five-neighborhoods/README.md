@@ -4,7 +4,8 @@
 (`@LivinginPanamaCityBeachFLtheLT`)
 **Format:** vlog tour — six neighborhoods, five homes, one drive
 **Target runtime:** **32–36 minutes** — [reasoning](#runtime-why-3236-minutes)
-**Status:** ready to record, with [six things Karen must supply](#before-you-record)
+**Status:** ✅ **research complete — ready to record.** One item outstanding: a
+[five-minute price check on record-day morning](#before-you-record).
 
 This is the channel's **second video** and, functionally, its launch. The PCB
 channel has exactly one video on it. Against the
