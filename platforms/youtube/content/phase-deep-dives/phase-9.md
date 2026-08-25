@@ -57,6 +57,7 @@ Minto lot numbers — **Phase 9: 9001–9288**. Say on camera that these are *no
 - `[RESIDENT]` — a real quote from a real neighbour, captured on the drive sheet, used with permission. Never paraphrase one into existence.
 - `[INVENTORY]` — today's snapshot, spoken and dated, from `inventory_report.py`.
 - Spoken copy is the plain text. Brackets are direction.
+- `[TEASER]` — a short forward promise at a section exit, naming what is coming next. Its job is to carry the viewer across the cut. **Every teaser must be paid off by the thing it named.**
 
 ## Rules this script follows
 
@@ -117,6 +118,10 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 ⛔ **Say "the Gulf."** Not "Gulf of Mexico," not "Gulf of America." It is what locals say, both formal names are currently politically loaded in opposite directions, and the training is explicit about keeping charged terms off a relocation channel (`D4-GS` 00:12:35). This beat runs in all ten deep dives and the flagship, so the term is spoken eleven times across the series and consistency matters. Channel-wide rule: [`karen-voice-and-humor.md`](../karen-voice-and-humor.md).
 
+`[TEASER — the exit of this section, carries the viewer across the cut]`
+
+> And then something you can actually check for yourself, which is how the people who already live in this phase organise themselves.
+
 ## WHAT PEOPLE WHO LIVE HERE SAY — 6:00–8:00
 
 **Direction:** the strongest answer here is structural, not anecdotal. **This community organises itself by phase** — which is the entire premise of this series. A phase is a real social unit, not just a plat number, and that is exactly what a buyer is trying to work out when they ask which phase they should be in.
@@ -168,6 +173,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] **Every promise is paid off.** Walk the cold open and every `[TEASER]` and confirm the video delivers what each one named. A promise the video does not keep costs more than never having made it
 - [ ] End screen card set to **one element only** — Phase 10 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
 - [ ] Every mention of the water says **"the Gulf"** — never "Gulf of Mexico" or "Gulf of America", in spoken copy, titles, descriptions or tags.

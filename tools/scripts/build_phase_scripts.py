@@ -727,6 +727,14 @@ def _body(c: Community, num: str, g: dict) -> str:
     multi = len(plats) > 1
     near, far = g["nearest_mi"], g["farthest_mi"]
     mine = g["karen_lives_here"]
+    # Whether this phase has anything real to say in the resident chapter.
+    # Computed HERE rather than in that section, because the cold open makes a
+    # promise about it and the two have to agree. Phases 1 and 2 have no
+    # recorded group, so their cold open must not promise resident voices.
+    groups = PHASE_GROUPS.get(num, [])
+    streets = STREET_GROUPS.get(num, [])
+    named = [s for s in g["streets"] if s in STREET_GROUPS_BY_STREET]
+    has_residents = bool(groups or streets or named)
     L: list[str] = []
     add = L.append
 
@@ -741,6 +749,10 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("- `[INVENTORY]` \u2014 today's snapshot, spoken and dated, from "
         "`inventory_report.py`.")
     add("- Spoken copy is the plain text. Brackets are direction.")
+    if mine or has_residents:
+        add("- `[TEASER]` \u2014 a short forward promise at a section exit, naming "
+            "what is coming next. Its job is to carry the viewer across the "
+            "cut. **Every teaser must be paid off by the thing it named.**")
     add("")
     add("## Rules this script follows")
     add("")
@@ -767,10 +779,18 @@ def _body(c: Community, num: str, g: dict) -> str:
     else:
         add(f"`[FRAME {c.frame_name[plats[0]['label']]}]`")
         add("")
-        add(f"> This is Phase {num}. And by the end of this video you'll know "
-            f"exactly where it is, what's in it, how long it takes to get to the "
-            f"Town Center on a cart \u2014 because I timed it \u2014 and what the people "
-            f"who actually live here say about it.")
+        # The cold open may only promise what the video actually delivers. The
+        # resident chapter is empty for any phase with no recorded group, so
+        # the clause about residents is conditional on there being one.
+        if has_residents:
+            add(f"> This is Phase {num}. And by the end of this video you'll know "
+                f"exactly where it is, what's in it, how long it takes to get to the "
+                f"Town Center on a cart \u2014 because I timed it \u2014 and what the people "
+                f"who actually live here say about it.")
+        else:
+            add(f"> This is Phase {num}. And by the end of this video you'll know "
+                f"exactly where it is, what's in it, and how long it takes to get "
+                f"to the Town Center on a cart, because I timed it.")
     add("")
     if multi:
         add(f"> And the first thing to know is that Phase {num} isn't one "
@@ -927,12 +947,34 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("")
     L.extend(humor("noise", num))
 
+    # ---- teaser into the next section --------------------------------------
+    # Characteristic 5: plant a question, answer it late (`framework-vs-practice`
+    # marks re-hooks as one of the characteristics that holds). This one is
+    # short-range: it carries the viewer over the cut into the chapter that pays
+    # the biggest promise.
+    #
+    # It is emitted ONLY where there is something to pay it with. A teaser that
+    # names a chapter the video then does not deliver is worse than no teaser,
+    # because the viewer stayed for it. Phases 1 and 2 have no recorded resident
+    # group, so they get no resident teaser and no resident promise in the cold
+    # open either.
+    if mine or has_residents:
+        add("`[TEASER \u2014 the exit of this section, carries the viewer across "
+            "the cut]`")
+        add("")
+        if mine:
+            add("> And then the part that isn't on any map and isn't in any "
+                "county record, which is why the two of us picked this one out "
+                "of all ten.")
+        else:
+            add("> And then something you can actually check for yourself, "
+                "which is how the people who already live in this phase "
+                "organise themselves.")
+        add("")
+
     # ---- residents ----------------------------------------------------------
     add("## WHAT PEOPLE WHO LIVE HERE SAY \u2014 6:00\u20138:00")
     add("")
-    groups = PHASE_GROUPS.get(num, [])
-    streets = STREET_GROUPS.get(num, [])
-    named = [s for s in g["streets"] if s in STREET_GROUPS_BY_STREET]
     if groups or streets or named:
         add("**Direction:** the strongest answer here is structural, not "
             "anecdotal. **This community organises itself by phase** \u2014 which "
@@ -1063,6 +1105,9 @@ def _body(c: Community, num: str, g: dict) -> str:
     add("- [ ] `python tools/map/render_map.py --only sequence` run for fresh frames")
     add("- [ ] `python tools/map/inventory_report.py --csv <export>` run on record day")
     add("- [ ] Plat book/page on screen for every plat named")
+    add("- [ ] **Every promise is paid off.** Walk the cold open and every "
+        "`[TEASER]` and confirm the video delivers what each one named. A "
+        "promise the video does not keep costs more than never having made it")
     add("- [ ] End screen card set to **one element only** \u2014 "
         f"{REDIRECT[num][0]} \u2014 and the redirect line spoken over it")
     add("- [ ] No em-dashes left in any spoken line. ElevenLabs reads the "

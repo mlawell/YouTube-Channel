@@ -63,7 +63,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 
 `[FRAME 01_phase-1]`
 
-> This is Phase 1. And by the end of this video you'll know exactly where it is, what's in it, how long it takes to get to the Town Center on a cart — because I timed it — and what the people who actually live here say about it.
+> This is Phase 1. And by the end of this video you'll know exactly where it is, what's in it, and how long it takes to get to the Town Center on a cart, because I timed it.
 
 ## WHERE IT IS — 0:15–2:00
 
@@ -153,6 +153,7 @@ Same five as the flagship — no price-by-phase, inventory spoken and dated, pla
 - [ ] `python tools/map/render_map.py --only sequence` run for fresh frames
 - [ ] `python tools/map/inventory_report.py --csv <export>` run on record day
 - [ ] Plat book/page on screen for every plat named
+- [ ] **Every promise is paid off.** Walk the cold open and every `[TEASER]` and confirm the video delivers what each one named. A promise the video does not keep costs more than never having made it
 - [ ] End screen card set to **one element only** — Phase 2 — and the redirect line spoken over it
 - [ ] No em-dashes left in any spoken line. ElevenLabs reads the cadence, and the em-dash is a named AI detection tell (`D1-QA` 00:05:11). Use a comma, a full stop, or "and".
 - [ ] Every mention of the water says **"the Gulf"** — never "Gulf of Mexico" or "Gulf of America", in spoken copy, titles, descriptions or tags.
